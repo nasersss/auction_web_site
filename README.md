@@ -1,3 +1,4 @@
+<p align="center"><img src="logo.jpg" width="400"></a></p>
 # Mazady Car 
 
 ## Description 
@@ -5,12 +6,12 @@ Project Submitted in Fulfillment
 of Requirements for Web Bootcamp
  in Rowad Coding Academy  
 
-## Team
-1- Murad Al-Amudi
-2- Abdurhman 
-3- Sameeh Edrees
-4-Mohammed Zobair 
-5-Nasser Esmail Al-Ghaithi
+## Team work
+1. Murad Al-Amudi
+2. Abdurhman 
+3. Sameeh Edrees
+4. Mohammed Zobair 
+5. Nasser Esmail Al-Ghaithi
 
 ## language
 HTML
