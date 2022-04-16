@@ -4,7 +4,7 @@
         <a href="javascript:void(0);" class="end-bar-toggle float-start">
             <i class="dripicons-cross noti-icon"></i>
         </a>
-        <h5 class="m-0">Settings</h5>
+        <h5 class="m-0">الإعدادات</h5>
     </div>
 
     <div class="rightbar-content h-100" data-simplebar="">
