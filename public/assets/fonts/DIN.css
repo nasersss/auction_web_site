@@ -1,0 +1,12 @@
+@font-face {
+    font-family: DIN-light;
+    src: url(din-next-lt-w23-light.ttf);
+}
+@font-face {
+    font-family: DIN-medium;
+    src: url(din-next-lt-w23-medium.ttf);
+}
+@font-face {
+    font-family: DIN-bold;
+    src: url(din-next-lt-w23-bold.otf);
+}
