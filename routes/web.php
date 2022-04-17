@@ -18,9 +18,9 @@ Route::get('/header', function () {
 });
 
 Route::get('/login',function(){
-    return view('layout.auth.login');
+    return view('auth.login');
 });
 
 Route::get('/register',function(){
-    return view('layout.auth.register');
+    return view('auth.register');
 });
