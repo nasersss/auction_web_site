@@ -47,7 +47,7 @@
                             <label for="emailaddress" class="form-label">البريد الاكتروني</label>
                             <input class="form-control" type="email" id="emailaddress" required="" placeholder="ادخل بريدك الاكتروني" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
                             @error('email')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
@@ -56,11 +56,11 @@
                             <label for="password" class="form-label">كلمة المرور</label>
                             <input class="form-control" type="password" id="password" placeholder="ادخل كلمة المرور" name="password" required autocomplete="current-password">
                             @error('password')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                            <a href="pages-recoverpw-2.html" class="text-muted float-end"><small>هل نسيت كلمة المرور؟</small></a>
+                            <a href="{{ route('password.request') }}" class="text-muted float-end"><small>هل نسيت كلمة المرور؟</small></a>
                         </div>
 
                         <div class="mb-3">
@@ -97,6 +97,7 @@
                     <!-- Footer-->
                     <footer class="footer footer-alt">
                     @if (Route::has('password.request'))
+                                                                                            <!-- {{ route('password.request') }} -->
                         <p class="text-muted">لا تمتلك اي حساب قم بانشاء حسابك الان ؟ <a href="{{ route('password.request') }}" class="text-muted ms-1"><b>انشاء حساب</b></a></p>
                     @endif
                     </footer>
@@ -112,9 +113,7 @@
                 <h2 class="mb-3">منصة مزادي كار اكبر منصة لمزاد السيارات في اليمن </h2>
                 <p class="lead"><i class="mdi mdi-format-quote-open"></i>لكل الاشخاص الراغبين عن مزاد للسيارات في جميع اننحاء الجمهورية اليمنية جاءت منصة مزادي كار لتخفيف عنائكم مع امكانية التوصيل الى جميع المحافظات فقط عليكم الاشتراك بالمنصة<i class="mdi mdi-format-quote-close"></i>
                 </p>
-                <p>
-                    - لا تنسى ذكر الله
-                </p>
+                
             </div> <!-- end auth-user-testimonial-->
         </div>
         <!-- end Auth fluid right content -->
