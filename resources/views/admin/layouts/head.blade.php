@@ -1,7 +1,7 @@
 <title>@yield('title')</title>
 <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.png">
-
+@yield('first-css')
     <!-- third party css -->
     <link href="assets/css/vendor/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css">
     <!-- third party css end -->

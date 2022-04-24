@@ -16,12 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/dashboard', function () {
-    return view('admin/home');
-});
-Route::get('/add_auction', function () {
-    return view('admin/add_auction');
-});
-Route::get('/auctions _review', function () {
-    return view('admin/auctions _review');
-});
+
+

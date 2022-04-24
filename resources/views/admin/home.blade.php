@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('title')
-    الرئيسية
+    لوحة التحكم
 
 @endsection
 
