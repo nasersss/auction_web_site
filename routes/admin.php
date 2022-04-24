@@ -29,7 +29,8 @@ Route::get('/auctions _review', function () {
 
 Route::get('/users', function () {
     return view('admin/view_users');
-
+});
 Route::get('/add_categry', function () {
     return view('admin/add_categry');
 });
+
