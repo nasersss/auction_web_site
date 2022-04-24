@@ -7,64 +7,198 @@
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap" rel="stylesheet">
-	
-		<link rel="stylesheet" href="css/ionicons.min.css">
-		<link rel="stylesheet" href="css/style.css">
-		
+		<link rel="stylesheet" href="assets/css/ionicons.min.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+        <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        
   </head>
   <body>
-  
-    
-  <main>
-    <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
-        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
-            <div class="col">
-                <div class="card h-100 shadow-sm"> <img src="images/5gpdlym8v46chhrjgdex8m9jm.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-primary">FORD</span> <span class="float-end price-hp">5.5M R</span> </div>
-                        <h5 class="card-title">مستعملة 2020 ميتسوبيشي باجيرو GLS Highline عائلية 3.8L 6Cyl 236hp برونز</h5>
-                        <div class="text-center my-4"> <a href="#" class="btn btn-warning">عرض التفاصيل</a> </div>
-                    </div>
-                </div>
+  <div class="container">
+    <br>
+    <h3>  عروض مزادات </h3>
+	<br>
+	<div class="row" id="ads">
+    <!-- Category Card -->
+	
+    <div class="col-md-4">
+        <div class="card rounded">
+            <div class="card-image">
+                <span class="card-notify-badge">Low KMS</span>
+                <span class="card-notify-year">New</span>
+                <img class="img-fluid" src="assets/images/mobile_listing_main_01.jpg" alt="Alternate Text" />
             </div>
-            <div class="col">
-                <div class="card h-100 shadow-sm"> <img src="images/2014FRD007c_640_01.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-success">4.5M R</span>  </div>
-                        <h5 class="card-title">مستعملة 2020 ميتسوبيشي باجيرو GLS Highline عائلية 3.8L 6Cyl 236hp برونز</h5>
-                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn btn-warning">عرض التفاصيل</a> </div>
-                    </div>
-                </div>
+            <div class="card-image-overlay m-auto">
+                <span class="card-detail-badge">2018</span>
+                <span class="card-detail-badge">حضرموت</span>
+                <span class="card-detail-badge">123,000 Kms</span>
             </div>
-            <div class="col">
-                <div class="card h-100 shadow-sm"> <img src="images/70002066963021110100300.jpg" class="card-img-top" alt="...">
-                    <div class="label-top shadow-sm">Linonin Nautilus</div>
-                    <div class="card-body">
-                        <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-success">3M R</span> <span class="float-end"><a href="#" class="small text-muted">استعرض</a></span> </div>
-                        <h5 class="card-title">مستعملة 2020 ميتسوبيشي باجيرو GLS Highline عائلية 3.8L 6Cyl 236hp برونز</h5>
-                        <div class="text-center my-4"> <a href="#" class="btn btn-warning">عرض التفاصيل</a> </div>
-                        <div class="clearfix mb-1"> <span class="float-start"><i class="far fa-question-circle"></i></span> <span class="float-end"><i class="fas fa-plus"></i></span> </div>
-                    </div>
+            <div class="card-body text-center">
+                <div class="ad-title m-auto">
+                    <h5>  نيسان Kicks SV+NAV عائلة</h5>
+					<h2>العطاء الحالي 4,000,000</h2>
+          <h2 id="demo"> ينتهي المزاد بعد</h2>
+          
                 </div>
-            </div>
-            <div class="col">
-                <div class="card h-100 shadow-sm"> <img src="images/30ed48b6fa01c2ccf916c88c-250x180.jpg" class="card-img-top" alt="...">
-                    <div class="label-top shadow-sm">LINCOLN</div>
-                    <div class="card-body">
-                        <div class="clearfix mb-3"> <span class="float-start price-hp">5M R</span> <span class="float-end"><a class="text-muted small" href="#">استعرض</a></span> </div>
-                        <h5 class="card-title">مستعملة 2020 ميتسوبيشي باجيرو GLS Highline عائلية 3.8L 6Cyl 236hp برونز</h5>
-                        <div class="text-center my-4"> <a href="#" class="btn btn-warning">عرض التفاصيل</a> </div>
-                        <div class="clearfix mb-1"> <span class="float-start"><i class="far fa-question-circle"></i></span> <span class="float-end"><i class="fas fa-plus"></i></span> </div>
-                    </div>
-                </div>
+                <a class="ad-btn" href="{{ url('/appear_detalis_2')}}">مشاهدة التفاصيل</a>
             </div>
         </div>
     </div>
-</main>
+    <div class="col-md-4">
+        <div class="card rounded">
+            <div class="card-image">
+                <span class="card-notify-badge">Fully-Loaded</span>
+               
+                <img class="img-fluid" src="assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
+            </div>
+            <div class="card-image-overlay m-auto">
+                <span class="card-detail-badge">2020</span>
+                <span class="card-detail-badge">صنعاء</span>
+                <span class="card-detail-badge">13000 Kms</span>
+            </div>
+            <div class="card-body text-center">
+                <div class="ad-title m-auto">
+                    <h5>  مرسيدس بنز  Coupe عائلة</h5>
+					<h2>العطاء الحالي8,000,000 </h2>
+          <h2> ينتهي المزاد بعد</h2>
+          
+                </div>
+                <a class="ad-btn" href="{{ url('/appear_detalis_1')}}">مشاهدة التفاصيل</a>
+            </div>
+        </div>
+    </div>
 
-    
+    <div class="col-md-4">
+        <div class="card rounded">
+            <div class="card-image">
+                <span class="card-notify-badge">Price Reduced</span>
+               
+                <img class="img-fluid" src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC091A021001.jpg&width=440&height=262" alt="Alternate Text" />
+            </div>
+            <div class="card-image-overlay m-auto">
+                <span class="card-detail-badge">2018</span>
+                <span class="card-detail-badge">تعز</span>
+                <span class="card-detail-badge">8000 Kms</span>
+            </div>
+            <div class="card-body text-center">
+                <div class="ad-title m-auto">
+                    <h5> هوندا اكورد Sport صالون</h5>
+					<h2>العطاء الحالي5,000,000<h2>
+          <h2> ينتهي المزاد بعد</h2>
+         <div class="div" id="demo">
+         
+         </div>
+                <a class="ad-btn" href="{{ url('/appear_detalis')}}">مشاهدة التفاصيل</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+<section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>التعريف بمنصة مزادي كار</h2>
+          <p>هي منصة إلكترونية تتيح للمزايدين المزايدة إلكترونياً على السيارات في المزاد بواسطة وسائل دفع إلكترونية و
+عملية المزايدة في الموقع الإلكتروني موثوقة، وتتفق مع قوانين إقامة المزادات والبيع والشراء في الجمهورية اليمنية وايضاُ 
+يمكن الاطلاع على مجريات المزادات بدون تسجيل الدخول من خلال الضغط على 'عرض التفاصيل' في المزاد المطلوب  </p>
+        </div>
+</div>
+</section>
+<div class="container">
+<h2 id="method_header">طريقة إستخدام النظام</h2>
+  <div class="row">
+  <div class="tab-content">
+
+<div class="tab-pane active show" id="tab-1">
+  <div class="md-stepper-horizontal orange">
+    <div class="md-step active done">
+      <div class="md-step-circle"><span>4</span></div>
+      <div class="md-step-title">أضف مزايدتك</div>
+      <div class="md-step-bar-left"></div>
+      <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step active editable">
+      <div class="md-step-circle"><span>3</span></div>
+      <div class="md-step-title"> إشترك في المزاد</div>
+      <div class="md-step-bar-left"></div>
+      <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step active">
+      <div class="md-step-circle"><span>2</span></div>
+      <div class="md-step-title">اشحن محفظتك</div>
+      <div class="md-step-bar-left"></div>
+      <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step active">
+      <div class="md-step-circle"><span>1</span></div>
+      <div class="md-step-title"> سجل في المنصة</div>
+      <div class="md-step-bar-left"></div>
+      <div class="md-step-bar-right"></div>
+    </div>
+  </div>
+    </div>
+  </div>
+     <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200" id="method">
+      <img  class="img-fluid" src="assets/images/top-10-programmers-on-the-world.jpg" alt="">
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+<section id="featured-services" class="featured-services">
+      <div class="container">
+    <h3>  لماذا المزاد الالكتروني؟</h3>
+        <div class="row gy-4">
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-activity icon">
+                  <img src="assets/images/card-id-identity-svgrepo-com.svg">
+              </i></div>
+              <h4><a href="" class="stretched-link">وسائل دفع الكترونية</a></h4>
+              <p>يمكن دفع مبالغ مالية واسترجاعها من خلال وسائل دفع الكترونية</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-bounding-box-circles icon">
+              <img src="assets/images/computer-device-hardware-svgrepo-com.svg">
+              </i></div>
+              <h4><a href="" class="stretched-link">المشاركة عن بعد</a></h4>
+              <p>بإمكان المزايد المشاركة في المزادات بشكل إلكتروني دون الحاجة للحضور في موقع المزاد</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-calendar4-week icon">
+              <img src="assets/images/checklist-document-file-svgrepo-com.svg">
+              </i></div>
+              <h4><a href="" class="stretched-link">أمان الموقع</a></h4>
+              <p>عمليات المزايدة بداخل الموقع تكون بأعلى وسائل الحماية والامن داخل وخارج الجمهورية اليمنية </p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-broadcast icon">
+              <img src="assets/images/auction-svgrepo-com (1).svg">
+              </i></div>
+              <h4><a href="" class="stretched-link">المزايدة في أكثر من مزاد</a></h4>
+              <p>بإمكان المزايد المشاركة بإكثر من مزاد بنفس الوقت</p>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+    </section><!-- End Featured Services Section -->
 		<footer class="footer-10">
-			<div class="container"> 
+		
 				<div class="row mb-5 pb-3 no-gutters">
 					<div class="col-md-4 mb-md-0 mb-4 d-flex">
 						<div class="con con-1 w-100 py-5">
@@ -107,29 +241,30 @@
 					<div class="col-md-7">
 						<div class="row">
 							<div class="col-md-4 mb-md-0 mb-4">
-								<h2 class="footer-heading">حول</h2>
+								<h2 class="footer-heading">الخدمات</h2>
 								<ul class="list-unstyled">
-		              <li><a href="#" class="d-block">Out story</a></li>
-		              <li><a href="#" class="d-block">الجوائز</a></li>
-		              <li><a href="#" class="d-block">فريقنا</a></li>
-		              <li><a href="#" class="d-block">حياة مهنية</a></li>
+		              <li><a href="#" class="d-block">التجار </a></li>
+		              <li><a href="#" class="d-block">الشحن</a></li>
+		              <li><a href="#" class="d-block">المتسوق العالمي</a></li>
+		              <li><a href="#" class="d-block">مزودي النقل </a></li>
 		            </ul>
 							</div>
 							<div class="col-md-4 mb-md-0 mb-4">
-								<h2 class="footer-heading">الشركات</h2>
+								<h2 class="footer-heading">المزادات</h2>
 								<ul class="list-unstyled">
-		              <li><a href="#" class="d-block">خدماتنا</a></li>
-		              <li><a href="#" class="d-block">عملائنا</a></li>
-		              <li><a href="#" class="d-block">اتصل</a></li>
-		              <li><a href="#" class="d-block">اضغط</a></li>
+		              <li><a href="#" class="d-block">مزادات اليوم</a></li>
+		              <li><a href="#" class="d-block">الإنضمام للمزاد</a></li>
+		              <li><a href="#" class="d-block">مزادات سيارات الإيجار</a></li>
+		              <li><a href="#" class="d-block">قائمة المبيعات</a></li>
 		            </ul>
 							</div>
 							<div class="col-md-4 mb-md-0 mb-4">
-								<h2 class="footer-heading">المصادر</h2>
+								<h2 class="footer-heading">تعرف علينا</h2>
 								<ul class="list-unstyled">
-		              <li><a href="#" class="d-block">مقالة</a></li>
-		              <li><a href="#" class="d-block">النشرة الاخبارية</a></li>
-		              <li><a href="#" class="d-block">سياسة خاصة</a></li>
+		              <li><a href="#" class="d-block"> حول مزادي كار</a></li>
+		              <li><a href="#" class="d-block">علاقات المستثمرين </a></li>
+		              <li><a href="#" class="d-block"> أخبار الاعضاء</a></li>
+                  <li><a href="#" class="d-block">  المجتمع</a></li>
 		            </ul>
 							</div>
 						</div>
@@ -163,11 +298,11 @@
 			</div>
 		</footer>
 
-    <script src="js/jquery.min.js"></script>
-	
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+
   </body>
 </html>
