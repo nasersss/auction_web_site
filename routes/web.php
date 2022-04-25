@@ -13,22 +13,19 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/header', function () {
     return view('layout.header');
 });
 
-Route::get('/login',function(){
+Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/register',function(){
+Route::get('/register', function () {
     return view('auth.register');
 });
-Route::get('/reset',function(){
+Route::get('/reset', function () {
     return view('auth.reset');
 });
 Route::get('/dashboard', function () {
@@ -43,3 +40,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 
 Route::get('/superAdmin', [App\Http\Controllers\SuperAdminController::class, 'index'])->name('superAdmin');
+
+
+// Route::get('/listCategories', [App\Http\Controllers\CategoryController::class, 'index'])->name('listCategories');
+// Route::get('/createCategory', [App\Http\Controllers\CategoryController::class, 'create'])->name('createCategory');
+// Route::get('/storeCategory', [App\Http\Controllers\CategoryController::class, 'store'])->name('storeCategory');
+// Route::get('/editCategory', [App\Http\Controllers\CategoryController::class, 'edit'])->name('editCategory');
+// Route::get('/updateCategory', [App\Http\Controllers\CategoryController::class, 'update'])->name('updateCategory');
+// Route::get('/toggleCategory', [App\Http\Controllers\CategoryController::class, 'toggle'])->name('toggleCategory');
+// Route::get('/uploadFileCategory', [App\Http\Controllers\CategoryController::class, 'uploadFile'])->name('uploadFileCategory');

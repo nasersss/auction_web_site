@@ -12,6 +12,7 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+
 // These credentials do not match our records.
     'failed' => 'القيمة التي ادخاتها لا تطابق اي بيانات في قاعدة البيانات',
     'password' => 'The provided password is incorrect.',
