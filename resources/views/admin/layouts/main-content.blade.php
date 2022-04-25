@@ -20,7 +20,7 @@
                         </a>
                     </form>
                 </div>
-                <h4 class="page-title">لوحة التحكم</h4>
+                <h4 class="page-title">@yield('page-title')</h4>
             </div>
         </div>
     </div>

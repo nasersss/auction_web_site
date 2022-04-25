@@ -27,7 +27,7 @@
 
             <li class="side-nav-title side-nav-item">لوحة التحكم</li>
             <li class="side-nav-item">
-                <a href="#" class="side-nav-link">
+                <a href="{{route('dash-home')}}" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span>الرئيسية</span>
                 </a>
@@ -41,13 +41,10 @@
                 <div class="collapse" id="sidebarEmail">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="#">أضافة مزاد جديد</a>
+                            <a href="{{route('add-auction')}}">أضافة مزاد جديد</a>
                         </li>
                         <li>
-                            <a href="#">تعديل مزاد</a>
-                        </li>
-                        <li>
-                            <a href="#">مراجعة مزادات</a>
+                            <a href="{{route('auctions-review')}}">مراجعة مزادات</a>
                         </li>
                     </ul>
                 </div>
@@ -63,15 +60,32 @@
                 <div class="collapse" id="sidebarProjects">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="#">إضافة مستخدم جديد</a>
+                            <a href="{{route('users')}}">عرض المستخدمين</a>
                         </li>
                         <li>
-                            <a href="#">تعديل مستخدم</a>
-                        </li>
-                        <li>
-                            <a href="#">حذف مستخدم</a>
+                            <a href="{{route('add-auction')}}">إدارة المستخدمين</a>
                         </li>
 
+                    </ul>
+                </div>
+            </li>
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages" class="side-nav-link">
+                    <i class="uil-envelope"></i>
+                    <span> التقارير </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarPages">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="#">تقارير يومية</a>
+                        </li>
+                        <li>
+                            <a href="#">تقارير اسبوعية</a>
+                        </li>
+                        <li>
+                            <a href="#">تقارير شهرية</a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -84,7 +98,7 @@
                 <div class="collapse" id="sidebarTasks">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="#">إضافة صنف جديد</a>
+                            <a href="#">إضافة صنف </a>
                         </li>
                         <li>
                             <a href="#">تعديل صنف</a>

@@ -1,6 +1,7 @@
 <?php
-
+namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,24 +13,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/add_view',[Maincontroller::class,'show']);
 
-Route::get('/header', function () {
-    return view('layout.header');
-});
+Route::get('/appear_detalis',[Detalies::class,'appear']);
+Route::get('/appear_detalis_1',[Detalies_01::class,'appear1']);
+Route::get('/appear_detalis_2',[Detalies_02::class,'appear2']);
 
-Route::get('/login',function(){
-    return view('auth.login');
-});
-
-Route::get('/register',function(){
-    return view('auth.register');
-});
-Route::get('/reset',function(){
-    return view('auth.reset');
-});
-Route::get('/dashboard', function () {
-    return view('admin/dashboard');
-});
