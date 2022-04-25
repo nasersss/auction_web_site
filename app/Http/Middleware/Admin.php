@@ -2,36 +2,32 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class Admin
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @param  string|null  ...$guards
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, ...$guards)
+    public function handle(Request $request, Closure $next)
     {
         $destinations = [
             0 => 'superAdmin',
-            1 => 'admin',
             2 => 'home',
         ];
-        $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect()->route($destinations[Auth::user()->role]);
-            }
+        if (!Auth::check()) {
+            return redirect()->route('login');
         }
 
+        if (Auth::user()->role != 1) {
+            return redirect()->route($destinations[Auth::user()->role]);
+        }
         return $next($request);
     }
 }
