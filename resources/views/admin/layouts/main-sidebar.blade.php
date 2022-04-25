@@ -1,0 +1,145 @@
+<div class="leftside-menu">
+
+    <!-- LOGO -->
+    <a href="index.html" class="logo text-center logo-light">
+                    <span class="logo-lg">
+                        <img src="assets/images/logo.png" alt="" height="40">
+                    </span>
+        <span class="logo-sm">
+                        <img src="assets/images/logo_sm.png" alt="" height="30">
+                    </span>
+    </a>
+
+    <!-- LOGO -->
+    <a href="index.html" class="logo text-center logo-dark">
+                    <span class="logo-lg">
+                        <img src="assets/images/logo-dark.png" alt="" height="16">
+                    </span>
+        <span class="logo-sm">
+                        <img src="assets/images/logo_sm_dark.png" alt="" height="16">
+                    </span>
+    </a>
+
+    <div class="h-100" id="leftside-menu-container" data-simplebar="">
+
+        <!--- Sidemenu -->
+        <ul class="side-nav">
+
+            <li class="side-nav-title side-nav-item">لوحة التحكم</li>
+            <li class="side-nav-item">
+                <a href="{{route('dash-home')}}" class="side-nav-link">
+                    <i class="uil-home-alt"></i>
+                    <span>الرئيسية</span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
+                    <i class="uil-envelope"></i>
+                    <span> المزادات </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarEmail">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{route('add-auction')}}">أضافة مزاد جديد</a>
+                        </li>
+                        <li>
+                            <a href="{{route('auctions-review')}}">مراجعة مزادات</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarProjects" aria-expanded="false" aria-controls="sidebarProjects" class="side-nav-link">
+                    <i class="uil-users-alt"></i>
+                    <span> المستخدمين </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarProjects">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{route('users')}}">عرض المستخدمين</a>
+                        </li>
+                        <li>
+                            <a href="{{route('add-auction')}}">إدارة المستخدمين</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages" class="side-nav-link">
+                    <i class="uil-envelope"></i>
+                    <span> التقارير </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarPages">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="#">تقارير يومية</a>
+                        </li>
+                        <li>
+                            <a href="#">تقارير اسبوعية</a>
+                        </li>
+                        <li>
+                            <a href="#">تقارير شهرية</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarTasks" aria-expanded="false" aria-controls="sidebarTasks" class="side-nav-link">
+                    <i class="uil-car"></i>
+                    <span>السيارات </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarTasks">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="#">إضافة صنف </a>
+                        </li>
+                        <li>
+                            <a href="#">تعديل صنف</a>
+                        </li>
+                        <li>
+                            <a href="#">حذف صنف</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="side-nav-item">
+                <a href="#" class="side-nav-link">
+                    <i class="uil-database"></i>
+                    <span>نسخة احتياطية </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="#" class="side-nav-link">
+                    <i class="dripicons-gear"></i>
+                    <span>الإعدادات</span>
+                </a>
+            </li>
+
+
+
+
+
+
+        <!-- End Sidebar -->
+
+        <div class="clearfix"></div>
+
+    </div>
+    <!-- Sidebar -left -->
+
+</div>
+<!-- Left Sidebar End -->
+
+<!-- ============================================================== -->
+<!-- Start Page Content here -->
+<!-- ============================================================== -->
+
+
