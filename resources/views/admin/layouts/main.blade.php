@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 
@@ -19,7 +19,24 @@
             <!-- end Topbar -->
 
             <!-- Start Content-->
-            @include('admin.layouts.main-content')
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">@yield('breadcrumb-item')</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">@yield('breadcrumb-item2')</a></li>
+                                    <li class="breadcrumb-item active">@yield('breadcrumb-item-active')</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">@yield('page-title')</h4>
+                        </div>
+                    </div>
+                </div>
+            @yield('content')
         <!-- content -->
 
         <!-- Footer Start -->
