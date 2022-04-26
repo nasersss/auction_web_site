@@ -350,7 +350,7 @@
           <h2> ينتهي المزاد بعد</h2>
 
                 </div>
-                <a class="ad-btn" href="{{ url('/appear_detalis_1')}}">مشاهدة التفاصيل</a>
+                <a class="ad-btn" href="{{ route('details-car')}}">مشاهدة التفاصيل</a>
             </div>
         </div>
     </div>
@@ -375,7 +375,7 @@
          <div class="div" id="demo">
 
          </div>
-                <a class="ad-btn" href="{{ url('/appear_detalis')}}">مشاهدة التفاصيل</a>
+                <a class="ad-btn" href="{{ route('details-car')}}">مشاهدة التفاصيل</a>
             </div>
         </div>
     </div>
@@ -400,7 +400,7 @@
       <h2 id="demo"> ينتهي المزاد بعد</h2>
 
             </div>
-            <a class="ad-btn" href="{{ url('/appear_detalis_2')}}">مشاهدة التفاصيل</a>
+            <a class="ad-btn" href="{{ route('details-car')}}">مشاهدة التفاصيل</a>
         </div>
     </div>
 </div>
@@ -423,7 +423,7 @@
       <h2> ينتهي المزاد بعد</h2>
 
             </div>
-            <a class="ad-btn" href="{{ url('/appear_detalis_1')}}">مشاهدة التفاصيل</a>
+            <a class="ad-btn" href="{{  route('details-car')}}">مشاهدة التفاصيل</a>
         </div>
     </div>
 </div>
@@ -448,7 +448,7 @@
      <div class="div" id="demo">
 
      </div>
-            <a class="ad-btn" href="{{ url('/appear_detalis')}}">مشاهدة التفاصيل</a>
+            <a class="ad-btn" href="{{  route('details-car')}}">مشاهدة التفاصيل</a>
         </div>
     </div>
 </div>

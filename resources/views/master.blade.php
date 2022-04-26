@@ -13,13 +13,13 @@
                 <ul class="main-nav  ">
                     {{-- <i class="fas fa-times"></i> --}}
                     <div class="menu-toggle">
-                        <a href="#">
+                        <a href="{{ route('home') }}">
                             <i class="fas fa-times  close-menu-style"  ></i>
 
                         </a>
                     </div>
-                    <li><a href="#">الرئيسة</a></li>
-                    <li><a href="#">المزادات </a></li>
+                    <li><a href="{{ route('home') }}">الرئيسة</a></li>
+                    <li><a href="{{ route('auction') }}">المزادات </a></li>
                     <li><a href="#">الفئات</a></li>
                     <li><a href="#">الاسئلة الشائعة</a></li>
                     <li><a href="#">تواصل معنا</a></li>
