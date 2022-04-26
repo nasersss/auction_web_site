@@ -18,10 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/add_view',[Maincontroller::class,'show']);
-
-Route::get('/appear_detalis',[Detalies::class,'appear']);
-Route::get('/appear_detalis_1',[Detalies_01::class,'appear1']);
-Route::get('/appear_detalis_2',[Detalies_02::class,'appear2']);
+Route::get('/detail',function(){
+return view('details');
+});
 
 Route::get('/home',function(){
     return view('index');
