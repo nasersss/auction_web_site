@@ -26,6 +26,16 @@
             <div class="align-items-center d-flex h-100">
                 <div class="card-body">
 
+<<<<<<< HEAD
+                        <!-- Logo -->
+                        <div class="auth-brand text-center text-lg-start">
+                            <a href="index.html" class="logo-dark">
+                                <span><img src="assets/images/logoDark.png" alt="" height="18"></span>
+                            </a>
+                            <a href="index.html" class="logo-light">
+                                <span><img src="assets/images/logo.png" alt="" ></span>
+                            </a>
+=======
                     <!-- Logo -->
                     <div class="auth-brand text-center text-lg-start">
                         <a href="index.html" class="logo-dark">
@@ -61,6 +71,7 @@
                                 </span>
                             @enderror
                             <a href="{{ route('password.request') }}" class="text-muted float-end"><small>هل نسيت كلمة المرور؟</small></a>
+>>>>>>> upstream/develop
                         </div>
 
                         <div class="mb-3">
