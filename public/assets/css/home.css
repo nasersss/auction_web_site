@@ -36,15 +36,28 @@
     margin: auto;
 
 }
+.icon{
+    display: flex;
+    justify-content: center;
+}
+.icon img{
+width: 20%;
+}
+.card-text{
+    text-align: right !important;
+}
 .slider-offer-image{
     width: 100px;
-    height: 100px;
+    height: 116px;
     position: absolute;
     right: 14%;
-    bottom: 58%;
+    bottom: 49%;
 }
 .slider-offer-image img{
     width: 80%;
+}
+.cart-text{
+    text-align: right !important;
 }
 .new-offer b {
     margin: auto;
@@ -115,7 +128,9 @@ width: 80%;
     border-radius: 50%;
     background: var(--primaryColor);
     color: #fff;
-    text-align: center;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 .slide-bar-icon{
     height: 35px;

@@ -54,8 +54,8 @@ html {
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
- 
-body {
+
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
@@ -66,7 +66,7 @@ body {
   background-color:#fff; }
 
 [tabindex="-1"]:focus {
-  outline: 0 !important; }
+  outline: 0 !important; } */
 
 hr {
   -webkit-box-sizing: content-box;
@@ -3772,7 +3772,7 @@ input[type="button"].btn-block {
     .navbar-dark .navbar-text a:hover, .navbar-dark .navbar-text a:focus {
       color: #fff; }
 
-.card {
+ .card {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3787,6 +3787,7 @@ input[type="button"].btn-block {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem; }
+
   .card > hr {
     margin-right: 0;
     margin-left: 0; }
@@ -3974,7 +3975,7 @@ input[type="button"].btn-block {
     border-top-left-radius: 0;
     border-top-right-radius: 0; }
   .accordion > .card .card-header {
-    margin-bottom: -1px; }
+    margin-bottom: -1px; } */
 
 .breadcrumb {
   display: -webkit-box;
@@ -8140,7 +8141,7 @@ a.text-dark:hover, a.text-dark:focus {
 body {
   font-family: "Poppins", Arial, sans-serif;
   font-size: 15px;
-  line-height: 1.8;
+  /* line-height: 1.8; */
   font-weight: normal; }
 
 a {
@@ -8155,8 +8156,7 @@ h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   line-height: 1.5;
   font-weight: 400;
-  font-family: "Poppins", Arial, sans-serif; 
-  
+
 }
 #detalis{
   background-color: #fff;
@@ -8177,7 +8177,7 @@ width: 80%;
     border-bottom: none !important;
     font-size: 20px;
     text-transform: uppercase;
-    letter-spacing: .1rem; 
+    letter-spacing: .1rem;
   text-align: center;
 }
   .custom-table tbody th, .custom-table tbody td {
@@ -8200,7 +8200,7 @@ width: 80%;
       box-shadow: 0 2px 10px -5px rgba(0, 0, 0, 0.1); }
   .custom-table tbody tr th, .custom-table tbody tr td {
     background: #6c76e4;
-    border: none; 
+    border: none;
     text-align: center;
   }
     .custom-table tbody tr th:first-child, .custom-table tbody tr td:first-child {
@@ -8288,23 +8288,23 @@ width: 80%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center; }
-    
+
     :root {
         --font1: 'Heebo', sans-serif;
         --font2: 'Fira Sans Extra Condensed', sans-serif;
         --font3: 'Roboto', sans-serif
     }
-    
+
     body {
         font-family: 'Roboto', sans-serif;
         background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)
     }
-    
+
     h2 {
         font-weight: 900
-        
+
     }
-    
+
     .container-fluid {
         max-width: 1200px
     }
@@ -8313,18 +8313,18 @@ width: 80%;
       font-size: 25px;
       font-weight: bold;
       color:#6c76e4;
-     
+
     }
     #demo ,#demo1,#demo2{
       color: #ff4444;
     }
-#ads .card-notify-badge {
+ #ads .card-notify-badge {
   position: absolute;
   left: -10px;
   top: -20px;
   background: #6c76e4;
   text-align: center;
-  border-radius: 30px 30px 30px 30px; 
+  border-radius: 30px 30px 30px 30px;
   color: #fff;
   padding: 5px 10px;
   font-size: 14px;
@@ -8338,21 +8338,22 @@ width: 80%;
   background: #ff4444;
   border-radius: 50%;
   text-align: center;
-  color: #fff;      
-  font-size: 14px;      
+  color: #fff;
+  font-size: 14px;
   width: 50px;
-  height: 50px;    
+  height: 50px;
   padding: 15px 0 0 0;
 }
 
 
-#ads .card-detail-badge {      
+#ads .card-detail-badge {
   background: #6c76e4;
   text-align: center;
   border-radius: 30px 30px 30px 30px;
   color: #fff;
   padding: 5px 10px;
-  font-size: 14px;        
+  font-size: 14px;
+  margin: 0 1px;
 }
 
 
@@ -8372,7 +8373,7 @@ width: 80%;
 
 
 #ads .card-image-overlay span {
-      display: inline-block;              
+      display: inline-block;
   }
 
 
@@ -8389,7 +8390,7 @@ width: 80%;
   text-decoration: none;
   margin: 20px auto 1px auto;
   color: #fff;
-  overflow: hidden;        
+  overflow: hidden;
   position: relative;
   background-color: #6c76e4;
 }
@@ -8413,48 +8414,48 @@ width: 80%;
   text-transform: uppercase;
   font-size: 15px;
 }
-    .card {
+     .card {
         background: #fff;
         box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
         transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
         border: 0;
         border-radius: 1rem
     }
-    
-    .card-img,
+
+     .card-img,
     .card-img-top {
         border-top-left-radius: calc(1rem - 1px);
         border-top-right-radius: calc(1rem - 1px);
-       
+
     }
     .card-image img{
       width: 100%;
       height: 184px;
 
-    }
+    } */
     .card h5 {
         overflow: hidden;
         height: 56px;
         font-weight: 900;
         font-size: 0.7rem
     }
-    
+
     .card-img-top {
         width: 100%;
         max-height: 180px;
         object-fit: contain;
         padding: 30px
     }
-    
+
     .card h2 {
         font-size: 15px
     }
-    
+
     .card:hover {
         transform: scale(1.05);
         box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06)
     }
-    
+
     .label-top {
         position: absolute;
         background-color: #8bc34a;
@@ -8467,7 +8468,7 @@ width: 80%;
         border-radius: 3px;
         text-transform: uppercase
     }
-    
+
     .top-right {
         position: absolute;
         top: 24px;
@@ -8482,23 +8483,23 @@ width: 80%;
         text-align: center;
         color: white
     }
-    
+
     .top-right span {
         display: inline-block;
         vertical-align: middle
     }
-    
+
     @media (max-width: 768px) {
         .card-img-top {
             max-height: 250px;
-           
+
         }
     }
-    
+
     @media (max-width: 576px) {
       .card {
          margin-bottom: 20px;
-         
+
       }
   }
 /*--------------------------------------------------------------
@@ -8513,13 +8514,13 @@ width: 80%;
 }
 .featured-services .service-item .icon {
   margin-bottom: 10px;
-  
+
 }
 .featured-services .service-item .icon i {
   color: #8a78f0;
   font-size: 36px;
   transition: 0.3s;
-  
+
 }
 .featured-services .service-item .icon i img{
   width: 40px;
@@ -8527,7 +8528,7 @@ width: 80%;
   left:75px;
   background-color: #fff;
   border-radius: 50%;
-  
+
 }
 
 @media (max-width: 576px) {
@@ -8565,7 +8566,7 @@ width: 80%;
 .featured-services .service-item h4 a {
   color: #6c76e4;
   transition: ease-in-out 0.3s;
-  
+
 }
 .featured-services .service-item p {
   line-height: 24px;
@@ -8620,7 +8621,7 @@ width: 80%;
 .tab-content {
   margin-top: 120px;
   text-align: right;
- 
+
 }
 
 @media (max-width: 575px) {
@@ -8773,30 +8774,30 @@ width: 80%;
         -webkit-backdrop-filter: blur(0.0px);
         border-radius: 10px
     }
-    
+
     .btn {
         font-size: 1rem;
         font-weight: 500;
         text-transform: uppercase;
-        padding: 5px 50px 5px 50px
+        /* padding: 5px 50px 5px 50px */
     }
-    
+
     .box .btn {
         font-size: 1.5rem
     }
-    
+
     @media (max-width: 1025px) {
         .btn {
-            padding: 5px 40px 5px 40px
+            /* padding: 5px 40px 5px 40px */
         }
     }
-    
+
     @media (max-width: 250px) {
         .btn {
             padding: 5px 30px 5px 30px
         }
     }
-    
+
     .btn-warning {
         background: none #8a78f0;
         color: #ffffff;
@@ -8807,67 +8808,67 @@ width: 80%;
         box-shadow: -1px 6px 19px rgba(247, 129, 10, 0.25);
         border-radius: 100px
     }
-    
+
     .btn-warning:hover {
         background: none #ffc107 ;
         color: #ffffff;
         box-shadow: -1px 6px 13px rgba(255, 150, 43, 0.35)
     }
-    
+
     .bg-success {
         font-size: 1rem;
         background-color: #ffc107 !important
     }
-    
+
     .bg-danger {
         font-size: 1rem
     }
-    
+
     .price-hp {
         font-size: 1rem;
         font-weight: 600;
         color: darkgray
     }
-    
+
     .amz-hp {
         font-size: .7rem;
         font-weight: 600;
         color: darkgray
     }
-    
+
     .fa-question-circle:before {
         color: darkgray
     }
-    
+
     .fa-plus:before {
         color: darkgray
     }
-    
+
     .box {
         border-radius: 1rem;
         background: #fff;
         box-shadow: 0 6px 10px rgb(0 0 0 / 8%), 0 0 6px rgb(0 0 0 / 5%);
         transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12)
     }
-    
+
     .box-img {
         max-width: 300px
     }
-    
+
     .thumb-sec {
         max-width: 300px
     }
-    
+
     @media (max-width: 576px) {
         .box-img {
             max-width: 200px
         }
-    
+
         .thumb-sec {
             max-width: 200px
         }
     }
-    
+
     .inner-gallery {
         width: 60px;
         height: 60px;
@@ -8879,29 +8880,29 @@ width: 80%;
         -o-object-fit: cover;
         object-fit: cover
     }
-    
+
     @media (max-width: 370px) {
         .box .btn {
             padding: 5px 40px 5px 40px;
             font-size: 1rem
         }
     }
-    
+
     .disclaimer {
         font-size: .9rem;
         color: darkgray
     }
-    
+
     .related h3 {
         font-weight: 900
     }
-    
+
     footer {
         background: #212529;
         height: 80px;
         color: #fff
     }
-    
+
 
 .ftco-footer-social li {
   list-style: none;
@@ -8952,7 +8953,7 @@ footer {
 
 .footer-10 {
   background:#ebedee ;
-  padding: 0 0 4em 0; 
+  padding: 0 0 4em 0;
 text-align: center;
 }
   .footer-10 .border-top, .footer-10 .border-bottom {
@@ -9003,7 +9004,7 @@ font-weight: 600;
       outline: none !important;
       color: #000 !important;
       font-size: 15px;
-      border-radius: 0; 
+      border-radius: 0;
       text-align: right;}
       .footer-10 .subscribe-form .form-group input::-webkit-input-placeholder {
         /* Chrome/Opera/Safari */
@@ -9021,7 +9022,7 @@ font-weight: 600;
       .footer-10 .subscribe-form .form-group input:focus {
         outline: none !important;
         -webkit-box-shadow: none;
-        box-shadow: none; 
+        box-shadow: none;
      }
     .footer-10 .subscribe-form .form-group .submit {
       color: #fff !important;

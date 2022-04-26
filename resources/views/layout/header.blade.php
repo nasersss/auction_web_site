@@ -270,9 +270,7 @@
 
       <!-- end slieder -->
       <!-- star category-->
-      <h1>
-
-      </h1>
+      
        <div class="container">
            <h2>الفئات</h2>
       <div class="container-parent-category mt-3">

@@ -110,10 +110,15 @@
   /*----------------------------*\
       Top header
   \*----------------------------*/
-
+header{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
   #top-header {
 
     background-color: #fff;
+    box-shadow: 1px 1px 11px var(--secondary);
   }
 
 
@@ -392,9 +397,11 @@
       padding: 15px;
       color: #FFF;
     }
-    
-  }
 
+  }
+.show-menu{
+    display: none;
+}
 
   /*=========================================================
       13 -> RESPONSIVE
@@ -417,7 +424,9 @@
     .header-logo .logo {
       display: inline-block;
     }
-
+    .show-menu{
+        display: block;
+    }
   }
 
   @media only screen and (max-width: 767px) {
