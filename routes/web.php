@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.home');
 });
 Route::get('/add_view',[Maincontroller::class,'show']);
 Route::get('/detail',function(){
