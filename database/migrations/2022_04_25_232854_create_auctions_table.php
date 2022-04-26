@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('auctions', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(1);
             $table->string('color');
-            $table->string('seller');
-            $table->integer('odometer');
+            $table->string('seller_id');
+            $table->double('odometer');
             $table->string('damage');
             $table->string('vehicle_type');
             $table->string('brand');
@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('stare_price');
             $table->string('min_bid');
             $table->string('curren_price');
-            $table->string('')
+            $table->integer('number_of_participate');
             // اسم السارة
             // الموديل
             // الحالة
