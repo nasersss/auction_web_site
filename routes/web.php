@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-<<<<<<< HEAD
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,7 +23,6 @@ Route::get('/appear_detalis',[Detalies::class,'appear']);
 Route::get('/appear_detalis_1',[Detalies_01::class,'appear1']);
 Route::get('/appear_detalis_2',[Detalies_02::class,'appear2']);
 
-=======
 
 Route::get('/header', function () {
     return view('layout.header');
@@ -61,4 +59,3 @@ Route::get('/superAdmin', [App\Http\Controllers\SuperAdminController::class, 'in
 // Route::get('/updateCategory', [App\Http\Controllers\CategoryController::class, 'update'])->name('updateCategory');
 // Route::get('/toggleCategory', [App\Http\Controllers\CategoryController::class, 'toggle'])->name('toggleCategory');
 // Route::get('/uploadFileCategory', [App\Http\Controllers\CategoryController::class, 'uploadFile'])->name('uploadFileCategory');
->>>>>>> auth_test

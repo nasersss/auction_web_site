@@ -17,14 +17,14 @@ return new class extends Migration
             $table->id();
             $table->boolean('is_active')->default(1);
             $table->string('color');
-            $table->string('seller_id');
-            $table->double('odometer');
-            $table->string('damage');
+            $table->unsignedBigInteger('seller_id');
+            $table->unsignedBigInteger('category_id');
+            $table->double('odometer');//المسافة المقطوعة
+            $table->string('damage');// الاضرار
             $table->string('vehicle_type');
-            $table->string('brand');
-            $table->string('name');
-            $table->string('model');
-            $table->string('stat');
+            $table->string('name');// مثل هيلوكس 
+            $table->string('model');// مثل السنة 2005 | 2020
+            $table->string('stat');//new or old
             $table->string('ger_type');
             $table->string('engine_type');
             $table->string('notes');
@@ -32,13 +32,9 @@ return new class extends Migration
             $table->string('min_bid');
             $table->string('curren_price');
             $table->integer('number_of_participate');
-            // اسم السارة
-            // الموديل
-            // الحالة
-            // نوع القير
-            // نوع المحرك
-            // نوع الوقود
-            // الملاحضات
+            $table->string('fuel');// نوع الوقود
+            $table->foreign('seller_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

@@ -26,6 +26,7 @@ class AuctionController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
