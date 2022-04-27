@@ -42,35 +42,36 @@
 
                                 <th>شعار الماركة</th>
                                 <th>اسم الصنف</th>
-                                <th>تاريخ الاضافة</th>
                                 <th>الحالة</th>
                                 <th style="width: 75px;">العمليات</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($categories as $category)
+
 
                             <tr>
                                 <td class="table-user">
-                                    <img src="assets/images/brand/toyota.png" alt="table-user" class="me-2 rounded-circle">
+                                    <img src="{{$category->image}}" alt="table-user" class="me-2 rounded-circle">
                                 </td>
+                                <td>{{$category->name}}</td>
                                 <td>
-                                    تيوتا
-                                </td>
-                                <td>
-                                    07/07/2018
-                                </td>
-                                <td>
+                                    @if($category->is_active==1)
                                     <span class="badge badge-success-lighten">نشط</span>
+                                    @else
+                                        <span class="badge badge-danger-lighten">غير نشط</span>
+                                    @endif
                                 </td>
 
 
 
 
                                 <td>
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    <a href="edit_categories/{{$category->id}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                    <a href="toggle_categories/{{$category->id}}" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                 </td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
