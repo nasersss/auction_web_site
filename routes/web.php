@@ -33,6 +33,12 @@ Route::get('/detail',function(){
 
 
 
+    Route::get('/ContactUs',[ContactUs::class,'ContactUs'])->name('ContactUs');
+    Route::get('/AboutUs',[AboutUs::class,'AboutUs'])->name('AboutUs');
+        
+  
+
+
 
 Route::get('/header', function () {
     return view('layout.header');
@@ -56,7 +62,7 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [HomeController::class, 'index'])->name('users');
+// Route::get('/home', [HomeController::class, 'index'])->name('users');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/superAdmin', [SuperAdminController::class, 'index'])->name('superAdmin');

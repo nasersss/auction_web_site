@@ -170,7 +170,7 @@
       <!--start category-->
       <section class=" mt-5">
       <div class="container">
-        <h2>الفئات</h2>
+        <h3>الفئات</h3>
    <div class="container-parent-category mt-3">
        <div class="arrow-category">
            <span>
@@ -314,7 +314,7 @@
     <div class="col-md-4 my-3">
         <div class="card rounded">
             <div class="card-image">
-                <span class="card-notify-badge">Low KMS</span>
+                <span class="card-notify-badge">مزاد جاري</span>
                 <span class="card-notify-year">New</span>
                 <img class="img-fluid" src="assets/images/mobile_listing_main_01.jpg" alt="Alternate Text" />
             </div>
@@ -337,7 +337,7 @@
     <div class="col-md-4 my-3">
         <div class="card rounded">
             <div class="card-image">
-                <span class="card-notify-badge">Fully-Loaded</span>
+                <span class="card-notify-badge">مزاد جاري</span>
 
                 <img class="img-fluid" src="assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
             </div>
@@ -361,7 +361,7 @@
     <div class="col-md-4 my-3">
         <div class="card rounded">
             <div class="card-image">
-                <span class="card-notify-badge">Price Reduced</span>
+                <span class="card-notify-badge">مزاد جاري</span>
 
                 <img class="img-fluid" src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC091A021001.jpg&width=440&height=262" alt="Alternate Text" />
             </div>
@@ -387,7 +387,7 @@
 <div class="col-md-4 my-3">
     <div class="card rounded">
         <div class="card-image">
-            <span class="card-notify-badge">Low KMS</span>
+            <span class="card-notify-badge">مزاد جاري</span>
             <span class="card-notify-year">New</span>
             <img class="img-fluid" src="assets/images/mobile_listing_main_01.jpg" alt="Alternate Text" />
         </div>
@@ -410,7 +410,7 @@
 <div class="col-md-4 my-3">
     <div class="card rounded">
         <div class="card-image">
-            <span class="card-notify-badge">Fully-Loaded</span>
+            <span class="card-notify-badge">مزاد جاري</span>
 
             <img class="img-fluid" src="assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
         </div>
@@ -434,7 +434,7 @@
 <div class="col-md-4 my-3">
     <div class="card rounded">
         <div class="card-image">
-            <span class="card-notify-badge">Price Reduced</span>
+            <span class="card-notify-badge">مزاد جاري</span>
 
             <img class="img-fluid" src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC091A021001.jpg&width=440&height=262" alt="Alternate Text" />
         </div>
@@ -524,7 +524,7 @@
               <div class="icon">
                   <img src="assets/images/card-id-identity-svgrepo-com.svg">
               </div>
-              <h4><a href="" class="stretched-link">وسائل دفع الكترونية</a></h4>
+              <h4>وسائل دفع الكترونية</h4>
               <p>يمكن دفع مبالغ مالية واسترجاعها من خلال وسائل دفع الكترونية</p>
             </div>
           </div><!-- End Service Item -->
@@ -534,7 +534,7 @@
               <div class="icon">
               <img src="assets/images/computer-device-hardware-svgrepo-com.svg">
               </div>
-              <h4><a href="" class="stretched-link">المشاركة عن بعد</a></h4>
+              <h4>المشاركة عن بعد</h4>
               <p>بإمكان المزايد المشاركة في المزادات بشكل إلكتروني دون الحاجة للحضور في موقع المزاد</p>
             </div>
           </div><!-- End Service Item -->
@@ -544,7 +544,7 @@
               <div class="icon">
               <img src="assets/images/checklist-document-file-svgrepo-com.svg">
               </div>
-              <h4><a href="" class="stretched-link">أمان الموقع</a></h4>
+              <h4>أمان الموقع</h4>
               <p>عمليات المزايدة بداخل الموقع تكون بأعلى وسائل الحماية والامن داخل وخارج الجمهورية اليمنية </p>
             </div>
           </div><!-- End Service Item -->
@@ -554,13 +554,11 @@
               <div class="icon">
               <img src="assets/images/auction-svgrepo-com (1).svg">
               </div>
-              <h4><a href="" class="stretched-link">المزايدة في أكثر من مزاد</a></h4>
+              <h4>المزايدة في أكثر من مزاد</h4>
               <p>بإمكان المزايد المشاركة بإكثر من مزاد بنفس الوقت</p>
             </div>
           </div><!-- End Service Item -->
-
         </div>
-
       </div>
     </section><!-- End Featured Services Section -->
     <!-- start footer-->

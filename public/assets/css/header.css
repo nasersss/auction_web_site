@@ -339,9 +339,6 @@ header{
       margin: 25px 0;
 
     }
-    .show{
-        display: none !important;
-    }
     .search-icon{
         background:var(--secondary) !important ;
     }
