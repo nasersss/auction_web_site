@@ -17,18 +17,19 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('index');
 })->name('index');
+
 Route::get('/add_view',[Maincontroller::class,'show']);
-Route::get('/detail',function(){
-return view('details');
-});
+
 
 Route::get('/home',function(){
     return view('index');
-});
+})->name('home');
 Route::get('/auction',function(){
     return view('auction');
-});
-
+})->name('auction');
+Route::get('/detail',function(){
+    return view('details');
+    })->name('details-car');
 
 
 

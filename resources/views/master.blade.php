@@ -13,13 +13,13 @@
                 <ul class="main-nav  ">
                     {{-- <i class="fas fa-times"></i> --}}
                     <div class="menu-toggle">
-                        <a href="#">
+                        <a href="{{ route('home') }}">
                             <i class="fas fa-times  close-menu-style"  ></i>
 
                         </a>
                     </div>
-                    <li><a href="#">الرئيسة</a></li>
-                    <li><a href="#">المزادات </a></li>
+                    <li><a href="{{ route('home') }}">الرئيسة</a></li>
+                    <li><a href="{{ route('auction') }}">المزادات </a></li>
                     <li><a href="#">الفئات</a></li>
                     <li><a href="#">الاسئلة الشائعة</a></li>
                     <li><a href="#">تواصل معنا</a></li>
@@ -33,12 +33,12 @@
                 <!-- /NAV -->
             </div>
             <div class="header-icons">
-                <div id="search" class="search-icon">
+                <div id="search" class="search-icon icon">
                 <i class="fas fa-search"></i>
             </div>
                 <div class="show"><i class="fa fa-globe" aria-hidden="true"></i></div>
                <!-- <div class="show"> <a href="{{ route('login') }}"> <i class="fas fa-user"></i></a> </div> -->
-               @guest
+                @guest
                             @if (Route::has('login'))
                                 <div class="show"> <a href="{{ route('login') }}"> <i class="fas fa-user"></i></a> </div>
                             @endif
@@ -56,6 +56,8 @@
                                     </form>
                                
                         @endguest
+                <div class="show icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+               <div class="show icon"> <i class="fas fa-user"></i> </div>
                <div class="menu-toggle">
                 <a href="#">
                     <i class="fa fa-bars menu-style"></i>

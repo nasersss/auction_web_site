@@ -8,7 +8,7 @@ body {
   font-weight: 400;
   color: #333;
   direction: rtl;
-  
+
 }
 
 
@@ -636,7 +636,7 @@ body {
     padding: 12px;
     background-color: #eee;
     width: 70%;
-} 
+}
 .auction-btn{
 width: 30%;
 }
@@ -650,10 +650,10 @@ width: 30%;
 
 }
 .brand{
-  width: 9%;
-  position: absolute;
-  bottom: 56%;
-  left: 77%;
+    width: 11%;
+    position: absolute;
+    bottom: 56%;
+    left: 67%;
 }
 
 
@@ -682,10 +682,12 @@ width: 30%;
   background: #6c76e41f;
 }
 .detail-container{
-  display: flex;
-  width: 100%;
-  background: #6c76e417;
-  border-radius: 12px;
+    display: flex;
+    width: 100%;
+    background: #6c76e417;
+    border-radius: 12px;
+    margin: 15px 0;
+    padding: 5px;
 }
 .detail-container .detail-colmun{
   width: 33%;

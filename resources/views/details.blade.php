@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/css/ionicons.min.css">
+
  		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
          <link rel="stylesheet" href="assets/css/all.css">
          <link rel="stylesheet" href="assets/css/style.css">
  		<!-- Slick -->
- 		<link type="text/css" rel="stylesheet" href="assets/css/slick.css"/>
- 		<link type="text/css" rel="stylesheet" href="assets/css/slick-theme.css"/>
+ 		<link rel="stylesheet" href="assets/css/slick.css">
+         <link rel="stylesheet" href="assets/css/slick-theme.css">
          <link rel="stylesheet" href="assets/css/details.css">
          <link rel="stylesheet" href="assets/css/header.css">
 
@@ -31,19 +33,19 @@
                 <div class="col-md-5 col-md-push-2" style="direction: ltr;">
                     <div id="product-main-img">
                         <div class="product-preview">
-                            <img src="assets/images/car1.jpg" alt="">
+                            <img src="assets/images/cars/car1.jpg" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="assets/images/car2.jpg" alt="">
+                            <img src="assets/images/cars/car2.jpg" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="assets/images/car1.jpg" alt="">
+                            <img src="assets/images/cars/car1.jpg" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="assets/images/car2.jpg" alt="">
+                            <img src="assets/images/cars/car2.jpg" alt="">
                         </div>
                     </div>
 
@@ -56,19 +58,19 @@
                 <div class="col-md-2  col-md-pull-5 " style="direction: ltr;">
                     <div id="product-imgs">
                         <div class="product-preview">
-                            <img src="assets/images/car1.jpg" alt="">
+                            <img src="assets/images/cars/car1.jpg" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="assets/images/car2.jpg" alt="">
+                            <img src="assets/images/cars/car2.jpg" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="assets/images/car1.jpg" alt="">
+                            <img src="assets/images/cars/car1.jpg" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="assets/images/car2.jpg" alt="">
+                            <img src="assets/images/cars/car2.jpg" alt="">
                         </div>
                     </div>
 
@@ -81,22 +83,22 @@
                      <div class="auction-title">
                         <h2>كامري</h2>
                         <h4 class="address"> حضرموت - المكلا</h4>
-                        <img src="img/مرسيدس.png" alt="" class="brand">
+                        <img src="assets/images/logos/مرسيدس.png" alt="" class="brand">
                         <span class="price-title">السعر الحالي للمزاد</span> <span class="price">15000$</span>
                     </div>
                     <div class="detail-container">
                         <div class="detail-colmun">
-                            <h4>  المدة المتبقية</h4>
+                            <h6>  المدة المتبقية</h6>
                             <div>3 ايام 5ساعات 30دقيقة</div>
                         </div>
                         <div class="detail-colmun">
-                        <h4>	عدد المشاركات	</h4>
+                        <h6>	عدد المشاركات	</h6>
                         <div>
                             18
                         </div>
                         </div>
                         <div class="detail-colmun" >
-                    <h4>   الحد الادنى للمزاد </h4>
+                    <h6>   الحد الادنى للمزاد </h6>
                     <div>1000$</div>
                         </div>
 
@@ -178,11 +180,12 @@
         </div>
 
     </div>
-    @endsection
-    <script src="js/jquery.min.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/bootstrap.min.js"></script>
 		<script src="assets/js/slick.min.js"></script>
 		<script src="assets/js/jquery.zoom.min.js"></script>
-		<script src="assets/js/main.js"></script>
+		<script src="assets/js/app-main.js"></script>
+    @endsection
+
 </body>
 </html>
