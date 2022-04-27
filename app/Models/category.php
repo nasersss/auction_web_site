@@ -12,4 +12,8 @@ class category extends Model
         return url("images/")."/".$value;
 
     }
+
+    protected $fillable = [
+        'name',
+    ];
 }
