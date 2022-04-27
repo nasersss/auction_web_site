@@ -50,9 +50,7 @@ Route::get('/header', function () {
     return view('layout.header');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -68,7 +66,7 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [HomeController::class, 'index'])->name('users');
+// Route::get('/home', [HomeController::class, 'index'])->name('users');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/superAdmin', [SuperAdminController::class, 'index'])->name('superAdmin');

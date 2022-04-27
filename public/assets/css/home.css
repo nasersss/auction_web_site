@@ -21,6 +21,7 @@
 .btn-color{
     color: #fff;
     background: var(--primaryColor);
+    margin-top: 8%;
 }
 
 
@@ -51,7 +52,7 @@ width: 20%;
     height: 116px;
     position: absolute;
     right: 14%;
-    bottom: 49%;
+    bottom: 46%;
 }
 .slider-offer-image img{
     width: 80%;
@@ -103,6 +104,12 @@ display: flex;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.auction-paragraph{
+    text-align: center !important;
+}
+.auction-price{
+    font-size: 24px;
 }
 
 

@@ -39,27 +39,27 @@
                             <label for="emailaddress" class="form-label">البريد الالكتروني</label>
                             <input class="form-control" type="text" id="emailaddress" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder=" ادخل اسم المستخدم بك">
                             @error('name')
-                            <span class="" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <div class="alert alert-danger" role="alert">
+                                <strong> خطأ -</strong>{{ $message }}
+                            </div>
                             @enderror
                         </div>
                         <div class="mb-1">
                             <label for="emailaddress" class="form-label">البريد الالكتروني</label>
                             <input class="form-control" type="email" id="emailaddress" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder=" ادخل البريد الالكتروني الخاص بك">
                             @error('email')
-                            <span class="" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <div class="alert alert-danger" role="alert">
+                                <strong> خطأ -</strong>{{ $message }}
+                            </div>
                             @enderror
                         </div>
                         <div class="mb-1">
                             <label for="password" class="form-label">كلمة المرور</label>
                             <input class="form-control" type="password" name="password" required autocomplete="new-password" id="password" placeholder="ادخل كلمة المرور">
                             @error('password')
-                            <span class="alert" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <div class="alert alert-danger" role="alert">
+                                <strong> خطأ -</strong>{{ $message }}
+                            </div>
                             @enderror
                         </div>
                         <div class="mb-1">

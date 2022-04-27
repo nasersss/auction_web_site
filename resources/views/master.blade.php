@@ -36,11 +36,15 @@
                 <div id="search" class="search-icon icon">
                 <i class="fas fa-search"></i>
             </div>
-                <div class="show"><i class="fa fa-globe" aria-hidden="true"></i></div>
+                <div class="show icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
                <!-- <div class="show"> <a href="{{ route('login') }}"> <i class="fas fa-user"></i></a> </div> -->
                 @guest
                             @if (Route::has('login'))
-                                <div class="show"> <a href="{{ route('login') }}"> <i class="fas fa-user"></i></a> </div>
+                                <div class="show icon user"> <a href="{{ route('login') }}"> <i class="fas fa-user"></i></a> <div class="list-user">
+                                    <a href=""><i class="fas fa-user"></i> الملف الشخصي</a>
+                                    <a href=""><i class="far fa-cog"></i>  الاعدادات</a>
+                                    <a href=""><i class="fas fa-sign-out"></i>تسجيل الخروج</a>
+                                </div> </div>
                             @endif
                         @else
                                     {{ Auth::user()->name }}
@@ -54,10 +58,11 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                               
+
                         @endguest
-                <div class="show icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
-               <div class="show icon"> <i class="fas fa-user"></i> </div>
+
+                {{-- <div class="show icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+               <div class="show icon"> <i class="fas fa-user"></i> </div> --}}
                <div class="menu-toggle">
                 <a href="#">
                     <i class="fa fa-bars menu-style"></i>
@@ -126,6 +131,7 @@
     <!-- /MAIN HEADER -->
 
 </header>
+
 
 
 
