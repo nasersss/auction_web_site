@@ -26,20 +26,10 @@
             <div class="align-items-center d-flex h-100">
                 <div class="card-body">
 
-<<<<<<< HEAD
-                        <!-- Logo -->
-                        <div class="auth-brand text-center text-lg-start">
-                            <a href="index.html" class="logo-dark">
-                                <span><img src="assets/images/logoDark.png" alt="" height="18"></span>
-                            </a>
-                            <a href="index.html" class="logo-light">
-                                <span><img src="assets/images/logo.png" alt="" ></span>
-                            </a>
-=======
                     <!-- Logo -->
                     <div class="auth-brand text-center text-lg-start">
                         <a href="index.html" class="logo-dark">
-                            <span><img src="assets/images/logo.png" alt="" height="18"></span>
+                            <span><img src="{{asset('assets/images/logoDark.png')}}" alt="" height="18"></span>
                         </a>
                         <a href="index.html" class="logo-light">
                             <span><img src="assets/images/logo.png" alt=""></span>
@@ -71,7 +61,6 @@
                                 </span>
                             @enderror
                             <a href="{{ route('password.request') }}" class="text-muted float-end"><small>هل نسيت كلمة المرور؟</small></a>
->>>>>>> upstream/develop
                         </div>
 
                         <div class="mb-3">
@@ -109,7 +98,7 @@
                     <footer class="footer footer-alt">
                     @if (Route::has('password.request'))
                                                                                             <!-- {{ route('password.request') }} -->
-                        <p class="text-muted">لا تمتلك اي حساب قم بانشاء حسابك الان ؟ <a href="{{ route('password.request') }}" class="text-muted ms-1"><b>انشاء حساب</b></a></p>
+                        <p class="text-muted">لا تمتلك اي حساب قم بانشاء حسابك الان ؟ <a href="{{ route('register') }}" class="text-muted ms-1"><b>انشاء حساب</b></a></p>
                     @endif
                     </footer>
 
