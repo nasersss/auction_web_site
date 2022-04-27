@@ -3,20 +3,20 @@
     <!-- LOGO -->
     <a href="index.html" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="assets/images/logo.png" alt="" height="40">
+                        <img src="{{asset('assets/images/logo.png')}}" alt="" height="40">
                     </span>
         <span class="logo-sm">
-                        <img src="assets/images/logo_sm.png" alt="" height="30">
+                        <img src="{{asset('assets/images/logo_sm.png')}}" alt="" height="30">
                     </span>
     </a>
 
     <!-- LOGO -->
     <a href="index.html" class="logo text-center logo-dark">
                     <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="16">
+                        <img src="{{asset('assets/images/logo-dark.png')}}" alt="" height="16">
                     </span>
         <span class="logo-sm">
-                        <img src="assets/images/logo_sm_dark.png" alt="" height="16">
+                        <img src="{{asset('assets/images/logo_sm_dark.png')}}" alt="" height="16">
                     </span>
     </a>
 
@@ -63,7 +63,7 @@
                             <a href="{{route('users')}}">عرض المستخدمين</a>
                         </li>
                         <li>
-                            <a href="{{route('add-auction')}}">إدارة المستخدمين</a>
+                            <a href="#">إدارة المستخدمين</a>
                         </li>
 
                     </ul>
@@ -98,14 +98,15 @@
                 <div class="collapse" id="sidebarTasks">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="#">إضافة صنف </a>
+                            <a href="{{route('view_cat')}}">عرض الأصناف</a>
+                        </li>
+                        <li>
+                            <a href="{{route('add-cat')}}">إضافة صنف </a>
                         </li>
                         <li>
                             <a href="#">تعديل صنف</a>
                         </li>
-                        <li>
-                            <a href="#">حذف صنف</a>
-                        </li>
+
                     </ul>
                 </div>
             </li>

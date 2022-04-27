@@ -13,14 +13,14 @@
                 </li>
                 <li class="dropdown notification-list topbar-dropdown">
                     <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="assets/images/flags/ar.jpg" alt="user-image" class="me-0 me-sm-1" height="12">
+                        <img src="{{asset('assets/images/flags/ar.jpg')}}" alt="user-image" class="me-0 me-sm-1" height="12">
                         <span class="align-middle d-none d-sm-inline-block">عربي</span> <i class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu">
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <img src="assets/images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
+                            <img src="{{asset('assets/images/flags/us.jpg')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
                         </a>
 
 
@@ -107,7 +107,7 @@
                 <li class="dropdown notification-list">
                     <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <span class="account-user-avatar">
-                                        <img src="assets/images/users/avatar-11.jpg" alt="user-image" class="rounded-circle">
+                                        <img src="{{asset('assets/images/users/avatar-11.jpg')}}" alt="user-image" class="rounded-circle">
                                     </span>
                         <span>
                                         <span class="account-user-name">فؤاد العمودي</span>
