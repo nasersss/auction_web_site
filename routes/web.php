@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('admin.home');
-});
+    return view('index');
+})->name('index');
 Route::get('/add_view',[Maincontroller::class,'show']);
 Route::get('/detail',function(){
 return view('details');
@@ -53,12 +53,12 @@ Route::get('/dashboard', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::get('/home', [HomeController::class, 'index'])->name('users');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
-
-Route::get('/superAdmin', [App\Http\Controllers\SuperAdminController::class, 'index'])->name('superAdmin');
+Route::get('/superAdmin', [SuperAdminController::class, 'index'])->name('superAdmin');
 
 
 // Route::get('/listCategories', [App\Http\Controllers\CategoryController::class, 'index'])->name('listCategories');

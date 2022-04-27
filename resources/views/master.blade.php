@@ -23,7 +23,7 @@
                     <li><a href="#">الفئات</a></li>
                     <li><a href="#">الاسئلة الشائعة</a></li>
                     <li><a href="#">تواصل معنا</a></li>
-                    <li class="show-menu"><a href="#">تسجيل الدخول</a></li>
+                    <li class="show-menu"><a href="{{ route('login') }}">تسجيل الدخول</a></li>
                     <li class="show-menu"><a href="#"> اللغة</a></li>
                     <div>
 
@@ -37,7 +37,25 @@
                 <i class="fas fa-search"></i>
             </div>
                 <div class="show"><i class="fa fa-globe" aria-hidden="true"></i></div>
-               <div class="show"> <i class="fas fa-user"></i> </div>
+               <!-- <div class="show"> <a href="{{ route('login') }}"> <i class="fas fa-user"></i></a> </div> -->
+               @guest
+                            @if (Route::has('login'))
+                                <div class="show"> <a href="{{ route('login') }}"> <i class="fas fa-user"></i></a> </div>
+                            @endif
+                        @else
+                                    {{ Auth::user()->name }}
+
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                               
+                        @endguest
                <div class="menu-toggle">
                 <a href="#">
                     <i class="fa fa-bars menu-style"></i>
