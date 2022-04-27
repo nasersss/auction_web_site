@@ -33,11 +33,11 @@
                 <!-- /NAV -->
             </div>
             <div class="header-icons">
-                <div id="search" class="search-icon">
+                <div id="search" class="search-icon icon">
                 <i class="fas fa-search"></i>
             </div>
-                <div class="show"><i class="fa fa-globe" aria-hidden="true"></i></div>
-               <div class="show"> <i class="fas fa-user"></i> </div>
+                <div class="show icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+               <div class="show icon"> <i class="fas fa-user"></i> </div>
                <div class="menu-toggle">
                 <a href="#">
                     <i class="fa fa-bars menu-style"></i>

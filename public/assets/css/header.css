@@ -166,7 +166,7 @@ header{
     margin-left: 2px;
   }
 
-  .header-icons > div{
+  .header-icons > .icon{
     height: 30px;
     width: 30px;
     border-radius: 50%;
@@ -174,9 +174,11 @@ header{
     margin: 0 5px;
     color: #ffffffe8;
 
-    text-align: center;
-
+   display: flex;
+   justify-content: center;
+   align-items: center;
   }
+
 
   .header-icons div i{
     margin: 0px 8px 0 8px;
@@ -332,7 +334,7 @@ header{
     .menu-toggle {
       display: block;
       background: none !important;
-      width: 100%;
+      width: 50%;
       text-align: center;
       margin: 25px 0;
 
