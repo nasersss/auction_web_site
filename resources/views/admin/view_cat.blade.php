@@ -87,8 +87,7 @@
 
 @section('script')
     <!-- bundle -->
-    <script src="assets/js/vendor.min.js"></script>
-    <script src="assets/js/app.min.js"></script>
+
 
     <!-- third party js -->
     <script src="assets/js/vendor/jquery.dataTables.min.js"></script>
