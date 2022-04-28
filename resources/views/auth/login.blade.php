@@ -43,7 +43,55 @@
                     <!-- form -->
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        
+                        <div class="mb-3">
+                            <label for="emailaddress" class="form-label">البريد الاكتروني</label>
+                            <input class="form-control" type="email" id="emailaddress" required="" placeholder="ادخل بريدك الاكتروني" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
+                            
+                            @error('email')
+                            <div class="alert alert-danger" role="alert">
+                                <strong> خطأ -</strong>{{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">كلمة المرور</label>
+                            <input class="form-control" type="password" id="password" placeholder="ادخل كلمة المرور" name="password" required autocomplete="current-password">
+                            @error('password')
+                            <div class="alert alert-danger" role="alert">
+                                <strong>خطأ -</strong>{{ $message }}
+                            </div>
+                            @enderror
+                            <a href="{{ route('password.request') }}" class="text-muted float-end"><small>هل نسيت كلمة المرور؟</small></a>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input checkBox" id="checkbox-signin" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <label class="form-check-label" for="checkbox-signin">تذكرني</label>
+                            </div>
+                        </div>
+                        <div class="d-grid mb-0 text-center">
+                            <button class="btn btn-primary" type="submit"><i class="mdi mdi-login"></i> تسجيل الدخول </button>
+                        </div>
+
+                        <!-- social-->
+                        <div class="text-center mt-4">
+                            <p class="text-muted font-16">تسجيل حسابك بواسطة</p>
+                            <ul class="social-list list-inline mt-3">
+                                <li class="list-inline-item">
+                                    <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i class="mdi mdi-facebook"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="mdi mdi-google"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="mdi mdi-twitter"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-instagram"></i></a>
+                                </li>
+                            </ul>
+                        </div>
                     </form>
                     <!-- end form-->
 
