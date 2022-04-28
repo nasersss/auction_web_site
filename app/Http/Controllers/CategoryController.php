@@ -17,7 +17,7 @@ class CategoryController extends Controller
     {
         //
         $categories = Category::orderBy('id', 'desc')->get();
-        return view('admin.categories.view')
+        return view('admin.view_cat')
             ->with('categories', $categories);
     }
 
@@ -28,8 +28,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        // 
-        return view('admin.categories.create');
+        //
+        return view('admin.add_categry');
     }
 
     /**
@@ -65,7 +65,7 @@ class CategoryController extends Controller
      * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(category $category)
+    public function show($category)
     {
         //
     }
@@ -76,11 +76,11 @@ class CategoryController extends Controller
      * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(category $categoryId)
+    public function edit($categoryId)
     {
         //
         $category = Category::find($categoryId);
-        return view('admin.categories.edit')
+        return view('admin.edit_categry')
             ->with('category', $category);
     }
 
@@ -112,7 +112,7 @@ class CategoryController extends Controller
      * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(category $category)
+    public function destroy($category)
     {
         //
     }
