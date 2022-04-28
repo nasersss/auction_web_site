@@ -1,6 +1,7 @@
 let search=document.getElementById('search')
 let closeSearch=document.getElementById('close')
 let showSearch=document.getElementById('header')
+let list_user=document.getElementById('list-user')
 search.addEventListener('click',(e)=>{
 e.preventDefault();
 showSearch.style.display='block';
@@ -38,4 +39,9 @@ for (let i = 0; i < prev.length; i++) {
         categoryContainer[i].scrollLeft -= 296;
     })
 }
+
+function userSelection(){
+    list_user.classList.toggle('visible')
+}
+
 

@@ -345,6 +345,9 @@ header{
     display: none;
 
 }
+.visible{
+    display:block;
+}
 .list-user > a{
     display: block;
     margin: 14px 0;
@@ -430,6 +433,21 @@ header{
   }
 .show-menu{
     display: none;
+}
+.login{
+    background: var(--primaryColor);
+    color: #fff;
+    width: 30%;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+.login a{
+    color: #fff !important;
+    font-size: 15px;
 }
 
   /*=========================================================
