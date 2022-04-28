@@ -1,4 +1,9 @@
 /* slider */
+@import url(../fonts/DIN.css);
+
+body{
+    font-family: DIN-light, sans-serif, Arial;
+}
 .carousel-item{
     height: 32rem;
     background-color: #000;

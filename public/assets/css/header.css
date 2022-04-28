@@ -1,4 +1,4 @@
-
+@import url(../fonts/DIN.css);
 
 *{
     padding: 0;
@@ -10,7 +10,7 @@
     --secondary:#484f5d;
   }
   body {
-    font-family: 'DIN Next LT Arabic', sans-serif;
+      font-family: DIN-light, sans-serif, Arial;
     font-weight: 400;
     color: var(--secondary);
     direction: rtl;
@@ -338,9 +338,6 @@ header{
       text-align: center;
       margin: 25px 0;
 
-    }
-    .show{
-        display: none !important;
     }
     .search-icon{
         background:var(--secondary) !important ;

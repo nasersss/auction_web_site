@@ -33,6 +33,12 @@ Route::get('/detail',function(){
 
 
 
+    Route::get('/ContactUs',[ContactUs::class,'ContactUs'])->name('ContactUs');
+    Route::get('/AboutUs',[AboutUs::class,'AboutUs'])->name('AboutUs');
+
+
+
+
 
 Route::get('/header', function () {
     return view('layout.header');
@@ -56,6 +62,10 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+<<<<<<< HEAD
+=======
+// Route::get('/home', [HomeController::class, 'index'])->name('users');
+>>>>>>> 8d974f51545de8c9284c140bf8565bb39a7786c0
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/superAdmin', [SuperAdminController::class, 'index'])->name('superAdmin');
