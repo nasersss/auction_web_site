@@ -22,7 +22,7 @@
                     <li><a href="{{ route('auction') }}">المزادات </a></li>
                     <li><a href="#">الفئات</a></li>
                     <li><a href="#">الاسئلة الشائعة</a></li>
-                    <li><a href="#">تواصل معنا</a></li>
+                    <li><a href="{{  route('ContactUs')}}">تواصل معنا</a></li>
                     <li class="show-menu"><a href="{{ route('login') }}">تسجيل الدخول</a></li>
                     <li class="show-menu"><a href="#"> اللغة</a></li>
                     <div>
