@@ -40,21 +40,23 @@
                <!-- <div class="show"> <a href="{{ route('login') }}"> <i class="fas fa-user"></i></a> </div> -->
                 @guest
                             @if (Route::has('login'))
-                                <div class="show icon user"> <a href="{{ route('login') }}"> <i class="fas fa-user"></i></a> <div class="list-user">
-                                    <a href=""><i class="fas fa-user"></i> الملف الشخصي</a>
-                                    <a href=""><i class="far fa-cog"></i>  الاعدادات</a>
-                                    <a href=""><i class="fas fa-sign-out"></i>تسجيل الخروج</a>
-                                </div> </div>
+                                <div  class="show login " > <a href="{{ route('login') }}" >تسجيل الدخول</a>
+
+                                </div>
+                             </div>
                             @endif
                         @else
-                                    {{ Auth::user()->name }}
-
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        <div  class="show icon user" onclick="userSelection()" style="background: #eee"> <a href="#" style="color:var(--secondary)"> <i class="fas fa-user"></i></a>
+                            <div id="list-user"  class="list-user">
+                            <a href=""><i class="fas fa-user"></i> الملف الشخصي</a>
+                            <a href=""><i class="fas fa-cog"></i>  الاعدادات</a>
+                            <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
+                                       <i class="fas fa-sign-out"></i>تسجيل الخروج</a>
+                        </div>
+                     </div>
+                                    {{ Auth::user()->name }}
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>

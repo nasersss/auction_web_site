@@ -36,7 +36,7 @@
                             </a>
                         </div>
                         <div class="mb-1">
-                            <label for="emailaddress" class="form-label">البريد الالكتروني</label>
+                            <label for="emailaddress" class="form-label">اسم المستخدم</label>
                             <input class="form-control" type="text" id="emailaddress" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder=" ادخل اسم المستخدم بك">
                             @error('name')
                             <div class="alert alert-danger" role="alert">
@@ -64,7 +64,7 @@
                         </div>
                         <div class="mb-1">
                             <label for="password" class="form-label"> تاكيد كلمة المرور</label>
-                            <input class="form-control" type="confirm-password" name="password_confirmation" required autocomplete="new-password" id="password" placeholder="تاكيد كلمة المرور ">
+                            <input class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" id="password" placeholder="تاكيد كلمة المرور ">
                         </div>
                         <div class="mb-1">
                             <div class="form-check">
