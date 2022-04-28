@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('index');
-})->name('index');
+})->name('index')/* ->middleware('verified') */;
 
 Route::get('/add_view',[Maincontroller::class,'show']);
 
@@ -52,11 +52,10 @@ Route::get('/dashboard', function () {
     return view('admin/dashboard');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [HomeController::class, 'index'])->name('users');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/superAdmin', [SuperAdminController::class, 'index'])->name('superAdmin');
