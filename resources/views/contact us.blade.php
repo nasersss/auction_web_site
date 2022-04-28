@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>المزادات </title>
+    <title>تواصل معنا </title>
     <link rel="stylesheet" href="assets/css/ionicons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/all.css">
@@ -30,7 +30,7 @@
 						<input class="input100" type="text" name="name" placeholder="إسم المستخدم">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-user" aria-hidden="true"></i>
+							<i class="fa fa-user" aria-hidden="true" id="icon"></i>
 						</span>
 					</div>
 
@@ -38,7 +38,7 @@
 						<input class="input100" type="text" name="email" placeholder="البريد الإلكتروني">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<i class="fa fa-envelope" aria-hidden="true" id="icon"></i>
 						</span>
 					</div>
 

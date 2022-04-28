@@ -9063,12 +9063,16 @@ width: 80%;
   transition: all 0.4s;
  }
  
+ #icon{
+   position: relative;
+   right: 350px;
+ }
  .input100:focus + .focus-input100 + .symbol-input100 {
   color: #846add;
   padding-left: 22px;
  }
  
- /*------------------------------------------------------------------
+ /*-----------------------------------------------------------------
  [ Button ]*/
  .container-contact100-form-btn {
   width: 100%;
