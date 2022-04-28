@@ -365,7 +365,7 @@
             <div class="card-image">
                 <span class="card-notify-badge">مزاد جاري</span>
 
-                <img class="img-fluid" src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC091A021001.jpg&width=440&height=262" alt="Alternate Text" />
+                <img class="img-fluid" src="assets/images/USD10HOC091C021001.jpg" alt="Alternate Text" />
             </div>
             <div class="card-image-overlay m-auto">
                 <span class="card-detail-badge">2018</span>
@@ -438,7 +438,7 @@
         <div class="card-image">
             <span class="card-notify-badge">مزاد جاري</span>
 
-            <img class="img-fluid" src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC091A021001.jpg&width=440&height=262" alt="Alternate Text" />
+            <img class="img-fluid" src="assets/images/USD10HOC091C021001.jpg" alt="Alternate Text" />
         </div>
         <div class="card-image-overlay m-auto">
             <span class="card-detail-badge">2018</span>
