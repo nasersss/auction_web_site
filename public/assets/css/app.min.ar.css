@@ -5042,6 +5042,7 @@ fieldset:disabled .btn {
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
+  margin-top: 1rem;
 }
 .alert-heading {
   color: inherit;
@@ -13906,7 +13907,9 @@ label {
   height: 2rem;
   width: 2rem;
   line-height: calc(2rem - 2px);
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 2px solid #adb5bd;
   border-radius: 50%;
   color: #adb5bd;

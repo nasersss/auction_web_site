@@ -24,6 +24,11 @@ Route::get('/add_view',[Maincontroller::class,'show']);
 Route::get('/home',function(){
     return view('index');
 })->name('home');
+
+// Route::get('/home',function(){
+//     return view('index');
+// })->name('users');
+
 Route::get('/auction',function(){
     return view('auction');
 })->name('auction');
@@ -31,6 +36,13 @@ Route::get('/detail',function(){
     return view('details');
     })->name('details-car');
 
+Route::get('/admin',function(){
+    return view('admin.dashboard_home');
+});
+
+Route::get('/login',function(){
+    return view('auth.login');
+});
 
 
     Route::get('/ContactUs',[ContactUs::class,'ContactUs'])->name('ContactUs');
@@ -44,9 +56,7 @@ Route::get('/header', function () {
     return view('layout.header');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -63,9 +73,13 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 // Route::get('/home', [HomeController::class, 'index'])->name('users');
 >>>>>>> 8d974f51545de8c9284c140bf8565bb39a7786c0
+=======
+// Route::get('/home', [HomeController::class, 'index'])->name('users');
+>>>>>>> 82b39afd5828e157ed38023882413b612ee7e68b
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/superAdmin', [SuperAdminController::class, 'index'])->name('superAdmin');

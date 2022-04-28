@@ -164,6 +164,8 @@ header{
     color: var(--secondary);
     font-size: 16px;
     margin-left: 2px;
+    position: relative;
+
   }
 
   .header-icons > .icon{
@@ -177,6 +179,9 @@ header{
    display: flex;
    justify-content: center;
    align-items: center;
+  }
+  .header-icons > .icon a{
+      color: #fff;
   }
 
 
@@ -324,8 +329,30 @@ header{
     display: none;
   }
 
+.user{
+    position: relative;
+}
+.list-user{
+    background-color: #fff;
+    position: absolute;
+    width: 450%;
+    z-index: 2;
+    top: 35px;
+    right: -56px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: none;
 
-
+}
+.list-user > a{
+    display: block;
+    margin: 14px 0;
+    color: var(--secondary)!important;
+}
+.user:hover .list-user {
+    display: block;
+  }
   /*----------------------------*\
       responsive nav
   \*----------------------------*/
