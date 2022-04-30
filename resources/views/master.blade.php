@@ -22,7 +22,7 @@
                     <li><a href="{{ route('auction') }}">المزادات </a></li>
                     <li><a href="#">الفئات</a></li>
                     <li><a href="#">الاسئلة الشائعة</a></li>
-                    <li><a href="#">تواصل معنا</a></li>
+                    <li><a href="{{  route('ContactUs')}}">تواصل معنا</a></li>
                     <li class="show-menu"><a href="{{ route('login') }}">تسجيل الدخول</a></li>
                     <li class="show-menu"><a href="#"> اللغة</a></li>
                     <div>
@@ -196,13 +196,13 @@
           <li><a href="#" class="d-block">مزادات اليوم</a></li>
           <li><a href="#" class="d-block">الإنضمام للمزاد</a></li>
           <li><a href="#" class="d-block">مزادات سيارات الإيجار</a></li>
-          <li><a href="#" class="d-block">قائمة المبيعات</a></li>
+          <li><a href="{{  route('ContactUs')}}" class="d-block">تواصل معنا</a></li>
         </ul>
                 </div>
                 <div class="col-md-4 mb-md-0 mb-4">
                     <h2 class="footer-heading">تعرف علينا</h2>
                     <ul class="list-unstyled">
-          <li><a href="#" class="d-block"> حول مزادي كار</a></li>
+          <li><a href="{{  route('AboutUs')}}" class="d-block"> حول مزادي كار</a></li>
           <li><a href="#" class="d-block">علاقات المستثمرين </a></li>
           <li><a href="#" class="d-block"> أخبار الاعضاء</a></li>
       <li><a href="#" class="d-block">  المجتمع</a></li>

@@ -1,8 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('title')
-    أضافة صنف
-
+    تعديل صنف
 @endsection
 
 @section('css')
@@ -20,7 +19,7 @@
 @endsection
 
 @section('page-title')
-    أضافة صنف
+    تعديل صنف
 @endsection
 
 @section('content')
@@ -33,20 +32,19 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{route('store_categories')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{route('update_categories',$category->id)}}" enctype="multipart/form-data">
                         @csrf
                     <div class="row">
 
                             <div class="mb-3 col-md-6">
                                 <label for="inputAddress" class="form-label">اسم ماركة السيارة</label>
-                                <input type="text" name="name" class="form-control" id="inputAddress" placeholder="مثال تويتا..">
+                                <input type="text" name="name" class="form-control" id="inputAddress" placeholder="مثال تويتا.." value="{{$category->name}}">
                             </div>
                         <div class="mb-1 col-md-3">
                             <label for="inputAddress" class="form-label">الحالة</label>
                             <select name="is_active" class="form-select mb-3">
-                                <option selected>أختر احدى الانوع</option>
-                                <option value="1">نشط</option>
-                                <option value="-1">غير نشط</option>
+                                <option @if($category->is_active==1) selected @endif value="1">نشط</option>
+                                <option @if($category->is_active==-1) selected @endif value="-1">غير نشط</option>
 
                             </select>
                         </div>
@@ -54,7 +52,7 @@
                                 <label for="inputAddress" class="form-label">شعار ماركة السيارة</label>
                                 <input class="form-control" type="file" name="image" id="formFileMultiple" multiple>
                             </div>
-                        <button type="submit" class="btn btn-primary">إضافة</button>
+                        <button type="submit" class="btn btn-primary">تعديل</button>
 
                     </div>
                     </form>

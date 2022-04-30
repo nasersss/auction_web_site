@@ -45,6 +45,12 @@ Route::get('/login',function(){
 });
 
 
+    Route::get('/ContactUs',[ContactUs::class,'ContactUs'])->name('ContactUs');
+    Route::get('/AboutUs',[AboutUs::class,'AboutUs'])->name('AboutUs');
+
+
+
+
 
 Route::get('/header', function () {
     return view('layout.header');
