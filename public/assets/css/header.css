@@ -113,7 +113,7 @@
 header{
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 1000;
 }
   #top-header {
 
@@ -352,6 +352,7 @@ header{
     display: block;
     margin: 14px 0;
     color: var(--secondary)!important;
+    text-align: right;
 }
 .user:hover .list-user {
     display: block;
