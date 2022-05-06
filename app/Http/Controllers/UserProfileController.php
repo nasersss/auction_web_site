@@ -19,9 +19,11 @@ class UserProfileController extends Controller
     public function index()
     {
         //
-        $user = User::with('profile')->find(Auth::id());
-
-        return view('user.profile', compact('user'));
+        // $user = User::with('profile')/* ->find(Auth::id()) */;
+        // return view('user.profile', compact('users'));
+        $users = User::orderBy('role', 'asc')->get();
+        return view('user.profile')
+            ->with('users', $users);
     }
 
     /**
