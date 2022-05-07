@@ -155,7 +155,14 @@
         </div>
         <div class="action-card mt-2">
             <div class="action-head">الاشتراك في المزاد</div>
-            <div class="action-body"><input type="text" placeholder="ادخل مبلغ للاشتراك في المزاد"> <a href="" class="btn">مزايدة</a></div>
+            <div class="action-body">
+                <form name="amountForm" action="">
+                    <input type="text" id="amount" name="amount" placeholder="ادخل مبلغ للاشتراك في المزاد"> <input type="submit" value="مزايدة" class="btn">
+                </form>
+                </div>
+        </div>
+        <div id="msg" class="alert alert-danger">
+<strong id="validate-msg" ></strong>
         </div>
         </div>
 

@@ -80,7 +80,7 @@
                 <div class="card-image">
                     <span class="card-notify-badge">Fully-Loaded</span>
 
-                    <img class="img-fluid" src="assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
+                    <img class="img-fluid" src="/assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
                 </div>
                 <div class="card-image-overlay m-auto">
                     <span class="card-detail-badge">2020</span>

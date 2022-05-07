@@ -154,6 +154,7 @@ width: 80%;
     align-items: center;
 }
 
+
 @media only screen and (max-width: 991px) {
     .arrow-category span{
         width: 24px !important;

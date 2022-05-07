@@ -177,11 +177,16 @@ opacity: .5;
     padding: 10px;
 
 }
-.action-body input{
+.action-body form {
+    width: 100%;
+
+}
+.action-body form input{
     width: 79%;
     border-radius: 5px;
+    padding: 10px;
 }
-.action-body a{
+.action-body form .btn{
     width: 20%;
     background-color: var(--primaryColor);
     color: #fff;
@@ -191,4 +196,7 @@ opacity: .5;
     border: 3px solid var(--primaryColor);
     opacity: 1 !important;
 
+}
+#msg{
+    display: none;
 }

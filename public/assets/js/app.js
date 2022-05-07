@@ -114,3 +114,27 @@ buttonRight.addEventListener('click', function(){
 
 })
 
+let amount=document.querySelector("[name='amount']")
+document.forms["amountForm"].onsubmit=function(e){
+let num_amount=amount.value;
+
+   if(num_amount==""){
+       e.preventDefault()
+       document.getElementById("msg").style.display="block"
+       document.getElementById("validate-msg").innerHTML="يرجئ ملئ الحقل للاشتراك في المزاد"
+
+   }
+  else if(num_amount < 0){
+    e.preventDefault()
+    document.getElementById("msg").style.display="block"
+    document.getElementById("validate-msg").innerHTML="يجب الا يكون الرقم المدخل رقم سالب"
+
+}
+else if(!/^[0-9]+$/.test(num_amount)){
+    e.preventDefault()
+    document.getElementById("msg").style.display="block"
+    document.getElementById("validate-msg").innerHTML="يجب ان يكون النص المدخل رقم"
+
+}
+
+}

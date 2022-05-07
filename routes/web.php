@@ -57,7 +57,7 @@ Route::get('/login',function(){
 
 Route::get('/register', function () {
     return view('auth.register');
-});
+})->name("register");
 Route::get('/reset', function () {
     return view('auth.reset');
 });
