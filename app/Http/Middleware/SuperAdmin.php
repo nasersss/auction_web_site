@@ -20,7 +20,7 @@ class SuperAdmin
     {
         $destinations = [
             1 => 'admin',
-            2 => 'home',
+            2 => 'index',
         ];
         if (!Auth::check()) {
             return redirect()->route('login');
