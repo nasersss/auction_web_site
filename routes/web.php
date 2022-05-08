@@ -21,16 +21,28 @@ Route::get('/', function () {
 Route::get('/add_view',[Maincontroller::class,'show']);
 
 
-Route::get('/home',function(){
-    return view('index');
-})->name('home');
+// Route::get('/home',function(){
+//     return view('index');
+// })->name('home');
+
+// Route::get('/home',function(){
+//     return view('index');
+// })->name('users');
+
 Route::get('/auction',function(){
     return view('auction');
 })->name('auction');
 Route::get('/detail',function(){
-    return view('details');
+    return view('detail');
     })->name('details-car');
 
+Route::get('/admin',function(){
+    return view('admin.dashboard_home');
+});
+
+Route::get('/login',function(){
+    return view('auth.login');
+});
 
 
     Route::get('/ContactUs',[ContactUs::class,'ContactUs'])->name('ContactUs');
@@ -41,17 +53,12 @@ Route::get('/detail',function(){
 
 
 
-Route::get('/header', function () {
-    return view('layout.header');
-});
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+
 
 Route::get('/register', function () {
     return view('auth.register');
-});
+})->name("register");
 Route::get('/reset', function () {
     return view('auth.reset');
 });

@@ -26,6 +26,7 @@ body{
 .btn-color{
     color: #fff;
     background: var(--primaryColor);
+    margin-top: 8%;
 }
 
 
@@ -56,7 +57,7 @@ width: 20%;
     height: 116px;
     position: absolute;
     right: 14%;
-    bottom: 49%;
+    bottom: 46%;
 }
 .slider-offer-image img{
     width: 80%;
@@ -84,7 +85,7 @@ table th{
 
     justify-content: space-evenly;
     align-items: center;
-width: 100%;
+    width: 100%;
 }
 .category-container{
 width: 90%;
@@ -108,6 +109,12 @@ display: flex;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.auction-paragraph{
+    text-align: center !important;
+}
+.auction-price{
+    font-size: 24px;
 }
 
 
@@ -146,6 +153,7 @@ width: 80%;
     justify-content: center;
     align-items: center;
 }
+
 
 @media only screen and (max-width: 991px) {
     .arrow-category span{

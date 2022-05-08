@@ -58,7 +58,7 @@
                                   </tr>
                                     <tr>
                                         <th>
-                                            المشي
+                                            المسافات المقطوعة
                                         </th>
                                         <td>
                                             25000 km
@@ -75,11 +75,12 @@
                                 </table>
                             </p>
 
-                            <p class="card-text"><strong>المزاد الحالي</strong>: 10000 $</p>
                             <a href="#" class="btn btn-color">الاشتراك في المزاد</a>
                           </div>
                           <div class="col-6">
                               <img src="/assets/images/cars/car1.jpg" class="w-100 rounded" alt="">
+                              <p class="card-text auction-paragraph">المزاد الحالي<span  class="auction-price"> 10000 $</span></p>
+
                           </div>
                             </div>
 
@@ -125,7 +126,7 @@
                                 </tr>
                                   <tr>
                                       <th>
-                                          المشي
+                                          المسافات المقطوعة
                                       </th>
                                       <td>
                                           25000 km
@@ -142,11 +143,12 @@
                               </table>
                           </p>
 
-                          <p class="card-text"><strong>المزاد الحالي</strong>: 10000 $</p>
                           <a href="#" class="btn btn-color">الاشتراك في المزاد</a>
                         </div>
                         <div class="col-6">
                             <img src="/assets/images/cars/car2.jpg" class="w-100 rounded" alt="">
+                            <p class="card-text auction-paragraph">المزاد الحالي<span  class="auction-price"> 10000 $</span></p>
+
                         </div>
                           </div>
                         </div>
@@ -330,7 +332,7 @@
           <h2 id="demo"> ينتهي المزاد بعد</h2>
 
                 </div>
-                <a class="ad-btn" href="{{ url('/appear_detalis_2')}}">مشاهدة التفاصيل</a>
+                <a class="ad-btn" href="{{ route('details-car')}}">مشاهدة التفاصيل</a>
             </div>
         </div>
     </div>

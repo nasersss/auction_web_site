@@ -60,7 +60,7 @@
                 </div> <!-- end .align-items-center.d-flex.h-100-->
             </div>
             <!-- end auth-fluid-form-box-->
-
+            
             <!-- Auth fluid right content -->
             <div class="auth-fluid-right text-center">
                 <div class="auth-user-testimonial">
