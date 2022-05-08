@@ -41,17 +41,14 @@ Route::get('/view_categry', function () {
     return view('admin/view_cat');
 })->name('view_cat');
 
-Route::get('/view_categry', [CategoryController::class,'index'])->name('view_cat');
+Route::get('/view_categry', [CategoryController::class, 'index'])->name('view_cat');
 
 /*Category*/
-
-Route::get('list_categories',[CategoryController::class,'index'])->name('list_categories');
-Route::get('add_categories',[CategoryController::class,'create'])->name('add_categories');
-Route::get('edit_categories/{categoryId}',[CategoryController::class,'edit'])->name('edit_categories');
-Route::get('toggle_categories/{categoryId}',[CategoryController::class,'toggle'])->name('toggle_categories');
-Route::post('save_categories',[CategoryController::class,'store'])->name('store_categories');
-Route::post('update_categories/{categoryId}',[CategoryController::class,'update'])->name('update_categories');
-
-
-
-
+Route::group(['middleware' => 'is.admin'], function () {
+    Route::get('list_categories', [CategoryController::class, 'index'])->name('list_categories');
+    Route::get('add_categories', [CategoryController::class, 'create'])->name('add_categories');
+    Route::get('edit_categories/{categoryId}', [CategoryController::class, 'edit'])->name('edit_categories');
+    Route::get('toggle_categories/{categoryId}', [CategoryController::class, 'toggle'])->name('toggle_categories');
+    Route::post('save_categories', [CategoryController::class, 'store'])->name('store_categories');
+    Route::post('update_categories/{categoryId}', [CategoryController::class, 'update'])->name('update_categories');
+});
