@@ -153,7 +153,7 @@
         <div class="col-md-4 my-3">
             <div class="card rounded">
                 <div class="card-image">
-                    <span class="card-notify-badge">Low KMS</span>
+                    <span class="card-notify-badge">مزاد جاري</span>
                     <span class="card-notify-year">New</span>
                     <img class="img-fluid" src="assets/images/mobile_listing_main_01.jpg" alt="Alternate Text" />
                 </div>
@@ -176,7 +176,7 @@
         <div class="col-md-4 my-3">
             <div class="card rounded">
                 <div class="card-image">
-                    <span class="card-notify-badge">Fully-Loaded</span>
+                    <span class="card-notify-badge">مزاد جاري</span>
 
                     <img class="img-fluid" src="assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
                 </div>
@@ -200,7 +200,7 @@
         <div class="col-md-4 my-3">
             <div class="card rounded">
                 <div class="card-image">
-                    <span class="card-notify-badge">Price Reduced</span>
+                    <span class="card-notify-badge">مزاد جاري</span>
 
                     <img class="img-fluid" src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC091A021001.jpg&width=440&height=262" alt="Alternate Text" />
                 </div>
@@ -226,7 +226,7 @@
     <div class="col-md-4 my-3">
         <div class="card rounded">
             <div class="card-image">
-                <span class="card-notify-badge">Low KMS</span>
+                <span class="card-notify-badge">مزاد جاري</span>
                 <span class="card-notify-year">New</span>
                 <img class="img-fluid" src="assets/images/mobile_listing_main_01.jpg" alt="Alternate Text" />
             </div>
@@ -249,7 +249,7 @@
     <div class="col-md-4 my-3">
         <div class="card rounded">
             <div class="card-image">
-                <span class="card-notify-badge">Fully-Loaded</span>
+                <span class="card-notify-badge">مزاد جاري</span>
 
                 <img class="img-fluid" src="assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
             </div>
@@ -273,7 +273,7 @@
     <div class="col-md-4 my-3">
         <div class="card rounded">
             <div class="card-image">
-                <span class="card-notify-badge">Price Reduced</span>
+                <span class="card-notify-badge">مزاد جاري</span>
 
                 <img class="img-fluid" src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC091A021001.jpg&width=440&height=262" alt="Alternate Text" />
             </div>
@@ -299,7 +299,7 @@
     <div class="col-md-4 my-3">
         <div class="card rounded">
             <div class="card-image">
-                <span class="card-notify-badge">Low KMS</span>
+                <span class="card-notify-badge">مزاد جاري</span>
                 <span class="card-notify-year">New</span>
                 <img class="img-fluid" src="assets/images/mobile_listing_main_01.jpg" alt="Alternate Text" />
             </div>
@@ -322,7 +322,7 @@
     <div class="col-md-4 my-3">
         <div class="card rounded">
             <div class="card-image">
-                <span class="card-notify-badge">Fully-Loaded</span>
+                <span class="card-notify-badge">مزاد جاري</span>
 
                 <img class="img-fluid" src="assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
             </div>
@@ -346,7 +346,7 @@
     <div class="col-md-4  my-3">
         <div class="card rounded">
             <div class="card-image">
-                <span class="card-notify-badge">Price Reduced</span>
+                <span class="card-notify-badge">مزاد جاري</span>
 
                 <img class="img-fluid" src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC091A021001.jpg&width=440&height=262" alt="Alternate Text" />
             </div>

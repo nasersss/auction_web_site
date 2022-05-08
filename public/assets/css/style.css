@@ -3771,7 +3771,9 @@ input[type="button"].btn-block {
     color: #fff; }
     .navbar-dark .navbar-text a:hover, .navbar-dark .navbar-text a:focus {
       color: #fff; }
-
+#common-que{
+  background-color:#fff;
+}
  .card {
   position: relative;
   display: -webkit-box;
