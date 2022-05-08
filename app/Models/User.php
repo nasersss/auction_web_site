@@ -6,9 +6,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -42,7 +43,44 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+<<<<<<< HEAD
     public function Policies(){
         return $this->hasMany(Product::class,'user_id');
+=======
+
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class);
+    }
+
+    public function isAdmin()
+    {
+        if (!Auth::check()) {
+            return false;
+        }
+        $users = User::where('id', Auth::user()->id)->get();
+        foreach ($users as $user) {
+            if ($user->role == 1 || $user->role == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public function isSuperAdmin()
+    {
+        if (!Auth::check()) {
+            return false;
+        }
+        $users = User::where('id', Auth::user()->id)->get();
+        foreach ($users as $user) {
+            if ($user->role == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+>>>>>>> e4af0e600a4cdc1b40f0635d2dbbaab660c551e4
     }
 }

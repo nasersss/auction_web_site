@@ -19,9 +19,10 @@ class UserProfileController extends Controller
     public function index()
     {
         //
-        $user = User::with('profile')->find(Auth::id());
-
-        return view('user.profile', compact('user'));
+        $user = User::with('profile')->get();
+        return view('user.profile')
+            ->with('users', $user);
+        
     }
 
     /**
@@ -33,7 +34,6 @@ class UserProfileController extends Controller
     {
         //
         $user = User::with('profile')->find(Auth::id());
-
         return view('user.profile', compact('user'));
     }
 
@@ -57,6 +57,9 @@ class UserProfileController extends Controller
     public function show(UserProfile $userProfile)
     {
         //
+        $user = User::with('profile')->where('id',Auth::user()->id)->get();
+        return view('user.profile')
+            ->with('users', $user);
     }
 
     /**
@@ -65,9 +68,13 @@ class UserProfileController extends Controller
      * @param  \App\Models\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserProfile $userProfile)
+    public function edit($userProfile)
     {
-        //
+        $userInfo = User::find($userProfile);
+        // return view('user.edit_profile')
+        //     ->with('userInfo', $userInfo);
+        return response($userInfo);
+
     }
 
     /**
@@ -79,7 +86,16 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, UserProfile $userProfile)
     {
-        //
+        $category = Category::find($categoryId);
+        $category->name = $request->name;
+        $category->is_active = $request->is_active;
+        if ($request->hasFile('image'))
+            $category->image = $this->uploadFile($request->file('image'));
+
+        if ($category->save())
+            return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
+
+        return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
     /**
