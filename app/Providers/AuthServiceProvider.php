@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\category;
+use App\Policies\CategoryPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,7 +15,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        // category::class => CategoryPolicy::class,
+        // CategoryPolicy::class,
     ];
 
     /**
@@ -25,6 +28,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Gate::define('add-category', function($user,$category){
+        //     return $user->role === 1 || $user->rawurlencode === 0;
+        // });
     }
 }
