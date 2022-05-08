@@ -13,6 +13,10 @@ class PoliciesController extends Controller
         $policies=Policies::orderBy('id', 'desc')->get();
         return view("admin.policies.list")->with("policies",$policies);
     }
+    public function viewPolicies(){
+        $policies=Policies::orderBy('id', 'desc')->get();
+        return view("commQue")->with("policies",$policies);
+    }
 
     public function addPolicies(){
         return view('admin.policies.add');

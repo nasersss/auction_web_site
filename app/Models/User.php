@@ -43,10 +43,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-<<<<<<< HEAD
     public function Policies(){
-        return $this->hasMany(Product::class,'user_id');
-=======
+        return $this->hasMany(Product::class,'user_id');}
 
     public function profile()
     {
@@ -81,6 +79,5 @@ class User extends Authenticatable implements MustVerifyEmail
                 return false;
             }
         }
->>>>>>> e4af0e600a4cdc1b40f0635d2dbbaab660c551e4
     }
 }
