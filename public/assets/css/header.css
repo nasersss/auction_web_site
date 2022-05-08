@@ -47,6 +47,8 @@
  .logo{
     display: flex;
     justify-content: start;
+    position: relative;
+    left: 70px;
  }
 
   a:hover, a:focus {
@@ -175,10 +177,11 @@ header{
     background: var(--primaryColor);
     margin: 0 5px;
     color: #ffffffe8;
-
    display: flex;
    justify-content: center;
    align-items: center;
+   position: relative;
+   right: 60px;
   }
   .header-icons > .icon a{
       color: #fff;
@@ -441,6 +444,8 @@ header{
     display: flex;
     justify-content: center;
     justify-items: center;
+    position: relative;
+    right: 70px;
 }
 
 .login a{
