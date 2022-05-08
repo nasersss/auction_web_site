@@ -26,9 +26,21 @@
 
                             <tr>
                                 <td class="table-user">
-                                    {{$user->role}}
+                                    
+                                    @if($user->role == 0 )
+                                        Super Admin
+                                    @elseif($user->role == 1)
+                                        Admin
+                                    @elseif($user->role == 2)
+                                        User
+                                    @else
+                                        Unknown
+                                    @endif
                                 </td>
-                                <td>{{$user->name}}</td>
+                                <td>@isset($user->profile->phone)
+                                    
+                                    {{$user->profile->phone}}
+                                    @endisset
                                 <td>
                                     @if($user->is_active==1)
                                     <span class="badge badge-success-lighten">نشط</span>
@@ -36,6 +48,8 @@
                                         <span class="badge badge-danger-lighten">غير نشط</span>
                                     @endif
                                 </td>
+                                <td>{{$user->email}}</td>
+                                <td>{{$user->name}}</td>
 
 
 
