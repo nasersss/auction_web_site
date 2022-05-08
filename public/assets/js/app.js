@@ -44,4 +44,97 @@ function userSelection(){
     list_user.classList.toggle('visible')
 }
 
+let header_li=document.querySelectorAll('.main-nav li')
+header_li.forEach((li)=>{
+    li.addEventListener('click',removeActive)
+})
 
+function removeActive(){
+   header_li.forEach((e)=>{
+       e.classList.remove('active')
+     this.classList.add('active')
+   })
+}
+// let img_slider=document.querySelectorAll('.image-slider-container .image')
+// img_slider.forEach((img)=>{
+//     img.addEventListener('click',addActive);
+// })
+// function addActive(){
+
+//     img_slider.forEach((e)=>{
+//         e.classList.remove("img_active")
+//         this.classList.add("img_active")
+//     })
+
+// }
+
+// $(document).ready(function(){
+//     $(".image img").click(function(e){
+//         e.preventDefault()
+//         $(".main-image img").attr("src",$(this).attr('src'));
+//     })
+// })
+
+// let btn_right=document.getElementById("btn-right")
+// let btn_left=document.getElementById("btn-left")
+// btn_left.addEventListener("click",function(){
+//     document.getElementById("slider").scrollRight-=180
+//     })
+// btn_right.addEventListener("click",function(){
+// document.getElementById("slider").scrollLeft+=180
+// })
+let img_slider = document.querySelectorAll('.image img')
+
+let activeImages = document.getElementsByClassName('img_active')
+
+for (var i=0; i < img_slider.length; i++){
+
+    img_slider[i].addEventListener("mouseover", function(){
+
+        if (activeImages.length > 0){
+            activeImages[0].classList.remove('img_active')
+        }
+
+
+        this.classList.add('img_active')
+        document.getElementById('show-image').src = this.src
+    })
+}
+
+
+let buttonRight = document.getElementById('btn-right');
+let buttonLeft = document.getElementById('btn-left');
+
+buttonLeft.addEventListener('click', function(){
+    document.getElementById('slider').scrollLeft -= 180
+})
+
+buttonRight.addEventListener('click', function(){
+    document.getElementById('slider').scrollLeft += 180
+
+})
+
+let amount=document.querySelector("[name='amount']")
+document.forms["amountForm"].onsubmit=function(e){
+let num_amount=amount.value;
+
+   if(num_amount==""){
+       e.preventDefault()
+       document.getElementById("msg").style.display="block"
+       document.getElementById("validate-msg").innerHTML="يرجئ ملئ الحقل للاشتراك في المزاد"
+
+   }
+  else if(num_amount < 0){
+    e.preventDefault()
+    document.getElementById("msg").style.display="block"
+    document.getElementById("validate-msg").innerHTML="يجب الا يكون الرقم المدخل رقم سالب"
+
+}
+else if(!/^[0-9]+$/.test(num_amount)){
+    e.preventDefault()
+    document.getElementById("msg").style.display="block"
+    document.getElementById("validate-msg").innerHTML="يجب ان يكون النص المدخل رقم"
+
+}
+
+}

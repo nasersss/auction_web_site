@@ -24,7 +24,7 @@
                     <li><a href="#">الاسئلة الشائعة</a></li>
                     <li><a href="{{  route('ContactUs')}}">تواصل معنا</a></li>
                     <li class="show-menu"><a href="{{ route('login') }}">تسجيل الدخول</a></li>
-                    <li class="show-menu"><a href="#"> اللغة</a></li>
+                    {{-- <li class="show-menu"><a href="#"> اللغة</a></li> --}}
                     <div>
 
 
@@ -36,14 +36,16 @@
                 <div id="search" class="search-icon icon">
                 <i class="fas fa-search"></i>
             </div>
-                <div class="show icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+                {{-- <div class="show icon"><i class="fa fa-globe" aria-hidden="true"></i></div> --}}
                <!-- <div class="show"> <a href="{{ route('login') }}"> <i class="fas fa-user"></i></a> </div> -->
                 @guest
                             @if (Route::has('login'))
-                                <div  class="show login " > <a href="{{ route('login') }}" >تسجيل الدخول</a>
+
+                                <div  class="show login" > <a href="{{ route('login') }}" >تسجيل الدخول</a>
 
                                 </div>
-                             </div>
+
+                            </div>
                             @endif
                         @else
                         <div  class="show icon user" onclick="userSelection()" style="background: #eee"> <a href="#" style="color:var(--secondary)"> <i class="fas fa-user"></i></a>

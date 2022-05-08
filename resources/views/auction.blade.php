@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>المزادات </title>
+
     <link rel="stylesheet" href="assets/css/ionicons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/all.css">
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/home.css">
@@ -14,137 +16,37 @@
 <body>
     @extends('master')
     @section('content')
-    <div class="container my-5">
-        <h2 class="text-center">الفئات</h2>
-   <div class="container-parent-category mt-3">
-       <div class="arrow-category">
-           <span>
-         <i id="next" class="fas fa-angle-right next "></i>
-     </span>
-       </div>
-       <!-- category container-->
-       <div class="category-container">
+
+  {{-- <div class="container my-5">
+    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+        <option selected data-filter="all">جميع المحافظات</option>
+        <option selected data-filter="hadrmout">حضرموت</option>
+        <option selected data-filter="taiz">تعز</option>
+        <option selected data-filter="sanaa">صنعاء</option>
+
+      </select>
+    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+        <option selected data-filter="all">جميع المدن </option>
+        <option selected data-filter="hamdan"> همدات</option>
+        <option selected data-filter="taizh"> التعزية </option>
+        <option selected data-filter="mukalla"> المكلا </option>
 
 
-       <div class="category">
-           <div class="head-catagory-container">
-           <div class="head-category">
-             <img src="/assets/images/logos/pngegg.png" alt="">
-           </div>
-         </div>
-           <div class="category-title">
-             <h6>
-                 تويوتا
-             </h6>
-         </div>
-       </div>
+      </select>
 
+    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+        <option selected data-filter="all">جميع الفئات</option>
+        <option selected data-filter="toyouta"> نويوتا</option>
+        <option selected data-filter="honda"> هوندا</option>
+        <option selected data-filter="nissan">نيسان</option>
 
 
 
-       <div class="category">
-         <div class="head-catagory-container">
-         <div class="head-category">
-           <img src="/assets/images/logos/لكزس.png" alt="">
-         </div>
-       </div>
-         <div class="category-title">
-           <h6>
-لكزس              </h6>
-       </div>
-     </div>
+      </select>
 
-     <div class="category">
-         <div class="head-catagory-container">
-         <div class="head-category">
-           <img src="/assets/images/logos/مرسيدس.png" alt="">
-         </div>
-       </div>
-         <div class="category-title">
-           <h6>
-مرسيدس              </h6>
-       </div>
-     </div>
 
-     <div class="category">
-         <div class="head-catagory-container">
-         <div class="head-category">
-           <img src="/assets/images/logos/سوزكي.png" alt="">
-         </div>
-       </div>
-         <div class="category-title">
-           <h6>
-سوزكي              </h6>
-       </div>
-     </div>
 
-     <div class="category">
-         <div class="head-catagory-container">
-         <div class="head-category">
-           <img src="/assets/images/logos/bmw.png" alt="">
-         </div>
-       </div>
-         <div class="category-title">
-           <h6>
-بي ام دبليو              </h6>
-       </div>
-     </div>
-
-     <div class="category">
-         <div class="head-catagory-container">
-         <div class="head-category">
-           <img src="/assets/images/logos/نيسان.png" alt="">
-         </div>
-       </div>
-         <div class="category-title">
-           <h6>
-نيسان              </h6>
-       </div>
-     </div>
-
-     <div class="category">
-         <div class="head-catagory-container">
-         <div class="head-category">
-           <img src="/assets/images/logos/هونداي.png" alt="">
-         </div>
-       </div>
-         <div class="category-title">
-           <h6>
-هونداي              </h6>
-       </div>
-     </div>
-
-     <div class="category">
-         <div class="head-catagory-container">
-         <div class="head-category">
-           <img src="/assets/images/logos/كيا.png" alt="">
-         </div>
-       </div>
-         <div class="category-title">
-           <h6>
-كيا              </h6>
-       </div>
-     </div>
-     <div class="category">
-         <div class="head-catagory-container">
-         <div class="head-category">
-           <img src="/assets/images/logos/هوندا.png" alt="">
-         </div>
-       </div>
-         <div class="category-title">
-           <h6>
-هوندا              </h6>
-       </div>
-     </div>
-     </div>
-
-   <div class="arrow-category">
-       <span>
-     <i id="prev" class="fas fa-angle-left prev "></i>
-     </span>
-   </div>
- </div>
-</div>
+  </div> --}}
     <div class="container">
         <h2 class="text-center">المزادات المتاحة</h2>
     <div class="row" id="ads">
@@ -159,10 +61,10 @@
                 </div>
                 <div class="card-image-overlay m-auto">
                     <span class="card-detail-badge">2018</span>
-                    <span class="card-detail-badge">حضرموت</span>
+                    <span class="card-detail-badge"><span class="hadrmout">حضرموت</span> - <span class="mukalla">المكلا</span></span>
                     <span class="card-detail-badge">123,000 Kms</span>
                 </div>
-                <div class="card-body text-center">
+                <div class="card-body text-center nissan">
                     <div class="ad-title m-auto">
                         <h5>  نيسان Kicks SV+NAV عائلة</h5>
                         <h2>العطاء الحالي 4,000,000</h2>
@@ -178,11 +80,11 @@
                 <div class="card-image">
                     <span class="card-notify-badge">Fully-Loaded</span>
 
-                    <img class="img-fluid" src="assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
+                    <img class="img-fluid" src="/assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
                 </div>
                 <div class="card-image-overlay m-auto">
                     <span class="card-detail-badge">2020</span>
-                    <span class="card-detail-badge">صنعاء</span>
+                    <span class="card-detail-badge"><span class="sanna">صنعاء</span> - <span class="hamdan">همدان</span></span>
                     <span class="card-detail-badge">13000 Kms</span>
                 </div>
                 <div class="card-body text-center">
@@ -206,10 +108,10 @@
                 </div>
                 <div class="card-image-overlay m-auto">
                     <span class="card-detail-badge">2018</span>
-                    <span class="card-detail-badge">تعز</span>
+                    <span class="card-detail-badge"><span class="sanna">صنعاء</span> - <span class="hamdan">همدان</span></span>
                     <span class="card-detail-badge">8000 Kms</span>
                 </div>
-                <div class="card-body text-center">
+                <div class="card-body text-center honda">
                     <div class="ad-title m-auto">
                         <h5> هوندا اكورد Sport صالون</h5>
                         <h2>العطاء الحالي5,000,000<h2>
@@ -232,10 +134,10 @@
             </div>
             <div class="card-image-overlay m-auto">
                 <span class="card-detail-badge">2018</span>
-                <span class="card-detail-badge">حضرموت</span>
+                <span class="card-detail-badge"><span class="hadrmout">حضرموت</span> - <span class="mukalla">المكلا</span></span>
                 <span class="card-detail-badge">123,000 Kms</span>
             </div>
-            <div class="card-body text-center">
+            <div class="card-body text-center nissan">
                 <div class="ad-title m-auto">
                     <h5>  نيسان Kicks SV+NAV عائلة</h5>
                     <h2>العطاء الحالي 4,000,000</h2>
@@ -255,10 +157,10 @@
             </div>
             <div class="card-image-overlay m-auto">
                 <span class="card-detail-badge">2020</span>
-                <span class="card-detail-badge">صنعاء</span>
+                <span class="card-detail-badge"><span class="taiz">تعز</span> - <span class="taizh">التعزية</span></span>
                 <span class="card-detail-badge">13000 Kms</span>
             </div>
-            <div class="card-body text-center">
+            <div class="card-body text-center toyouta">
                 <div class="ad-title m-auto">
                     <h5>  مرسيدس بنز  Coupe عائلة</h5>
                     <h2>العطاء الحالي8,000,000 </h2>
@@ -282,8 +184,8 @@
                 <span class="card-detail-badge">تعز</span>
                 <span class="card-detail-badge">8000 Kms</span>
             </div>
-            <div class="card-body text-center">
-                <div class="ad-title m-auto">
+            <div class="card-body text-center honda">
+                <div class="ad-title m-auto ">
                     <h5> هوندا اكورد Sport صالون</h5>
                     <h2>العطاء الحالي5,000,000<h2>
           <h2> ينتهي المزاد بعد</h2>
@@ -375,8 +277,10 @@
     </div>
 </div>
     @endsection
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+<script src="assets/js/filter.js"></script>
 </html>

@@ -21,9 +21,9 @@ Route::get('/', function () {
 Route::get('/add_view',[Maincontroller::class,'show']);
 
 
-Route::get('/home',function(){
-    return view('index');
-})->name('home');
+// Route::get('/home',function(){
+//     return view('index');
+// })->name('home');
 
 // Route::get('/home',function(){
 //     return view('index');
@@ -33,7 +33,7 @@ Route::get('/auction',function(){
     return view('auction');
 })->name('auction');
 Route::get('/detail',function(){
-    return view('details');
+    return view('detail');
     })->name('details-car');
 
 Route::get('/admin',function(){
@@ -52,15 +52,12 @@ Route::get('/login',function(){
 
 
 
-Route::get('/header', function () {
-    return view('layout.header');
-});
 
 
 
 Route::get('/register', function () {
     return view('auth.register');
-});
+})->name("register");
 Route::get('/reset', function () {
     return view('auth.reset');
 });
