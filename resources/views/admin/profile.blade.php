@@ -1,4 +1,6 @@
+
 @extends('admin.layouts.main')
+
 
 @section('title')
     الصفحة الشخصية

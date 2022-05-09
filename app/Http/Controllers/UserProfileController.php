@@ -29,10 +29,10 @@ class UserProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($userProfile)
+    public function create()
     {
         //
-        $userInfo = User::find($userProfile);
+        $userInfo = User::find(Auth::user()->id);
         return view('admin.add_profile')
             ->with('userInfo', $userInfo);
     }
