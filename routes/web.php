@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+
+use App\Models\UserProfile;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -93,6 +95,10 @@ Route::get('edit_policies/{PoliceId}',[PoliciesController::class,'edit'])->name(
 Route::post('update_policies/{PoliceId}',[PoliciesController::class,'update'])->name('update_policies');
 Route::get('toggle_policies/{PoliceId}',[PoliciesController::class,'toggle'])->name('toggle_policies');
 Route::get('/view_policies',[PoliciesController::class,'viewPolicies'])->name('view_policies');
-
+########## user route
+Route::get('/list_user',[UserProfileController::class,"listUser"])->name("list-user");
+Route::get('toggle_users/{userId}',[UserProfileController::class,'toggle'])->name('toggle_users');
+Route::get('edit_users/{userId}',[UserProfileController::class,'editUser'])->name('edit_user');
+Route::post('update_user/{PoliceId}',[UserProfileController::class,'updateUser'])->name('update_users');
 
 
