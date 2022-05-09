@@ -48,7 +48,8 @@ class UserProfileController extends Controller
         $user = User::find($userProfile);
         $user->name = $request->name;
         $user->save();
-        $userInfo = new UserProfile();
+        $userInfo  = new UserProfile();
+        $userInfo->id = $userProfile;
         $userInfo->user_id = $userProfile;
         $userInfo->phone = $request->phone;
         $userInfo->address = $request->address;
@@ -57,8 +58,8 @@ class UserProfileController extends Controller
         $userInfo->instagram = $request->instagram;
         $userInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultImage.png";
         if ($userInfo->save())
-            // return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
-            return response($userInfo);
+            return redirect()->route('profile')->with(['success' => 'تم تحديث البيانات بنجاح']);
+//            return response($userInfo);
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
@@ -104,7 +105,7 @@ class UserProfileController extends Controller
         $user = User::find($userProfile);
         $user->name = $request->name;
         $user->save();
-        $userInfo = UserProfile::where('user_id',$userProfile)->get();
+        $userInfo = UserProfile::find($userProfile);
         $userInfo->user_id = $userProfile;
         $userInfo->phone = $request->phone;
         $userInfo->address = $request->address;

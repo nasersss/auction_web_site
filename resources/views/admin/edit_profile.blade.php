@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <h4 class="header-title">تعديل الملف الشخصي</h4>
                     <!--Start-->
-                    <form method="POST" action="{{route('store_profile',$userInfo->id)}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('update_profile',$userInfo->id)}}" enctype="multipart/form-data">
                     @csrf
                         <div class="row">
                             <div class="mb-1 col-md-6">
