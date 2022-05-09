@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 // use App\Models\UserProfile;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/profile', [UserProfileController::class,'show'])->name('profile');
+
+
 
 Route::get('show/User',[UserProfileController::class,'show'])->name('showUser');
 

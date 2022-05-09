@@ -68,12 +68,12 @@ class UserProfileController extends Controller
      * @param  \App\Models\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function show($userProfile)
+    public function show()
     {
         //
         $user = User::with('profile')->where('id', Auth::user()->id)->get();
         // $user = User::with('profile')->where('id',$userProfile)->get();
-        return view('user.profile')
+        return view('admin.profile')
             ->with('users', $user);
     }
 
@@ -131,7 +131,7 @@ class UserProfileController extends Controller
 
     public function uploadFile($file)
     {
-        $destination = public_path() . "/images/";
+        $destination = public_path() . "/images/users/";
         $fileName = time() . "_" . $file->getClientOriginalName();
         $file->move($destination, $fileName);
         return $fileName;

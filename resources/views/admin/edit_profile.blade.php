@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('title')
-    الملف الشخصي | أضافة المعلومات
+    الملف الشخصي | تعديل المعلومات
 
 @endsection
 

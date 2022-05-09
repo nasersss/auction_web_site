@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class UserProfile extends Model
 {
     use HasFactory;
+    public function getImageAttribute($value){
+        return url("images/users/")."/".$value;
+
+    }
+
 
     public function user()
     {
