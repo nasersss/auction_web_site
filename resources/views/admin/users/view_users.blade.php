@@ -28,7 +28,7 @@
 @endsection
 
 @section('page-title')
-    المستخدمين
+    عرض جميع المستخدمين
 @endsection
 
 @section('content')
