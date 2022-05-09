@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\auction;
+use App\Models\AuctionImage;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class AuctionController extends Controller
     public function create()
     {
         //
-        return view('admin.add_profile');
+        return view('admin/add_auction');
     }
 
     /**
@@ -53,21 +54,22 @@ class AuctionController extends Controller
         $auctionInfo->notes = $request->notes;
         $auctionInfo->stare_price = $request->stare_price;
         $auctionInfo->min_bid = $request->min_bid;
-        $auctionInfo->curren_price = $request->curren_price;
+        $auctionInfo->ger_type = $request->ger_type;
+        $auctionInfo->curren_price = $request->stare_price;
         $auctionInfo->number_of_participate = 0;
         $auctionInfo->fuel = $request->fuel;
         // $auctionInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image'), $auctionInfo->category_id) : "defaultImage.png";
         if ($auctionInfo->save()) {
-            $auctionMaineImage = new auction();
+            $auctionMaineImage = new AuctionImage();
             $destination = public_path() . "/images/auction";
-            $fileName = time() . "_" . $auctionInfo->id . "_" . "main" . "_" . $request->file('mainImage')->getClientOriginalName();
+            $fileName = $auctionInfo->id . "_" . "main" . "_" . time() . "_" .  $request->file('mainImage')->getClientOriginalName();
             $request->file('mainImage')->move($destination, $fileName);
             $auctionMaineImage->image = $fileName;
             $auctionMaineImage->is_active = -1;
             $auctionMaineImage->auction_id = $auctionInfo->id;
             $auctionMaineImage->save();
             foreach ($request->file('images') as $image) {
-                $auctionImage = new auction();
+                $auctionImage = new AuctionImage();
                 $auctionImage->image = $this->uploadFile($image, $auctionInfo->id);
                 $auctionImage->is_active = -1;
                 $auctionImage->auction_id = $auctionInfo->id;
@@ -83,7 +85,7 @@ class AuctionController extends Controller
     public function uploadFile($file, $id)
     {
         $destination = public_path() . "/images/auction";
-        $fileName = time() . "_" . $id . "_" . $file->getClientOriginalName();
+        $fileName = $id . "_" . time() . "_" .  $file->getClientOriginalName();
         $file->move($destination, $fileName);
         return $fileName;
     }

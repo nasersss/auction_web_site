@@ -21,6 +21,6 @@ class auction extends Model
 
     public function auctionImage()
     {
-        return $this->hasMany(AuctionImag::class);
+        return $this->hasMany(AuctionImage::class);
     }
 }

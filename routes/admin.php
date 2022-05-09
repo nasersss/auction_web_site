@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuctionController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\CategoryController;
 
@@ -21,9 +22,8 @@ Route::get('/dashboard', function () {
     return view('admin/home');
 })->name('dash-home');
 
-Route::get('/add_auction', function () {
-    return view('admin/add_auction');
-})->name('add-auction');
+Route::get('/add_auction', [AuctionController::class, 'create'])->name('add-auction');
+Route::post('/store_auction', [AuctionController::class, 'store'])->name('store-auction');
 
 Route::get('/auctions_review', function () {
     return view('admin/auctions_review');
