@@ -60,7 +60,7 @@
                 <div class="collapse" id="sidebarProjects">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{route('users')}}">عرض المستخدمين</a>
+                            <a href="{{route('list-user')}}">عرض المستخدمين</a>
                         </li>
                         <li>
                             <a href="#">إدارة المستخدمين</a>
@@ -124,7 +124,7 @@
                         <li>
                             <a href="{{route('add_policies')}}">إضافة سياسة </a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </li>
