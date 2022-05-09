@@ -29,10 +29,10 @@ class UserProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($userProfile)
+    public function create()
     {
         //
-        $userInfo = User::find($userProfile);
+        $userInfo = User::find(Auth::user()->id);
         return view('admin.add_profile')
             ->with('userInfo', $userInfo);
     }
@@ -48,7 +48,7 @@ class UserProfileController extends Controller
         $user = User::find($userProfile);
         $user->name = $request->name;
         $user->save();
-        $userInfo = UserProfile::find($userProfile);
+        $userInfo  = new UserProfile();
         $userInfo->id = $userProfile;
         $userInfo->user_id = $userProfile;
         $userInfo->phone = $request->phone;
@@ -58,8 +58,8 @@ class UserProfileController extends Controller
         $userInfo->instagram = $request->instagram;
         $userInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultImage.png";
         if ($userInfo->save())
-            // return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
-            return response($userInfo);
+            return redirect()->route('profile')->with(['success' => 'تم تحديث البيانات بنجاح']);
+//            return response($userInfo);
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
@@ -69,12 +69,12 @@ class UserProfileController extends Controller
      * @param  \App\Models\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function show($userProfile)
+    public function show()
     {
         //
         $user = User::with('profile')->where('id', Auth::user()->id)->get();
         // $user = User::with('profile')->where('id',$userProfile)->get();
-        return view('user.profile')
+        return view('admin.profile')
             ->with('users', $user);
     }
 
@@ -133,7 +133,7 @@ class UserProfileController extends Controller
 
     public function uploadFile($file)
     {
-        $destination = public_path() . "/images/";
+        $destination = public_path() . "/images/users/";
         $fileName = time() . "_" . $file->getClientOriginalName();
         $file->move($destination, $fileName);
         return $fileName;

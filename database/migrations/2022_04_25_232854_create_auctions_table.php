@@ -22,7 +22,7 @@ return new class extends Migration
             $table->double('odometer');//المسافة المقطوعة
             $table->string('damage');// الاضرار
             $table->string('vehicle_type');
-            $table->string('name');// مثل هيلوكس 
+            $table->string('name');// مثل هيلوكس
             $table->string('model');// مثل السنة 2005 | 2020
             $table->string('stat');//new or old
             $table->string('ger_type');
@@ -30,7 +30,8 @@ return new class extends Migration
             $table->string('notes');
             $table->string('stare_price');
             $table->string('min_bid');
-            $table->string('curren_price');
+            $table->string('curren_price')->nullable();
+            $table->string('address');
             $table->integer('number_of_participate');
             $table->string('fuel');// نوع الوقود
             $table->foreign('seller_id')->references('id')->on('users');

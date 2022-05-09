@@ -1,4 +1,6 @@
+
 @extends('admin.layouts.main')
+
 
 @section('title')
     الصفحة الشخصية
@@ -33,13 +35,17 @@
                             <div class="row align-items-center">
                                 <div class="col-auto">
                                     <div class="avatar-lg">
-                                        <img src="assets/images/users/avatar-11.jpg" alt="" class="rounded-circle img-thumbnail">
+                                        @foreach($users as $user)
+                                        <img src="@isset($user->profile->image){{$user->profile->image}}@endisset" alt="" class="rounded-circle img-thumbnail">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div>
                                         <h4 class="mt-1 mb-1 text-white">مرحبا...</h4>
-                                        <h4 class="mt-1 mb-1 text-white">فؤاد العمودي</h4>
+                                        <h4 class="mt-1 mb-1 text-white">@isset($user->name)
+                                                {{$user->name}}
+                                            @endisset
+                                        </h4>
                                     </div>
                                 </div>
                             </div>
@@ -47,10 +53,14 @@
 
                         <div class="col-sm-4">
                             <div class="text-center  mt-3 text-sm-start">
-                                <button type="button" class="btn btn-light">
+                                <form method="Get" action="{{route('edit_profile',$user->id)}}" enctype="multipart/form-data">
+                                    @csrf
+                                <button type="submit" class="btn btn-light">
                                     <i class="mdi mdi-account-edit me-1"></i> تعديل
                                 </button>
+                                </form>
                             </div>
+
                         </div> <!-- end col-->
                     </div> <!-- end row -->
 
@@ -69,24 +79,26 @@
                     <hr>
 
                     <div>
-                        <p class="text-muted"><strong>الاسم :</strong> <span class="ms-2">فؤاد حسن علي العمودي</span></p>
+                        <p class="text-muted"><strong>الاسم :</strong> <span class="ms-2">@isset($user->name){{$user->name}}@endisset</span></p>
 
-                        <p class="text-muted"><strong>الجوال :</strong><span class="ms-2">739641800</span></p>
+                        <p class="text-muted"><strong>الجوال :</strong><span class="ms-2">@isset($user->profile->phone){{$user->profile->phone}}@endisset</span></p>
 
-                        <p class="text-muted"><strong>البريد الالكتروني :</strong> <span class="ms-2">fuad.h.alamoudi@gmail.com</span></p>
+                        <p class="text-muted"><strong>البريد الالكتروني :</strong> <span class="ms-2">@isset($user->email){{$user->email}}@endisset</span></p>
 
-                        <p class="text-muted"><strong>العنوان :</strong> <span class="ms-2">اليمن-حضرموت -المكلا</span></p>
+                        <p class="text-muted"><strong>العنوان :</strong> <span class="ms-2">@isset($user->profile->address){{$user->profile->address}}@endisset</span></p>
+                        <script>$.NotificationApp.send("Title","Your awesome message text","Position","Background color","Icon")</script>
 
 
                         <p class="text-muted mb-0" id="tooltip-container"><strong> مواقع التواصل الاجتماعي :</strong>
-                            <a class="d-inline-block ms-2 text-muted" data-bs-container="#tooltip-container" data-bs-placement="top" data-bs-toggle="tooltip" href="" title="" data-bs-original-title="Facebook" aria-label="Facebook"><i class="mdi mdi-facebook"></i></a>
-                            <a class="d-inline-block ms-2 text-muted" data-bs-container="#tooltip-container" data-bs-placement="top" data-bs-toggle="tooltip" href="" title="" data-bs-original-title="Twitter" aria-label="Twitter"><i class="mdi mdi-twitter"></i></a>
-                            <a class="d-inline-block ms-2 text-muted" data-bs-container="#tooltip-container" data-bs-placement="top" data-bs-toggle="tooltip" href="" title="" data-bs-original-title="Skype" aria-label="Skype"><i class="mdi mdi-skype"></i></a>
+                            <a class="d-inline-block ms-2 text-muted" data-bs-container="#tooltip-container" data-bs-placement="top" data-bs-toggle="tooltip" href=" @isset($user->profile->facebook){{$user->profile->facebook}} @endisset" title="" data-bs-original-title="Facebook" aria-label="Facebook"><i class="mdi mdi-facebook"></i></a>
+                            <a class="d-inline-block ms-2 text-muted" data-bs-container="#tooltip-container" data-bs-placement="top" data-bs-toggle="tooltip" href="@isset($user->profile->twitter){{$user->profile->twitter}}@endisset" title="" data-bs-original-title="Twitter" aria-label="Twitter"><i class="mdi mdi-twitter"></i></a>
+                            <a class="d-inline-block ms-2 text-muted" data-bs-container="#tooltip-container" data-bs-placement="top" data-bs-toggle="tooltip" href="@isset($user->profile->instagram){{$user->profile->instagram}}@endisset" title="" data-bs-original-title="Instagram" aria-label="Instagram"><i class="mdi mdi-instagram"></i></a>
                         </p>
 
                     </div>
                 </div>
             </div>
+        @endforeach
             <!-- Personal-Information -->
 
 

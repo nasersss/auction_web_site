@@ -11,7 +11,15 @@
 <!-- Begin page -->
 <div class="wrapper">
     <!-- ========== Left Sidebar Start ========== -->
-    @include('admin.layouts.main-sidebar')
+    @if(Auth::user()->role==0)
+        @include('admin.layouts.main-sidebar')
+
+    @elseif(Auth::user()->role==2)
+        @include('admin.layouts.main-sidebar-users')
+
+    @endif
+
+
     <div class="content-page">
         <div class="content">
             <!-- Topbar Start -->

@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('index');
-})->name('index')->middleware('verified');
+})->name('index');
+//    ->middleware('verified');
 
 Route::get('/add_view',[Maincontroller::class,'show']);
 

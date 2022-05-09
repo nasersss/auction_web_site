@@ -37,12 +37,8 @@ Route::get('/add_categry', function () {
     return view('admin/add_categry');
 })->name('add-cat');
 
-Route::get('/profile', function () {
-    return view('admin/profile');
-})->name('profile');
-Route::get('/add_profile', function () {
-    return view('admin/add_profile');
-})->name('add_profile');
+
+
 
 Route::get('/view_categry', function () {
     return view('admin/view_cat');
