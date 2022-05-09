@@ -47,22 +47,22 @@
                             </div> -->
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">الجوال</label>
-                                <input name='phone' type="text" class="form-control" id="inputAddress" placeholder="مثال 7396...">
+                                <input name='phone' value="{{$userInfo->profile->phone}}" type="text" class="form-control" id="inputAddress" placeholder="مثال 7396...">
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="inputAddress" class="form-label">العنوان</label>
-                                <input name='address' type="text" class="form-control" id="inputAddress" placeholder="مثال حضرموت-المكلا-...">
+                                <input name='address' value="{{$userInfo->profile->address}}" type="text" class="form-control" id="inputAddress" placeholder="مثال حضرموت-المكلا-...">
                             </div>
 
                             <h5 class="header-title">مواقع التواصل</h5>
                             <div class="mb-2 col-md-4">
-                                <input name='facebook' type="text" class="form-control" id="inputAddress" placeholder="الفيس بوك مثلا fb/ahmed">
+                                <input name='facebook' value="{{$userInfo->profile->facebook}}" type="text" class="form-control" id="inputAddress" placeholder="الفيس بوك مثلا fb/ahmed">
                             </div>
                             <div class="mb-2 col-md-4">
-                                <input name='twitter' type="text" class="form-control" id="inputAddress" placeholder="تويتر">
+                                <input name='twitter' value="{{$userInfo->profile->twitter}}" type="text" class="form-control" id="inputAddress" placeholder="تويتر">
                             </div>
                             <div class="mb-2 col-md-4">
-                                <input name='instagram' type="text" class="form-control" id="inputAddress" placeholder="انستقرام">
+                                <input name='instagram' value="{{$userInfo->profile->instagram}}" type="text" class="form-control" id="inputAddress" placeholder="انستقرام">
                             </div>
 
 
