@@ -60,7 +60,7 @@
                 <div class="collapse" id="sidebarProjects">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{route('users')}}">عرض المستخدمين</a>
+                            <a href="{{route('list-user')}}">عرض المستخدمين</a>
                         </li>
                         <li>
                             <a href="#">إدارة المستخدمين</a>
@@ -111,6 +111,24 @@
                 </div>
             </li>
             <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarTasks" aria-expanded="false" aria-controls="sidebarTasks" class="side-nav-link">
+                    <i class="uil-car"></i>
+                    <span>سياسات الموقع </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarTasks">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{route('list_policies')}}">عرض السياسات</a>
+                        </li>
+                        <li>
+                            <a href="{{route('add_policies')}}">إضافة سياسة </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="side-nav-item">
                 <a href="#" class="side-nav-link">
                     <i class="uil-database"></i>
                     <span>نسخة احتياطية </span>
@@ -123,6 +141,7 @@
                     <span>الإعدادات</span>
                 </a>
             </li>
+
 
 
 

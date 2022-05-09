@@ -15,57 +15,24 @@
     @extends('master')
     @section('content')
     <!--Section: FAQ-->
-<section id="common-que">
-  <h3 class="text-center mb-4 pb-2 text-primary fw-bold">سياسة الموقع</h3>
+<section id="common-que" class="my-5">
+  <h3 class="text-center mb-2 pt-5 pb-2 text-primary fw-bold">سياسة الموقع</h3>
   <p class="text-center mb-5">
     توفر لك سياسة الموقع كافة المعلومات لكي يكون المستخدم على علم بالبنود الخاصة بالمزادات
   </p>
 
+
+
   <div class="row">
+    @foreach($policies as $police )
     <div class="col-md-6 col-lg-4 mb-4">
-      <h6 class="text-center mb-3 text-primary"> ما هي طريقة المشاركة في المزاد؟</h6>
+      <h6 class="text-center mb-3 text-primary"> {{ $police->police }}؟</h6>
       <p>
-        بعد التسجيل واختيار المزاد، يتم الضغط على 'أضف مزايدتك '، ثم الموافقة على المبلغ الذي سيتم حجزه من المحفظة (في حال وجود مبلغ في المحفظة)، بعد ذلك يمكن البدء بالمزايدة، وفي حال عدم ترسية العين على المزايد يتم إعادة المبلغ إلى المحفظة.
+        {{ $police->description }}
       </p>
     </div>
 
-    <div class="col-md-6 col-lg-4 mb-4">
-      <h6 class="text-center mb-3 text-primary">عند المشاركة بمزاد عن طريق الخطأ، هل يمكن التراجع عن المزايدة؟</h6>
-      <p>
-      لا، لا يمكن التراجع عن المزايدة في حال كان المشارك هو صاحب المزايدة الأعلى.
-      </p>
-    </div>
-
-    <div class="col-md-6 col-lg-4 mb-4">
-      <h6 class="text-center mb-3 text-primary"> في حال انتهاء المزاد ولم يصل لقيمته التقديرية هل ترسى العين على صاحب المزايدة الأعلى؟
-      </h6>
-      <p>
-      في حال عدم تحقيق الحد الأدنى للسعر التقديري للعين لا يتم ترسية المزاد.
-      </p>
-    </div>
-
-    <div class="col-md-6 col-lg-4 mb-4">
-      <h6 class="text-center mb-3 text-primary">هل بالإمكان أن يتم تمديد مدة المزاد؟
-      </h6>
-      <p>
-      نعم يتم التمديد بشكل آلي في حال وجود مزايدات في الدقائق الأخيرة من نهاية المزاد، كما يمكن للمسوّق المسؤول عن المزاد تمديده بشكل يدوي .
-      </p>
-    </div>
-
-    <div class="col-md-6 col-lg-4 mb-4">
-      <h6 class="text-center mb-3 text-primary"> ما هو الإجراء بعد ترسية المزاد؟
-      </h6>
-      يتم إصدار فاتورة سداد وإرسالها إلى جوال المزايد لتسديد المبلغ المتبقي من قيمة العين خلال مدة لا تتجاوز عن 10 أيام عمل.</p>
-    </div>
-
-    <div class="col-md-6 col-lg-4 mb-4">
-      <h6 class="text-center mb-3 text-primary">ما هو الإجراء في حال عدم رغبة المزايد في إكمال مبلغ الشراء بعد ترسية المزاد؟</h6>
-      <p>
-      يتحمل المزايد تكاليف إعادة إقامة المزاد وفرق السعر الذي يتم بيعه به في المزاد الجديد.
-
-
-      </p>
-    </div>
+    @endforeach
   </div>
 </section>
 <!--Section: FAQ-->

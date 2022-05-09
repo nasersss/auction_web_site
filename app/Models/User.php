@@ -44,10 +44,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function Policies(){
+        return $this->hasMany(Product::class,'user_id');}
 
     public function profile()
     {
-        return $this->hasOne(UserProfile::class);
+        return $this->hasOne(UserProfile::class,'user_id');
     }
 
     public function auction()

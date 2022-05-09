@@ -54,4 +54,13 @@ Route::group(['middleware' => 'is.admin'], function () {
     Route::get('toggle_categories/{categoryId}', [CategoryController::class, 'toggle'])->name('toggle_categories');
     Route::post('save_categories', [CategoryController::class, 'store'])->name('store_categories');
     Route::post('update_categories/{categoryId}', [CategoryController::class, 'update'])->name('update_categories');
+
+    ############### policies route ###########
+
+//     Route::get('/list_policies',[PoliciesController::class,"listPolicies"])->name("list_policies");
+// Route::get('/add_policies',[PoliciesController::class,"addPolicies"])->name("add_policies");
+// Route::post('/save_policies',[PoliciesController::class,"store"])->name("save_policies");
+// Route::get('edit_policies/{PoliceId}',[PoliciesController::class,'edit'])->name('edit_policies');
+// Route::post('update_policies/{PoliceId}',[PoliciesController::class,'update'])->name('update_policies');
+// Route::get('toggle_policies/{PoliceId}',[PoliciesController::class,'toggle'])->name('toggle_policies');
 });

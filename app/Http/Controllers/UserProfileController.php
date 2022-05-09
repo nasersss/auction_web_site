@@ -25,6 +25,16 @@ class UserProfileController extends Controller
     }
 
     /**
+     * list listUser function used to display all users
+     */
+    public function listUser(){
+
+      $user=User::with('profile')->where('role','!=','0')->get();
+        return view('admin.users.view_users')
+            ->with('users', $user);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -128,7 +138,33 @@ class UserProfileController extends Controller
      */
     public function destroy(UserProfile $userProfile)
     {
-        //
+        //{
+    }
+    public function toggle($userId){
+        $users = User::with("profile")->find($userId);//find($PoliceId);
+        $users->is_active *= -1;
+        if ($users->save())
+            return back()->with(['success' => 'تم تحديث البيانات بنجاح']);
+
+        return back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+    }
+
+    public function editUser($userId){
+        $user=User::find($userId);
+        return view("admin.users.edit")->with("users",$user);
+    }
+
+    public function updateUser(Request $request , $userId){
+        $users = User::find($userId);
+
+        $users->role = $request->role;
+
+        $users->is_active = $request->is_active;
+
+        if ($users->save())
+            return redirect()->route('list-user')->with(['success' => 'تم تحديث البيانات بنجاح']);
+
+        return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
     public function uploadFile($file)
