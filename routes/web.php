@@ -86,6 +86,7 @@ Route::get('/superAdmin', [SuperAdminController::class, 'index'])->name('superAd
 // Route::get('/uploadFileCategory', [App\Http\Controllers\CategoryController::class, 'uploadFile'])->name('uploadFileCategory');
 
 ########## polices route #######
+Route::group(['middleware' => 'is.admin'], function () {
 Route::get('/list_policies',[PoliciesController::class,"listPolicies"])->name("list_policies");
 Route::get('/add_policies',[PoliciesController::class,"addPolicies"])->name("add_policies");
 Route::post('/save_policies',[PoliciesController::class,"store"])->name("save_policies");
@@ -98,9 +99,9 @@ Route::get('/list_user',[UserProfileController::class,"listUser"])->name("list-u
 Route::get('toggle_users/{userId}',[UserProfileController::class,'toggle'])->name('toggle_users');
 Route::get('edit_users/{userId}',[UserProfileController::class,'editUser'])->name('edit_user');
 Route::post('update_user/{PoliceId}',[UserProfileController::class,'updateUser'])->name('update_users');
-
+});
 ##########################
 
-Route::get('/',[AuctionController::class,"viewAuction"])->name("view_auction");
+Route::get('/',[AuctionController::class,"viewAuction"])->name("view_action");
 Route::get('detail_car/{carId}',[AuctionController::class,"detailAuction"])->name("action_detail");
 

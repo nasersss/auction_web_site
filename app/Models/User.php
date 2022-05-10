@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\BiddingController;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -50,6 +51,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function profile()
     {
         return $this->hasOne(UserProfile::class,'user_id');
+    }
+
+    public function wallet()
+    {
+        return $this->hasMany(Wallet::class,'user_id');
+    }
+
+    public function bidding()
+    {
+        return $this->hasMany(BiddingController::class,'user_id');
     }
 
     public function auction()

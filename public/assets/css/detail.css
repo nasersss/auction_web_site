@@ -53,9 +53,11 @@ padding-top: 16px;
 .main-image{
 position: relative;
 width: 100%;
+height: 250px;
 }
 .main-image img{
-    width:100%
+    width:inherit;
+    height: inherit;
 }
 .arrow-right{
     color: #fff;

@@ -21,8 +21,8 @@
             {{-- section car information --}}
             <section>
             <div class="head-detail">
-            <div class="logo">
-               <img src="assets/images/logos/pngegg.png" alt="" srcset="">
+            <div class="logo" style="left: 0px;">
+               <img src="@isset($auctions->category->image){{ $auctions->category->image}}@endisset" alt="" srcset="">
             </div>
             <div class="head-title">
               <h4><span>  @isset($auctions->category->name)
@@ -30,7 +30,11 @@
             @endisset </span> - <span>  @isset($auctions->name)
                 {{ $auctions->name}}
             @endisset </span></h4>
-              <h4><span> المكلا </span> - <span> حضرموت </span></h4>
+              <h4><span> 
+              @isset($auctions->name)
+                {{ $auctions->address}}
+            @endisset
+            </span></h4>
 
             </div>
             </div>
@@ -44,14 +48,14 @@
                     @isset($auctions->stare_price)
                     {{ $auctions->stare_price}}
                 @endisset
-                    <span>
+                    <span>$</span> <span>
                         </span></span>
 
              </div>
              <div class="auction-info-two mb-3">
                  <div class="row">
                      <div class="col-4">
-                      <h5 class="text-align"> الوقت المتبقي</h5>
+                      <h5 class="text-align"> وقت انتهاء المزاد</h5>
                      <div class="text-align"> <span>
                          @isset($auctions->date_of_end_auction)
                         {{ $auctions->date_of_end_auction}}
@@ -66,10 +70,10 @@
                 </span>  </div>
                     </div>
                     <div class="col-4">
-                        <h5 class="text-align">الحد الادنى للمزاد</h5>
+                        <h5 class="text-align">اقل قيمة للمزايدة</h5>
                        <div class="text-align"><span>@isset($auctions->min_bid)
                         {{ $auctions->min_bid}}
-                    @endisset</span></div>
+                    @endisset $</span></div>
 
 
                     </div>
@@ -86,8 +90,14 @@
                  {{-- <div class="arrow-right"> <i id="next" class="fas fa-angle-right  "></i></div>
 
                 <div class="arrow-left"><i id="prev" class="fas fa-angle-left "></i></div> --}}
-
-                 <img id="show-image" src="/assets/images/cars/car1.jpg" alt="" >
+                @foreach($auctions->auctionImage as $image)
+                @php
+                $im = explode('_',$image->image);
+                @endphp
+                @if($im[1]=='main')
+                      <img id="show-image" src="{{$image->image}}" alt="" >
+                
+                 
 
              </div>
              <div class="slider-container mb-3">
@@ -95,11 +105,19 @@
 
                 <div id="btn-left" class="arrow-left"><i  class="fas fa-angle-left "></i></div>
              <div id="slider" class="image-slider-container">
-                 <div class="image ">
-                    <img src="/assets/images/cars/car1.jpg" class="img_active" alt="">
+             <div class="image ">
+                    <img src="{{$image->image}}" class="img_active" alt="">
 
                  </div>
-                 <div class="image">
+                 @else
+                 <div class="image ">
+                    <img src="{{$image->image}}" class="" alt="">
+
+                 </div>
+                 @endif
+                
+                @endforeach
+                <!--  <div class="image">
                   <img src="/assets/images/cars/car2.jpg" alt="">
                 </div>
                 <div class="image">
@@ -117,7 +135,7 @@
                 </div>
                 <div class="image">
                     <img src="/assets/images/cars/car1.jpg" alt="">
-                </div>
+                </div> -->
 
              </div>
             </div>
@@ -179,11 +197,11 @@
             </div>
 
             <div class="detail-info-row">
-                <span> المسافات المقطوعه</span>
-                <span> @isset($auctions->odometer)
+                <span> المسافات المقطوعة</span>
+                <span>@isset($auctions->odometer)
                     {{ $auctions->odometer}}
                 @endisset
-                 </span>
+                <span>km</span></span>
             </div>
 
             <div class="detail-info-row">

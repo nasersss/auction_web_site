@@ -20,6 +20,11 @@ class auction extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function bidding()
+    {
+        return $this->hasMany(BiddingController::class,'user_id');
+    }
+
     public function category()
     {
         return $this->belongsTo(category::class);
