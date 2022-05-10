@@ -168,7 +168,7 @@ class AuctionController extends Controller
     public function viewAuction(){
         $auction=auction::with("auctionImage")->get();
 // return response($auction);
-        return view("index")->with("auction",$auction);
+        return view("index")->with("auctions",$auction);
     }
 
     /**
