@@ -54,7 +54,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="inputAddress" class="form-label">حالة السيارة</label>
-                                <select required name="stat" class="form-select mb-3">
+                                <select required name="state" class="form-select mb-3">
                                     <option selected disabled>أختر حالة السيارة </option>
                                     <option value="1">مستخدم</option>
                                     <option value="2">جديد</option>
@@ -75,8 +75,8 @@
                             </div>
 
                             <div class="mb-1 col-md-12">
-                                <label for="inputAddress" class="form-label">نوع المركبة</label>
-                                <input required name="vehicle_type" type="datetime-local" class="form-control" id="inputAddress" placeholder="مثال باص ...">
+                                <label for="inputAddress" class="form-label">تارخ ووقت انتهاء المزاد</label>
+                                <input required name="date_of_end_auction" type="datetime-local" class="form-control" id="inputAddress" placeholder="مثال باص ...">
                             </div>
                             <h4 class="header-title">المعلومات الفنية</h4>
                             <div class="mb-1 col-md-6">
