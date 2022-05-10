@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('min_bid');
             $table->string('curren_price')->nullable();
             $table->string('address');
+            $table->timestamp('date_of_end_auction');
             $table->integer('number_of_participate');
             $table->string('fuel');// نوع الوقود
             $table->foreign('seller_id')->references('id')->on('users');

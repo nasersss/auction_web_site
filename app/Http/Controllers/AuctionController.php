@@ -73,12 +73,13 @@ class AuctionController extends Controller
                 $auctionImage->image = $this->uploadFile($image, $auctionInfo->id);
                 $auctionImage->is_active = -1;
                 $auctionImage->auction_id = $auctionInfo->id;
-                $auctionImage->save();
+                if($auctionImage->save()){
+                    return response($auctionInfo);
+                }
             }
         }
 
         // return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
-        return response($auctionInfo);
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
