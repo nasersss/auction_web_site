@@ -375,7 +375,7 @@
             <div class="card-body text-center">
                 <div class="ad-title m-auto">
                     <h5> هوندا اكورد Sport صالون</h5>
-					<h2>العطاء الحالي5,000,000<h2>
+					<h2>العطاء الحالي1000<h2>
           <h2> ينتهي المزاد بعد</h2>
          <div class="div" id="demo">
 
