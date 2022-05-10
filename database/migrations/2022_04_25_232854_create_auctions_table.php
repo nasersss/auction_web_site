@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('vehicle_type');
             $table->string('name');// مثل هيلوكس
             $table->string('model');// مثل السنة 2005 | 2020
-            $table->string('stat');//new or old
+            $table->string('state');//new or old
             $table->string('ger_type');
             $table->string('engine_type');
             $table->string('notes');
@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('min_bid');
             $table->string('curren_price')->nullable();
             $table->string('address');
+            $table->timestamp('date_of_end_auction');
             $table->integer('number_of_participate');
             $table->string('fuel');// نوع الوقود
             $table->foreign('seller_id')->references('id')->on('users');
