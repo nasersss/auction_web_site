@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-sm-4">
-                            <a href="javascript:void(0);" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i>إضافة صنف جديد</a>
+                            <a href="{{ route('add-cat') }}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i>إضافة صنف جديد</a>
                         </div>
 
                     </div>
