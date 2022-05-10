@@ -10,7 +10,7 @@ class AuctionImage extends Model
     use HasFactory;
 
     public function getImageAttribute($value){
-        return url("images/auctions/")."/".$value;
+        return url("images/auction/")."/".$value;
 
     }
 
