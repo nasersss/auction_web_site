@@ -98,8 +98,14 @@ class CategoryController extends Controller
         $category = Category::find($categoryId);
         $category->name = $request->name;
         $category->is_active = $request->is_active;
-        if ($request->hasFile('image'))
+
+        if ($request->hasFile('image')) {
+            if (realpath($category->image)) {
+                unlink(realpath($category->image));
+            }
             $category->image = $this->uploadFile($request->file('image'));
+        }
+
 
         if ($category->save())
             return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
