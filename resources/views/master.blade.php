@@ -55,7 +55,7 @@
                             <div  class="show icon user" onclick="userSelection()" style="background-image: url('@isset(Auth::user()->profile->image){{Auth::user()->profile->image}}@endisset');background-size: cover;">
                             <div id="list-user"  class="list-user">
                             <a href="{{route('profile')}}"><i class="fas fa-user"></i> الملف الشخصي</a>
-                            <a href=""><i class="fas fa-cog"></i>  الاعدادات</a>
+                            <a href="{{ route('add-auction') }}"><i class="fas fa-cog"></i>اضافة مزاد</a>
                             <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
