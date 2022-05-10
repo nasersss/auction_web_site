@@ -165,6 +165,12 @@ class AuctionController extends Controller
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
+    public function viewAuction(){
+        $auction=auction::with("auctionImage")->get();
+// return response($auction);
+        return view("index")->with("auction",$auction);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

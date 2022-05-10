@@ -102,4 +102,6 @@ Route::get('toggle_users/{userId}',[UserProfileController::class,'toggle'])->nam
 Route::get('edit_users/{userId}',[UserProfileController::class,'editUser'])->name('edit_user');
 Route::post('update_user/{PoliceId}',[UserProfileController::class,'updateUser'])->name('update_users');
 
+##########################
 
+Route::get('/view_action',[AuctionController::class,"viewAuction"])->name("view_action");

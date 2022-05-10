@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('vehicle_type');
             $table->string('name');// مثل هيلوكس
             $table->string('model');// مثل السنة 2005 | 2020
-            $table->string('stat');//new or old
+            $table->string('state');//new or old
             $table->string('ger_type');
             $table->string('engine_type');
             $table->string('notes');

@@ -48,8 +48,11 @@
                             </div>
                             @endif
                         @else
-{{--                        <div  class="show icon user" onclick="userSelection()" style="background: #eee"> <a href="#" style="color:var(--secondary)"> <i class="fas fa-user"></i></a>--}}
-                            <div  class="show icon user" onclick="userSelection()" style="background: #eee"> <a href="#" style="color:var(--secondary)"> <img src="@isset(Auth::user()->profile->image){{Auth::user()->profile->image}}@endisset" alt="user-image" class="rounded-circle"></a>
+
+
+
+{{--                        <  class="show icon user" onclick="userSelection()" style="background: #eee"> <a href="#" style="color:var(--secondary)"> <i class="fas fa-user"></i></a>--}}
+                            <div  class="show icon user" onclick="userSelection()" style="background-image: url('@isset(Auth::user()->profile->image){{Auth::user()->profile->image}}@endisset');background-size: cover;">
                             <div id="list-user"  class="list-user">
                             <a href="{{route('profile')}}"><i class="fas fa-user"></i> الملف الشخصي</a>
                             <a href=""><i class="fas fa-cog"></i>  الاعدادات</a>
@@ -59,13 +62,14 @@
                                        <i class="fas fa-sign-out"></i>تسجيل الخروج</a>
                         </div>
                      </div>
-                                    {{ Auth::user()->name }}
+
+                                  <div class="name-auth">  {{ Auth::user()->name }}</div>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
 
                         @endguest
-
+                    </div>
                 {{-- <div class="show icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
                <div class="show icon"> <i class="fas fa-user"></i> </div> --}}
                <div class="menu-toggle">
@@ -74,7 +78,7 @@
 
                 </a>
             </div>
-              </div>
+
             <!-- /responsive-nav -->
         </div>
         <!-- /container -->

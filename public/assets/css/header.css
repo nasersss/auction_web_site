@@ -452,6 +452,13 @@ header{
     color: #fff !important;
     font-size: 15px;
 }
+.name-auth{
+    position: absolute;
+    right: 119%;
+    width: 28%;
+    font-size: 12px;
+    font-weight: 600;
+}
 
   /*=========================================================
       13 -> RESPONSIVE
@@ -486,6 +493,9 @@ header{
     }
     .section-tab-nav li {
       margin-top: 10px;
+    }
+    .name-auth{
+        display: none;
     }
   }
 

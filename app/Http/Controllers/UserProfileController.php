@@ -116,7 +116,6 @@ class UserProfileController extends Controller
         $user->name = $request->name;
         $user->save();
         $userInfo = UserProfile::find($userProfile);
-        $userInfo->user_id = $userProfile;
         $userInfo->phone = $request->phone;
         $userInfo->address = $request->address;
         $userInfo->facebook = $request->facebook;
