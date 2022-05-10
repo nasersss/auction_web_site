@@ -26,6 +26,12 @@
 @section('content')
     <div class="row">
         <div class="col-12">
+            @if(session()->has('success'))
+            <div class="alert alert-danger success-dismissible bg-success text-white border-0 fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>{{ session()->get('success') }} </strong>
+            </div>
+            @endif
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-2">

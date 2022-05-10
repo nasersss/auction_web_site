@@ -50,7 +50,7 @@ class AuctionController extends Controller
         $auctionInfo->vehicle_type = $request->vehicle_type;
         $auctionInfo->name = $request->name;
         $auctionInfo->model = $request->model;
-        $auctionInfo->stat = $request->stat;
+        $auctionInfo->state = $request->state;
         $auctionInfo->engine_type = $request->engine_type;
         $auctionInfo->notes = $request->notes;
         $auctionInfo->stare_price = $request->stare_price;
@@ -171,6 +171,13 @@ class AuctionController extends Controller
         $auction=auction::with("auctionImage")->get();
 // return response($auction);
         return view("index")->with("auctions",$auction);
+    }
+
+
+    public function detailAuction($carId){
+        $auctionCar=auction::with(["auctionImage","category"])->find($carId);
+// return response($auctionCar);
+        return view("detail")->with("auctions",$auctionCar);
     }
 
     /**

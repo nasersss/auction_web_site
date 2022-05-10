@@ -337,7 +337,7 @@
           <h2 id=""> {{   $auction->date_of_end_auction }}</h2>
 
                 </div>
-                <a class="ad-btn" href="{{ route('details-car')}}">مشاهدة التفاصيل</a>
+                <a class="ad-btn" href="{{ route('action_detail',$auction->id)}}">مشاهدة التفاصيل</a>
             </div>
         </div>
     </div>
