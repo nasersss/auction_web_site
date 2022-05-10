@@ -90,10 +90,11 @@
 
 
                         <p class="text-muted mb-0" id="tooltip-container"><strong> مواقع التواصل الاجتماعي :</strong>
-                            <a class="d-inline-block ms-2 text-muted" data-bs-container="#tooltip-container" data-bs-placement="top" data-bs-toggle="tooltip" href=" @isset($user->profile->facebook){{$user->profile->facebook}} @endisset" title="" data-bs-original-title="Facebook" aria-label="Facebook"><i class="mdi mdi-facebook"></i></a>
+                            <a class="d-inline-block ms-2 text-muted" data-bs-container="#tooltip-container" data-bs-placement="top" data-bs-toggle="tooltip" href=" @isset($user->profile->facebook) {{$user->profile->facebook}} @endisset" title="" data-bs-original-title="Facebook" aria-label="Facebook"><i class="mdi mdi-facebook"></i></a>
                             <a class="d-inline-block ms-2 text-muted" data-bs-container="#tooltip-container" data-bs-placement="top" data-bs-toggle="tooltip" href="@isset($user->profile->twitter){{$user->profile->twitter}}@endisset" title="" data-bs-original-title="Twitter" aria-label="Twitter"><i class="mdi mdi-twitter"></i></a>
                             <a class="d-inline-block ms-2 text-muted" data-bs-container="#tooltip-container" data-bs-placement="top" data-bs-toggle="tooltip" href="@isset($user->profile->instagram){{$user->profile->instagram}}@endisset" title="" data-bs-original-title="Instagram" aria-label="Instagram"><i class="mdi mdi-instagram"></i></a>
-                        </p>
+<!--                             <a class="d-inline-block ms-2 text-muted" data-bs-container="#tooltip-container" data-bs-placement="top" data-bs-toggle="tooltip" href="@isset($user->profile->instagram) {{url($user->profile->instagram)}}@endisset" title="" data-bs-original-title="Instagram" aria-label="Instagram"><i class="mdi mdi-instagram"></i></a>
+ -->                        </p>
 
                     </div>
                 </div>

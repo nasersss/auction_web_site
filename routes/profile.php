@@ -14,7 +14,7 @@ Route::get('show/User',[UserProfileController::class,'show'])->name('showUser');
 
 Route::get('show/AllUsers',[UserProfileController::class,'index'])->name('showAllUsers');
 
-Route::get('create_profile', [UserProfileController::class, 'create'])->name('create_profile');
+Route::get('create_profile', [UserProfileController::class, 'create'])->name('create_profile')->middleware('verified');
 
 Route::post('store_profile/{userProfile}', [UserProfileController::class, 'store'])->name('store_profile');
 

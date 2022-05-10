@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\auction;
 use App\Models\AuctionImage;
+use App\Models\category;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
@@ -27,8 +28,8 @@ class AuctionController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin/add_auction');
+        $category=category::get();
+        return view('admin/add_auction')->with('categories',$category);
     }
 
     /**
@@ -58,6 +59,8 @@ class AuctionController extends Controller
         $auctionInfo->curren_price = $request->stare_price;
         $auctionInfo->number_of_participate = 0;
         $auctionInfo->fuel = $request->fuel;
+        $auctionInfo->address = $request->address;
+        $auctionInfo->date_of_end_auction = $request->date_of_end_auction;
         // $auctionInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image'), $auctionInfo->category_id) : "defaultImage.png";
         if ($auctionInfo->save()) {
             $auctionMaineImage = new AuctionImage();
@@ -73,12 +76,13 @@ class AuctionController extends Controller
                 $auctionImage->image = $this->uploadFile($image, $auctionInfo->id);
                 $auctionImage->is_active = -1;
                 $auctionImage->auction_id = $auctionInfo->id;
-                $auctionImage->save();
+                if($auctionImage->save()){
+                    return response($auctionInfo);
+                }
             }
         }
 
         // return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
-        return response($auctionInfo);
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
@@ -131,7 +135,7 @@ class AuctionController extends Controller
         $auctionInfo->vehicle_type = $request->vehicle_type;
         $auctionInfo->name = $request->name;
         $auctionInfo->model = $request->model;
-        $auctionInfo->stat = $request->stat;
+        $auctionInfo->state = $request->state;
         $auctionInfo->engine_type = $request->engine_type;
         $auctionInfo->notes = $request->notes;
         $auctionInfo->stare_price = $request->stare_price;
