@@ -6,8 +6,7 @@
     <meta charset="utf-8" />
     <title>تسجيل الدخول</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Coderthemes" name="author" />
+
     <!-- App favicon -->
     {{-- <link rel="shortcut icon" href="assetsassets/images/favicon.ico"> --}}
 
@@ -46,7 +45,7 @@
                         <div class="mb-3">
                             <label for="emailaddress" class="form-label">البريد الاكتروني</label>
                             <input class="form-control" type="email" id="emailaddress" required="" placeholder="ادخل بريدك الاكتروني" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
-                            
+
                             @error('email')
                             <div class="alert alert-danger" role="alert">
                                 <strong> خطأ -</strong>{{ $message }}
