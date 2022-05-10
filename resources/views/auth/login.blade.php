@@ -34,6 +34,12 @@
                             <span><img src="assets/images/logo.png" alt=""></span>
                         </a>
                     </div>
+                    @if(session()->has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <strong>{{ session()->get('error') }} </strong>
+                    </div>
+                    @endif
 
                     <!-- title-->
                     <h4 class="mt-1 heading">تسجيل الدخول</h4>
@@ -96,10 +102,10 @@
 
                     <!-- Footer-->
                     <footer class="footer footer-alt">
-                    @if (Route::has('password.request'))
-                                                                                            <!-- {{ route('password.request') }} -->
+                        @if (Route::has('password.request'))
+                        <!-- {{ route('password.request') }} -->
                         <p class="text-muted">لا تمتلك اي حساب قم بانشاء حسابك الان ؟ <a href="{{ route('register') }}" class="text-muted ms-1"><b>انشاء حساب</b></a></p>
-                    @endif
+                        @endif
                     </footer>
 
                 </div> <!-- end .card-body -->

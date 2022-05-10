@@ -33,7 +33,7 @@ class Admin
         if ($user->isAdmin()) {
             return $next($request);
         }else{
-            return redirect()->route('login')->with(['error' => 'عذرا لا تملك الصلاحية لدخول هذه الصفخة']);
+            return redirect()->route('login')->with(['error' => 'عذرا لا تملك الصلاحية لدخول هذه الصفخة يرجا تسجيل الدخول او انشاء حساب']);
         }
         // return $next($request);
     }
