@@ -122,11 +122,20 @@ class UserProfileController extends Controller
         $userInfo->facebook = $request->facebook;
         $userInfo->twitter = $request->twitter;
         $userInfo->instagram = $request->instagram;
-        unlink(realpath($userInfo->image));
-        $userInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultImage.png";
+        if ($request->image !=null) {
+            if ( realpath($userInfo->image) ) {
+                unlink(realpath($userInfo->image));
+            }
+        }
+        if ($request->hasFile('image')) {
+            if (realpath($userInfo->image)) {
+                unlink(realpath($userInfo->image));
+            }
+            $userInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultImage.png";
+        }
         if ($userInfo->save())
-            // return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
-            return response($userInfo);
+            return redirect()->route('profile')->with(['success' => 'تم تحديث البيانات بنجاح']);
+        // return response($userInfo);
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 

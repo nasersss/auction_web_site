@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\auction;
 use App\Models\AuctionImage;
+use App\Models\category;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
@@ -27,8 +28,8 @@ class AuctionController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin/add_auction');
+        $category=category::get();
+        return view('admin/add_auction')->with('categories',$category);
     }
 
     /**
