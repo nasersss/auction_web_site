@@ -16,4 +16,9 @@ class category extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function auction(){
+        return $this->hasMany(auction::class);
+
+    }
 }

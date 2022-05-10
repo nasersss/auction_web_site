@@ -5,7 +5,7 @@
             <!-- responsive-nav -->
             <div>
                 <a href="#" class="logo">
-                    <img src="assets/images/logoDark.png" alt="">
+                    <img src="/assets/images/logoDark.png" alt="">
                 </a>
             </div>
             <div id="responsive-nav" class="nav-div">

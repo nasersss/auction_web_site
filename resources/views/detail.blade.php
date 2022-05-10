@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="assets/css/ionicons.min.css">
-    <link rel="stylesheet" href="assets/css/all.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/detail.css">
-    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="/assets/css/all.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/detail.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
     <title>التفاصيل</title>
 </head>
 <body>
@@ -25,7 +25,11 @@
                <img src="assets/images/logos/pngegg.png" alt="" srcset="">
             </div>
             <div class="head-title">
-              <h4><span> تويوتا </span> - <span> كامري </span></h4>
+              <h4><span>  @isset($auctions->category->name)
+                {{ $auctions->category->name}}
+            @endisset </span> - <span>  @isset($auctions->name)
+                {{ $auctions->name}}
+            @endisset </span></h4>
               <h4><span> المكلا </span> - <span> حضرموت </span></h4>
 
             </div>
@@ -36,22 +40,36 @@
          <section>
              <div class="auction-info-one my-3">
                  <div>السعر الحالي للمزاد :</div>
-                 <span class="auction-price">11500 <span>$</span></span>
+                 <span class="auction-price">
+                    @isset($auctions->stare_price)
+                    {{ $auctions->stare_price}}
+                @endisset
+                    <span>
+                        </span></span>
 
              </div>
              <div class="auction-info-two mb-3">
                  <div class="row">
                      <div class="col-4">
                       <h5 class="text-align"> الوقت المتبقي</h5>
-                     <div class="text-align"> <span>5 ايام و 8ساعات</span></div>
+                     <div class="text-align"> <span>
+                         @isset($auctions->date_of_end_auction)
+                        {{ $auctions->date_of_end_auction}}
+                    @endisset</span></div>
                      </div>
                      <div class="col-4">
                     <h5 class="text-align"> عدد المشاركات</h5>
-                   <div class="text-align"> <span>18</span>  </div>
+                   <div class="text-align"> <span>
+                    @isset($auctions->number_of_participate)
+                    {{ $auctions->number_of_participate}}
+                @endisset
+                </span>  </div>
                     </div>
                     <div class="col-4">
                         <h5 class="text-align">الحد الادنى للمزاد</h5>
-                       <div class="text-align"><span>1000$</span></div>
+                       <div class="text-align"><span>@isset($auctions->min_bid)
+                        {{ $auctions->min_bid}}
+                    @endisset</span></div>
 
 
                     </div>
@@ -111,45 +129,115 @@
             <h4 class="bold"> المعلومات الاساسية</h4>
             <div class="detail-info-container">
             <div class="detail-info-row">
-<span>اسم السيارة</span><span> كامري</span>
+<span>اسم السيارة</span>
+<span>
+    @isset($auctions->name)
+    {{ $auctions->name}}
+@endisset
+ </span>
             </div>
             <div class="detail-info-row">
-                <span>الشركة المصنعة</span><span> تويوتا</span>
+                <span>الشركة المصنعة</span><span>
+                    @isset($auctions->category->name)
+                    {{ $auctions->category->name}}
+                @endisset
+                 </span>
             </div>
             <div class="detail-info-row">
-                <span> الموديل</span><span> 2018</span>
-            </div>
-
-            <div class="detail-info-row">
-                <span> اللون</span><span> الازرق</span>
-            </div>
-
-            <div class="detail-info-row">
-                <span> الحالة</span><span> مستعمل</span>
-            </div>
-            <div class="detail-info-row">
-                <span> الاضرار</span><span> سليم</span>
-            </div>
-
-            <div class="detail-info-row">
-                <span> المسافات المقطوعه</span><span> 30000km</span>
+                <span> الموديل</span><span>
+                    @isset($auctions->model)
+                    {{ $auctions->model}}
+                @endisset
+                 </span>
             </div>
 
             <div class="detail-info-row">
-                <span> نوع القير</span><span> اوتماتيك</span>
+                <span> اللون</span><span>
+                    @isset($auctions->color)
+                    {{ $auctions->color}}
+                @endisset
+                 </span>
             </div>
 
             <div class="detail-info-row">
-                <span> نوع المحرك</span><span> 3.0L 6</span>
+                <span> الحالة</span><span>
+                    @isset($auctions->state)
+                    @if($auctions->state==1)
+{{ "مستخدم" }}
+@else
+{{ جديد }}
+                    @endif
+                @endisset
+                 </span>
+            </div>
+            <div class="detail-info-row">
+                <span> الاضرار</span><span>
+                    @isset($auctions->damage)
+                    {{ $auctions->damage}}
+                @endisset
+                 </span>
             </div>
 
             <div class="detail-info-row">
-                <span> نوع الوقود</span><span> بترول</span>
+                <span> المسافات المقطوعه</span>
+                <span> @isset($auctions->odometer)
+                    {{ $auctions->odometer}}
+                @endisset
+                 </span>
             </div>
 
             <div class="detail-info-row">
-                <span> ملاحظات</span><span> لا يوجد
-                </span>
+                <span> نوع القير</span><span>
+                    @isset($auctions->ger_type)
+                    @if($auctions->ger_type==1)
+{{ "عادي" }}
+
+@elseif($auctions->ger_type==2)
+{{ "اوتماتيك" }}
+
+
+                @elseif($auctions->ger_type==3)
+{{ "عادي و اوتماتيك" }}
+@endif
+                @endisset
+                 </span>
+            </div>
+
+            <div class="detail-info-row">
+                <span> نوع المحرك</span>
+                <span> @isset($auctions->engine_type)
+                    {{ $auctions->engine_type}}
+                @endisset
+                 </span>
+            </div>
+
+            <div class="detail-info-row">
+                <span> نوع الوقود</span><span>
+                    @isset($auctions->ger_type)
+                    @if($auctions->fuel==1)
+{{ "بترول" }}
+
+@elseif($auctions->ger_type==2)
+{{ "ديزل" }}
+
+
+                @elseif($auctions->ger_type==3)
+{{ " غاز " }}
+
+@elseif($auctions->ger_type==4)
+{{ " كهرباء" }}
+@endif
+                @endisset
+                 </span>
+            </div>
+
+            <div class="detail-info-row">
+                <span> ملاحظات</span>
+                <span> @isset($auctions->notes)
+                    {{ $auctions->notes}}
+                @endisset
+                 </span>
+
             </div>
 
         </div>

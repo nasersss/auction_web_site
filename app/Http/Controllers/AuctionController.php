@@ -174,6 +174,13 @@ class AuctionController extends Controller
         return view("index")->with("auctions",$auction);
     }
 
+
+    public function detailAuction($carId){
+        $auctionCar=auction::with(["auctionImage","category"])->find($carId);
+// return response($auctionCar);
+        return view("detail")->with("auctions",$auctionCar);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
