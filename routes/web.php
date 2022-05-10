@@ -104,4 +104,4 @@ Route::post('update_user/{PoliceId}',[UserProfileController::class,'updateUser']
 
 ##########################
 
-Route::get('/view_action',[AuctionController::class,"viewAuction"])->name("view_action");
+Route::get('/view_auction',[AuctionController::class,"viewAuction"])->name("view_action");
