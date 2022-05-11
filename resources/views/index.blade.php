@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="assets/css/ionicons.min.css">
 		<link rel="stylesheet" href="assets/css/style.css">
-
-        <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-        <link rel="stylesheet" href="assets/css/all.css">
+      <link href="assets/css/search.css" rel="stylesheet" />
+      <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+      <link rel="stylesheet" href="assets/css/all.css">
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/home.css">
 
@@ -310,6 +310,9 @@
     <br>
     <h3>  عروض مزادات </h3>
 	<br>
+
+    بحث
+
 	<div class="row" id="ads">
     <!-- Category Card -->
 
@@ -331,7 +334,7 @@
                 @if($im[1]=='main')
                       <img class="img-fluid" src="{{$image->image}}" alt="" />
                 @endif
-                
+
                 @endforeach
             </div>
             <div class="card-image-overlay m-auto">
