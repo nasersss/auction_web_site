@@ -105,4 +105,7 @@ Route::post('update_user/{PoliceId}',[UserProfileController::class,'updateUser']
 
 Route::get('/',[AuctionController::class,"viewAuction"])->name("view_action");
 Route::get('detail_car/{carId}',[AuctionController::class,"detailAuction"])->name("action_detail");
+Route::get('/auction_review',[AuctionController::class,"auctionReview"])->name("auction_review");
+Route::get('/toggle_auctions/{auctionId}',[AuctionController::class,"toggle"])->name("toggle_auction");
+
 
