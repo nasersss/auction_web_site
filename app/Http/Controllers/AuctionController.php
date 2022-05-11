@@ -8,6 +8,7 @@ use App\Models\category;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class AuctionController extends Controller
@@ -169,8 +170,8 @@ class AuctionController extends Controller
     }
 
     public function viewAuction(){
-        $auction=auction::with("auctionImage")->get();
-// return response($auction);
+        $auction=auction::with("auctionImage")->where('is_active', 1)->where('date_of_end_auction','>=', Carbon::now())->get();
+        // return response($auction);
         return view("index")->with("auctions",$auction);
     }
 
