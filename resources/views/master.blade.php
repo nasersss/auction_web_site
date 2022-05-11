@@ -93,15 +93,7 @@
         <div class="container">
             <!-- row -->
             <div class="row">
-                <!-- LOGO -->
-                <div class="col-md-3">
-
-                                    </div>
-                <!-- /LOGO -->
-
-                <!-- SEARCH BAR -->
-
-                <div class="col-md-12">
+                <div class="col-md-10">
                         <div class="s007">
                             <form>
                                 <div class="inner-form">
@@ -111,8 +103,8 @@
                                                 <img src="/assets/images/search.png"  width="30">
                                             </div>
                                             <input id="search" type="text" placeholder="بحث..." />
-                                            <div class="result-count">
-                                                <img src="/assets/images/Advanced_Search.png" onclick="myFunction()" width="30">بحث متقدم</div>
+                                            <div class="result-count" onclick="myFunction()">
+                                                <img src="/assets/images/Advanced_Search.png"  width="30">بحث متقدم</div>
                                         </div>
                                     </div>
                                     <div class="advance-search" id="myDIV">
