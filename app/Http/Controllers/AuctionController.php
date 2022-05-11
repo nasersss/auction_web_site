@@ -179,6 +179,23 @@ class AuctionController extends Controller
 // return response($auctionCar);
         return view("detail")->with("auctions",$auctionCar);
     }
+// this function show list of all auctions
+    function auctionReview(){
+
+        $auction=auction::with(["user","category","auctionImage"])->get();
+        return view("admin.auctions_review")->with("auctions",$auction);
+    }
+
+    public function toggle($auctionId)
+    {
+
+        $auction = auction::find($auctionId);
+        $auction->is_active *= -1;
+        if ($auction->save())
+            return back()->with(['success' => 'تم تحديث البيانات بنجاح']);
+
+        return back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+    }
 
     /**
      * Remove the specified resource from storage.

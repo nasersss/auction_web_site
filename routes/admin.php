@@ -26,7 +26,7 @@ Route::get('/add_auction', [AuctionController::class, 'create'])->name('add-auct
 Route::post('/store_auction', [AuctionController::class, 'store'])->name('store-auction');
 
 Route::get('/auctions_review', function () {
-    return view('admin/auctions_review');
+return view('admin/auctions_review');
 })->name('auctions-review');
 
 Route::get('/users', function () {

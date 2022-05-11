@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function auction()
     {
-        return $this->hasMany(auction::class);
+        return $this->hasMany(auction::class,'seller_id');
     }
 
     public function isAdmin()

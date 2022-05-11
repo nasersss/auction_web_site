@@ -22,7 +22,7 @@
             <section>
             <div class="head-detail">
             <div class="logo">
-               <img src="assets/images/logos/pngegg.png" alt="" srcset="">
+               <img src="/assets/images/  {{$auctions->category->image  }}" alt="" srcset="">
             </div>
             <div class="head-title">
               <h4><span>  @isset($auctions->category->name)

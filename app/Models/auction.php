@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class auction extends Model
 {
     use HasFactory;
-    
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'seller_id');
     }
 
     public function category()
