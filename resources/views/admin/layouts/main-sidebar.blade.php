@@ -44,7 +44,7 @@
                             <a href="{{route('add-auction')}}">أضافة مزاد جديد</a>
                         </li>
                         <li>
-                            <a href="{{route('auctions-review')}}">مراجعة مزادات</a>
+                            <a href="{{route('auction_review')}}">مراجعة مزادات</a>
                         </li>
                     </ul>
                 </div>

@@ -31,6 +31,17 @@
 
 
                         <div class="table-responsive">
+                            @if(session()->has('success'))
+                            <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <strong>{{ session()->get('success') }} </strong>
+                            </div>
+                            @elseif(session()->has('error'))
+                            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <strong>{{ session()->get('success') }} </strong>
+                            </div>
+                            @endif
                             <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable">
                                 <thead class="table-light">
                                 <tr>
@@ -53,6 +64,9 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($auctions as $auction)
+
+
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -61,498 +75,43 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
+                                         {{-- <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48"> --}}
                                         <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="apps-ecommerce-products-details.html" class="text-body">سيارة هيلوكس</a>
-                                            <br>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
+                                            <a href="{{ route('action_detail',$auction->id)}}" class="text-body">{{ $auction->name }}</a>
+
                                         </p>
                                     </td>
                                     <td>
-                                        BMW
+                                        {{ $auction->category->name }}
                                     </td>
                                     <td>
-                                        2010
+                                        {{ $auction->model }}
                                     </td>
                                     <td>
-                                        $10000
+                                        {{ $auction->user->name }}
                                     </td>
                                     <td>
-                                        09/12/2022
+                                        {{ $auction->stare_price }}
                                     </td>
                                     <td>
-                                        <span class="badge badge-success-lighten">مقبول</span>
+                                        @isset($auction->is_active)
+                                        @if($auction->is_active==1)
+                                        <span class="badge badge-success-lighten">{{ "نشط" }}</span>
+@else
+                                        <span class="badge badge-danger-lighten">{{ "موقف" }}</span>
+
+                                        @endif
+
+                                        @endisset
                                     </td>
 
                                     <td class="table-action">
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                        <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="apps-ecommerce-products-details.html" class="text-body">سيارة هيلوكس</a>
-                                            <br>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        BMW
-                                    </td>
-                                    <td>
-                                        2010
-                                    </td>
-                                    <td>
-                                        $10000
-                                    </td>
-
-                                    <td>
-                                        09/12/2022
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-warning">قيد الانتظار</span>
-                                    </td>
-
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="apps-ecommerce-products-details.html" class="text-body">سيارة هيلوكس</a>
-                                            <br>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        BMW
-                                    </td>
-                                    <td>
-                                        2010
-                                    </td>
-                                    <td>
-                                        $10000
-                                    </td>
-
-                                    <td>
-                                        09/12/2022
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-danger-lighten">غير مقبول</span>
-                                    </td>
-
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="apps-ecommerce-products-details.html" class="text-body">سيارة هيلوكس</a>
-                                            <br>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        BMW
-                                    </td>
-                                    <td>
-                                        2010
-                                    </td>
-                                    <td>
-                                        $10000
-                                    </td>
-                                    <td>
-                                        09/12/2022
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-success-lighten">مقبول</span>
-                                    </td>
-
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="apps-ecommerce-products-details.html" class="text-body">سيارة هيلوكس</a>
-                                            <br>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        BMW
-                                    </td>
-                                    <td>
-                                        2010
-                                    </td>
-                                    <td>
-                                        $10000
-                                    </td>
-
-                                    <td>
-                                        09/12/2022
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-warning">قيد الانتظار</span>
-                                    </td>
-
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="apps-ecommerce-products-details.html" class="text-body">سيارة هيلوكس</a>
-                                            <br>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        BMW
-                                    </td>
-                                    <td>
-                                        2010
-                                    </td>
-                                    <td>
-                                        $10000
-                                    </td>
-
-                                    <td>
-                                        09/12/2022
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-danger-lighten">غير مقبول</span>
-                                    </td>
-
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="apps-ecommerce-products-details.html" class="text-body">سيارة هيلوكس</a>
-                                            <br>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        BMW
-                                    </td>
-                                    <td>
-                                        2010
-                                    </td>
-                                    <td>
-                                        $10000
-                                    </td>
-                                    <td>
-                                        09/12/2022
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-success-lighten">مقبول</span>
-                                    </td>
-
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="apps-ecommerce-products-details.html" class="text-body">سيارة هيلوكس</a>
-                                            <br>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        BMW
-                                    </td>
-                                    <td>
-                                        2010
-                                    </td>
-                                    <td>
-                                        $10000
-                                    </td>
-
-                                    <td>
-                                        09/12/2022
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-warning">قيد الانتظار</span>
-                                    </td>
-
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="apps-ecommerce-products-details.html" class="text-body">سيارة هيلوكس</a>
-                                            <br>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        BMW
-                                    </td>
-                                    <td>
-                                        2010
-                                    </td>
-                                    <td>
-                                        $10000
-                                    </td>
-
-                                    <td>
-                                        09/12/2022
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-danger-lighten">غير مقبول</span>
-                                    </td>
-
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="apps-ecommerce-products-details.html" class="text-body">سيارة هيلوكس</a>
-                                            <br>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        BMW
-                                    </td>
-                                    <td>
-                                        2010
-                                    </td>
-                                    <td>
-                                        $10000
-                                    </td>
-                                    <td>
-                                        09/12/2022
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-success-lighten">مقبول</span>
-                                    </td>
-
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="apps-ecommerce-products-details.html" class="text-body">سيارة هيلوكس</a>
-                                            <br>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        BMW
-                                    </td>
-                                    <td>
-                                        2010
-                                    </td>
-                                    <td>
-                                        $10000
-                                    </td>
-
-                                    <td>
-                                        09/12/2022
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-warning">قيد الانتظار</span>
-                                    </td>
-
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="apps-ecommerce-products-details.html" class="text-body">سيارة هيلوكس</a>
-                                            <br>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        BMW
-                                    </td>
-                                    <td>
-                                        2010
-                                    </td>
-                                    <td>
-                                        $10000
-                                    </td>
-
-                                    <td>
-                                        09/12/2022
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-danger-lighten">غير مقبول</span>
-                                    </td>
-
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
+                                @endforeach
 
 
                                 </tbody>

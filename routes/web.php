@@ -99,8 +99,11 @@ Route::get('toggle_users/{userId}',[UserProfileController::class,'toggle'])->nam
 Route::get('edit_users/{userId}',[UserProfileController::class,'editUser'])->name('edit_user');
 Route::post('update_user/{PoliceId}',[UserProfileController::class,'updateUser'])->name('update_users');
 
-##########################
+########################## auction route
 
 Route::get('/',[AuctionController::class,"viewAuction"])->name("view_auction");
 Route::get('detail_car/{carId}',[AuctionController::class,"detailAuction"])->name("action_detail");
+Route::get('/auction_review',[AuctionController::class,"auctionReview"])->name("auction_review");
+Route::get('/toggle_auctions/{auctionId}',[AuctionController::class,"toggle"])->name("toggle_auction");
+
 
