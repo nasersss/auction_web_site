@@ -55,7 +55,7 @@ class BiddingController extends Controller
         $auction->curren_price += $request->amount;
         $auction->number_of_participate+=1;
         $auction->update();
-        $adminWallet = Wallet::find(3);
+        $adminWallet = Wallet::find(1);
         $newBidding= new Bidding();
         $payerWallet = Wallet::where('user_id', Auth::user()->id)->where('coin_type', 0)->first();
         $adminWallet->amount += (($auction->curren_price + $request->amount) * 10 / 100);
