@@ -16,10 +16,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
-//    ;
+
 
 Route::get('/add_view',[Maincontroller::class,'show']);
 
@@ -35,9 +32,9 @@ Route::get('/add_view',[Maincontroller::class,'show']);
 Route::get('/auction',function(){
     return view('auction');
 })->name('auction');
-Route::get('/detail',function(){
-    return view('detail');
-    })->name('details-car');
+// Route::get('/detail',function(){
+//     return view('detail');
+//     })->name('details-car');
 
 Route::get('/admin',function(){
     return view('admin.dashboard_home');
@@ -105,4 +102,6 @@ Route::post('update_user/{PoliceId}',[UserProfileController::class,'updateUser']
 
 ##########################
 
-Route::get('/view_action',[AuctionController::class,"viewAuction"])->name("view_action");
+Route::get('/',[AuctionController::class,"viewAuction"])->name("view_auction");
+Route::get('detail_car/{carId}',[AuctionController::class,"detailAuction"])->name("action_detail");
+

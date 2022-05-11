@@ -77,7 +77,8 @@ class AuctionController extends Controller
                 $auctionImage->is_active = -1;
                 $auctionImage->auction_id = $auctionInfo->id;
                 if($auctionImage->save()){
-                    return response($auctionInfo);
+                    // return response($auctionInfo);
+                    return redirect()->route('view_action')->with(['success' => 'تم تحديث البيانات بنجاح']);
                 }
             }
         }
@@ -170,7 +171,14 @@ class AuctionController extends Controller
     public function viewAuction(){
         $auction=auction::with("auctionImage")->get();
 // return response($auction);
-        return view("index")->with("auction",$auction);
+        return view("index")->with("auctions",$auction);
+    }
+
+
+    public function detailAuction($carId){
+        $auctionCar=auction::with(["auctionImage","category"])->find($carId);
+// return response($auctionCar);
+        return view("detail")->with("auctions",$auctionCar);
     }
 
     /**

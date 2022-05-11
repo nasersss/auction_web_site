@@ -313,152 +313,50 @@
 	<div class="row" id="ads">
     <!-- Category Card -->
 
+
+    @if($auctions!=null)
+    @foreach($auctions as $auction)
+
+
+
     <div class="col-md-4 my-3">
         <div class="card rounded">
             <div class="card-image">
-                <span class="card-notify-badge">مزاد جاري</span>
-                <span class="card-notify-year">New</span>
-                <img class="img-fluid" src="assets/images/mobile_listing_main_01.jpg" alt="Alternate Text" />
+                <span class="card-notify-badge"> </span>
+                <span class="card-notify-year"></span>
+                @foreach($auction->auctionImage as $image)
+                @php
+                $im = explode('_',$image->image);
+                @endphp
+                @if($im[1]=='main')
+                      <img class="img-fluid" src="{{$image->image}}" alt="" />
+                @endif
+                
+                @endforeach
             </div>
             <div class="card-image-overlay m-auto">
-                <span class="card-detail-badge">2018</span>
-                <span class="card-detail-badge">حضرموت</span>
-                <span class="card-detail-badge">123,000 Kms</span>
+                <span class="card-detail-badge">{{ $auction->model }}</span>
+                <span class="card-detail-badge">{{ $auction->address }}</span>
+                <span class="card-detail-badge">{{ $auction->odometer }}</span>
             </div>
             <div class="card-body text-center">
                 <div class="ad-title m-auto">
-                    <h5>  نيسان Kicks SV+NAV عائلة</h5>
-					<h2>العطاء الحالي 4,000,000</h2>
-          <h2 id="demo"> ينتهي المزاد بعد</h2>
+                    <h5>{{ $auction->name }}</h5>
+					<h2>{{ $auction->stare_price }}العطاء الحالي </h2>
+                    <h2>تاريخ انتهاء المزاد</h2>
+          <h2 id=""> {{   $auction->date_of_end_auction }}</h2>
 
                 </div>
-                <a class="ad-btn" href="{{ route('details-car')}}">مشاهدة التفاصيل</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 my-3">
-        <div class="card rounded">
-            <div class="card-image">
-                <span class="card-notify-badge">مزاد جاري</span>
-
-                <img class="img-fluid" src="assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
-            </div>
-            <div class="card-image-overlay m-auto">
-                <span class="card-detail-badge">2020</span>
-                <span class="card-detail-badge">صنعاء</span>
-                <span class="card-detail-badge">13000 Kms</span>
-            </div>
-            <div class="card-body text-center">
-                <div class="ad-title m-auto">
-                    <h5>  مرسيدس بنز  Coupe عائلة</h5>
-					<h2>العطاء الحالي8,000,000 </h2>
-          <h2> ينتهي المزاد بعد</h2>
-
-                </div>
-                <a class="ad-btn" href="{{ route('details-car')}}">مشاهدة التفاصيل</a>
+                <a class="ad-btn" href="{{ route('action_detail',$auction->id)}}">مشاهدة التفاصيل</a>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4 my-3">
-        <div class="card rounded">
-            <div class="card-image">
-                <span class="card-notify-badge">مزاد جاري</span>
 
-                <img class="img-fluid" src="assets/images/USD10HOC091C021001.jpg" alt="Alternate Text" />
-            </div>
-            <div class="card-image-overlay m-auto">
-                <span class="card-detail-badge">2018</span>
-                <span class="card-detail-badge">تعز</span>
-                <span class="card-detail-badge">8000 Kms</span>
-            </div>
-            <div class="card-body text-center">
-                <div class="ad-title m-auto">
-                    <h5> هوندا اكورد Sport صالون</h5>
-					<h2>العطاء الحالي1000<h2>
-          <h2> ينتهي المزاد بعد</h2>
-         <div class="div" id="demo">
-
-         </div>
-                <a class="ad-btn" href="{{ route('details-car')}}">مشاهدة التفاصيل</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-md-4 my-3">
-    <div class="card rounded">
-        <div class="card-image">
-            <span class="card-notify-badge">مزاد جاري</span>
-            <span class="card-notify-year">New</span>
-            <img class="img-fluid" src="assets/images/mobile_listing_main_01.jpg" alt="Alternate Text" />
-        </div>
-        <div class="card-image-overlay m-auto">
-            <span class="card-detail-badge">2018</span>
-            <span class="card-detail-badge">حضرموت</span>
-            <span class="card-detail-badge">123,000 Kms</span>
-        </div>
-        <div class="card-body text-center">
-            <div class="ad-title m-auto">
-                <h5>  نيسان Kicks SV+NAV عائلة</h5>
-                <h2>العطاء الحالي 4,000,000</h2>
-      <h2 id="demo"> ينتهي المزاد بعد</h2>
-
-            </div>
-            <a class="ad-btn" href="{{ route('details-car')}}">مشاهدة التفاصيل</a>
-        </div>
-    </div>
-</div>
-<div class="col-md-4 my-3">
-    <div class="card rounded">
-        <div class="card-image">
-            <span class="card-notify-badge">مزاد جاري</span>
-
-            <img class="img-fluid" src="assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
-        </div>
-        <div class="card-image-overlay m-auto">
-            <span class="card-detail-badge">2020</span>
-            <span class="card-detail-badge">صنعاء</span>
-            <span class="card-detail-badge">13000 Kms</span>
-        </div>
-        <div class="card-body text-center">
-            <div class="ad-title m-auto">
-                <h5>  مرسيدس بنز  Coupe عائلة</h5>
-                <h2>العطاء الحالي8,000,000 </h2>
-      <h2> ينتهي المزاد بعد</h2>
-
-            </div>
-            <a class="ad-btn" href="{{  route('details-car')}}">مشاهدة التفاصيل</a>
-        </div>
-    </div>
-</div>
-
-<div class="col-md-4 my-3">
-    <div class="card rounded">
-        <div class="card-image">
-            <span class="card-notify-badge">مزاد جاري</span>
-
-            <img class="img-fluid" src="assets/images/USD10HOC091C021001.jpg" alt="Alternate Text" />
-        </div>
-        <div class="card-image-overlay m-auto">
-            <span class="card-detail-badge">2018</span>
-            <span class="card-detail-badge">تعز</span>
-            <span class="card-detail-badge">8000 Kms</span>
-        </div>
-        <div class="card-body text-center">
-            <div class="ad-title m-auto">
-                <h5> هوندا اكورد Sport صالون</h5>
-                <h2>العطاء الحالي5,000,000<h2>
-      <h2> ينتهي المزاد بعد</h2>
-     <div class="div" id="demo">
-
-     </div>
-            <a class="ad-btn" href="{{  route('details-car')}}">مشاهدة التفاصيل</a>
-        </div>
-    </div>
-</div>
-</div>
-
+    @endforeach
+    @else
+    <h1>لاتوجد مزادات حالية</h1>
+    @endisset
 
 
 </div>

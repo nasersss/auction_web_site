@@ -35,7 +35,7 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">الاسم الكامل</label>
-                                <input name='name' value="{{$userInfo->name}}" type="text" class="form-control" id="inputAddress" placeholder="مثال محمد سالم ...">
+                                <input name='name' value="@isset($userInfo->name){{$userInfo->name}}@endisset" type="text" class="form-control" id="inputAddress" placeholder="مثال محمد سالم ...">
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">الصورة الشخصية</label>
@@ -47,22 +47,22 @@
                             </div> -->
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">الجوال</label>
-                                <input name='phone' value="{{$userInfo->profile->phone}}" type="text" class="form-control" id="inputAddress" placeholder="مثال 7396...">
+                                <input name='phone' value="@isset($userInfo->profile->phone){{$userInfo->profile->phone}}@endisset" type="text" class="form-control" id="inputAddress" placeholder="مثال 7396...">
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="inputAddress" class="form-label">العنوان</label>
-                                <input name='address' value="{{$userInfo->profile->address}}" type="text" class="form-control" id="inputAddress" placeholder="مثال حضرموت-المكلا-...">
+                                <input name='address' value="@isset($userInfo->profile->address){{$userInfo->profile->address}}@endisset" type="text" class="form-control" id="inputAddress" placeholder="مثال حضرموت-المكلا-...">
                             </div>
 
                             <h5 class="header-title">مواقع التواصل</h5>
                             <div class="mb-2 col-md-4">
-                                <input name='facebook' value="{{$userInfo->profile->facebook}}" type="text" class="form-control" id="inputAddress" placeholder="الفيس بوك مثلا fb/ahmed">
+                                <input name='facebook' value="@isset($userInfo->profile->facebook){{$userInfo->profile->facebook}}@endisset" type="text" class="form-control" id="inputAddress" placeholder="الفيس بوك مثلا fb/ahmed">
                             </div>
                             <div class="mb-2 col-md-4">
-                                <input name='twitter' value="{{$userInfo->profile->twitter}}" type="text" class="form-control" id="inputAddress" placeholder="تويتر">
+                                <input name='twitter' value="@isset($userInfo->profile->twitter){{$userInfo->profile->twitter}}@endisset" type="text" class="form-control" id="inputAddress" placeholder="تويتر">
                             </div>
                             <div class="mb-2 col-md-4">
-                                <input name='instagram' value="{{$userInfo->profile->instagram}}" type="text" class="form-control" id="inputAddress" placeholder="انستقرام">
+                                <input name='instagram' value="@isset($userInfo->profile->instagram){{$userInfo->profile->instagram}}@endisset" type="text" class="form-control" id="inputAddress" placeholder="انستقرام">
                             </div>
 
 
