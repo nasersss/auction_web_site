@@ -811,16 +811,14 @@ legend {
 }
 
 .s007 {
-  min-height: 100vh;
+
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
       justify-content: center;
   -ms-flex-align: center;
-      align-items: center;
-  background: #00b5e9;
+    align-items: center;
   padding: 15px;
-  font-family: 'Roboto', sans-serif;
 }
 
 .s007 form {
@@ -855,16 +853,19 @@ legend {
 .s007 form .inner-form .input-field input.placeholder {
   color: #999;
   font-size: 18px;
+    font-family: DIN-light, sans-serif, Arial;
 }
 
 .s007 form .inner-form .input-field input:-moz-placeholder {
   color: #999;
   font-size: 18px;
+    font-family: DIN-light, sans-serif, Arial;
 }
 
 .s007 form .inner-form .input-field input::-webkit-input-placeholder {
   color: #999;
   font-size: 18px;
+    font-family: DIN-light, sans-serif, Arial;
 }
 
 .s007 form .inner-form .input-field input:hover, .s007 form .inner-form .input-field input:focus {
@@ -1006,7 +1007,6 @@ legend {
   background: transparent;
   border-radius: 0;
   border: 0;
-  border-bottom: 2px solid #ccc;
   height: 100%;
   color: #fff;
   display: -ms-flexbox;

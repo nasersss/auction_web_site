@@ -101,23 +101,100 @@
 
                 <!-- SEARCH BAR -->
 
-                <div class="col-md-6">
-                    <div class="header-search">
-                        <form>
-                            <select class="input-select">
-                                <option value="0">جميع الفئات</option>
-                                <option value="1">تويوتا</option>
-                                <option value="1"> هونداي</option>
-                            </select>
-                            <input class="input" placeholder="Search here">
-                            <button class="search-btn">البحث</button>
-                        </form>
-                    </div>
+                <div class="col-md-12">
+                        <div class="s007">
+                            <form>
+                                <div class="inner-form">
+                                    <div class="basic-search">
+                                        <div class="input-field">
+                                            <div class="icon-wrap">
+                                                <img src="/assets/images/search.png"  width="30">
+                                            </div>
+                                            <input id="search" type="text" placeholder="بحث..." />
+                                            <div class="result-count">
+                                                <img src="/assets/images/Advanced_Search.png" onclick="myFunction()" width="30">بحث متقدم</div>
+                                        </div>
+                                    </div>
+                                    <div class="advance-search" id="myDIV">
+
+                                        <div class="row">
+                                            <div class="input-field">
+                                                <div class="input-select">
+                                                    <select data-trigger="" name="choices-single-defaul">
+                                                        <option placeholder="" value="">أختر نوع السيارة</option>
+                                                        <option>تيوتا</option>
+                                                        <option>بي ام دبليو</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="input-field">
+                                                <div class="input-select">
+                                                    <select data-trigger="" name="choices-single-defaul">
+                                                        <option placeholder="" value="">أختر اللون</option>
+                                                        <option>أحمر</option>
+                                                        <option>أبيض</option>
+                                                        <option>أزرق</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="input-field">
+                                                <div class="input-select">
+                                                    <select data-trigger="" name="choices-single-defaul">
+                                                        <option placeholder="" value="">المدينة</option>
+                                                        <option>المكلا</option>
+                                                        <option>عدن</option>
+                                                        <option>صنعاء</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row second">
+                                            <div class="input-field">
+                                                <div class="input-select">
+                                                    <select data-trigger="" name="choices-single-defaul">
+                                                        <option placeholder="" value="">نوع المركبة</option>
+                                                        <option>باص</option>
+                                                        <option>نقل ثقيل</option>
+                                                        <option>طايرة</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="input-field">
+                                                <div class="input-select">
+                                                    <select data-trigger="" name="choices-single-defaul">
+                                                        <option placeholder="" value="">توع الوقود</option>
+                                                        <option>بترول</option>
+                                                        <option>ديزيل</option>
+                                                        <option>كهرباء</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="input-field">
+                                                <div class="input-select">
+                                                    <select data-trigger="" name="choices-single-defaul">
+                                                        <option placeholder="" value="">حالة السيارة</option>
+                                                        <option>جديدة</option>
+                                                        <option>مستعملة</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row third">
+                                            <div class="input-field">
+                                                <button class="btn-search">بحث</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
                 </div>
                 <!-- /SEARCH BAR -->
 
                 <!-- ACCOUNT -->
-                <div class="col-md-3 clearfix parent-false-icon">
+                <div class="col-md-2 clearfix parent-false-icon">
                     <div class="header-ctn">
                         <!-- Wishlist -->
                             <div id="close">
@@ -245,6 +322,8 @@
 </div>
 </div>
 </footer>
+<script src="assets/js/choices.js"></script>
+<script src="assets/js/search.js"></script>
 <script src="/assets/js/header.js"></script>
 <script src="/assets/js/app.js"></script>
 
