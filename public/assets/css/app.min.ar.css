@@ -1,4 +1,5 @@
-@charset "UTF-8"; /*!
+@charset "UTF-8";
+@import url(../fonts/DIN.css);/*!
  * Bootstrap v5.0.2 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.
@@ -38,6 +39,7 @@
 *,
 ::after,
 ::before {
+    font-family: DIN-medium, sans-serif, Arial;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }

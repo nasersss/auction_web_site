@@ -43,12 +43,12 @@
             @endif
             <div class="card">
                 <div class="card-body">
-                    <div class="row mb-2">
+                    <!-- <div class="row mb-2">
                         <div class="col-sm-4">
                             <a href="javascript:void(0);" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i>اضافة مستخدم جديد</a>
                         </div>
 
-                    </div>
+                    </div> -->
 
                     <div class="table-responsive">
                         <table class="table table-centered table-striped dt-responsive nowrap w-100" id="products-datatable">

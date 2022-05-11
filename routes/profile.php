@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 // use App\Models\UserProfile;
+
+use App\Models\Bidding;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/profile', [UserProfileController::class,'show'])->name('profile');
@@ -26,3 +28,5 @@ Route::post('update_profile/{userProfile}', [UserProfileController::class, 'upda
 Route::get('/notActive', function () {
     return view('notActive');
 })->name('notActive');
+
+Route::post('/bidding', [BiddingController::class, 'store'])->name('bidding');

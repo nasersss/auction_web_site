@@ -6,8 +6,7 @@
     <meta charset="utf-8" />
     <title>تسجيل الدخول</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Coderthemes" name="author" />
+
     <!-- App favicon -->
     {{-- <link rel="shortcut icon" href="assetsassets/images/favicon.ico"> --}}
 
@@ -35,6 +34,12 @@
                             <span><img src="assets/images/logo.png" alt=""></span>
                         </a>
                     </div>
+                    @if(session()->has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <strong>{{ session()->get('error') }} </strong>
+                    </div>
+                    @endif
 
                     <!-- title-->
                     <h4 class="mt-1 heading">تسجيل الدخول</h4>
@@ -46,7 +51,7 @@
                         <div class="mb-3">
                             <label for="emailaddress" class="form-label">البريد الاكتروني</label>
                             <input class="form-control" type="email" id="emailaddress" required="" placeholder="ادخل بريدك الاكتروني" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
-                            
+
                             @error('email')
                             <div class="alert alert-danger" role="alert">
                                 <strong> خطأ -</strong>{{ $message }}
@@ -97,10 +102,10 @@
 
                     <!-- Footer-->
                     <footer class="footer footer-alt">
-                    @if (Route::has('password.request'))
-                                                                                            <!-- {{ route('password.request') }} -->
+                        @if (Route::has('password.request'))
+                        <!-- {{ route('password.request') }} -->
                         <p class="text-muted">لا تمتلك اي حساب قم بانشاء حسابك الان ؟ <a href="{{ route('register') }}" class="text-muted ms-1"><b>انشاء حساب</b></a></p>
-                    @endif
+                        @endif
                     </footer>
 
                 </div> <!-- end .card-body -->

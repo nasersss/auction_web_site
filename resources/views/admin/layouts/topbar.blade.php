@@ -107,7 +107,14 @@
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
-                    <img src="@isset(Auth::user()->profile->image){{Auth::user()->profile->image}}@endisset" alt="user-image" class="rounded-circle">
+                    <img src="
+                       @isset(Auth::user()->profile->image)
+                    {{Auth::user()->profile->image}}
+                    @else
+                        images/users/defaultImage.png
+
+                    @endisset
+                   " alt="user-image" class="rounded-circle">
                 </span>
                 <span>
                     <span class="account-user-name">{{ Auth::user()->name }}</span>
@@ -128,16 +135,13 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                 <!-- item-->
-                <a href="{{route('profile')}}" class="dropdown-item notify-item">
+                <a href="{{route('edit_profile',Auth::user()->id)}}" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-circle me-1"></i>
-                    <span>حسابي</span>
+                    <span>إعدادات الحساب</span>
                 </a>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="mdi mdi-account-edit me-1"></i>
-                    <span>إعدادت الحساب</span>
-                </a>
+
                 <!-- item-->
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="dropdown-item notify-item">

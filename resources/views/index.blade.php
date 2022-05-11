@@ -313,6 +313,8 @@
 	<div class="row" id="ads">
     <!-- Category Card -->
 
+
+    @if($auctions!=null)
     @foreach($auctions as $auction)
 
 
@@ -322,7 +324,15 @@
             <div class="card-image">
                 <span class="card-notify-badge"> </span>
                 <span class="card-notify-year"></span>
-                <img class="img-fluid" src="assets/images/mobile_listing_main_01.jpg" alt="Alternate Text" />
+                @foreach($auction->auctionImage as $image)
+                @php
+                $im = explode('_',$image->image);
+                @endphp
+                @if($im[1]=='main')
+                      <img class="img-fluid" src="{{$image->image}}" alt="" />
+                @endif
+                
+                @endforeach
             </div>
             <div class="card-image-overlay m-auto">
                 <span class="card-detail-badge">{{ $auction->model }}</span>
@@ -344,6 +354,9 @@
 
 
     @endforeach
+    @else
+    <h1>لاتوجد مزادات حالية</h1>
+    @endisset
 
 
 </div>

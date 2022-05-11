@@ -8,7 +8,7 @@ of Requirements for Web Bootcamp
  in Rowad Coding Academy  
 
 ## Team work
-1. Murad Al-Amudi
+1. Fuad Al-amoudi
 2. Abdurhman 
 3. Sameeh Edrees
 4. Mohammed Zobair 

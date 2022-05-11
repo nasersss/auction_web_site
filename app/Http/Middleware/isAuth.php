@@ -7,8 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
-class SuperAdmin
+class Admin
 {
     /**
      * Handle an incoming request.
@@ -20,22 +19,21 @@ class SuperAdmin
     public function handle(Request $request, Closure $next)
     {
         // $destinations = [
-        //     1 => 'admin',
+        //     0 => 'superAdmin',
         //     2 => 'index',
         // ];
         // if (!Auth::check()) {
         //     return redirect()->route('login');
         // }
 
-        // if (Auth::user()->role != 0) {
+        // if (Auth::user()->role != 1) {
         //     return redirect()->route($destinations[Auth::user()->role]);
         // }
-        // return $next($request);
-        $user = new User();
-        if ($user->isSuperAdmin()) {
+        if (Auth::check()) {
             return $next($request);
         }else{
             return redirect()->route('login')->with(['error' => 'عذرا لا تملك الصلاحية لدخول هذه الصفخة يرجا تسجيل الدخول او انشاء حساب']);
         }
+        // return $next($request);
     }
 }

@@ -77,9 +77,10 @@ class AuctionController extends Controller
                 $auctionImage->is_active = -1;
                 $auctionImage->auction_id = $auctionInfo->id;
                 if($auctionImage->save()){
-                    return response($auctionInfo);
+                    // return response($auctionInfo);
                 }
             }
+            return redirect()->route('view_action')->with(['success' => 'تم تحديث البيانات بنجاح']);
         }
 
         // return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
@@ -89,7 +90,7 @@ class AuctionController extends Controller
     public function uploadFile($file, $id)
     {
         $destination = public_path() . "/images/auction";
-        $fileName = $id . "_" . time() . "_" .  $file->getClientOriginalName();
+        $fileName = $id . "_" . time() . "_" . random_int(10000,100000) . "_" . $file->getClientOriginalName();
         $file->move($destination, $fileName);
         return $fileName;
     }

@@ -9,9 +9,20 @@ class auction extends Model
 {
     use HasFactory;
 
+
+    public function getImageAttribute($value){
+        return url("images/auction/")."/".$value;
+
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class,'seller_id');
+    }
+
+    public function bidding()
+    {
+        return $this->hasMany(BiddingController::class,'user_id');
     }
 
     public function category()
