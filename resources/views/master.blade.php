@@ -18,8 +18,8 @@
 
                         </a>
                     </div>
-                    <li><a href="{{ route('home') }}">الرئيسة</a></li>
-                    <li><a href="{{ route('auction') }}">المزادات </a></li>
+                    <li><a href="{{ route('view_action') }}">الرئيسة</a></li>
+                    <li><a href="{{ route('auction_review') }}">المزادات </a></li>
                     <li><a href="#">الفئات</a></li>
                     <li><a href="{{  route('view_policies')}}">الاسئلة الشائعة</a></li>
                     <li><a href="{{  route('ContactUs')}}">تواصل معنا</a></li>
