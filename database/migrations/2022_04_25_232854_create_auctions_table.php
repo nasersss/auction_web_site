@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->double('odometer');//المسافة المقطوعة
             $table->string('damage');// الاضرار
-            $table->string('vehicle_type');
+            $table->unsignedBigInteger('vehicle_type_id'); // نوع المركبة
             $table->string('name');// مثل هيلوكس
             $table->string('model');// مثل السنة 2005 | 2020
             $table->string('state');//new or old
@@ -37,6 +37,7 @@ return new class extends Migration
             $table->string('fuel');// نوع الوقود
             $table->foreign('seller_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('vehicle_type_id')->references('id')->on('vehicle_types');
             $table->timestamps();
         });
     }

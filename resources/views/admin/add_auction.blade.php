@@ -81,7 +81,15 @@
                             <h4 class="header-title">المعلومات الفنية</h4>
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">نوع المركبة</label>
-                                <input required name="vehicle_type" type="text" class="form-control" id="inputAddress" placeholder="مثال باص ...">
+                                <!-- <input required name="vehicle_type" type="text" class="form-control" id="inputAddress" placeholder="مثال باص ..."> -->
+                                <select required name="vehicle_type" class="form-select mb-3">
+                                    <option selected disabled>أختر احدى الانوع</option>
+                                    @foreach($vehicleTypes as $vehicleType)
+                                    <option value="{{$vehicleType->id}}">{{$vehicleType->name}}</option>
+                                    <!-- <option value="2">بي أم دبليو</option>
+                                    <option value="3">فيراري</option> -->
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">نوع الوقود</label>
@@ -109,14 +117,14 @@
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">المسافة المقطوعة</label>
-                                <input required name="odometer" type="text" class="form-control" id="inputAddress" placeholder="مثال 5000KM ...">
+                                <input required name="odometer" type="number" class="form-control" id="inputAddress" placeholder="مثال 5000KM ...">
                             </div>
 
 
 
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">السعر المبدئي</label>
-                                <input required name="stare_price" type="text" class="form-control" id="inputAddress" placeholder="مثال 2000$ ...">
+                                <input required name="stare_price" type="number" class="form-control" id="inputAddress" placeholder="مثال 2000$ ...">
                             </div>
 
                             <!-- <div class="mb-1 col-md-1">
@@ -131,7 +139,7 @@
                             
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">أقل قيمة للمزيادة</label>
-                                <input required name="min_bid" type="text" class="form-control" id="inputAddress" placeholder="مثال 200$ ...">
+                                <input required name="min_bid" type="number" class="form-control" id="inputAddress" placeholder="مثال 200$ ...">
                             </div>
 
                             <div class="mb-1 col-md-6">
