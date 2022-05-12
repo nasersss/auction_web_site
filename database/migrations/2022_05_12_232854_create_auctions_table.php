@@ -31,13 +31,15 @@ return new class extends Migration
             $table->string('stare_price');
             $table->string('min_bid');
             $table->string('curren_price')->nullable();
-            $table->string('address');
+            // $table->string('address');
+            $table->unsignedBigInteger("city_id");
             $table->timestamp('date_of_end_auction');
             $table->integer('number_of_participate');
             $table->string('fuel');// نوع الوقود
             $table->foreign('seller_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('vehicle_type_id')->references('id')->on('vehicle_types');
+            $table->foreign('city_id')->references('id')->on('cities');
             $table->timestamps();
         });
     }

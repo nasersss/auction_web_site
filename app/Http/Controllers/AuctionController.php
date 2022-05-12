@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\auction;
 use App\Models\AuctionImage;
 use App\Models\category;
+use App\Models\City;
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\VehicleType;
@@ -32,12 +33,17 @@ class AuctionController extends Controller
     public function create()
     {
         $category = category::get();
-        $vehicleType = VehicleType::get();
-        return view('admin/add_auction')->with([
-            'categories' => $category,
-            'vehicleTypes' => $vehicleType
-        ]);
+        $city = City::with("state")->get();
+        return response($city);
+        // $vehicleType = VehicleType::get();
+        // return view('admin/add_auction')->with([
+        //     'categories' => $category,
+        //     'vehicleTypes' => $vehicleType,
+        //     'cities' =>$city,
+        //     'cities' =>$city,
+        // ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -66,7 +72,7 @@ class AuctionController extends Controller
         $auctionInfo->curren_price = $request->stare_price;
         $auctionInfo->number_of_participate = 0;
         $auctionInfo->fuel = $request->fuel;
-        $auctionInfo->address = $request->address;
+        $auctionInfo->city_id = $request->address;
         $auctionInfo->date_of_end_auction = $request->date_of_end_auction;
         // $auctionInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image'), $auctionInfo->category_id) : "defaultImage.png";
         if ($auctionInfo->save()) {

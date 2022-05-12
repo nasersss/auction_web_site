@@ -206,7 +206,7 @@
                             @if($auctions->state==1)
                             {{ "مستخدم" }}
                             @else
-                            {{ جديد }}
+                            {{ "جديد" }}
                             @endif
                             @endisset
                         </span>
@@ -285,12 +285,35 @@
                 <div class="action-card mt-2">
                     <div class="action-head">الاشتراك في المزاد</div>
                     <div class="action-body">
-                        <form method="post" action="{{route('bidding')}}" enctype="multipart/form-data">
+                        <form name="amountForm" method="post" action="{{route('bidding')}}" enctype="multipart/form-data" >
                             @csrf
-                            <input type="text" required id="amount" name="amount" placeholder="ادخل مبلغ للاشتراك في المزاد">
+                            <input type="text" required  id="amount" name="amount" placeholder="ادخل مبلغ للاشتراك في المزاد">
                             <input type="hidden" name="auction_id" value="{{$auctions->id}}">
-                            <input type="submit" value="مزايدة" class="btn">
+                            <input type="submit" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" >
                         </form>
+
+
+                          <!-- Modal -->
+                      <div id=myModel >
+                          <div class="model-header">
+                            <i class="fas fa-times"></i>
+                                                  </div>
+<div class="model-body">
+هل انت متاكد انك تريد ان تزايد بمبلغ
+
+</div>
+<div class="model-footer">
+    <button id="ok" class=" btn btn-success">
+تاكيد المزايدة
+    </button>
+
+    <button id="console" class="btn btn-secondary">
+الغاء
+    </button>
+
+
+</div>
+                      </div>
                     </div>
                 </div>
                 <div id="msg" class="alert alert-danger">
@@ -300,9 +323,18 @@
 
         </div>
     </div>
+
+
     @endsection
     <script src="/assets/js/jquery.min.js"></script>
-    <script src="/public/assets/js/app.js"></script>
+
+
+    <script src="/assets/js/bootstrap.bundle.js"></script>
+    <script src="/assets/js/vendor.min.js"></script>
+
+
+
+
 </body>
 
 </html>

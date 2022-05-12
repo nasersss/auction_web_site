@@ -202,3 +202,33 @@ opacity: .5;
 #msg{
     display: none;
 }
+#myModel{
+    display: none;
+    position: fixed;
+    width: 23%;
+    height: 22%;
+    background-color: #fff;
+    border-radius: 5px;
+    z-index: 1000;
+    top: 25%;
+    right: 39%;
+}
+#myModel .model-header{
+    display: flex;
+    padding: 10px;
+    justify-items: center;
+    justify-content: end;
+    border-bottom: 1px solid #222;
+
+
+
+}
+#myModel .model-body{
+    padding: 10px;
+    font-size: 18px;
+
+}
+#myModel .model-footer{
+    padding: 8px 5px;
+
+}

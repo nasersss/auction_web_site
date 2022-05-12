@@ -89,6 +89,33 @@
                     </ul>
                 </div>
             </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages" class="side-nav-link">
+                    <i class="uil-envelope"></i>
+                    <span> العنوان </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarPages">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('add_state') }}"> اضافة محافظة</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('list_state') }}">عرض المحافظات </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('add_city')}}"> اضافة مدينة</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('list_City')}}"> عرض المدن</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarTasks" aria-expanded="false" aria-controls="sidebarTasks" class="side-nav-link">
                     <i class="uil-car"></i>

@@ -143,7 +143,7 @@
                                     <option value="1">ريال يمني</option>
                                     <option value="2">ريال سعيودي</option>
                                     <option value="3">دولار امريكي</option>
-                                </select>                            
+                                </select>
                             </div> -->
 
                         <div class="mb-1 col-md-6">
