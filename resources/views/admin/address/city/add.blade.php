@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('title')
-    أضافة محافظة
+    أضافة مدينة
 
 @endsection
 
@@ -9,18 +9,18 @@
 
 @endsection
 @section('breadcrumb-item')
-   المحافظات
+المدن
 @endsection
 @section('breadcrumb-item2')
-    إضافة محافظة جديد
+    إضافة مدينة جديد
 @endsection
 
 @section('breadcrumb-item-active')
-    المحافظات
+    المدن
 @endsection
 
 @section('page-title')
-    أضافة محافظة
+    أضافة مدينة
 @endsection
 
 @section('content')
@@ -44,7 +44,7 @@
                             @endif
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{ route('store_state') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route("store_city") }}" enctype="multipart/form-data">
                         @csrf
                     <div class="row">
                         <div class="mb-3 col-md-6">

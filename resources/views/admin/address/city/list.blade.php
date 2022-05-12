@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('title')
-    عرض المحافظات
+    عرض المدن
 
 @endsection
 
@@ -9,18 +9,18 @@
 
 @endsection
 @section('breadcrumb-item')
-    المحافظات
+    المدن
 @endsection
 @section('breadcrumb-item2')
-    عرض المحافضات
+    عرض المدن
 @endsection
 
 @section('breadcrumb-item-active')
-    المحافظات
+المدن
 @endsection
 
 @section('page-title')
-    عرض المحافظات
+    عرض المدن
 @endsection
 
 @section('content')
@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-sm-4">
-                            <a href="{{ route('add_city') }}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i>إضافة محافظة جديدة</a>
+                            <a href="{{ route('add_city') }}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i>إضافة مدينة جديدة</a>
                         </div>
 
                     </div>
@@ -75,8 +75,8 @@
 
 
                                 <td>
-                                    <a href="{{ route("edit_state",$city->id) }}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                    <a href="{{ route("toggle_state",$city->id) }}" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    <a href="{{ route("edit_city",$city->id) }}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                    <a href="{{ route("toggle_city",$city->id) }}" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                 </td>
                             </tr>
                             @endforeach

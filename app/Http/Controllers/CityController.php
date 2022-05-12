@@ -34,7 +34,7 @@ class CityController extends Controller
         $city->state_id = $request->state_id;
         $city->is_active = $request->is_active;
         if ($city->save())
-            return redirect()->route('list_status')->with(['success' => 'تم اضافة البيانات بنجاح']);
+            return redirect()->route('list_City')->with(['success' => 'تم اضافة البيانات بنجاح']);
 
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
@@ -43,5 +43,42 @@ class CityController extends Controller
         $city=City::with("state")->get();
         return view("admin.address.city.list")->with("city",$city);
 
+        }
+
+        public function toggle($cityId)
+        {
+
+            $city = City::find($cityId);
+            $city->is_active *= -1;
+            if ($city->save())
+                return back()->with(['success' => 'تم تحديث البيانات بنجاح']);
+
+            return back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
+
+
+
+        public function edit($cityId)
+        {
+            //
+            $city = City::with("state")->find($cityId);
+            $state=State::get();
+           // return response($city);
+            return view('admin.address.city.edit')
+                ->with(['city'=> $city,'state'=>$state]);
+        }
+
+
+        public function update(Request $request, $cityId)
+        {
+            //
+            $city = City::find($cityId);
+            $city->name = $request->name;
+            $city->state_id = $request->state_id;
+            $city->is_active = $request->is_active;
+            if ($city->save())
+                return redirect()->route('list_City')->with(['success' => 'تم تحديث البيانات بنجاح']);
+
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
 }

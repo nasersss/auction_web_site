@@ -123,7 +123,7 @@ Route::get('list_state',[StateController::class,'listState'])->name('list_state'
 
 Route::get('/add_city',[CityController::class,"create"])->name("add_city");
 Route::post('/save_city',[CityController::class,"store"])->name("store_city");
-Route::get('edit_state/{stateId}',[StateController::class,'edit'])->name('edit_state');
-Route::post('update_state/{stateId}',[StateController::class,'update'])->name('update_state');
-Route::get('toggle_state/{stateId}',[StateController::class,'toggle'])->name('toggle_state');
+Route::get('edit_city/{cityId}',[CityController::class,'edit'])->name('edit_city');
+Route::post('update_city/{cityId}',[CityController::class,'update'])->name('update_city');
+Route::get('toggle_city/{cityId}',[CityController::class,'toggle'])->name('toggle_city');
 Route::get('list_city',[CityController::class,'listCity'])->name('list_City');
