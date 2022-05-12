@@ -6,6 +6,7 @@ use App\Models\auction;
 use App\Models\AuctionImage;
 use App\Models\category;
 use App\Models\City;
+use App\Models\State;
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\VehicleType;
@@ -33,15 +34,14 @@ class AuctionController extends Controller
     public function create()
     {
         $category = category::get();
-        $city = City::with("state")->get();
-        return response($city);
-        // $vehicleType = VehicleType::get();
-        // return view('admin/add_auction')->with([
-        //     'categories' => $category,
-        //     'vehicleTypes' => $vehicleType,
-        //     'cities' =>$city,
-        //     'cities' =>$city,
-        // ]);
+        $state = State::with("city")->get();
+        // return response($state);
+        $vehicleType = VehicleType::get();
+        return view('admin/add_auction')->with([
+            'categories' => $category,
+            'vehicleTypes' => $vehicleType,
+            'states' =>$state,
+        ]);
     }
 
 

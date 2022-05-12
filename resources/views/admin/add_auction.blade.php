@@ -93,11 +93,13 @@
                             <!-- <input required name="vehicle_type" type="text" class="form-control" id="inputAddress" placeholder="مثال باص ..."> -->
                             <select required name="vehicle_type" class="form-select mb-3">
                                 <option selected disabled>أختر احدى الانوع</option>
+                                @isset($vehicleTypes)
                                 @foreach($vehicleTypes as $vehicleType)
                                 <option value="{{$vehicleType->id}}">{{$vehicleType->name}}</option>
                                 <!-- <option value="2">بي أم دبليو</option>
                                     <option value="3">فيراري</option> -->
                                 @endforeach
+                                @endisset
                             </select>
                         </div>
                         <div class="mb-1 col-md-6">
@@ -155,35 +157,41 @@
                             <label for="inputAddress" class="form-label">نوع القير</label>
                             <select required name="ger_type" class="form-select mb-3">
                                 <option selected disabled>أختر احدى الانوع</option>
-                                <option value="1">عادي</option>
-                                <option value="2">تماتيك</option>
-                                <option value="3">عادي واتماتيك</option>
+                                <option value="عادي">عادي</option>
+                                <option value="تماتيك">تماتيك</option>
+                                <option value="عادي واتماتيك">عادي واتماتيك</option>
                             </select>
                         </div>
                         <div class="mb-1 col-md-3">
                             <label for="inputAddress" class="form-label">مكان السيارة الحالي</label>
 <!--                             <input name="address" type="text" class="form-control" id="inputAddress" placeholder="مثال حضرموت-المكلا...">
  -->                            <select required id='state' name="state" class="form-select mb-3">
-                                <option selected disabled>أختر احدى الانوع</option>
-                                <option value="1">حضرموت</option>
-                                <option value="2">صنعاء</option>
-                                <option value="3">تعز</option>
+                                <option selected disabled>أختر محافظة</option>
+                                @isset($states)
+                                @foreach($states as $state)
+                                <option value="{{$state->id}}">{{$state->name}}</option>
+                                @endforeach
+                                @endisset
                             </select>
                         </div>
                         <div class="mb-1 col-md-3">
                             <label for="inputAddress" class="form-label">مكان السيارة الحالي</label>
                             <select  required name="address" id='city' class="form-select mb-3">
-                                <option selected disabled>أختر احدى الانوع</option>
-                                <option style="display: none;" class="citys state-1" value="1">مكلا</option>
-                                <option style="display: none;" class="citys state-1" value="2">سيؤون</option>
-                                <option style="display: none;" class="citys state-3" value="3">تعز</option>
+                                <option selected disabled>أختر مدينة</option>
+                                @isset($states)
+                                @foreach($states as $state)
+                                @foreach($state->city as $city)
+                                <option style="display: none;" class="citys state-{{$city->state_id}}" value="{{$city->id}}">{{$city->name}}</option>
+                                @endforeach
+                                @endforeach
+                                @endisset
                             </select>
                         </div>
                         <script>
                             const states = document.getElementById('state');
                             const city = document.getElementById('city');
                             states.addEventListener('change',function(){
-                                city.value='أختر احدى الانوع';
+                                city.value='أختر مدينة ';
                                 var citys = document.getElementsByClassName('citys');
                                 for (let index = 0; index < citys.length; index++) {
                                     citys[index].style.display='none';

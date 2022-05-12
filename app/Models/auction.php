@@ -20,6 +20,11 @@ class auction extends Model
         return $this->belongsTo(User::class,'seller_id');
     }
 
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
     public function vehicleType()
     {
         return $this->belongsTo(VehicleType::class);
