@@ -107,7 +107,7 @@
                                                 <img src="/assets/images/Advanced_Search.png"  width="30">بحث متقدم</div>
                                         </div>
                                     </div>
-                                    <div class="advance-search" id="myDIV">
+                                    <div class="advance-search" >
 
                                         <div class="row">
                                             <div class="input-field">
