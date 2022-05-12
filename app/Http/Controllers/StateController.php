@@ -35,7 +35,7 @@ class StateController extends Controller
         $state->name = $request->name;
         $state->is_active = $request->is_active;
         if ($state->save())
-            return redirect()->route('list_status')->with(['success' => 'تم اضافة البيانات بنجاح']);
+            return redirect()->route('list_state')->with(['success' => 'تم اضافة البيانات بنجاح']);
 
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }

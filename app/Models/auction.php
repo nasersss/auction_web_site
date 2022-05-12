@@ -9,15 +9,25 @@ class auction extends Model
 {
     use HasFactory;
 
-
+    
     public function getImageAttribute($value){
         return url("images/auction/")."/".$value;
 
     }
-
+    
     public function user()
     {
         return $this->belongsTo(User::class,'seller_id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function vehicleType()
+    {
+        return $this->belongsTo(VehicleType::class);
     }
 
     public function bidding()

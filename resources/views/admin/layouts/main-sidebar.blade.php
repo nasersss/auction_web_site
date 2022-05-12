@@ -27,7 +27,7 @@
 
             <li class="side-nav-title side-nav-item">لوحة التحكم</li>
             <li class="side-nav-item">
-                <a href="{{route('dash-home')}}" class="side-nav-link">
+                <a href="{{route('view_action')}}" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span>الرئيسية</span>
                 </a>
@@ -138,12 +138,12 @@
                 </div>
             </li>
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarTasks" aria-expanded="false" aria-controls="sidebarTasks" class="side-nav-link">
+                <a data-bs-toggle="collapse" href="#sidebarLayouts" aria-expanded="false" aria-controls="sidebarLayouts" class="side-nav-link">
                     <i class="uil-car"></i>
                     <span>سياسات الموقع </span>
                     <span class="menu-arrow"></span>
                 </a>
-                <div class="collapse" id="sidebarTasks">
+                <div class="collapse" id="sidebarLayouts">
                     <ul class="side-nav-second-level">
                         <li>
                             <a href="{{route('list_policies')}}">عرض السياسات</a>

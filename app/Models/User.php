@@ -46,7 +46,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
     public function Policies(){
-        return $this->hasMany(Product::class,'user_id');}
+        return $this->hasMany(Product::class,'user_id');
+    }
 
     public function profile()
     {

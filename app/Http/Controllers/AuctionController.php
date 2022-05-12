@@ -6,10 +6,14 @@ use App\Models\auction;
 use App\Models\AuctionImage;
 use App\Models\category;
 use App\Models\City;
+use App\Models\State;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\VehicleType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuctionController extends Controller
 {
@@ -30,9 +34,14 @@ class AuctionController extends Controller
     public function create()
     {
         $category = category::get();
-        $city = City::with("state")->get();
-      // return response($city);
-        return view('admin/add_auction')->with(['category' => $category, 'city' => $city]);
+        $state = State::with("city")->get();
+        // return response($state);
+        $vehicleType = VehicleType::get();
+        return view('admin/add_auction')->with([
+            'categories' => $category,
+            'vehicleTypes' => $vehicleType,
+            'states' =>$state,
+        ]);
     }
 
 
@@ -51,7 +60,7 @@ class AuctionController extends Controller
         $auctionInfo->category_id = $request->category_id;
         $auctionInfo->odometer = $request->odometer;
         $auctionInfo->damage = $request->damage;
-        $auctionInfo->vehicle_type = $request->vehicle_type;
+        $auctionInfo->vehicle_type_id = $request->vehicle_type;
         $auctionInfo->name = $request->name;
         $auctionInfo->model = $request->model;
         $auctionInfo->state = $request->state;
@@ -172,11 +181,24 @@ class AuctionController extends Controller
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
-    public function viewAuction()
+    public function viewAuction(Request $request)
     {
-        $auction = auction::with("auctionImage")->get();
         // return response($auction);
-        return view("index")->with("auctions", $auction);
+        // dd($request->method());
+        $category = category::get();
+        if ($request->method()=='GET') {
+            $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active',1)->orderBy('created_at','desc')->paginate(9);
+            return view("index")->with(["auctions" => $auction , 'categories'=>$category ]);
+            // return response($auction);
+        } else {
+            $category_id = '*';
+            if (isset($request->category_id)) {
+                $category_id = $request->category_id;
+            }
+            $auction = auction::with("auctionImage")->where("category_id", $category_id)->get();
+            // return view("index")->with(["auctions" => $auction , 'categories'=>$category, 'request',$request]);
+            return response('1');
+        }
     }
 
 

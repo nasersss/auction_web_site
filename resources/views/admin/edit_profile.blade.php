@@ -39,7 +39,7 @@
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">الصورة الشخصية</label>
-                                <input class="form-control" name='image' type="file" id="formFileMultiple">
+                                <input class="form-control" name='image' type="file" accept="image/*" id="formFileMultiple">
                             </div>
                             <!-- <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">البريد الالكتروني</label>
