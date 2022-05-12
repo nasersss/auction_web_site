@@ -331,7 +331,7 @@
                 @if($im[1]=='main')
                       <img class="img-fluid" src="{{$image->image}}" alt="" />
                 @endif
-                
+
                 @endforeach
             </div>
             <div class="card-image-overlay m-auto">

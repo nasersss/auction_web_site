@@ -41,7 +41,7 @@
                                 <label for="inputAddress" class="form-label">نوع السيارة</label>
                                 <select required name="category_id" class="form-select mb-3">
                                     <option selected disabled>أختر احدى الانوع</option>
-                                    @foreach($categories as $category)
+                                    @foreach($category as $category)
                                     <option value="{{$category->id}}">{{$category->name}}</option>
                                     <!-- <option value="2">بي أم دبليو</option>
                                     <option value="3">فيراري</option> -->
@@ -126,9 +126,9 @@
                                     <option value="1">ريال يمني</option>
                                     <option value="2">ريال سعيودي</option>
                                     <option value="3">دولار امريكي</option>
-                                </select>                            
+                                </select>
                             </div> -->
-                            
+
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">أقل قيمة للمزيادة</label>
                                 <input required name="min_bid" type="text" class="form-control" id="inputAddress" placeholder="مثال 200$ ...">
@@ -145,7 +145,27 @@
                             </div>
                         <div class="mb-1 col-md-6">
                             <label for="inputAddress" class="form-label">مكان السيارة الحالي</label>
-                            <input  name="address" type="text" class="form-control" id="inputAddress" placeholder="مثال حضرموت-المكلا...">
+                            <select required name="address" class="form-select mb-3">
+                                <option selected disabled>أختر المحافظة </option>
+                                @foreach($city as $city)
+                                <option value="{{$city->state->id}}">{{$city->state->name}}</option>
+                                <!-- <option value="2">بي أم دبليو</option>
+                                <option value="3">فيراري</option> -->
+                                @endforeach
+                            </select>
+
+                            <select required name="address" class="form-select mb-3">
+                                <option selected disabled>أختر المدينة </option>
+                                @isset($city)
+
+
+                                @foreach($city as $city)
+                                <option value="{{$city->id}}">{{$city->name}}</option>
+                                <!-- <option value="2">بي أم دبليو</option>
+                                <option value="3">فيراري</option> -->
+                                @endforeach
+                                @endisset
+                            </select>
                         </div>
 
 

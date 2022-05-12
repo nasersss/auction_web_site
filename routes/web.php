@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\UserProfile;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -108,4 +109,21 @@ Route::get('detail_car/{carId}',[AuctionController::class,"detailAuction"])->nam
 Route::get('/auction_review',[AuctionController::class,"auctionReview"])->name("auction_review");
 Route::get('/toggle_auctions/{auctionId}',[AuctionController::class,"toggle"])->name("toggle_auction");
 
+############## route address
+############## route state
+Route::get('/add_state',[StateController::class,"create"])->name("add_state");
+Route::post('/save_state',[StateController::class,"store"])->name("store_state");
+Route::get('edit_state/{stateId}',[StateController::class,'edit'])->name('edit_state');
+Route::post('update_state/{stateId}',[StateController::class,'update'])->name('update_state');
+Route::get('toggle_state/{stateId}',[StateController::class,'toggle'])->name('toggle_state');
+Route::get('list_state',[StateController::class,'listState'])->name('list_state');
 
+
+############## route city
+
+Route::get('/add_city',[CityController::class,"create"])->name("add_city");
+Route::post('/save_city',[CityController::class,"store"])->name("store_city");
+Route::get('edit_state/{stateId}',[StateController::class,'edit'])->name('edit_state');
+Route::post('update_state/{stateId}',[StateController::class,'update'])->name('update_state');
+Route::get('toggle_state/{stateId}',[StateController::class,'toggle'])->name('toggle_state');
+Route::get('list_city',[CityController::class,'listCity'])->name('list_City');

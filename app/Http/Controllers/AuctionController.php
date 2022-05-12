@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\auction;
 use App\Models\AuctionImage;
 use App\Models\category;
+use App\Models\City;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
@@ -28,9 +29,12 @@ class AuctionController extends Controller
      */
     public function create()
     {
-        $category=category::get();
-        return view('admin/add_auction')->with('categories',$category);
+        $category = category::get();
+        $city = City::with("state")->get();
+      // return response($city);
+        return view('admin/add_auction')->with(['category' => $category, 'city' => $city]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -59,7 +63,7 @@ class AuctionController extends Controller
         $auctionInfo->curren_price = $request->stare_price;
         $auctionInfo->number_of_participate = 0;
         $auctionInfo->fuel = $request->fuel;
-        $auctionInfo->address = $request->address;
+        $auctionInfo->city_id = $request->address;
         $auctionInfo->date_of_end_auction = $request->date_of_end_auction;
         // $auctionInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image'), $auctionInfo->category_id) : "defaultImage.png";
         if ($auctionInfo->save()) {
@@ -76,7 +80,7 @@ class AuctionController extends Controller
                 $auctionImage->image = $this->uploadFile($image, $auctionInfo->id);
                 $auctionImage->is_active = -1;
                 $auctionImage->auction_id = $auctionInfo->id;
-                if($auctionImage->save()){
+                if ($auctionImage->save()) {
                     // return response($auctionInfo);
                 }
             }
@@ -90,7 +94,7 @@ class AuctionController extends Controller
     public function uploadFile($file, $id)
     {
         $destination = public_path() . "/images/auction";
-        $fileName = $id . "_" . time() . "_" . random_int(10000,100000) . "_" . $file->getClientOriginalName();
+        $fileName = $id . "_" . time() . "_" . random_int(10000, 100000) . "_" . $file->getClientOriginalName();
         $file->move($destination, $fileName);
         return $fileName;
     }
@@ -168,23 +172,26 @@ class AuctionController extends Controller
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
-    public function viewAuction(){
-        $auction=auction::with("auctionImage")->get();
-// return response($auction);
-        return view("index")->with("auctions",$auction);
+    public function viewAuction()
+    {
+        $auction = auction::with("auctionImage")->get();
+        // return response($auction);
+        return view("index")->with("auctions", $auction);
     }
 
 
-    public function detailAuction($carId){
-        $auctionCar=auction::with(["auctionImage","category"])->find($carId);
-// return response($auctionCar);
-        return view("detail")->with("auctions",$auctionCar);
+    public function detailAuction($carId)
+    {
+        $auctionCar = auction::with(["auctionImage", "category"])->find($carId);
+        // return response($auctionCar);
+        return view("detail")->with("auctions", $auctionCar);
     }
-// this function show list of all auctions
-    function auctionReview(){
+    // this function show list of all auctions
+    function auctionReview()
+    {
 
-        $auction=auction::with(["user","category","auctionImage"])->get();
-        return view("admin.auctions_review")->with("auctions",$auction);
+        $auction = auction::with(["user", "category", "auctionImage"])->get();
+        return view("admin.auctions_review")->with("auctions", $auction);
     }
 
     public function toggle($auctionId)

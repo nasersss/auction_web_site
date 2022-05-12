@@ -206,7 +206,7 @@
                             @if($auctions->state==1)
                             {{ "مستخدم" }}
                             @else
-                            {{ جديد }}
+                            {{ "جديد" }}
                             @endif
                             @endisset
                         </span>
