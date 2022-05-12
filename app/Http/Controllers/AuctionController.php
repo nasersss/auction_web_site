@@ -178,13 +178,20 @@ class AuctionController extends Controller
     public function viewAuction(Request $request)
     {
         // return response($auction);
-        $category=category::get();
-        if ($request===[]) {
-            $auction = auction::with("auctionImage")->where('is_active', 1)->where('date_of_end_auction', '>=', Carbon::now())->get();
+        // dd($request->method());
+        $category = category::get();
+        if ($request->method()=='GET') {
+            $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active',1)->orderBy('created_at','desc')->paginate(9);
             return view("index")->with(["auctions" => $auction , 'categories'=>$category ]);
-        } else{
-            $auction=auction::with("auctionImage")->where("category_id",$request->category_id)->get();
-            return view("index")->with(["auctions" => $auction , 'categories'=>$category, 'request',$request]);
+            // return response($auction);
+        } else {
+            $category_id = '*';
+            if (isset($request->category_id)) {
+                $category_id = $request->category_id;
+            }
+            $auction = auction::with("auctionImage")->where("category_id", $category_id)->get();
+            // return view("index")->with(["auctions" => $auction , 'categories'=>$category, 'request',$request]);
+            return response('1');
         }
     }
 

@@ -52,7 +52,7 @@
                         </div>
                             <div class="mb-3 col-md-3">
                                 <label for="inputAddress" class="form-label">شعار ماركة السيارة</label>
-                                <input class="form-control" type="file" name="image" id="formFileMultiple" multiple>
+                                <input class="form-control" type="file" accept="image/*" name="image" id="formFileMultiple" multiple>
                             </div>
                         <button type="submit" class="btn btn-primary">إضافة</button>
 
