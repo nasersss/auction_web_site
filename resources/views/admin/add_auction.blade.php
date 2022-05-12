@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="inputAddress" class="form-label">لون السيارة</label>
-                            <select required name="state" class="form-select mb-3">
+                            <select required name="color" class="form-select mb-3">
                                 <option selected disabled>أختر لون السيارة </option>
                                 <option value="أزرق">أزرق</option>
                                 <option value="أحمر">أحمر</option>
@@ -65,8 +65,8 @@
                             <label for="inputAddress" class="form-label">حالة السيارة</label>
                             <select required name="state" class="form-select mb-3">
                                 <option selected disabled>أختر حالة السيارة </option>
-                                <option value="1">مستخدم</option>
-                                <option value="2">جديد</option>
+                                <option value="مستخدم">مستخدم</option>
+                                <option value="جديد">جديد</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -106,10 +106,10 @@
                             <label for="inputAddress" class="form-label">نوع الوقود</label>
                             <select required name="fuel" class="form-select mb-3">
                                 <option selected disabled>أختر نوع الوقود </option>
-                                <option value="1">بترول</option>
-                                <option value="2">ديزيل</option>
-                                <option value="2">غاز</option>
-                                <option value="2">كهرباء</option>
+                                <option value="بترول">بترول</option>
+                                <option value="ديزيل">ديزيل</option>
+                                <option value="غاز">غاز</option>
+                                <option value="كهرباء">كهرباء</option>
                             </select>
                         </div>
 

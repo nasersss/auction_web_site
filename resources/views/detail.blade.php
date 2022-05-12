@@ -55,7 +55,7 @@
                                     @endisset </span></h4>
                             <h4><span>
                                     @isset($auctions->name)
-                                    {{ $auctions->address}}
+                                    {{ $auctions->city}}
                                     @endisset
                                 </span></h4>
 
@@ -203,11 +203,7 @@
                     <div class="detail-info-row">
                         <span> الحالة</span><span>
                             @isset($auctions->state)
-                            @if($auctions->state==1)
-                            {{ "مستخدم" }}
-                            @else
-                            {{ "جديد" }}
-                            @endif
+                            {{$auctions->state}}
                             @endisset
                         </span>
                     </div>
@@ -230,16 +226,8 @@
                     <div class="detail-info-row">
                         <span> نوع القير</span><span>
                             @isset($auctions->ger_type)
-                            @if($auctions->ger_type==1)
-                            {{ "عادي" }}
-
-                            @elseif($auctions->ger_type==2)
-                            {{ "اوتماتيك" }}
-
-
-                            @elseif($auctions->ger_type==3)
-                            {{ "عادي و اوتماتيك" }}
-                            @endif
+                            {{$auctions->ger_type}}
+                            
                             @endisset
                         </span>
                     </div>
@@ -255,19 +243,8 @@
                     <div class="detail-info-row">
                         <span> نوع الوقود</span><span>
                             @isset($auctions->fuel)
-                            @if($auctions->fuel==1)
-                            {{ "بترول" }}
-
-                            @elseif($auctions->fuel==2)
-                            {{ "ديزل" }}
-
-
-                            @elseif($auctions->fuel==3)
-                            {{ " غاز " }}
-
-                            @elseif($auctions->fuel==4)
-                            {{ " كهرباء" }}
-                            @endif
+                            {{$auctions->fuel}}
+                            
                             @endisset
                         </span>
                     </div>

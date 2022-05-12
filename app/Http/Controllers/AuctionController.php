@@ -60,7 +60,7 @@ class AuctionController extends Controller
         $auctionInfo->category_id = $request->category_id;
         $auctionInfo->odometer = $request->odometer;
         $auctionInfo->damage = $request->damage;
-        $auctionInfo->vehicle_type = $request->vehicle_type;
+        $auctionInfo->vehicle_type_id = $request->vehicle_type;
         $auctionInfo->name = $request->name;
         $auctionInfo->model = $request->model;
         $auctionInfo->state = $request->state;
