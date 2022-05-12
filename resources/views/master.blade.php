@@ -106,9 +106,8 @@
                                             <img src="/assets/images/Advanced_Search.png" width="30">بحث متقدم
                                         </div>
                                     </div>
-                                </div>
-                                <form action="{{route('view_action')}}" method="post">
-                                    <div class="advance-search" id="myDIV">
+                                    <div class="advance-search" >
+
                                         <div class="row">
                                             <div class="input-field">
                                                 <div class="input-select">

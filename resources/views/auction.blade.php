@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>المزادات </title>
-
+    <link href="assets/css/search.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/ionicons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -48,7 +48,97 @@
 
   </div> --}}
     <div class="container">
-        <h2 class="text-center">المزادات المتاحة</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="s007 mt-3">
+                    <form>
+                        <div class="inner-form">
+                            <div class="basic-search">
+                                <div class="input-field">
+                                    <div class="icon-wrap">
+                                        <img src="/assets/images/search.png"  width="30">
+                                    </div>
+                                    <input id="search" type="text" placeholder="بحث..." />
+                                    <div class="result-count" onclick="myFunction()">
+                                        <img src="/assets/images/Advanced_Search.png"  width="30">بحث متقدم</div>
+                                </div>
+                            </div>
+                            <div class="advance-search" id="myDIV">
+
+                                <div class="row">
+                                    <div class="input-field">
+                                        <div class="input-select">
+                                            <select data-trigger="" name="choices-single-defaul">
+                                                <option placeholder="" selected >أختر نوع السيارة</option>
+                                                <option>تيوتا</option>
+                                                <option>بي ام دبليو</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-field">
+                                        <div class="input-select">
+                                            <select data-trigger="" name="choices-single-defaul">
+                                                <option placeholder="" value="">أختر اللون</option>
+                                                <option>أحمر</option>
+                                                <option>أبيض</option>
+                                                <option>أزرق</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-field">
+                                        <div class="input-select">
+                                            <select data-trigger="" name="choices-single-defaul">
+                                                <option placeholder="" value="">المدينة</option>
+                                                <option>المكلا</option>
+                                                <option>عدن</option>
+                                                <option>صنعاء</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row second">
+                                    <div class="input-field">
+                                        <div class="input-select">
+                                            <select data-trigger="" name="choices-single-defaul">
+                                                <option placeholder="" value="">نوع المركبة</option>
+                                                <option>باص</option>
+                                                <option>نقل ثقيل</option>
+                                                <option>طايرة</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-field">
+                                        <div class="input-select">
+                                            <select data-trigger="" name="choices-single-defaul">
+                                                <option placeholder="" value="">توع الوقود</option>
+                                                <option>بترول</option>
+                                                <option>ديزيل</option>
+                                                <option>كهرباء</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-field">
+                                        <div class="input-select">
+                                            <select data-trigger="" name="choices-single-defaul">
+                                                <option placeholder="" value="">حالة السيارة</option>
+                                                <option>جديدة</option>
+                                                <option>مستعملة</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row third">
+                                    <div class="input-field">
+                                        <button class="btn-search">بحث</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
     <div class="row" id="ads">
         <!-- Category Card -->
 
@@ -71,7 +161,7 @@
               <h2 id="demo"> ينتهي المزاد بعد</h2>
 
                     </div>
-                    <a class="ad-btn" href="{{ route('details-car')}}">مشاهدة التفاصيل</a>
+                    <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
                 </div>
             </div>
         </div>
@@ -94,7 +184,7 @@
               <h2> ينتهي المزاد بعد</h2>
 
                     </div>
-                    <a class="ad-btn" href="{{  route('details-car')}}">مشاهدة التفاصيل</a>
+                    <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
                 </div>
             </div>
         </div>
@@ -119,7 +209,7 @@
              <div class="div" id="demo">
 
              </div>
-                    <a class="ad-btn" href="{{  route('details-car')}}">مشاهدة التفاصيل</a>
+                    <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
                 </div>
             </div>
         </div>
@@ -144,7 +234,7 @@
           <h2 id="demo"> ينتهي المزاد بعد</h2>
 
                 </div>
-                <a class="ad-btn" href="{{ url('/appear_detalis_2')}}">مشاهدة التفاصيل</a>
+                <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
             </div>
         </div>
     </div>
@@ -167,7 +257,7 @@
           <h2> ينتهي المزاد بعد</h2>
 
                 </div>
-                <a class="ad-btn" href="{{ url('/appear_detalis_1')}}">مشاهدة التفاصيل</a>
+                <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
             </div>
         </div>
     </div>
@@ -192,7 +282,7 @@
          <div class="div" id="demo">
 
          </div>
-                <a class="ad-btn" href="{{ url('/appear_detalis')}}">مشاهدة التفاصيل</a>
+                <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
             </div>
         </div>
     </div>
@@ -217,7 +307,7 @@
           <h2 id="demo"> ينتهي المزاد بعد</h2>
 
                 </div>
-                <a class="ad-btn" href="{{ url('/appear_detalis_2')}}">مشاهدة التفاصيل</a>
+                <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
             </div>
         </div>
     </div>
@@ -240,7 +330,7 @@
           <h2> ينتهي المزاد بعد</h2>
 
                 </div>
-                <a class="ad-btn" href="{{ url('/appear_detalis_1')}}">مشاهدة التفاصيل</a>
+                <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
             </div>
         </div>
     </div>
@@ -265,7 +355,7 @@
          <div class="div" id="demo">
 
          </div>
-                <a class="ad-btn" href="{{ url('/appear_detalis')}}">مشاهدة التفاصيل</a>
+                <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
             </div>
         </div>
     </div>
@@ -277,6 +367,7 @@
     </div>
 </div>
     @endsection
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
