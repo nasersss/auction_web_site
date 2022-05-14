@@ -51,6 +51,11 @@ class AuctionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @param Request $request
+     *this function used to insert data to database
+     * @return [object]
+     */
     public function store(Request $request)
     {
         $auctionInfo = new auction();
@@ -187,8 +192,10 @@ class AuctionController extends Controller
         // dd($request->method());
         $category = category::get();
         if ($request->method()=='GET') {
-            $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active',1)->orderBy('created_at','desc')->paginate(9);
-            return view("index")->with(["auctions" => $auction , 'categories'=>$category ]);
+            $auction = auction::with(["auctionImage",'city'])->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active',1)->orderBy('created_at','desc')->paginate(9);
+            $state=State::get();
+
+            return view("index")->with(["auctions" => $auction , 'categories'=>$category,'state'=>$state ]);
             // return response($auction);
         } else {
             $category_id = '*';
@@ -204,9 +211,10 @@ class AuctionController extends Controller
 
     public function detailAuction($carId)
     {
-        $auctionCar = auction::with(["auctionImage", "category"])->find($carId);
+        $auctionCar = auction::with(["auctionImage", "category","city"])->find($carId);
+        $state=State::get();
         // return response($auctionCar);
-        return view("detail")->with("auctions", $auctionCar);
+        return view("detail")->with(["auctions"=>$auctionCar,"state"=>$state]);
     }
     // this function show list of all auctions
     function auctionReview()

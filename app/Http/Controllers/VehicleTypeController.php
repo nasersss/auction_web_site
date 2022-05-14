@@ -4,82 +4,71 @@ namespace App\Http\Controllers;
 
 use App\Models\VehicleType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class VehicleTypeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function create(){
+        return view("admin.vehicle.add");
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        public function listVehicle(){
+            $vehicle=VehicleType::get();
+            return view("admin.vehicle.list")->with("vehicle",$vehicle);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\VehicleType  $vehicleType
-     * @return \Illuminate\Http\Response
-     */
-    public function show(VehicleType $vehicleType)
-    {
-        //
-    }
+            }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\VehicleType  $vehicleType
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(VehicleType $vehicleType)
-    {
-        //
-    }
+        public function store(Request $request)
+        {
+            //
+            Validator::validate($request->all(), [
+                'name' => ['required', 'max:50'],
+            ], [
+                'name.required' => 'يجب تعبئت هذا الحقل',
+                'name.max' => 'لايمكنك ادخال اقل من 50 حرف',
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\VehicleType  $vehicleType
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, VehicleType $vehicleType)
-    {
-        //
-    }
+            ]);
+            $vehicle = new VehicleType();
+            $vehicle->name = $request->name;
+            $vehicle->is_active = $request->is_active;
+            if ($vehicle->save())
+                return redirect()->route('list_vehicle')->with(['success' => 'تم اضافة البيانات بنجاح']);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\VehicleType  $vehicleType
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(VehicleType $vehicleType)
-    {
-        //
-    }
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
+
+
+
+        public function edit($vehicleId)
+        {
+            //
+            $vehicle = VehicleType::find($vehicleId);
+            return view('admin.vehicle.edit')
+                ->with('vehicle', $vehicle);
+        }
+
+
+        public function update(Request $request, $vehicleId)
+        {
+            //
+            $vehicle = VehicleType::find($vehicleId);
+            $vehicle->name = $request->name;
+            $vehicle->is_active = $request->is_active;
+            if ($vehicle->save())
+                return redirect()->route('list_vehicle')->with(['success' => 'تم تحديث البيانات بنجاح']);
+
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
+        public function toggle($vehicleId)
+        {
+
+            $vehicle = VehicleType::find($vehicleId);
+            $vehicle->is_active *= -1;
+            if ($vehicle->save())
+                return back()->with(['success' => 'تم تحديث البيانات بنجاح']);
+
+            return back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
+
 }

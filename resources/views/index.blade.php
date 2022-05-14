@@ -23,6 +23,7 @@
   @section( 'content')
   <!--slider-->
   <div id="carouselExampleControls" class="carousel slide  carousel-fade  " data-ride="carousel">
+
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="slider-img" style="background-image: url('/assets/images/cars/car1.jpg')">
@@ -81,7 +82,7 @@
                   </div>
                   <div class="col-6">
                     <img src="/assets/images/cars/car1.jpg" class="w-100 rounded" alt="">
-                    <p class="card-text auction-paragraph">المزاد الحالي<span class="auction-price"> 10000 $</span></p>
+                    <p class="mt-2 card-text auction-paragraph">المزاد الحالي<span class="auction-price"> 10000 $</span></p>
 
                   </div>
                 </div>
@@ -149,7 +150,7 @@
                   </div>
                   <div class="col-6">
                     <img src="/assets/images/cars/car2.jpg" class="w-100 rounded" alt="">
-                    <p class="card-text auction-paragraph">المزاد الحالي<span class="auction-price"> 10000 $</span></p>
+                    <p class="mt-2 card-text auction-paragraph">المزاد الحالي<span class="auction-price"> 10000 $</span></p>
 
                   </div>
                 </div>
@@ -431,7 +432,14 @@
             </div>
             <div class="card-image-overlay m-auto">
               <span class="card-detail-badge">{{ $auction->model }}</span>
-              <span class="card-detail-badge">{{ $auction->address }}</span>
+              <span class="card-detail-badge">{{$auction->city->name  }}-
+                @foreach($state as $state)
+                @if($state->id==$auction->city->state_id)
+{{ $state->name }}
+                @endif
+                @endforeach
+
+            </span>
               <span class="card-detail-badge">{{ $auction->odometer }}</span>
             </div>
             <div class="card-body text-center">

@@ -56,9 +56,12 @@
                                     {{ $auctions->name}}
                                     @endisset </span></h4>
                             <h4><span>
-                                    @isset($auctions->name)
-                                    {{ $auctions->city}}
-                                    @endisset
+                                {{ $auctions->city->name}}-
+                                @foreach($state as $state)
+@if($state->id==$auctions->city->state_id)
+{{ $state->name }}
+@endif
+                                @endforeach
                                 </span></h4>
 
                         </div>
@@ -229,7 +232,7 @@
                         <span> نوع القير</span><span>
                             @isset($auctions->ger_type)
                             {{$auctions->ger_type}}
-                            
+
                             @endisset
                         </span>
                     </div>
@@ -246,7 +249,7 @@
                         <span> نوع الوقود</span><span>
                             @isset($auctions->fuel)
                             {{$auctions->fuel}}
-                            
+
                             @endisset
                         </span>
                     </div>
