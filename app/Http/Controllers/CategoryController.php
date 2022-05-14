@@ -143,4 +143,9 @@ class CategoryController extends Controller
         $file->move($destination, $fileName);
         return $fileName;
     }
+
+    public function viewCategory(){
+        $categories=category::get();
+        return view('index')->with('category',$categories);
+    }
 }
