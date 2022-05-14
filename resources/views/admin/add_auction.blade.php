@@ -28,8 +28,9 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title">المعلومات الاساسية</h4>
-                <!--Start-->
+                <div class="card-header mb-3">
+                    <h4 class="my-1">المعلومات الاساسية</h4>
+                </div>
                 <form method="post" action="{{route('store-auction')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
@@ -42,9 +43,9 @@
                             <select required name="category_id" class="form-select mb-3">
                                 <option selected disabled>أختر احدى الانوع</option>
                                 @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                <!-- <option value="2">بي أم دبليو</option>
-                                    <option value="3">فيراري</option> -->
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    <!-- <option value="2">بي أم دبليو</option>
+                                        <option value="3">فيراري</option> -->
                                 @endforeach
                             </select>
                         </div>
@@ -85,7 +86,7 @@
                                 @endisset
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="inputAddress" class="form-label"> مكان السيارة الحالي (المدينة)</label>
                             <select  required name="address" id='city' class="form-select mb-3">
                                 <option selected disabled>أختر مدينة</option>
@@ -115,18 +116,21 @@
                         </script>
 
 
-                        <h4 class="header-title mt-4">المعلومات الفنية</h4>
+                        <!-- end .border-->
+                <div class="card-header mb-3 mt-3">
+                    <h4 class="my-1">المعلومات الفنية</h4>
+                </div>
                         <div class="mb-1 col-md-6">
                             <label for="inputAddress" class="form-label">نوع المركبة</label>
                             <!-- <input required name="vehicle_type" type="text" class="form-control" id="inputAddress" placeholder="مثال باص ..."> -->
                             <select required name="vehicle_type" class="form-select mb-3">
                                 <option selected disabled>أختر احدى الانوع</option>
                                 @isset($vehicleTypes)
-                                @foreach($vehicleTypes as $vehicleType)
-                                <option value="{{$vehicleType->id}}">{{$vehicleType->name}}</option>
-                                <!-- <option value="2">بي أم دبليو</option>
-                                    <option value="3">فيراري</option> -->
-                                @endforeach
+                                    @foreach($vehicleTypes as $vehicleType)
+                                        <option value="{{$vehicleType->id}}">{{$vehicleType->name}}</option>
+                                        <!-- <option value="2">بي أم دبليو</option>
+                                            <option value="3">فيراري</option> -->
+                                    @endforeach
                                 @endisset
                             </select>
                         </div>
@@ -163,7 +167,9 @@
                             <label for="inputAddress" class="form-label">المسافة المقطوعة</label>
                             <input required name="odometer" type="number" class="form-control" id="inputAddress" placeholder="مثال 5000KM ...">
                         </div>
-                        <h4 class="header-title mt-4">معلومات متعلقة بالمزاد</h4>
+                        <div class="card-header mb-3 mt-3">
+                            <h4 class="my-1">معلومات متعلقة بالمزاد</h4>
+                        </div>
                         <div class="mb-1 col-md-6">
                             <label for="inputAddress" class="form-label">السعر المبدئي</label>
                             <input required name="stare_price" type="number" class="form-control" id="inputAddress" placeholder="مثال 2000$ ...">
@@ -176,17 +182,9 @@
                             <label for="inputAddress" class="form-label">تارخ ووقت انتهاء المزاد</label>
                             <input required name="date_of_end_auction" type="datetime-local" class="form-control" id="inputAddress" placeholder="مثال باص ...">
                         </div>
-
-                        <!--<h4 class="header-title mt-4">صور السيارة</h4>
-                        <div class="col-md-4">
-                            <label for="inputAddress" class="form-label">الصورة الاسياسية</label>
-                            <input class="form-control" required name="mainImage" accept="image/*" type="file" id="formFileMultiple">
+                        <div class="card-header mb-3 mt-3">
+                            <h4 class="my-1">تحميل صور السيارة</h4>
                         </div>
-                        <div class="mb-4 col-md-4">
-                            <label for="inputAddress" class="form-label">صور ثانوية</label>
-                            <input class="form-control" type="file" required name="images[]" accept="image/*" id="formFileMultiple" multiple>
-                        </div>-->
-                        <h4 class="header-title mt-4">صور السيارة</h4>
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="mb-3 mt-3 mt-xl-0">
@@ -255,35 +253,22 @@
                             </div>
                             <!-- end file preview template -->
                         </div>
-
-                        <div class="col-12">
-                            <div class="mb-3 mt-3 mt-xl-0">
-                                <!-- <div class="mb-1 col-md-1">
-                                <label for="inputAddress" class="form-label">العملة</label>
-                                <select required name="ger_type" class="form-select mb-3">
-                                    <option selected disabled>أختر احدى الانوع</option>
-                                    <option value="1">ريال يمني</option>
-                                    <option value="2">ريال سعيودي</option>
-                                    <option value="3">دولار امريكي</option>
-                                </select>
-                            </div> -->
-                        <h4 class="header-title mt-2">معلومات أضافية</h4>
+                        <div class="card-header mb-3 mt-3">
+                            <h4 class="my-1">معلومات اضافية</h4>
+                        </div>
                         <div class="mb-3">
                             <label for="project-overview" class="form-label">ملاحظات</label>
                             <textarea class="form-control" id="project-overview" rows="5" placeholder="ملاحظات..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">إضافة</button>
-                    </div>
-                        </div>
-                    </div>
-                </form>
 
 
-            </div> <!-- end tab-content-->
-        </div> <!-- end card-body -->
+            </div> <!-- end card-body-->
+        </div>
     </div> <!-- end card -->
 </div><!-- end col -->
 <!-- end row -->
+
 
 
 
