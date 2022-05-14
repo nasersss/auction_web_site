@@ -128,3 +128,12 @@ Route::get('edit_city/{cityId}',[CityController::class,'edit'])->name('edit_city
 Route::post('update_city/{cityId}',[CityController::class,'update'])->name('update_city');
 Route::get('toggle_city/{cityId}',[CityController::class,'toggle'])->name('toggle_city');
 Route::get('list_city',[CityController::class,'listCity'])->name('list_City');
+
+####################### route  vehicle_types
+
+Route::get('/add_vehicle',[VehicleTypeController::class,"create"])->name("add_vehicle");
+Route::post('/save_vehicle',[VehicleTypeController::class,"store"])->name("store_vehicle");
+Route::get('edit_vehicle/{Id}',[VehicleTypeController::class,'edit'])->name('edit_vehicle');
+Route::post('update_vehicle/{Id}',[VehicleTypeController::class,'update'])->name('update_vehicle');
+Route::get('toggle_vehicle/{Id}',[VehicleTypeController::class,'toggle'])->name('toggle_vehicle');
+Route::get('list_vehicle',[VehicleTypeController::class,'listVehicle'])->name('list_vehicle');

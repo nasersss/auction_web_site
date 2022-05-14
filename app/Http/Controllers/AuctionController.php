@@ -96,6 +96,11 @@ class AuctionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @param Request $request
+     *this function used to insert data to database
+     * @return [object]
+     */
     public function store(Request $request)
     {
         $auctionInfo = new auction();
@@ -289,9 +294,10 @@ class AuctionController extends Controller
 
     public function detailAuction($carId)
     {
-        $auctionCar = auction::with(["auctionImage", "category"])->find($carId);
+        $auctionCar = auction::with(["auctionImage", "category","city"])->find($carId);
+        $state=State::get();
         // return response($auctionCar);
-        return view("detail")->with("auctions", $auctionCar);
+        return view("detail")->with(["auctions"=>$auctionCar,"state"=>$state]);
     }
     // this function show list of all auctions
     function auctionReview()

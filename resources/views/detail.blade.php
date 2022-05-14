@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="ظassets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
     <link rel="stylesheet" href="/assets/css/ionicons.min.css">
     <link rel="stylesheet" href="/assets/css/all.css">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -227,7 +229,7 @@
                         <span> نوع القير</span><span>
                             @isset($auctions->ger_type)
                             {{$auctions->ger_type}}
-                            
+
                             @endisset
                         </span>
                     </div>
@@ -244,7 +246,7 @@
                         <span> نوع الوقود</span><span>
                             @isset($auctions->fuel)
                             {{$auctions->fuel}}
-                            
+
                             @endisset
                         </span>
                     </div>
@@ -262,35 +264,34 @@
                 <div class="action-card mt-2">
                     <div class="action-head">الاشتراك في المزاد</div>
                     <div class="action-body">
-                        <form name="amountForm" method="post" action="{{route('bidding')}}" enctype="multipart/form-data" >
+                        <form id="bidding-form" name="amountForm" method="post" action="{{route('bidding')}}" enctype="multipart/form-data">
                             @csrf
-                            <input type="text" required  id="amount" name="amount" placeholder="ادخل مبلغ للاشتراك في المزاد">
+                            <input type="text" required id="amount" name="amount" placeholder="ادخل مبلغ للاشتراك في المزاد">
                             <input type="hidden" name="auction_id" value="{{$auctions->id}}">
-                            <input type="submit" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">مزايدة</button>
                         </form>
 
 
-                          <!-- Modal -->
-                      <div id=myModel >
-                          <div class="model-header">
-                            <i class="fas fa-times"></i>
-                                                  </div>
-<div class="model-body">
-هل انت متاكد انك تريد ان تزايد بمبلغ
-
-</div>
-<div class="model-footer">
-    <button id="ok" class=" btn btn-success">
-تاكيد المزايدة
-    </button>
-
-    <button id="console" class="btn btn-secondary">
-الغاء
-    </button>
 
 
-</div>
-                      </div>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel" class="">تاكيد الاشتراك </h5>
+                                        <i class="fas fa-times" style="font-size: 25px" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></i>
+                                    </div>
+                                    <div class="modal-body">
+                                        هل انت متاكد انك تريد المزايدة بمبلغ
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اللغاء</button>
+                                        <button type="submit" class="btn model-btn  mx-2" form="bidding-form">تاكيد المزايدة </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="msg" class="alert alert-danger">

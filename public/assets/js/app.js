@@ -120,7 +120,6 @@ let console_btn = document.getElementById("console")
 let amount = document.querySelector("[name='amount']")
 document.forms["amountForm"].onsubmit = function(e) {
     let num_amount = amount.value;
-    let submit = false;
 
     if (num_amount == "") {
         e.preventDefault()
@@ -140,8 +139,7 @@ document.forms["amountForm"].onsubmit = function(e) {
         document.getElementById("validate-msg").innerHTML = "يجب ان يكون النص المدخل رقم"
 
     } else
-        submit = false
-    document.getElementById("myModel").style.display = "block"
+        document.getElementById("myModel").style.display = "block"
     ok_btn.addEventListener(("click"), () => {
 
         submit = true

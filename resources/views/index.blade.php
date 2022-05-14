@@ -23,22 +23,40 @@
   @section( 'content')
   <!--slider-->
   <div id="carouselExampleControls" class="carousel slide  carousel-fade  " data-ride="carousel">
+@foreach($auctions as $auction)
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <div class="slider-img" style="background-image: url('/assets/images/cars/car1.jpg')">
+        @foreach($auction->auctionImage as $image)
+        @php
+        $im = explode('_',$image->image);
+        @endphp
+        @if($im[1]=='main')
+
+
+        <div class="slider-img" style="background-image: url('{{ $image->image }}')">
+
         </div>
+        @endif
+        @endforeach
         <div class="container">
           <div class="col-12 col-lg-6">
             <div class="card slider-card">
               <div class="card-body">
                 <div class="new-offer">
-                  <b class="text-white">جديد</b>
+                  <b class="text-white">الحصري</b>
                 </div>
+
                 <div class="slider-offer-image">
                   <img src="/assets/images/logos/pngegg.png" alt="">
                 </div>
-                <h5 class="card-title mt-3"> كامري </h5>
-                <h6 class="card-subtitle mb-2 text-muted">المكلا</h6>
+                <h5 class="card-title mt-3"> {{ $auction->name }} </h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    {{$auction->city->name  }}-
+
+
+    {{ $auction->city->state->name }}
+
+                </h6>
                 <div class="row">
                   <div class="col-6">
                     <p class="card-text">
@@ -47,7 +65,7 @@
                         <th>
                           الموديل </th>
                         <td>
-                          2018
+                          {{ $auction->model }}
                         </td>
                       </tr>
                       <tr>
@@ -55,15 +73,14 @@
                           الحالة
                         </th>
                         <td>
-                          مستخدم
-                        </td>
+                            @if($auction->state == 1) مستخدم @else جديد @endif </td>
                       </tr>
                       <tr>
                         <th>
                           المسافات المقطوعة
                         </th>
                         <td>
-                          25000 km
+                           {{ $auction->odometer }}
                         </td>
                       </tr>
                       <tr>
@@ -71,17 +88,24 @@
                           اللون
                         </th>
                         <td>
-                          ازرق
+                          {{ $auction->color }}
                         </td>
                       </tr>
                     </table>
                     </p>
 
-                    <a href="#" class="btn btn-color">الاشتراك في المزاد</a>
+                    <a href="{{ route('action_detail',$auction->id) }}" class="btn btn-color">الاشتراك في المزاد</a>
                   </div>
                   <div class="col-6">
-                    <img src="/assets/images/cars/car1.jpg" class="w-100 rounded" alt="">
-                    <p class="card-text auction-paragraph">المزاد الحالي<span class="auction-price"> 10000 $</span></p>
+                    @foreach($auction->auctionImage as $image)
+                    @php
+                    $im = explode('_',$image->image);
+                    @endphp
+                    @if($im[1]=='main')
+                    <img src="{{$image->image}}" class="w-100 rounded" alt="">
+                    @endif
+                    @endforeach
+                    <p class="mt-2 card-text auction-paragraph">المزاد الحالي<span class="auction-price"> 10000 $</span></p>
 
                   </div>
                 </div>
@@ -92,8 +116,9 @@
         </div>
 
       </div>
-      <div class="carousel-item">
-        <div class="slider-img" style="background-image: url('/assets/images/cars/car2.jpg')">
+      @endforeach
+      {{-- <div class="carousel-item"> --}}
+        {{-- <div class="slider-img" style="background-image: url('/assets/images/cars/car2.jpg')">
         </div>
         <div class="container">
           <div class="col-12 col-lg-6">
@@ -149,7 +174,7 @@
                   </div>
                   <div class="col-6">
                     <img src="/assets/images/cars/car2.jpg" class="w-100 rounded" alt="">
-                    <p class="card-text auction-paragraph">المزاد الحالي<span class="auction-price"> 10000 $</span></p>
+                    <p class="mt-2 card-text auction-paragraph">المزاد الحالي<span class="auction-price"> 10000 $</span></p>
 
                   </div>
                 </div>
@@ -157,9 +182,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
 
-    </div>
+    {{-- </div> --}}
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
       <div class="slide-bar-icon"> <span class="carousel-control-prev-icon" aria-hidden="true"></span></div>
       <span class="sr-only">Previous</span>

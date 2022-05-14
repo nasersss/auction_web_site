@@ -131,7 +131,10 @@
                             <a href="{{route('add-cat')}}">إضافة صنف </a>
                         </li>
                         <li>
-                            <a href="#">تعديل صنف</a>
+                            <a href="{{route('list_vehicle')}}">عرض المركبات </a>
+                        </li>
+                        <li>
+                            <a href="{{route('add_vehicle')}}">اضافة مركبة </a>
                         </li>
 
                     </ul>
