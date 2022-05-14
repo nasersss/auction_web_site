@@ -48,14 +48,9 @@ Route::get('/login',function(){
     Route::get('/ContactUs',[ContactUs::class,'ContactUs'])->name('ContactUs');
     Route::get('/AboutUs',[AboutUs::class,'AboutUs'])->name('AboutUs');
     Route::get('/CommonQuestion',[CommonQuestion::class,'CommonQuestion'])->name('CommonQuestion');
-    Route::get('/Cart',[Cart::class,'Cart'])->name('Cart');
-
-
-
-
-
-
-
+    Route::get('/ContactUs',[ContactUs::class,'ContactUs'])->name('ContactUs');
+    Route::get('editphotoauction',[editphotoauction::class,"editphotoauction"])->name("editphotoauction");
+    Route::get('Cart',[Cart::class,'Cart'])->name('Cart');
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -108,4 +103,10 @@ Route::get('detail_car/{carId}',[AuctionController::class,"detailAuction"])->nam
 Route::get('/auction_review',[AuctionController::class,"auctionReview"])->name("auction_review");
 Route::get('/toggle_auctions/{auctionId}',[AuctionController::class,"toggle"])->name("toggle_auction");
 
+
+
+Route::get('test', [apiTestController::class, 'index'])->name('test');
+Route::get('test/response/{info}', [apiTestController::class, 'showTest'])->name('test/response');
+Route::get('test/cancel/{cancel}', [apiTestController::class, 'testCancel'])->name('testCancel');
+Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewCancel');
 

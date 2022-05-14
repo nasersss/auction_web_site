@@ -1,0 +1,19 @@
+#editphoto{
+    width: 50%;
+}
+.card {
+    width: 150px;
+    overflow:hidden;
+    border: none;
+    border-radius: 15px;
+}
+.card img{
+    width: 100%;
+}
+.ico a img{
+    width: 10px;
+    height: 10px;
+}
+h1{
+    display: none;
+}

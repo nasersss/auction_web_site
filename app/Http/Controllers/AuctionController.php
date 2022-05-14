@@ -171,7 +171,7 @@ class AuctionController extends Controller
 
     public function viewAuction(){
         $auction=auction::with("auctionImage")->where('is_active', 1)->where('date_of_end_auction','>=', Carbon::now())->get();
-        // return response($auction);
+        //  return response($auction);
         return view("index")->with("auctions",$auction);
     }
 
