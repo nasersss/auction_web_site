@@ -34,13 +34,13 @@
                     <div class="col-lg-2"><h5 class="my-1">المعلومات الاساسية</h5></div>
                     <div class="col-lg-10">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-lg-4 col-md-12">
                                 <label for="name" class="form-label">اسم السيارة</label>
                                 <input required name="name" type="text" class="form-control" id="name" placeholder="مثال هيلوكس...">
                             </div>
-                            <div class="col-4">
+                            <div class="col-lg-4 col-md-12">
                                 <label for="category" class="form-label">نوع السيارة</label>
-                                <select required name="category_id" class="form-select mb-3 " id="category">
+                                <select required name="category_id" class="form-select" id="category">
                                     <option selected disabled>أختر احدى الانوع</option>
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -49,7 +49,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-4">
+                            <div class="col-lg-4 col-md-12">
                                 <label for="color" class="form-label">لون السيارة</label>
                                 <select required name="color" class="form-select" id="color">
                                     <option selected disabled>أختر لون السيارة </option>
@@ -62,7 +62,7 @@
                                     <option value="بنفجسي">بنفجسي</option>
                                 </select>
                             </div>
-                            <div class="col-3">
+                            <div class="col-lg-3 col-md-12">
                                 <label for="state" class="form-label">حالة السيارة</label>
                                 <select required name="state" class="form-select" id="state">
                                     <option selected disabled>أختر حالة السيارة </option>
@@ -71,11 +71,11 @@
                                 </select>
                                 </select>
                             </div>
-                            <div class="col-3">
+                            <div class="col-lg-3 col-md-12">
                                 <label for="model" class="form-label">الموديل</label>
                                 <input required name="model" type="text" class="form-control" id="model" placeholder="مثال 2014...">
                             </div>
-                            <div class="col-3">
+                            <div class="col-lg-3 col-md-12">
                                 <label for="address" class="form-label">مكان السيارة الحالي (المحافظة)</label>
                                 <!--                             <input name="address" type="text" class="form-control" id="inputAddress" placeholder="مثال حضرموت-المكلا...">
                                  -->                            <select required id='address' name="state" class="form-select mb-3">
@@ -87,7 +87,7 @@
                                     @endisset
                                 </select>
                             </div>
-                            <div class="col-3">
+                            <div class="col-lg-3 col-md-12">
                                 <label for="city" class="form-label"> مكان السيارة الحالي (المدينة)</label>
                                 <select  required name="address" id='city' class="form-select mb-3">
                                     <option selected disabled>أختر مدينة</option>
@@ -123,7 +123,7 @@
                         <div class="col-lg-2"><h5 class="my-1">المعلومات الفنية</h5></div>
                         <div class="col-lg-10">
                             <div class="row">
-                                <div class="mb-1 col-md-6">
+                                <div class="mb-1 col-lg-6 col-md-12">
                                     <label for="vehicle_type" class="form-label">نوع المركبة</label>
                                     <!-- <input required name="vehicle_type" type="text" class="form-control" id="inputAddress" placeholder="مثال باص ..."> -->
                                     <select required name="vehicle_type" class="form-select" id="vehicle_type">
@@ -137,7 +137,7 @@
                                         @endisset
                                     </select>
                                 </div>
-                                <div class="mb-1 col-md-6">
+                                <div class="mb-1 col-lg-6 col-md-12">
                                     <label for="fuel" class="form-label">نوع الوقود</label>
                                     <select required name="fuel" class="form-select" id="fuel">
                                         <option selected disabled>أختر نوع الوقود </option>
@@ -147,11 +147,11 @@
                                         <option value="كهرباء">كهرباء</option>
                                     </select>
                                 </div>
-                                <div class="mb-1 col-md-6">
+                                <div class="mb-1 col-lg-6 col-md-12">
                                     <label for="engine_type" class="form-label">نوع المحرك</label>
                                     <input required name="engine_type" type="text" class="form-control" id="engine_type" placeholder="مثال 6 بوستن...">
                                 </div>
-                                <div class="mb-1 col-md-6">
+                                <div class="mb-1 col-lg-6 col-md-12">
                                     <label for="ger_type" class="form-label">نوع القير</label>
                                     <select required name="ger_type" class="form-select" id="ger_type">
                                         <option selected disabled>أختر احدى الانوع</option>
@@ -160,11 +160,11 @@
                                         <option value="عادي واتماتيك">عادي واتماتيك</option>
                                     </select>
                                 </div>
-                                <div class="mb-1 col-md-6">
+                                <div class="mb-1 col-lg-6 col-md-12">
                                     <label for="damage" class="form-label">الاضرار</label>
                                     <input required name="damage" type="text" class="form-control" id="damage" placeholder="مثال صدمة في الباب ...">
                                 </div>
-                                <div class="mb-1 col-md-6">
+                                <div class="mb-1 col-lg-6 col-md-12">
                                     <label for="odometer" class="form-label">المسافة المقطوعة</label>
                                     <input required name="odometer" type="number" class="form-control" id="odometer" placeholder="مثال 5000KM ...">
                                 </div>
@@ -176,15 +176,15 @@
                         <div class="col-lg-2"><h5 class="my-1">معلومات متعلقة بالمزاد</h5></div>
                         <div class="col-lg-10">
                             <div class="row">
-                                <div class="mb-1 col-md-4">
+                                <div class="mb-1 col-lg-4 col-md-12">
                                     <label for="stare_price" class="form-label">السعر المبدئي</label>
                                     <input required name="stare_price" type="number" class="form-control" id="stare_price" placeholder="مثال 2000$ ...">
                                 </div>
-                                <div class="mb-1 col-md-4">
+                                <div class="mb-1 col-lg-4 col-md-12">
                                     <label for="min_bid" class="form-label">أقل قيمة للمزيادة</label>
                                     <input required name="min_bid" type="number" class="form-control" id="min_bid" placeholder="مثال 200$ ...">
                                 </div>
-                                <div class="mb-1 col-md-4">
+                                <div class="mb-1 col-lg-4 col-md-12">
                                     <label for="date_of_end_auction" class="form-label">تارخ ووقت انتهاء المزاد</label>
                                     <input required name="date_of_end_auction" type="datetime-local" class="form-control" id="date_of_end_auction" placeholder="مثال باص ...">
                                 </div>
