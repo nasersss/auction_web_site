@@ -93,7 +93,7 @@ class AuctionController extends Controller
                     // return response($auctionInfo);
                 }
             }
-            return redirect()->route('view_action')->with(['success' => 'تم تحديث البيانات بنجاح']);
+            return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
         }
 
         // return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
