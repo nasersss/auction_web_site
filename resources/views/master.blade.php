@@ -1,4 +1,5 @@
 <header>
+    
     <!-- TOP HEADER -->
     <div id="top-header">
         <div class="container header-container">
@@ -18,7 +19,7 @@
 
                         </a>
                     </div>
-                    <li><a href="{{ route('view_action') }}">الرئيسة</a></li>
+                    <li><a href="{{ route('index') }}">الرئيسة</a></li>
                     <li><a href="{{ route('auction_review') }}">المزادات </a></li>
                     <li><a href="#">الفئات</a></li>
                     <li><a href="{{  route('view_policies')}}">الاسئلة الشائعة</a></li>

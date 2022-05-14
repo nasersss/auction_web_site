@@ -90,14 +90,11 @@
                         <h4 class="header-title">المعلومات الفنية</h4>
                         <div class="mb-1 col-md-6">
                             <label for="inputAddress" class="form-label">نوع المركبة</label>
-                            <!-- <input required name="vehicle_type" type="text" class="form-control" id="inputAddress" placeholder="مثال باص ..."> -->
                             <select required name="vehicle_type" class="form-select mb-3">
                                 <option selected disabled>أختر احدى الانوع</option>
                                 @isset($vehicleTypes)
                                 @foreach($vehicleTypes as $vehicleType)
                                 <option value="{{$vehicleType->id}}">{{$vehicleType->name}}</option>
-                                <!-- <option value="2">بي أم دبليو</option>
-                                    <option value="3">فيراري</option> -->
                                 @endforeach
                                 @endisset
                             </select>
@@ -164,8 +161,7 @@
                         </div>
                         <div class="mb-1 col-md-3">
                             <label for="inputAddress" class="form-label">مكان السيارة الحالي</label>
-<!--                             <input name="address" type="text" class="form-control" id="inputAddress" placeholder="مثال حضرموت-المكلا...">
- -->                            <select required id='state' name="state" class="form-select mb-3">
+                            <select required id='state' name="states" class="form-select mb-3">
                                 <option selected disabled>أختر محافظة</option>
                                 @isset($states)
                                 @foreach($states as $state)
@@ -176,7 +172,7 @@
                         </div>
                         <div class="mb-1 col-md-3">
                             <label for="inputAddress" class="form-label">مكان السيارة الحالي</label>
-                            <select  required name="address" id='city' class="form-select mb-3">
+                            <select required name="address" id='city' class="form-select mb-3">
                                 <option selected disabled>أختر مدينة</option>
                                 @isset($states)
                                 @foreach($states as $state)
@@ -190,15 +186,15 @@
                         <script>
                             const states = document.getElementById('state');
                             const city = document.getElementById('city');
-                            states.addEventListener('change',function(){
-                                city.value='أختر مدينة ';
+                            states.addEventListener('change', function() {
+                                city.value = 'أختر مدينة ';
                                 var citys = document.getElementsByClassName('citys');
                                 for (let index = 0; index < citys.length; index++) {
-                                    citys[index].style.display='none';
+                                    citys[index].style.display = 'none';
                                 }
-                                citys = document.getElementsByClassName('state-'+states.value);
+                                citys = document.getElementsByClassName('state-' + states.value);
                                 for (let index = 0; index < citys.length; index++) {
-                                    citys[index].style.display='block';
+                                    citys[index].style.display = 'block';
                                 }
                             })
                         </script>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,11 +14,12 @@
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/home.css">
 </head>
+
 <body>
     @extends('master')
     @section('content')
 
-  {{-- <div class="container my-5">
+    {{-- <div class="container my-5">
     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
         <option selected data-filter="all">جميع المحافظات</option>
         <option selected data-filter="hadrmout">حضرموت</option>
@@ -51,83 +53,116 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="s007 mt-3">
-                    <form>
+                    <form method="post" action="{{route('auction')}}" enctype="multipart/form-data">
+                        @csrf
                         <div class="inner-form">
                             <div class="basic-search">
                                 <div class="input-field">
                                     <div class="icon-wrap">
-                                        <img src="/assets/images/search.png"  width="30">
+                                        <img src="/assets/images/search.png" width="30">
                                     </div>
                                     <input id="search" type="text" placeholder="بحث..." />
                                     <div class="result-count" onclick="myFunction()">
-                                        <img src="/assets/images/Advanced_Search.png"  width="30">بحث متقدم</div>
+                                        <img src="/assets/images/Advanced_Search.png" width="30">بحث متقدم
+                                    </div>
                                 </div>
                             </div>
                             <div class="advance-search" id="myDIV">
 
                                 <div class="row">
                                     <div class="input-field">
+                                        <label for="inputAddress" class="form-label" style="text-align: right;">ماركة المركبة</label>
                                         <div class="input-select">
-                                            <select data-trigger="" name="choices-single-defaul">
-                                                <option placeholder="" selected >أختر نوع السيارة</option>
-                                                <option>تيوتا</option>
-                                                <option>بي ام دبليو</option>
+                                            <select name="category_id" class="form-select mb-3">
+                                                <option selected disabled value="">.أختر احدى الماركات</option>
+                                                @foreach($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-field">
+                                        <label for="inputAddress" class="form-label" style="text-align: right;">لون المركبة</label>
+                                        <div class="input-select">
+                                            <select data-trigger="" name="color" class="form-select mb-3">
+                                                <option selected disabled value="">.أختر احد الاللوان </option>
+                                                <option value="أزرق">أزرق</option>
+                                                <option value="أحمر">أحمر</option>
+                                                <option value="أخضر">أخضر</option>
+                                                <option value="رمادي">رمادي</option>
+                                                <option value="أسود">أسود</option>
+                                                <option value="أبيض">أبيض</option>
+                                                <option value="بنفجسي">بنفجسي</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-field">
+                                        <label for="inputAddress" class="form-label" style="text-align: right;">نوع المركبة</label>
+                                        <div class="input-select">
+                                            <select name="vehicle_type"  class="form-select mb-3">
+                                                <option value="" selected disabled>.أختر نوع المركبة</option>
+                                                @isset($vehicleTypes)
+                                                @foreach($vehicleTypes as $vehicleType)
+                                                <option value="{{$vehicleType->id}}">{{$vehicleType->name}}</option>
+                                                @endforeach
+                                                @endisset
+                                            </select>
+                                        </div>
+                                    </div>
 
+                                </div>
+                                <div class="row">
+                                    <div class="input-field">
+                                        <label for="inputAddress" class="form-label" style="text-align: right;">المحافظة</label>
+                                        <div class="input-select">
+                                            <select id='state' name="states" class="form-select mb-3">
+                                                <option selected disabled>.أختر محافظة</option>
+                                                @isset($states)
+                                                @foreach($states as $state)
+                                                <option value="{{$state->id}}">{{$state->name}}</option>
+                                                @endforeach
+                                                @endisset
                                             </select>
                                         </div>
                                     </div>
                                     <div class="input-field">
+                                        <label for="inputAddress" class="form-label" style="text-align: right;">المدينة</label>
                                         <div class="input-select">
-                                            <select data-trigger="" name="choices-single-defaul">
-                                                <option placeholder="" value="">أختر اللون</option>
-                                                <option>أحمر</option>
-                                                <option>أبيض</option>
-                                                <option>أزرق</option>
+                                            <select data-trigger="" name="address" id='city' class="form-select mb-3">
+                                                <option value="" selected disabled>.أختر مدينة</option>
+                                                @isset($states)
+                                                @foreach($states as $state)
+                                                @foreach($state->city as $city)
+                                                <option style="display: none !important;" class="citys state-{{$city->state_id}}" value="{{$city->id}}">{{$city->name}}</option>
+                                                @endforeach
+                                                @endforeach
+                                                @endisset
                                             </select>
                                         </div>
                                     </div>
+                                    <script>
+                                        const states = document.getElementById('state');
+                                        const city = document.getElementById('city');
+                                        states.addEventListener('click', function() {
+                                            city.value = '.أختر مدينة ';
+                                            var citys = document.getElementsByClassName('citys');
+                                            for (let index = 0; index < citys.length; index++) {
+                                                citys[index].style.display = 'none';
+                                            }
+                                            citys = document.getElementsByClassName('state-' + states.value);
+                                            for (let index = 0; index < citys.length; index++) {
+                                                citys[index].style.display = 'block';
+                                            }
+                                        })
+                                    </script>
                                     <div class="input-field">
+                                        <label for="inputAddress" class="form-label" style="text-align: right;">تارخ ووقت انتهاء المزاد</label>
                                         <div class="input-select">
-                                            <select data-trigger="" name="choices-single-defaul">
-                                                <option placeholder="" value="">المدينة</option>
-                                                <option>المكلا</option>
-                                                <option>عدن</option>
-                                                <option>صنعاء</option>
-                                            </select>
+                                            <input name="date_of_end_auction" type="datetime-local" class="form-select" style="margin: 0;padding: 0;height: 38px;" id="inputAddress" placeholder="مثال باص ...">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row second">
-                                    <div class="input-field">
-                                        <div class="input-select">
-                                            <select data-trigger="" name="choices-single-defaul">
-                                                <option placeholder="" value="">نوع المركبة</option>
-                                                <option>باص</option>
-                                                <option>نقل ثقيل</option>
-                                                <option>طايرة</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="input-field">
-                                        <div class="input-select">
-                                            <select data-trigger="" name="choices-single-defaul">
-                                                <option placeholder="" value="">توع الوقود</option>
-                                                <option>بترول</option>
-                                                <option>ديزيل</option>
-                                                <option>كهرباء</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="input-field">
-                                        <div class="input-select">
-                                            <select data-trigger="" name="choices-single-defaul">
-                                                <option placeholder="" value="">حالة السيارة</option>
-                                                <option>جديدة</option>
-                                                <option>مستعملة</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="row third">
                                     <div class="input-field">
                                         <button class="btn-search">بحث</button>
@@ -139,239 +174,66 @@
                 </div>
 
             </div>
-    <div class="row" id="ads">
-        <!-- Category Card -->
+            <div class="row" id="ads">
+                <!-- Category Card -->
 
-        <div class="col-md-4 my-3">
-            <div class="card rounded">
-                <div class="card-image">
-                    <span class="card-notify-badge">مزاد جاري</span>
-                    <span class="card-notify-year">New</span>
-                    <img class="img-fluid" src="assets/images/mobile_listing_main_01.jpg" alt="Alternate Text" />
-                </div>
-                <div class="card-image-overlay m-auto">
-                    <span class="card-detail-badge">2018</span>
-                    <span class="card-detail-badge"><span class="hadrmout">حضرموت</span> - <span class="mukalla">المكلا</span></span>
-                    <span class="card-detail-badge">123,000 Kms</span>
-                </div>
-                <div class="card-body text-center nissan">
-                    <div class="ad-title m-auto">
-                        <h5>  نيسان Kicks SV+NAV عائلة</h5>
-                        <h2>العطاء الحالي 4,000,000</h2>
-              <h2 id="demo"> ينتهي المزاد بعد</h2>
 
+                @if($auctions!=null)
+                @foreach($auctions as $auction)
+
+
+
+                <div class="col-md-4 my-3">
+                    <div class="card rounded">
+                        <div class="card-image">
+                            <span class="card-notify-year">@if($auction->state == 1) مستخدم @else جديد @endif
+                            </span>
+                            @foreach($auction->auctionImage as $image)
+                            @php
+                            $im = explode('_',$image->image);
+                            @endphp
+                            @if($im[1]=='main')
+                            <img class="img-fluid" src="{{$image->image}}" alt="" />
+                            @endif
+
+                            @endforeach
+                        </div>
+                        <div class="card-image-overlay m-auto">
+                            <span class="card-detail-badge">{{ $auction->model }}</span>
+                            <span class="card-detail-badge">{{ $auction->city->state->name }} - {{ $auction->city->name }}</span>
+                            <span class="card-detail-badge">{{ $auction->odometer }}km</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="ad-title m-auto">
+                                <h5>{{ $auction->name }}</h5>
+                                <h2>العطاء الحالي ${{ $auction->stare_price }}</h2>
+                                <h2>تاريخ انتهاء المزاد</h2>
+                                <h2 id=""> {{ $auction->date_of_end_auction }}</h2>
+
+                            </div>
+                            <a class="ad-btn" href="{{ route('action_detail',$auction->id)}}">مشاهدة التفاصيل</a>
+                        </div>
                     </div>
-                    <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
                 </div>
+
+
+                @endforeach
+                @else
+                <h1>لاتوجد مزادات حالية</h1>
+                @endisset
+
+
+
+
             </div>
         </div>
-        <div class="col-md-4 my-3">
-            <div class="card rounded">
-                <div class="card-image">
-                    <span class="card-notify-badge">مزاد جاري</span>
-
-                    <img class="img-fluid" src="/assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
-                </div>
-                <div class="card-image-overlay m-auto">
-                    <span class="card-detail-badge">2020</span>
-                    <span class="card-detail-badge"><span class="sanna">صنعاء</span> - <span class="hamdan">همدان</span></span>
-                    <span class="card-detail-badge">13000 Kms</span>
-                </div>
-                <div class="card-body text-center">
-                    <div class="ad-title m-auto">
-                        <h5>  مرسيدس بنز  Coupe عائلة</h5>
-                        <h2>العطاء الحالي8,000,000 </h2>
-              <h2> ينتهي المزاد بعد</h2>
-
-                    </div>
-                    <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 my-3">
-            <div class="card rounded">
-                <div class="card-image">
-                    <span class="card-notify-badge">مزاد جاري</span>
-
-                    <img class="img-fluid" src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC091A021001.jpg&width=440&height=262" alt="Alternate Text" />
-                </div>
-                <div class="card-image-overlay m-auto">
-                    <span class="card-detail-badge">2018</span>
-                    <span class="card-detail-badge"><span class="sanna">صنعاء</span> - <span class="hamdan">همدان</span></span>
-                    <span class="card-detail-badge">8000 Kms</span>
-                </div>
-                <div class="card-body text-center honda">
-                    <div class="ad-title m-auto">
-                        <h5> هوندا اكورد Sport صالون</h5>
-                        <h2>العطاء الحالي5,000,000<h2>
-              <h2> ينتهي المزاد بعد</h2>
-             <div class="div" id="demo">
-
-             </div>
-                    <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4 my-3">
-        <div class="card rounded">
-            <div class="card-image">
-                <span class="card-notify-badge">مزاد جاري</span>
-                <span class="card-notify-year">New</span>
-                <img class="img-fluid" src="assets/images/mobile_listing_main_01.jpg" alt="Alternate Text" />
-            </div>
-            <div class="card-image-overlay m-auto">
-                <span class="card-detail-badge">2018</span>
-                <span class="card-detail-badge"><span class="hadrmout">حضرموت</span> - <span class="mukalla">المكلا</span></span>
-                <span class="card-detail-badge">123,000 Kms</span>
-            </div>
-            <div class="card-body text-center nissan">
-                <div class="ad-title m-auto">
-                    <h5>  نيسان Kicks SV+NAV عائلة</h5>
-                    <h2>العطاء الحالي 4,000,000</h2>
-          <h2 id="demo"> ينتهي المزاد بعد</h2>
-
-                </div>
-                <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 my-3">
-        <div class="card rounded">
-            <div class="card-image">
-                <span class="card-notify-badge">مزاد جاري</span>
-
-                <img class="img-fluid" src="assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
-            </div>
-            <div class="card-image-overlay m-auto">
-                <span class="card-detail-badge">2020</span>
-                <span class="card-detail-badge"><span class="taiz">تعز</span> - <span class="taizh">التعزية</span></span>
-                <span class="card-detail-badge">13000 Kms</span>
-            </div>
-            <div class="card-body text-center toyouta">
-                <div class="ad-title m-auto">
-                    <h5>  مرسيدس بنز  Coupe عائلة</h5>
-                    <h2>العطاء الحالي8,000,000 </h2>
-          <h2> ينتهي المزاد بعد</h2>
-
-                </div>
-                <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4 my-3">
-        <div class="card rounded">
-            <div class="card-image">
-                <span class="card-notify-badge">مزاد جاري</span>
-
-                <img class="img-fluid" src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC091A021001.jpg&width=440&height=262" alt="Alternate Text" />
-            </div>
-            <div class="card-image-overlay m-auto">
-                <span class="card-detail-badge">2018</span>
-                <span class="card-detail-badge">تعز</span>
-                <span class="card-detail-badge">8000 Kms</span>
-            </div>
-            <div class="card-body text-center honda">
-                <div class="ad-title m-auto ">
-                    <h5> هوندا اكورد Sport صالون</h5>
-                    <h2>العطاء الحالي5,000,000<h2>
-          <h2> ينتهي المزاد بعد</h2>
-         <div class="div" id="demo">
-
-         </div>
-                <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <div class="col-md-4 my-3">
-        <div class="card rounded">
-            <div class="card-image">
-                <span class="card-notify-badge">مزاد جاري</span>
-                <span class="card-notify-year">New</span>
-                <img class="img-fluid" src="assets/images/mobile_listing_main_01.jpg" alt="Alternate Text" />
-            </div>
-            <div class="card-image-overlay m-auto">
-                <span class="card-detail-badge">2018</span>
-                <span class="card-detail-badge">حضرموت</span>
-                <span class="card-detail-badge">123,000 Kms</span>
-            </div>
-            <div class="card-body text-center">
-                <div class="ad-title m-auto">
-                    <h5>  نيسان Kicks SV+NAV عائلة</h5>
-                    <h2>العطاء الحالي 4,000,000</h2>
-          <h2 id="demo"> ينتهي المزاد بعد</h2>
-
-                </div>
-                <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 my-3">
-        <div class="card rounded">
-            <div class="card-image">
-                <span class="card-notify-badge">مزاد جاري</span>
-
-                <img class="img-fluid" src="assets/images/e-class-coupe-brilliant-blue-metallic.jpg" alt="Alternate Text" />
-            </div>
-            <div class="card-image-overlay m-auto">
-                <span class="card-detail-badge">2020</span>
-                <span class="card-detail-badge">صنعاء</span>
-                <span class="card-detail-badge">13000 Kms</span>
-            </div>
-            <div class="card-body text-center">
-                <div class="ad-title m-auto">
-                    <h5>  مرسيدس بنز  Coupe عائلة</h5>
-                    <h2>العطاء الحالي8,000,000 </h2>
-          <h2> ينتهي المزاد بعد</h2>
-
-                </div>
-                <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4  my-3">
-        <div class="card rounded">
-            <div class="card-image">
-                <span class="card-notify-badge">مزاد جاري</span>
-
-                <img class="img-fluid" src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC091A021001.jpg&width=440&height=262" alt="Alternate Text" />
-            </div>
-            <div class="card-image-overlay m-auto">
-                <span class="card-detail-badge">2018</span>
-                <span class="card-detail-badge">تعز</span>
-                <span class="card-detail-badge">8000 Kms</span>
-            </div>
-            <div class="card-body text-center">
-                <div class="ad-title m-auto">
-                    <h5> هوندا اكورد Sport صالون</h5>
-                    <h2>العطاء الحالي5,000,000<h2>
-          <h2> ينتهي المزاد بعد</h2>
-         <div class="div" id="demo">
-
-         </div>
-                <a class="ad-btn" href="#">مشاهدة التفاصيل</a>
-            </div>
-        </div>
-    </div>
-    </div>
+        @endsection
 
 
-
-
-    </div>
-</div>
-    @endsection
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 <script src="assets/js/filter.js"></script>
+
 </html>

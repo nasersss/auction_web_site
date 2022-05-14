@@ -55,7 +55,7 @@
                                     @endisset </span></h4>
                             <h4><span>
                                     @isset($auctions->name)
-                                    {{ $auctions->city}}
+                                    {{ $auctions->city->state->name}} - {{ $auctions->city->name}}
                                     @endisset
                                 </span></h4>
 
@@ -69,9 +69,9 @@
                         <div>السعر الحالي للمزاد :</div>
                         <span class="auction-price">
                             @isset($auctions->curren_price)
-                            {{ $auctions->curren_price}}
+                            {{ $auctions->curren_price}}$
                             @endisset
-                            <span>$</span> <span>
+                            <span></span> <span>
                             </span></span>
 
                     </div>
@@ -95,8 +95,8 @@
                             <div class="col-4">
                                 <h5 class="text-align">اقل قيمة للمزايدة</h5>
                                 <div class="text-align"><span>@isset($auctions->min_bid)
-                                        {{ $auctions->min_bid}}
-                                        @endisset $</span></div>
+                                        {{ $auctions->min_bid}}$
+                                        @endisset </span></div>
 
 
                             </div>

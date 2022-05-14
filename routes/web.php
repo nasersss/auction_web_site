@@ -30,9 +30,9 @@ Route::get('/add_view',[Maincontroller::class,'show']);
 //     return view('index');
 // })->name('users');
 
-Route::get('/auction',function(){
-    return view('auction');
-})->name('auction');
+Route::get('/auction',[ AuctionController::class,'index' ])->name('auction');
+Route::post('/auction',[ AuctionController::class,'index' ])->name('auction');
+
 // Route::get('/detail',function(){
 //     return view('detail');
 //     })->name('details-car');
@@ -104,7 +104,8 @@ Route::post('update_user/{PoliceId}',[UserProfileController::class,'updateUser']
 });
 ##########################
 
-Route::get('/',[AuctionController::class,"viewAuction"])->name("view_action");
+Route::get('/',[AuctionController::class,"viewAuction"])->name("index");
+Route::post('/',[AuctionController::class,"viewAuction"])->name("index");
 Route::get('detail_car/{carId}',[AuctionController::class,"detailAuction"])->name("action_detail");
 Route::get('/auction_review',[AuctionController::class,"auctionReview"])->name("auction_review");
 Route::get('/toggle_auctions/{auctionId}',[AuctionController::class,"toggle"])->name("toggle_auction");

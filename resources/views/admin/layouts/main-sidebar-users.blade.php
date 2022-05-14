@@ -27,7 +27,7 @@
 
             <li class="side-nav-title side-nav-item">لوحة التحكم</li>
             <li class="side-nav-item">
-                <a href="{{route('view_action')}}" class="side-nav-link">
+                <a href="{{route('index')}}" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span>الصفحة الرئيسية</span>
                 </a>
