@@ -275,27 +275,7 @@
                         </form>
 
 
-                          <!-- Modal -->
-                      {{-- <div id=myModel >
-                          <div class="model-header">
-                            <i class="fas fa-times"></i>
-                                                  </div>
-<div class="model-body">
-هل انت متاكد انك تريد ان تزايد بمبلغ
-
-</div>
-<div class="model-footer">
-    <button id="ok" class=" btn btn-success" form="bidding-form">
-تاكيد المزايدة
-    </button>
-
-    <button id="console" class="btn btn-secondary">
-الغاء
-    </button>
-
-
-</div>
-                      </div> --}}
+                    
 
 
                       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
