@@ -352,7 +352,7 @@
 
 
 
-        <div class="col-md-4 my-3">
+        <div class=" col-12  col-md-6  col-lg-4 my-3">
           <div class="card rounded">
             <div class="card-image">
               <span class="card-notify-year">@if($auction->state == 1) مستخدم @else جديد @endif

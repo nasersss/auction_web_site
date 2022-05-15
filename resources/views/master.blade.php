@@ -23,7 +23,11 @@
                     <li><a href="#">الفئات</a></li>
                     <li><a href="{{  route('view_policies')}}">الاسئلة الشائعة</a></li>
                     <li><a href="{{  route('ContactUs')}}">تواصل معنا</a></li>
+                    @guest
+                    @if (Route::has('login'))
                     <li class="show-menu"><a href="{{ route('login') }}">تسجيل الدخول</a></li>
+                    @endif
+                    @endguest
                     {{-- <li class="show-menu"><a href="#"> اللغة</a></li> --}}
                     <div>
 
