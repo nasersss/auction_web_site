@@ -22,8 +22,53 @@ class AuctionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $category = category::get();
+        $state = State::with("city")->get();
+        $vehicleType = VehicleType::get();
+        if ($request->method() == 'GET') {
+            $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
+            return view('auction')->with([
+                "auctions" => $auction,
+                'categories' => $category,
+                'vehicleTypes' => $vehicleType,
+                'states' => $state,
+            ]);
+            // return response($auction);
+        } else {
+            $auction = auction::where('is_active',1);
+            if ($request->category_id != null) {
+                $auction->where("category_id", $request->category_id);
+            }
+            if ($request->color != null) {
+                $auction->where("color", $request->color);
+            }
+            if ($request->vehicle_type != null) {
+                $auction->where("vehicle_type_id", $request->vehicle_type);
+            }
+            if ($request->address != null) {
+                $auction->where("city_id", $request->address);
+            }
+            if ($request->date_of_end_auction != null) {
+                $auction->where("date_of_end_auction", '<=', $request->date_of_end_auction)->where("date_of_end_auction", '>=', Carbon::now());
+            }
+            $auction = $auction->get();
+            // return view("index")->with(["auctions" => $auction , 'categories'=>$category, 'request',$request]);
+            // return response($auction);
+            return view('auction')->with([
+                "auctions" => $auction,
+                'categories' => $category,
+                'vehicleTypes' => $vehicleType,
+                'states' => $state,
+            ]);
+        }
+
+        // return view('auction')->with([
+        //     'categories' => $category,
+        //     'vehicleTypes' => $vehicleType,
+        //     'states' => $state,
+        // ]);
     }
 
     /**
@@ -40,7 +85,7 @@ class AuctionController extends Controller
         return view('admin/add_auction')->with([
             'categories' => $category,
             'vehicleTypes' => $vehicleType,
-            'states' =>$state,
+            'states' => $state,
         ]);
     }
 
@@ -50,11 +95,6 @@ class AuctionController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */
-    /**
-     * @param Request $request
-     *this function used to insert data to database
-     * @return [object]
      */
     public function store(Request $request)
     {
@@ -98,7 +138,7 @@ class AuctionController extends Controller
                     // return response($auctionInfo);
                 }
             }
-            return redirect()->route('view_action')->with(['success' => 'تم تحديث البيانات بنجاح']);
+            return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
         }
 
         // return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
@@ -190,31 +230,68 @@ class AuctionController extends Controller
     {
         // return response($auction);
         // dd($request->method());
+        // $category = category::get();
+        // if ($request->method() == 'GET') {
+        //     $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
+        //     return view("index")->with(["auctions" => $auction, 'categories' => $category]);
+        //     // return response($auction);
+        // } else {
+        //     $category_id = '*';
+        //     if (isset($request->category_id)) {
+        //         $category_id = $request->category_id;
+        //     }
+        //     $auction = auction::with("auctionImage")->where("category_id", $category_id)->get();
+        //     // return view("index")->with(["auctions" => $auction , 'categories'=>$category, 'request',$request]);
+        //     return response('1');
+        // }
         $category = category::get();
-        if ($request->method()=='GET') {
-            $auction = auction::with(["auctionImage",'city'])->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active',1)->orderBy('created_at','desc')->paginate(9);
-            $state=State::get();
-
-            return view("index")->with(["auctions" => $auction , 'categories'=>$category,'state'=>$state ]);
+        $state = State::with("city")->get();
+        $vehicleType = VehicleType::get();
+        if ($request->method() == 'GET') {
+            $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
+            return view('index')->with([
+                "auctions" => $auction,
+                'categories' => $category,
+                'vehicleTypes' => $vehicleType,
+                'states' => $state,
+            ]);
             // return response($auction);
         } else {
-            $category_id = '*';
-            if (isset($request->category_id)) {
-                $category_id = $request->category_id;
+            $auction = auction::where('is_active',1);
+            if ($request->category_id != null) {
+                $auction->where("category_id", $request->category_id);
             }
-            $auction = auction::with("auctionImage")->where("category_id", $category_id)->get();
+            if ($request->color != null) {
+                $auction->where("color", $request->color);
+            }
+            if ($request->vehicle_type != null) {
+                $auction->where("vehicle_type_id", $request->vehicle_type);
+            }
+            if ($request->address != null) {
+                $auction->where("city_id", $request->address);
+            }
+            if ($request->date_of_end_auction != null) {
+                $auction->where("date_of_end_auction", '<=', $request->date_of_end_auction)->where("date_of_end_auction", '>=', Carbon::now());
+            }
+            $auction = $auction->get();
             // return view("index")->with(["auctions" => $auction , 'categories'=>$category, 'request',$request]);
-            return response('1');
+            // return response($auction);
+            return view('index')->with([
+                "auctions" => $auction,
+                'categories' => $category,
+                'vehicleTypes' => $vehicleType,
+                'states' => $state,
+            ]);
         }
+
     }
 
 
     public function detailAuction($carId)
     {
-        $auctionCar = auction::with(["auctionImage", "category","city"])->find($carId);
-        $state=State::get();
+        $auctionCar = auction::with(["auctionImage", "category"])->find($carId);
         // return response($auctionCar);
-        return view("detail")->with(["auctions"=>$auctionCar,"state"=>$state]);
+        return view("detail")->with("auctions", $auctionCar);
     }
     // this function show list of all auctions
     function auctionReview()

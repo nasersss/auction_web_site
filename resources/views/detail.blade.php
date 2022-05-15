@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="ظassets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="stylesheet" href="/assets/css/ionicons.min.css">
     <link rel="stylesheet" href="/assets/css/all.css">
@@ -56,12 +56,9 @@
                                     {{ $auctions->name}}
                                     @endisset </span></h4>
                             <h4><span>
-                                {{ $auctions->city->name}}-
-                                @foreach($state as $state)
-@if($state->id==$auctions->city->state_id)
-{{ $state->name }}
-@endif
-                                @endforeach
+                                    @isset($auctions->name)
+                                    {{ $auctions->city->state->name}} - {{ $auctions->city->name}}
+                                    @endisset
                                 </span></h4>
 
                         </div>
@@ -74,9 +71,9 @@
                         <div>السعر الحالي للمزاد :</div>
                         <span class="auction-price">
                             @isset($auctions->curren_price)
-                            {{ $auctions->curren_price}}
+                            {{ $auctions->curren_price}}$
                             @endisset
-                            <span>$</span> <span>
+                            <span></span> <span>
                             </span></span>
 
                     </div>
@@ -100,8 +97,8 @@
                             <div class="col-4">
                                 <h5 class="text-align">اقل قيمة للمزايدة</h5>
                                 <div class="text-align"><span>@isset($auctions->min_bid)
-                                        {{ $auctions->min_bid}}
-                                        @endisset $</span></div>
+                                        {{ $auctions->min_bid}}$
+                                        @endisset </span></div>
 
 
                             </div>
@@ -267,34 +264,34 @@
                 <div class="action-card mt-2">
                     <div class="action-head">الاشتراك في المزاد</div>
                     <div class="action-body">
-                        <form  id="bidding-form"name="amountForm" method="post" action="{{route('bidding')}}" enctype="multipart/form-data" >
+                        <form id="bidding-form" name="amountForm" method="post" action="{{route('bidding')}}" enctype="multipart/form-data">
                             @csrf
-                            <input type="text" required  id="amount" name="amount" placeholder="ادخل مبلغ للاشتراك في المزاد">
+                            <input type="text" required id="amount" name="amount" placeholder="ادخل مبلغ للاشتراك في المزاد">
                             <input type="hidden" name="auction_id" value="{{$auctions->id}}">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >مزايدة</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">مزايدة</button>
                         </form>
 
 
-                    
 
 
-                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel" class="">تاكيد الاشتراك </h5>
-                              <i class="fas fa-times" style="font-size: 25px"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></i>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel" class="">تاكيد الاشتراك </h5>
+                                        <i class="fas fa-times" style="font-size: 25px" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></i>
+                                    </div>
+                                    <div class="modal-body">
+                                        هل انت متاكد انك تريد المزايدة بمبلغ
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اللغاء</button>
+                                        <button type="submit" class="btn model-btn  mx-2" form="bidding-form">تاكيد المزايدة </button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                              هل انت متاكد انك تريد المزايدة بمبلغ
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اللغاء</button>
-                              <button type="submit" class="btn model-btn  mx-2"  form="bidding-form" >تاكيد المزايدة </button>
-                            </div>
-                          </div>
                         </div>
-                      </div>
                     </div>
                 </div>
                 <div id="msg" class="alert alert-danger">

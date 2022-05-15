@@ -53,21 +53,38 @@ class BiddingController extends Controller
         }
 
         $auction->curren_price += $request->amount;
-        $auction->number_of_participate+=1;
+        $auction->number_of_participate += 1;
         $auction->update();
         $adminWallet = Wallet::find(1);
-        $newBidding= new Bidding();
+        $biddings = Bidding::where('user_id', Auth::user()->id)->where('auction_id', $request->auction_id)->orderBy('id', 'desc')->first();
+        $payedAmount = 0;
+        if (isset($biddings->payed_amount)) {
+            $payedAmount = $biddings->payed_amount;
+        }
+        $newBidding = new Bidding();
         $payerWallet = Wallet::where('user_id', Auth::user()->id)->where('coin_type', 0)->first();
-        $adminWallet->amount += (($auction->curren_price + $request->amount) * 10 / 100);
+        $adminWallet->amount += (($auction->curren_price + $request->amount) * 10 / 100) - $payedAmount;
         $adminWallet->update();
-        $payerWallet->amount -= (($auction->curren_price + $request->amount) * 10 / 100);
+        $payerWallet->amount -= (($auction->curren_price + $request->amount) * 10 / 100) - $payedAmount;
         $payerWallet->update();
-        $newBidding->user_id=Auth::user()->id;
-        $newBidding->auction_id=$request->auction_id;
-        $newBidding->bidding_amount=$request->amount;
+        $newBidding->user_id = Auth::user()->id;
+        $newBidding->auction_id = $request->auction_id;
+        $newBidding->bidding_amount = $request->amount;
+        $newBidding->payed_amount = (($auction->curren_price + $request->amount) * 10 / 100);
         $newBidding->save();
         // $test= $user->wallet[0]->amount ;    //$request->amount;
+        return response($biddings);
         return redirect()->back()->with(['success' => 'تمت عملية المزايدة بنجاح']);
+    }
+
+    public function whenAuctionClosed()
+    {
+        $badd = new Bidding();
+        $badd->user_id = 100;
+        $badd->auction_id = 12;
+        $badd->bidding_amount = 1250;
+        $badd->payed_amount = 1254;
+        $badd->save();
     }
 
     /**
