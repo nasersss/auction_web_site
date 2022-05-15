@@ -185,12 +185,15 @@ header {
     background: var(--primaryColor);
     margin: 0 5px;
     color: #ffffffe8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    right: 60px;
-}
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+   right: 0px;
+  }
+  .header-icons > .icon a{
+      color: #fff;
+  }
 
 .header-icons>.icon a {
     color: #fff;
@@ -470,7 +473,7 @@ header {
 
 .name-auth {
     position: absolute;
-    right: 119%;
+    right: 100%;
     width: 28%;
     font-size: 12px;
     font-weight: 600;

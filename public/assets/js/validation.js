@@ -5,22 +5,22 @@ let state = document.querySelector("[name='name']")
  * this function used to validate vehicle if the input value true store data in database else return error message
  */
 
-// document.forms["vehicle_types"].onsubmit = function(e) {
-//     let vehicle_validate = vehicle.value;
-//     if (vehicle_validate == "") {
-//         e.preventDefault();
-//         document.getElementById("msg").style.display = "block"
-//         document.getElementById("err-msg").innerHTML = "يجب الا يكون الحقل المدخل فارغ"
+document.forms["vehicle_types"].onsubmit = function(e) {
+    let vehicle_validate = vehicle.value;
+    if (vehicle_validate == "") {
+        e.preventDefault();
+        document.getElementById("msg").style.display = "block"
+        document.getElementById("err-msg").innerHTML = "يجب الا يكون الحقل المدخل فارغ"
 
-//     }
-//     // if (!/^[a-zA-Z]*$/g.test(vehicle_validate)) {
-//     //     e.preventDefault();
-//     //     document.getElementById("msg").style.display = "block"
-//     //     document.getElementById("err-msg").innerHTML = "يجب ان يكون الحقل المدخل نص"
-//     // }
+    }
+    // if (!/^[a-zA-Z]*$/g.test(vehicle_validate)) {
+    //     e.preventDefault();
+    //     document.getElementById("msg").style.display = "block"
+    //     document.getElementById("err-msg").innerHTML = "يجب ان يكون الحقل المدخل نص"
+    // }
 
 
-// }
+}
 
 
 
