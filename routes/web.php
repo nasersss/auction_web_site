@@ -30,9 +30,13 @@ Route::get('/add_view',[Maincontroller::class,'show']);
 //     return view('index');
 // })->name('users');
 
-Route::get('/auction',[ AuctionController::class,'index' ])->name('auction');
-Route::post('/auction',[ AuctionController::class,'index' ])->name('auction');
+Route::get('/test',function(){
+    return view('admin.test');
+})->name('test');
 
+Route::get('/auction',function(){
+    return view('auction');
+})->name('auction');
 // Route::get('/detail',function(){
 //     return view('detail');
 //     })->name('details-car');
