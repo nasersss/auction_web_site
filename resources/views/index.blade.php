@@ -23,9 +23,10 @@
   @section( 'content')
   <!--slider-->
   <div id="carouselExampleControls" class="carousel slide  carousel-fade  " data-ride="carousel">
-@foreach($auctions as $auction)
+
     <div class="carousel-inner">
-      <div class="carousel-item active">
+        @foreach($auctions as $auction)
+      <div class="carousel-item @if($loop->index==1) active @endif">
         @foreach($auction->auctionImage as $image)
         @php
         $im = explode('_',$image->image);
@@ -45,10 +46,11 @@
                 <div class="new-offer">
                   <b class="text-white">الحصري</b>
                 </div>
-
+<div class="slider_head col-12">
                 <div class="slider-offer-image">
                   <img src="/assets/images/logos/pngegg.png" alt="">
                 </div>
+                <div>
                 <h5 class="card-title mt-3"> {{ $auction->name }} </h5>
                 <h6 class="card-subtitle mb-2 text-muted">
                     {{$auction->city->name  }}-
@@ -57,8 +59,10 @@
     {{ $auction->city->state->name }}
 
                 </h6>
+            </div>
+        </div>
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-12 col-md-6">
                     <p class="card-text">
                     <table>
                       <tr>
@@ -94,20 +98,22 @@
                     </table>
                     </p>
 
-                    <a href="{{ route('action_detail',$auction->id) }}" class="btn btn-color">الاشتراك في المزاد</a>
                   </div>
-                  <div class="col-6">
+                  <div class="col-12 col-md-6">
                     @foreach($auction->auctionImage as $image)
                     @php
                     $im = explode('_',$image->image);
                     @endphp
                     @if($im[1]=='main')
-                    <img src="{{$image->image}}" class="w-100 rounded" alt="">
+                    <img src="{{$image->image}}" class="w-100 rounded" style="height: 115px" alt="">
                     @endif
                     @endforeach
-                    <p class="mt-2 card-text auction-paragraph">المزاد الحالي<span class="auction-price"> 10000 $</span></p>
 
                   </div>
+                  <p class="mt-4 card-text auction-paragraph col-12">المزاد الحالي<span class="auction-price"> 10000 $</span></p>
+
+                  <a href="{{ route('action_detail',$auction->id) }}" class="btn btn-color col-12">الاشتراك في المزاد</a>
+
                 </div>
 
               </div>
@@ -117,8 +123,8 @@
 
       </div>
       @endforeach
-      {{-- <div class="carousel-item"> --}}
-        {{-- <div class="slider-img" style="background-image: url('/assets/images/cars/car2.jpg')">
+      {{-- <div class="carousel-item">
+         <div class="slider-img" style="background-image: url('/assets/images/cars/car2.jpg')">
         </div>
         <div class="container">
           <div class="col-12 col-lg-6">
@@ -184,7 +190,7 @@
         </div>
       </div> --}}
 
-    {{-- </div> --}}
+     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
       <div class="slide-bar-icon"> <span class="carousel-control-prev-icon" aria-hidden="true"></span></div>
       <span class="sr-only">Previous</span>
@@ -209,117 +215,24 @@
         <!-- category container-->
         <div class="category-container">
 
+@foreach($categories as $category)
 
           <div class="category">
             <div class="head-catagory-container">
               <div class="head-category">
-                <img src="/assets/images/logos/pngegg.png" alt="">
+                <img src="{{ $category->image }}" alt="">
               </div>
             </div>
             <div class="category-title">
               <h6>
-                تويوتا
+                {{ $category->name}}
               </h6>
             </div>
           </div>
 
+          @endforeach
 
 
-
-          <div class="category">
-            <div class="head-catagory-container">
-              <div class="head-category">
-                <img src="/assets/images/logos/لكزس.png" alt="">
-              </div>
-            </div>
-            <div class="category-title">
-              <h6>
-                لكزس </h6>
-            </div>
-          </div>
-
-          <div class="category">
-            <div class="head-catagory-container">
-              <div class="head-category">
-                <img src="/assets/images/logos/مرسيدس.png" alt="">
-              </div>
-            </div>
-            <div class="category-title">
-              <h6>
-                مرسيدس </h6>
-            </div>
-          </div>
-
-          <div class="category">
-            <div class="head-catagory-container">
-              <div class="head-category">
-                <img src="/assets/images/logos/سوزكي.png" alt="">
-              </div>
-            </div>
-            <div class="category-title">
-              <h6>
-                سوزكي </h6>
-            </div>
-          </div>
-
-          <div class="category">
-            <div class="head-catagory-container">
-              <div class="head-category">
-                <img src="/assets/images/logos/bmw.png" alt="">
-              </div>
-            </div>
-            <div class="category-title">
-              <h6>
-                بي ام دبليو </h6>
-            </div>
-          </div>
-
-          <div class="category">
-            <div class="head-catagory-container">
-              <div class="head-category">
-                <img src="/assets/images/logos/نيسان.png" alt="">
-              </div>
-            </div>
-            <div class="category-title">
-              <h6>
-                نيسان </h6>
-            </div>
-          </div>
-
-          <div class="category">
-            <div class="head-catagory-container">
-              <div class="head-category">
-                <img src="/assets/images/logos/هونداي.png" alt="">
-              </div>
-            </div>
-            <div class="category-title">
-              <h6>
-                هونداي </h6>
-            </div>
-          </div>
-
-          <div class="category">
-            <div class="head-catagory-container">
-              <div class="head-category">
-                <img src="/assets/images/logos/كيا.png" alt="">
-              </div>
-            </div>
-            <div class="category-title">
-              <h6>
-                كيا </h6>
-            </div>
-          </div>
-          <div class="category">
-            <div class="head-catagory-container">
-              <div class="head-category">
-                <img src="/assets/images/logos/هوندا.png" alt="">
-              </div>
-            </div>
-            <div class="category-title">
-              <h6>
-                هوندا </h6>
-            </div>
-          </div>
         </div>
 
         <div class="arrow-category">
@@ -531,7 +444,7 @@
     <div class="row">
       <div class="tab-content col-6">
 
-        <div class="tab-pane active show" id="tab-1">
+        <div class="tab-pane active d-none show" id="tab-1">
           <div class="md-stepper-horizontal orange">
             <div class="md-step active done">
               <div class="md-step-circle"><span>4</span></div>
