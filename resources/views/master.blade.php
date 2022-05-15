@@ -248,4 +248,3 @@
 </footer>
 <script src="/assets/js/header.js"></script>
 <script src="/assets/js/app.js"></script>
-
