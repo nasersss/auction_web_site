@@ -1,14 +1,14 @@
-let search=document.getElementById('search')
-let closeSearch=document.getElementById('close')
-let showSearch=document.getElementById('header')
-let list_user=document.getElementById('list-user')
-search.addEventListener('click',(e)=>{
-e.preventDefault();
-showSearch.style.display='block';
-})
-closeSearch.addEventListener('click',(e)=>{
+let search = document.getElementById('search')
+let closeSearch = document.getElementById('close')
+let showSearch = document.getElementById('header')
+let list_user = document.getElementById('list-user')
+search.addEventListener('click', (e) => {
     e.preventDefault();
-    showSearch.style.display='none';
+    showSearch.style.display = 'block';
+})
+closeSearch.addEventListener('click', (e) => {
+    e.preventDefault();
+    showSearch.style.display = 'none';
 })
 
 var prev = document.getElementsByClassName("prev");
@@ -40,20 +40,20 @@ for (let i = 0; i < prev.length; i++) {
     })
 }
 
-function userSelection(){
+function userSelection() {
     list_user.classList.toggle('visible')
 }
 
-let header_li=document.querySelectorAll('.main-nav li')
-header_li.forEach((li)=>{
-    li.addEventListener('click',removeActive)
+let header_li = document.querySelectorAll('.main-nav li')
+header_li.forEach((li) => {
+    li.addEventListener('click', removeActive)
 })
 
-function removeActive(){
-   header_li.forEach((e)=>{
-       e.classList.remove('active')
-     this.classList.add('active')
-   })
+function removeActive() {
+    header_li.forEach((e) => {
+        e.classList.remove('active')
+        this.classList.add('active')
+    })
 }
 // let img_slider=document.querySelectorAll('.image-slider-container .image')
 // img_slider.forEach((img)=>{
@@ -87,11 +87,11 @@ let img_slider = document.querySelectorAll('.image img')
 
 let activeImages = document.getElementsByClassName('img_active')
 
-for (var i=0; i < img_slider.length; i++){
+for (var i = 0; i < img_slider.length; i++) {
 
-    img_slider[i].addEventListener("mouseover", function(){
+    img_slider[i].addEventListener("mouseover", function() {
 
-        if (activeImages.length > 0){
+        if (activeImages.length > 0) {
             activeImages[0].classList.remove('img_active')
         }
 
@@ -105,36 +105,51 @@ for (var i=0; i < img_slider.length; i++){
 let buttonRight = document.getElementById('btn-right');
 let buttonLeft = document.getElementById('btn-left');
 
-buttonLeft.addEventListener('click', function(){
+buttonLeft.addEventListener('click', function() {
     document.getElementById('slider').scrollLeft -= 180
 })
 
-buttonRight.addEventListener('click', function(){
+buttonRight.addEventListener('click', function() {
     document.getElementById('slider').scrollLeft += 180
 
 })
 
-let amount=document.querySelector("[name='amount']")
-document.forms["amountForm"].onsubmit=function(e){
-let num_amount=amount.value;
+let ok_btn = document.getElementById("ok")
+let console_btn = document.getElementById("console")
 
-   if(num_amount==""){
-       e.preventDefault()
-       document.getElementById("msg").style.display="block"
-       document.getElementById("validate-msg").innerHTML="يرجئ ملئ الحقل للاشتراك في المزاد"
+let amount = document.querySelector("[name='amount']")
+document.forms["amountForm"].onsubmit = function(e) {
+    let num_amount = amount.value;
 
-   }
-  else if(num_amount < 0){
-    e.preventDefault()
-    document.getElementById("msg").style.display="block"
-    document.getElementById("validate-msg").innerHTML="يجب الا يكون الرقم المدخل رقم سالب"
+    if (num_amount == "") {
+        e.preventDefault()
+        document.getElementById("msg").style.display = "block"
+        document.getElementById("validate-msg").innerHTML = "يرجئ ملئ الحقل للاشتراك في المزاد"
 
-}
-else if(!/^[0-9]+$/.test(num_amount)){
-    e.preventDefault()
-    document.getElementById("msg").style.display="block"
-    document.getElementById("validate-msg").innerHTML="يجب ان يكون النص المدخل رقم"
+    }
+    if (num_amount < 0) {
+        e.preventDefault()
+        document.getElementById("msg").style.display = "block"
+        document.getElementById("validate-msg").innerHTML = "يجب الا يكون الرقم المدخل رقم سالب"
 
-}
+    }
+    if (!/^[0-9]+$/.test(num_amount)) {
+        e.preventDefault()
+        document.getElementById("msg").style.display = "block"
+        document.getElementById("validate-msg").innerHTML = "يجب ان يكون النص المدخل رقم"
+
+    } else
+        document.getElementById("myModel").style.display = "block"
+    ok_btn.addEventListener(("click"), () => {
+
+        submit = true
+        document.getElementById("myModel").style.display = "none";
+
+    })
+    console_btn.addEventListener(("click"), () => {
+        e.preventDefault()
+        document.getElementById("myModel").style.display = "none";
+
+    })
 
 }

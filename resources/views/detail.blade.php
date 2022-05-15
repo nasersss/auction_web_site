@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
     <link rel="stylesheet" href="/assets/css/ionicons.min.css">
     <link rel="stylesheet" href="/assets/css/all.css">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -55,7 +57,7 @@
                                     @endisset </span></h4>
                             <h4><span>
                                     @isset($auctions->name)
-                                    {{ $auctions->address}}
+                                    {{ $auctions->city->state->name}} - {{ $auctions->city->name}}
                                     @endisset
                                 </span></h4>
 
@@ -69,9 +71,9 @@
                         <div>السعر الحالي للمزاد :</div>
                         <span class="auction-price">
                             @isset($auctions->curren_price)
-                            {{ $auctions->curren_price}}
+                            {{ $auctions->curren_price}}$
                             @endisset
-                            <span>$</span> <span>
+                            <span></span> <span>
                             </span></span>
 
                     </div>
@@ -95,8 +97,8 @@
                             <div class="col-4">
                                 <h5 class="text-align">اقل قيمة للمزايدة</h5>
                                 <div class="text-align"><span>@isset($auctions->min_bid)
-                                        {{ $auctions->min_bid}}
-                                        @endisset $</span></div>
+                                        {{ $auctions->min_bid}}$
+                                        @endisset </span></div>
 
 
                             </div>
@@ -203,11 +205,7 @@
                     <div class="detail-info-row">
                         <span> الحالة</span><span>
                             @isset($auctions->state)
-                            @if($auctions->state==1)
-                            {{ "مستخدم" }}
-                            @else
-                            {{ جديد }}
-                            @endif
+                            {{$auctions->state}}
                             @endisset
                         </span>
                     </div>
@@ -230,16 +228,8 @@
                     <div class="detail-info-row">
                         <span> نوع القير</span><span>
                             @isset($auctions->ger_type)
-                            @if($auctions->ger_type==1)
-                            {{ "عادي" }}
+                            {{$auctions->ger_type}}
 
-                            @elseif($auctions->ger_type==2)
-                            {{ "اوتماتيك" }}
-
-
-                            @elseif($auctions->ger_type==3)
-                            {{ "عادي و اوتماتيك" }}
-                            @endif
                             @endisset
                         </span>
                     </div>
@@ -255,19 +245,8 @@
                     <div class="detail-info-row">
                         <span> نوع الوقود</span><span>
                             @isset($auctions->fuel)
-                            @if($auctions->fuel==1)
-                            {{ "بترول" }}
+                            {{$auctions->fuel}}
 
-                            @elseif($auctions->fuel==2)
-                            {{ "ديزل" }}
-
-
-                            @elseif($auctions->fuel==3)
-                            {{ " غاز " }}
-
-                            @elseif($auctions->fuel==4)
-                            {{ " كهرباء" }}
-                            @endif
                             @endisset
                         </span>
                     </div>
@@ -285,12 +264,34 @@
                 <div class="action-card mt-2">
                     <div class="action-head">الاشتراك في المزاد</div>
                     <div class="action-body">
-                        <form method="post" action="{{route('bidding')}}" enctype="multipart/form-data">
+                        <form id="bidding-form" name="amountForm" method="post" action="{{route('bidding')}}" enctype="multipart/form-data">
                             @csrf
                             <input type="text" required id="amount" name="amount" placeholder="ادخل مبلغ للاشتراك في المزاد">
                             <input type="hidden" name="auction_id" value="{{$auctions->id}}">
-                            <input type="submit" value="مزايدة" class="btn">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">مزايدة</button>
                         </form>
+
+
+
+
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel" class="">تاكيد الاشتراك </h5>
+                                        <i class="fas fa-times" style="font-size: 25px" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></i>
+                                    </div>
+                                    <div class="modal-body">
+                                        هل انت متاكد انك تريد المزايدة بمبلغ
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اللغاء</button>
+                                        <button type="submit" class="btn model-btn  mx-2" form="bidding-form">تاكيد المزايدة </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="msg" class="alert alert-danger">
@@ -300,9 +301,18 @@
 
         </div>
     </div>
+
+
     @endsection
     <script src="/assets/js/jquery.min.js"></script>
-    <script src="/public/assets/js/app.js"></script>
+
+
+    <script src="/assets/js/bootstrap.bundle.js"></script>
+    <script src="/assets/js/vendor.min.js"></script>
+
+
+
+
 </body>
 
 </html>

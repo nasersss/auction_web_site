@@ -27,7 +27,7 @@
 
             <li class="side-nav-title side-nav-item">لوحة التحكم</li>
             <li class="side-nav-item">
-                <a href="{{route('view_action')}}" class="side-nav-link">
+                <a href="{{route('index')}}" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span>الرئيسية</span>
                 </a>
@@ -89,6 +89,33 @@
                     </ul>
                 </div>
             </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages" class="side-nav-link">
+                    <i class="uil-envelope"></i>
+                    <span> العنوان </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarPages">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('add_state') }}"> اضافة محافظة</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('list_state') }}">عرض المحافظات </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('add_city')}}"> اضافة مدينة</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('list_City')}}"> عرض المدن</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarTasks" aria-expanded="false" aria-controls="sidebarTasks" class="side-nav-link">
                     <i class="uil-car"></i>
@@ -104,19 +131,22 @@
                             <a href="{{route('add-cat')}}">إضافة صنف </a>
                         </li>
                         <li>
-                            <a href="#">تعديل صنف</a>
+                            <a href="{{route('list_vehicle')}}">عرض المركبات </a>
+                        </li>
+                        <li>
+                            <a href="{{route('add_vehicle')}}">اضافة مركبة </a>
                         </li>
 
                     </ul>
                 </div>
             </li>
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarTasks" aria-expanded="false" aria-controls="sidebarTasks" class="side-nav-link">
+                <a data-bs-toggle="collapse" href="#sidebarLayouts" aria-expanded="false" aria-controls="sidebarLayouts" class="side-nav-link">
                     <i class="uil-car"></i>
                     <span>سياسات الموقع </span>
                     <span class="menu-arrow"></span>
                 </a>
-                <div class="collapse" id="sidebarTasks">
+                <div class="collapse" id="sidebarLayouts">
                     <ul class="side-nav-second-level">
                         <li>
                             <a href="{{route('list_policies')}}">عرض السياسات</a>

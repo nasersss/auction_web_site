@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\auction;
 use App\Models\AuctionImage;
 use App\Models\category;
+use App\Models\City;
+use App\Models\State;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\VehicleType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuctionController extends Controller
 {
@@ -18,8 +22,53 @@ class AuctionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $category = category::get();
+        $state = State::with("city")->get();
+        $vehicleType = VehicleType::get();
+        if ($request->method() == 'GET') {
+            $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
+            return view('auction')->with([
+                "auctions" => $auction,
+                'categories' => $category,
+                'vehicleTypes' => $vehicleType,
+                'states' => $state,
+            ]);
+            // return response($auction);
+        } else {
+            $auction = auction::where('is_active',1);
+            if ($request->category_id != null) {
+                $auction->where("category_id", $request->category_id);
+            }
+            if ($request->color != null) {
+                $auction->where("color", $request->color);
+            }
+            if ($request->vehicle_type != null) {
+                $auction->where("vehicle_type_id", $request->vehicle_type);
+            }
+            if ($request->address != null) {
+                $auction->where("city_id", $request->address);
+            }
+            if ($request->date_of_end_auction != null) {
+                $auction->where("date_of_end_auction", '<=', $request->date_of_end_auction)->where("date_of_end_auction", '>=', Carbon::now());
+            }
+            $auction = $auction->get();
+            // return view("index")->with(["auctions" => $auction , 'categories'=>$category, 'request',$request]);
+            // return response($auction);
+            return view('auction')->with([
+                "auctions" => $auction,
+                'categories' => $category,
+                'vehicleTypes' => $vehicleType,
+                'states' => $state,
+            ]);
+        }
+
+        // return view('auction')->with([
+        //     'categories' => $category,
+        //     'vehicleTypes' => $vehicleType,
+        //     'states' => $state,
+        // ]);
     }
 
     /**
@@ -29,9 +78,17 @@ class AuctionController extends Controller
      */
     public function create()
     {
-        $category=category::get();
-        return view('admin/add_auction')->with('categories',$category);
+        $category = category::get();
+        $state = State::with("city")->get();
+        // return response($state);
+        $vehicleType = VehicleType::get();
+        return view('admin/add_auction')->with([
+            'categories' => $category,
+            'vehicleTypes' => $vehicleType,
+            'states' => $state,
+        ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -48,7 +105,7 @@ class AuctionController extends Controller
         $auctionInfo->category_id = $request->category_id;
         $auctionInfo->odometer = $request->odometer;
         $auctionInfo->damage = $request->damage;
-        $auctionInfo->vehicle_type = $request->vehicle_type;
+        $auctionInfo->vehicle_type_id = $request->vehicle_type;
         $auctionInfo->name = $request->name;
         $auctionInfo->model = $request->model;
         $auctionInfo->state = $request->state;
@@ -60,7 +117,7 @@ class AuctionController extends Controller
         $auctionInfo->curren_price = $request->stare_price;
         $auctionInfo->number_of_participate = 0;
         $auctionInfo->fuel = $request->fuel;
-        $auctionInfo->address = $request->address;
+        $auctionInfo->city_id = $request->address;
         $auctionInfo->date_of_end_auction = $request->date_of_end_auction;
         // $auctionInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image'), $auctionInfo->category_id) : "defaultImage.png";
         if ($auctionInfo->save()) {
@@ -77,11 +134,11 @@ class AuctionController extends Controller
                 $auctionImage->image = $this->uploadFile($image, $auctionInfo->id);
                 $auctionImage->is_active = -1;
                 $auctionImage->auction_id = $auctionInfo->id;
-                if($auctionImage->save()){
+                if ($auctionImage->save()) {
                     // return response($auctionInfo);
                 }
             }
-            return redirect()->route('view_action')->with(['success' => 'تم تحديث البيانات بنجاح']);
+            return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
         }
 
         // return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
@@ -91,7 +148,7 @@ class AuctionController extends Controller
     public function uploadFile($file, $id)
     {
         $destination = public_path() . "/images/auction";
-        $fileName = $id . "_" . time() . "_" . random_int(10000,100000) . "_" . $file->getClientOriginalName();
+        $fileName = $id . "_" . time() . "_" . random_int(10000, 100000) . "_" . $file->getClientOriginalName();
         $file->move($destination, $fileName);
         return $fileName;
     }
@@ -169,23 +226,79 @@ class AuctionController extends Controller
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
-    public function viewAuction(){
-        $auction=auction::with("auctionImage")->where('is_active', 1)->where('date_of_end_auction','>=', Carbon::now())->get();
-        //  return response($auction);
-        return view("index")->with("auctions",$auction);
+    public function viewAuction(Request $request)
+    {
+        // return response($auction);
+        // dd($request->method());
+        // $category = category::get();
+        // if ($request->method() == 'GET') {
+        //     $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
+        //     return view("index")->with(["auctions" => $auction, 'categories' => $category]);
+        //     // return response($auction);
+        // } else {
+        //     $category_id = '*';
+        //     if (isset($request->category_id)) {
+        //         $category_id = $request->category_id;
+        //     }
+        //     $auction = auction::with("auctionImage")->where("category_id", $category_id)->get();
+        //     // return view("index")->with(["auctions" => $auction , 'categories'=>$category, 'request',$request]);
+        //     return response('1');
+        // }
+        $category = category::get();
+        $state = State::with("city")->get();
+        $vehicleType = VehicleType::get();
+        if ($request->method() == 'GET') {
+            $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
+            return view('index')->with([
+                "auctions" => $auction,
+                'categories' => $category,
+                'vehicleTypes' => $vehicleType,
+                'states' => $state,
+            ]);
+            // return response($auction);
+        } else {
+            $auction = auction::where('is_active',1);
+            if ($request->category_id != null) {
+                $auction->where("category_id", $request->category_id);
+            }
+            if ($request->color != null) {
+                $auction->where("color", $request->color);
+            }
+            if ($request->vehicle_type != null) {
+                $auction->where("vehicle_type_id", $request->vehicle_type);
+            }
+            if ($request->address != null) {
+                $auction->where("city_id", $request->address);
+            }
+            if ($request->date_of_end_auction != null) {
+                $auction->where("date_of_end_auction", '<=', $request->date_of_end_auction)->where("date_of_end_auction", '>=', Carbon::now());
+            }
+            $auction = $auction->get();
+            // return view("index")->with(["auctions" => $auction , 'categories'=>$category, 'request',$request]);
+            // return response($auction);
+            return view('index')->with([
+                "auctions" => $auction,
+                'categories' => $category,
+                'vehicleTypes' => $vehicleType,
+                'states' => $state,
+            ]);
+        }
+
     }
 
 
-    public function detailAuction($carId){
-        $auctionCar=auction::with(["auctionImage","category"])->find($carId);
-// return response($auctionCar);
-        return view("detail")->with("auctions",$auctionCar);
+    public function detailAuction($carId)
+    {
+        $auctionCar = auction::with(["auctionImage", "category"])->find($carId);
+        // return response($auctionCar);
+        return view("detail")->with("auctions", $auctionCar);
     }
-// this function show list of all auctions
-    function auctionReview(){
+    // this function show list of all auctions
+    function auctionReview()
+    {
 
-        $auction=auction::with(["user","category","auctionImage"])->get();
-        return view("admin.auctions_review")->with("auctions",$auction);
+        $auction = auction::with(["user", "category", "auctionImage"])->get();
+        return view("admin.auctions_review")->with("auctions", $auction);
     }
 
     public function toggle($auctionId)

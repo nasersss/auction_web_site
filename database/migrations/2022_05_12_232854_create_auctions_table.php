@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->double('odometer');//المسافة المقطوعة
             $table->string('damage');// الاضرار
-            $table->string('vehicle_type');
+            $table->unsignedBigInteger('vehicle_type_id'); // نوع المركبة
             $table->string('name');// مثل هيلوكس
             $table->string('model');// مثل السنة 2005 | 2020
             $table->string('state');//new or old
@@ -31,12 +31,15 @@ return new class extends Migration
             $table->string('stare_price');
             $table->string('min_bid');
             $table->string('curren_price')->nullable();
-            $table->string('address');
+            // $table->string('address');
+            $table->unsignedBigInteger("city_id");
             $table->timestamp('date_of_end_auction');
             $table->integer('number_of_participate');
             $table->string('fuel');// نوع الوقود
             $table->foreign('seller_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('vehicle_type_id')->references('id')->on('vehicle_types');
+            $table->foreign('city_id')->references('id')->on('cities');
             $table->timestamps();
         });
     }

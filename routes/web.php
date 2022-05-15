@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\UserProfile;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,10 @@ Route::get('/add_view',[Maincontroller::class,'show']);
 // Route::get('/home',function(){
 //     return view('index');
 // })->name('users');
+
+Route::get('/test',function(){
+    return view('admin.test');
+})->name('test');
 
 Route::get('/auction',function(){
     return view('auction');
@@ -98,11 +103,20 @@ Route::post('update_user/{PoliceId}',[UserProfileController::class,'updateUser']
 });
 ##########################
 
-Route::get('/',[AuctionController::class,"viewAuction"])->name("view_action");
+Route::get('/',[AuctionController::class,"viewAuction"])->name("index");
+Route::post('/',[AuctionController::class,"viewAuction"])->name("index");
 Route::get('detail_car/{carId}',[AuctionController::class,"detailAuction"])->name("action_detail");
 Route::get('/auction_review',[AuctionController::class,"auctionReview"])->name("auction_review");
 Route::get('/toggle_auctions/{auctionId}',[AuctionController::class,"toggle"])->name("toggle_auction");
 
+############## route address
+############## route state
+Route::get('/add_state',[StateController::class,"create"])->name("add_state");
+Route::post('/save_state',[StateController::class,"store"])->name("store_state");
+Route::get('edit_state/{stateId}',[StateController::class,'edit'])->name('edit_state');
+Route::post('update_state/{stateId}',[StateController::class,'update'])->name('update_state');
+Route::get('toggle_state/{stateId}',[StateController::class,'toggle'])->name('toggle_state');
+Route::get('list_state',[StateController::class,'listState'])->name('list_state');
 
 
 Route::get('test', [apiTestController::class, 'index'])->name('test');
@@ -110,3 +124,20 @@ Route::get('test/response/{info}', [apiTestController::class, 'showTest'])->name
 Route::get('test/cancel/{cancel}', [apiTestController::class, 'testCancel'])->name('testCancel');
 Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewCancel');
 
+############## route city
+
+Route::get('/add_city',[CityController::class,"create"])->name("add_city");
+Route::post('/save_city',[CityController::class,"store"])->name("store_city");
+Route::get('edit_city/{cityId}',[CityController::class,'edit'])->name('edit_city');
+Route::post('update_city/{cityId}',[CityController::class,'update'])->name('update_city');
+Route::get('toggle_city/{cityId}',[CityController::class,'toggle'])->name('toggle_city');
+Route::get('list_city',[CityController::class,'listCity'])->name('list_City');
+
+####################### route  vehicle_types
+
+Route::get('/add_vehicle',[VehicleTypeController::class,"create"])->name("add_vehicle");
+Route::post('/save_vehicle',[VehicleTypeController::class,"store"])->name("store_vehicle");
+Route::get('edit_vehicle/{Id}',[VehicleTypeController::class,'edit'])->name('edit_vehicle');
+Route::post('update_vehicle/{Id}',[VehicleTypeController::class,'update'])->name('update_vehicle');
+Route::get('toggle_vehicle/{Id}',[VehicleTypeController::class,'toggle'])->name('toggle_vehicle');
+Route::get('list_vehicle',[VehicleTypeController::class,'listVehicle'])->name('list_vehicle');

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->double('bidding_amount');
             $table->unsignedBigInteger('auction_id');
+            $table->double('payed_amount');
             $table->foreign('auction_id')->references('id')->on('auctions')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

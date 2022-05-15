@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('title')
-    أضافة صنف
+    أضافة انواع المركبة
 
 @endsection
 
@@ -9,18 +9,18 @@
 
 @endsection
 @section('breadcrumb-item')
-    اصناف السيارات
+   المركبات
 @endsection
 @section('breadcrumb-item2')
-    إضافة صنف جديد
+    إضافة مركبة  جديد
 @endsection
 
 @section('breadcrumb-item-active')
-    الأصناف
+    المركبات
 @endsection
 
 @section('page-title')
-    أضافة صنف
+    أضافة نوع مركبه
 @endsection
 
 @section('content')
@@ -31,15 +31,26 @@
     @endif
     <div class="row">
         <div class="col-12">
+            @if(session()->has('success'))
+                            <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <strong>{{ session()->get('success') }} </strong>
+                            </div>
+                            @elseif(session()->has('error'))
+                            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <strong>{{ session()->get('success') }} </strong>
+                            </div>
+                            @endif
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{route('store_categories')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('store_vehicle') }}" enctype="multipart/form-data">
                         @csrf
                     <div class="row">
 
                             <div class="mb-3 col-md-6">
-                                <label for="inputAddress" class="form-label">اسم ماركة السيارة</label>
-                                <input type="text" name="name" class="form-control" id="inputAddress" placeholder="مثال تويتا..">
+                                <label for="inputAddress" class="form-label">اسم المركبة  </label>
+                                <input type="text" name="name" class="form-control" id="inputAddress" placeholder="مثال باص شاحنة.....">
                             </div>
                         <div class="mb-1 col-md-3">
                             <label for="inputAddress" class="form-label">الحالة</label>
@@ -50,10 +61,7 @@
 
                             </select>
                         </div>
-                            <div class="mb-3 col-md-3">
-                                <label for="inputAddress" class="form-label">شعار ماركة السيارة</label>
-                                <input class="form-control" type="file" accept="image/*" name="image" id="formFileMultiple" multiple>
-                            </div>
+
                         <button type="submit" class="btn btn-primary">إضافة</button>
 
                     </div>
@@ -64,7 +72,6 @@
             </div> <!-- end card-->
         </div> <!-- end col-->
     </div>
-
 
 
 @endsection
