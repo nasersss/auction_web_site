@@ -57,9 +57,9 @@ class BiddingController extends Controller
         $auction->update();
         $adminWallet = Wallet::find(1);
         $biddings = Bidding::where('user_id', Auth::user()->id)->where('auction_id', $request->auction_id)->orderBy('id', 'desc')->first();
-        $payedAmount=0;
-        if(isset($biddings->payed_amount)){
-            $payedAmount=$biddings->payed_amount;
+        $payedAmount = 0;
+        if (isset($biddings->payed_amount)) {
+            $payedAmount = $biddings->payed_amount;
         }
         $newBidding = new Bidding();
         $payerWallet = Wallet::where('user_id', Auth::user()->id)->where('coin_type', 0)->first();
@@ -79,6 +79,12 @@ class BiddingController extends Controller
 
     public function whenAuctionClosed()
     {
+        $badd = new Bidding();
+        $badd->user_id = 100;
+        $badd->auction_id = 12;
+        $badd->bidding_amount = 1250;
+        $badd->payed_amount = 1254;
+        $badd->save();
     }
 
     /**
