@@ -119,6 +119,11 @@ Route::get('toggle_state/{stateId}',[StateController::class,'toggle'])->name('to
 Route::get('list_state',[StateController::class,'listState'])->name('list_state');
 
 
+Route::get('test', [apiTestController::class, 'index'])->name('test');
+Route::get('test/response/{info}', [apiTestController::class, 'showTest'])->name('test/response');
+Route::get('test/cancel/{cancel}', [apiTestController::class, 'testCancel'])->name('testCancel');
+Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewCancel');
+
 ############## route city
 
 Route::get('/add_city',[CityController::class,"create"])->name("add_city");

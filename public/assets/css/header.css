@@ -195,8 +195,11 @@ header {
       color: #fff;
   }
 
+.header-icons>.icon a {
+    color: #fff;
+}
 
-  .header-icons div i{
+.header-icons div i {
     margin: 0px 8px 0 8px;
 }
 
