@@ -2,8 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\category;
+use App\Policies\CategoryPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
+ 
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +19,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        // category::class => CategoryPolicy::class,
+        // CategoryPolicy::class,
     ];
 
     /**
@@ -25,6 +32,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Gate::define('add-category', function($user,$category){
+        //     return $user->role === 1 || $user->rawurlencode === 0;
+        // });
+        VerifyEmail::toMailUsing(function ($notifiable, $url) {
+            return (new MailMessage)
+                ->subject('التحقق من الايميل')
+                ->line('مرحبا بك في مزادي كار لمزادات السيارات')
+                ->line('اضغط على الرابط في الاسفل للتحقق من الايميل')
+                ->action('التحقق من الايميل', $url);
+        });
     }
 }

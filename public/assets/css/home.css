@@ -1,0 +1,201 @@
+                /* slider */
+                
+                @import url(../fonts/DIN.css);
+                body {
+                    font-family: DIN-light, sans-serif, Arial;
+                }
+                
+                .carousel-item {
+                    height: 32rem;
+                    background-color: #000;
+                }
+                
+                .slider-img {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background-position: center;
+                    background-size: cover;
+                    opacity: .5;
+                }
+                
+                .slider-card {
+                    right: 100%;
+                    top: 80px;
+                    text-align: right;
+                }
+                
+                .btn-color {
+                    color: #fff;
+                    background: var(--primaryColor);
+                }
+                
+                .new-offer {
+                    height: 60px;
+                    width: 59px;
+                    border-radius: 50%;
+                    background: var(--primaryColor);
+                    position: absolute;
+                    bottom: 88%;
+                    left: 93%;
+                    display: flex;
+                    margin: auto;
+                }
+                
+                .icon {
+                    display: flex;
+                    justify-content: center;
+                }
+                
+                .icon img {
+                    width: 20%;
+                }
+                
+                .card-text {
+                    text-align: right !important;
+                }
+                
+                .slider-offer-image {
+                    display: flex;
+                    width: 26%;
+                    /* height: 65px; */
+                    justify-items: flex-end;
+                    padding-top: 3%;
+                }
+                
+                .slider_head {
+                    display: flex;
+                    justify-items: center;
+                }
+                
+                .slider-offer-image img {
+                    width: 80%;
+                }
+                
+                .cart-text {
+                    text-align: right !important;
+                }
+                
+                .new-offer b {
+                    margin: auto;
+                }
+                
+                table th {
+                    padding: 5px 0px 0 15px;
+                }
+                
+                .parent-false-icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: end;
+                    color: #fff;
+                    font-size: 48px;
+                }
+                
+                .container-parent-category {
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    width: 100%;
+                }
+                
+                .category-container {
+                    width: 90%;
+                    overflow: auto;
+                    display: flex;
+                }
+                
+                .category {
+                    width: 100%;
+                }
+                
+                .head-catagory-container {
+                    display: flex;
+                    justify-content: center;
+                }
+                
+                .head-category {
+                    width: 70px;
+                    height: 70px;
+                    background: #8888887a;
+                    border-style: none;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                .auction-paragraph {
+                    text-align: center !important;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+                
+                .auction-price {
+                    font-size: 30px;
+                    color: var(--primaryColor);
+                    font-weight: bolder;
+                }
+                
+                .head-category img {
+                    width: 80%;
+                    /* margin:  14px auto 0; */
+                }
+                
+                .category-title {
+                    display: flex;
+                    justify-content: center;
+                }
+                
+                .arrow-category {
+                    width: 5%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                .arrow-category span {
+                    width: 27px;
+                    height: 27px;
+                    border-radius: 50%;
+                    background: var(--primaryColor);
+                    color: #fff;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                
+                .slide-bar-icon {
+                    height: 35px;
+                    width: 35px;
+                    border-radius: 50%;
+                    background: var(--primary);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                
+                @media only screen and (max-width: 991px) {
+                    .arrow-category span {
+                        width: 24px !important;
+                        height: 24px !important;
+                        border-radius: 50%;
+                        font-size: 14px !important;
+                    }
+                    /* .slider-offer-image {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        right: 21% !important;
+        bottom: 58% !important;
+    } */
+                    .slider-card {
+                        right: 0% !important;
+                        top: 4px !important;
+                    }
+                    .category {
+                        margin: 0 4%;
+                    }
+                }

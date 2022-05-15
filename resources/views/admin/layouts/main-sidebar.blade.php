@@ -3,20 +3,20 @@
     <!-- LOGO -->
     <a href="index.html" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="assets/images/logo.png" alt="" height="40">
+                        <img src="{{asset('assets/images/logo-dash.png')}}" alt="" height="40">
                     </span>
         <span class="logo-sm">
-                        <img src="assets/images/logo_sm.png" alt="" height="30">
+                        <img src="{{asset('assets/images/logo_sm.png')}}" alt="" height="30">
                     </span>
     </a>
 
     <!-- LOGO -->
     <a href="index.html" class="logo text-center logo-dark">
                     <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="16">
+                        <img src="{{asset('assets/images/logo-dark.png')}}" alt="" height="16">
                     </span>
         <span class="logo-sm">
-                        <img src="assets/images/logo_sm_dark.png" alt="" height="16">
+                        <img src="{{asset('assets/images/logo_sm_dark.png')}}" alt="" height="16">
                     </span>
     </a>
 
@@ -27,7 +27,7 @@
 
             <li class="side-nav-title side-nav-item">لوحة التحكم</li>
             <li class="side-nav-item">
-                <a href="{{route('dash-home')}}" class="side-nav-link">
+                <a href="{{route('index')}}" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span>الرئيسية</span>
                 </a>
@@ -44,7 +44,7 @@
                             <a href="{{route('add-auction')}}">أضافة مزاد جديد</a>
                         </li>
                         <li>
-                            <a href="{{route('auctions-review')}}">مراجعة مزادات</a>
+                            <a href="{{route('auction_review')}}">مراجعة مزادات</a>
                         </li>
                     </ul>
                 </div>
@@ -60,10 +60,10 @@
                 <div class="collapse" id="sidebarProjects">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{route('users')}}">عرض المستخدمين</a>
+                            <a href="{{route('list-user')}}">عرض المستخدمين</a>
                         </li>
                         <li>
-                            <a href="{{route('add-auction')}}">إدارة المستخدمين</a>
+                            <a href="#">إدارة المستخدمين</a>
                         </li>
 
                     </ul>
@@ -89,6 +89,33 @@
                     </ul>
                 </div>
             </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages" class="side-nav-link">
+                    <i class="uil-envelope"></i>
+                    <span> العنوان </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarPages">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('add_state') }}"> اضافة محافظة</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('list_state') }}">عرض المحافظات </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('add_city')}}"> اضافة مدينة</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('list_City')}}"> عرض المدن</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarTasks" aria-expanded="false" aria-controls="sidebarTasks" class="side-nav-link">
                     <i class="uil-car"></i>
@@ -98,14 +125,36 @@
                 <div class="collapse" id="sidebarTasks">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="#">إضافة صنف </a>
+                            <a href="{{route('view_cat')}}">عرض الأصناف</a>
                         </li>
                         <li>
-                            <a href="#">تعديل صنف</a>
+                            <a href="{{route('add-cat')}}">إضافة صنف </a>
                         </li>
                         <li>
-                            <a href="#">حذف صنف</a>
+                            <a href="{{route('list_vehicle')}}">عرض المركبات </a>
                         </li>
+                        <li>
+                            <a href="{{route('add_vehicle')}}">اضافة مركبة </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarLayouts" aria-expanded="false" aria-controls="sidebarLayouts" class="side-nav-link">
+                    <i class="uil-car"></i>
+                    <span>سياسات الموقع </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarLayouts">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{route('list_policies')}}">عرض السياسات</a>
+                        </li>
+                        <li>
+                            <a href="{{route('add_policies')}}">إضافة سياسة </a>
+                        </li>
+
                     </ul>
                 </div>
             </li>
@@ -122,6 +171,7 @@
                     <span>الإعدادات</span>
                 </a>
             </li>
+
 
 
 

@@ -12,14 +12,14 @@
         </li>
         <li class="dropdown notification-list topbar-dropdown">
             <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <img src="assets/images/flags/ar.jpg" alt="user-image" class="me-0 me-sm-1" height="12">
+                <img src="{{asset('assets/images/flags/ar.jpg')}}" alt="user-image" class="me-0 me-sm-1" height="12">
                 <span class="align-middle d-none d-sm-inline-block">عربي</span> <i class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu">
 
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
+                    <img src="{{asset('assets/images/flags/us.jpg')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
                 </a>
 
 
@@ -71,7 +71,7 @@
                         <div class="notify-icon">
                             <img src="assets/images/users/avatar-11.jpg" class="img-fluid rounded-circle" alt="">
                         </div>
-                        <p class="notify-details">فؤاد العمودي</p>
+                        <p class="notify-details">{{ Auth::user()->name }}</p>
                         <p class="text-muted mb-0 user-msg">
                             <small>مرحبا توجد لدي مشكلة في اضافة مزاد</small>
                         </p>
@@ -107,33 +107,50 @@
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
-                    <img src="assets/images/users/avatar-11.jpg" alt="user-image" class="rounded-circle">
+                    <img src="
+                       @isset(Auth::user()->profile->image)
+                    {{Auth::user()->profile->image}}
+                    @else
+                        images/users/defaultImage.png
+
+                    @endisset
+                   " alt="user-image" class="rounded-circle">
                 </span>
                 <span>
-                    <span class="account-user-name">فؤاد العمودي</span>
-                    <span class="account-position">مسؤول النظام</span>
+                    <span class="account-user-name">{{ Auth::user()->name }}</span>
+                    <span class="account-position">
+                        @if(Auth::user()->role==0)
+                            مسؤول النظام
+                        @elseif(Auth::user()->role==1)
+                        مدير
+                        @elseif(Auth::user()->role==2)
+                        مستخدم
+                        @else
+                        غير معروف
+                        @endif
+                    </span>
+
+
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{route('edit_profile',Auth::user()->id)}}" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-circle me-1"></i>
-                    <span>حسابي</span>
+                    <span>إعدادات الحساب</span>
                 </a>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="mdi mdi-account-edit me-1"></i>
-                    <span>إعدادت الحساب</span>
-                </a>
+
                 <!-- item-->
-                <a href="{{ route('logout') }}" class="dropdown-item notify-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
                     <i class="mdi mdi-logout me-1"></i>
                     <span>تسجيل الخروج</span>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
             </div>
         </li>
 

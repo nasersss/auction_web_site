@@ -20,44 +20,44 @@
 @endsection
 
 @section('page-title')
-    الأصناف
+    أضافة صنف
 @endsection
 
 @section('content')
+    @if($errors->any())
+    @foreach($errors->all() as $err)
+        <p>{{$err}}</p>
+        @endforeach
+    @endif
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-
+                    <form method="post" action="{{route('store_categories')}}" enctype="multipart/form-data">
+                        @csrf
                     <div class="row">
-                        <div class="col-xl-6" data-select2-id="6">
-                            <div class="mb-3">
-                                <label for="projectname" class="form-label">أسم الشركة</label>
-                                <input type="text" id="projectname" class="form-control" placeholder="Enter project name">
+
+                            <div class="mb-3 col-md-6">
+                                <label for="inputAddress" class="form-label">اسم ماركة السيارة</label>
+                                <input type="text" name="name" class="form-control" id="inputAddress" placeholder="مثال تويتا..">
                             </div>
+                        <div class="mb-1 col-md-3">
+                            <label for="inputAddress" class="form-label">الحالة</label>
+                            <select name="is_active" class="form-select mb-3">
+                                <option selected>أختر احدى الانوع</option>
+                                <option value="1">نشط</option>
+                                <option value="-1">غير نشط</option>
 
-                            <div class="mb-3">
-                                <label for="project-overview" class="form-label">Overview</label>
-                                <textarea class="form-control" id="project-overview" rows="5" placeholder="Enter some brief about project.."></textarea>
+                            </select>
+                        </div>
+                            <div class="mb-3 col-md-3">
+                                <label for="inputAddress" class="form-label">شعار ماركة السيارة</label>
+                                <input class="form-control" type="file" accept="image/*" name="image" id="formFileMultiple" multiple>
                             </div>
-
-                            <!-- Date View -->
-                            <div class="mb-3 position-relative" id="datepicker1">
-                                <label class="form-label">Start Date</label>
-                                <input type="text" class="form-control" data-provide="datepicker" data-date-container="#datepicker1" data-date-format="d-M-yyyy" data-date-autoclose="true">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="project-budget" class="form-label">Budget</label>
-                                <input type="text" id="project-budget" class="form-control" placeholder="Enter project budget">
-                            </div>
-
-
-
-                        </div> <!-- end col-->
-
+                        <button type="submit" class="btn btn-primary">إضافة</button>
 
                     </div>
+                    </form>
                     <!-- end row -->
 
                 </div> <!-- end card-body -->
