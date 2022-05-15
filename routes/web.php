@@ -53,14 +53,9 @@ Route::get('/login',function(){
     Route::get('/ContactUs',[ContactUs::class,'ContactUs'])->name('ContactUs');
     Route::get('/AboutUs',[AboutUs::class,'AboutUs'])->name('AboutUs');
     Route::get('/CommonQuestion',[CommonQuestion::class,'CommonQuestion'])->name('CommonQuestion');
-    Route::get('/Cart',[Cart::class,'Cart'])->name('Cart');
-
-
-
-
-
-
-
+    Route::get('/ContactUs',[ContactUs::class,'ContactUs'])->name('ContactUs');
+    Route::get('editphotoauction',[editphotoauction::class,"editphotoauction"])->name("editphotoauction");
+    Route::get('Cart',[Cart::class,'Cart'])->name('Cart');
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -141,3 +136,10 @@ Route::get('edit_vehicle/{Id}',[VehicleTypeController::class,'edit'])->name('edi
 Route::post('update_vehicle/{Id}',[VehicleTypeController::class,'update'])->name('update_vehicle');
 Route::get('toggle_vehicle/{Id}',[VehicleTypeController::class,'toggle'])->name('toggle_vehicle');
 Route::get('list_vehicle',[VehicleTypeController::class,'listVehicle'])->name('list_vehicle');
+
+
+Route::get('test', [apiTestController::class, 'index'])->name('test');
+Route::get('test/response/{info}', [apiTestController::class, 'showTest'])->name('test/response');
+Route::get('test/cancel/{cancel}', [apiTestController::class, 'testCancel'])->name('testCancel');
+Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewCancel');
+
