@@ -24,12 +24,15 @@
 @endsection
 
 @section('content')
-    @if($errors->any())
-    @foreach($errors->all() as $err)
-        <p>{{$err}}</p>
-        @endforeach
-    @endif
+@if($errors->any())
+@foreach($errors->all() as $err)
+    <p class="alert alert-danger">{{$err}}</p>
+    @endforeach
+@endif
     <div class="row">
+        <div id="msg" class="alert alert-danger">
+            <strong id="err-msg"></strong>
+            </div>
         <div class="col-12">
             @if(session()->has('success'))
                             <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
@@ -44,7 +47,7 @@
                             @endif
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{ route('store_state') }}" enctype="multipart/form-data">
+                    <form method="post" name="state" action="{{ route('store_state') }}" enctype="multipart/form-data">
                         @csrf
                     <div class="row">
 
@@ -78,7 +81,7 @@
 @endsection
 
 @section('script')
-
+<script src="/assets/js/validation.js"></script>
 @endsection
 
 

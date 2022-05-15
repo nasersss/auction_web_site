@@ -25,7 +25,7 @@ class StateController extends Controller
     {
         //
         Validator::validate($request->all(), [
-            'name' => ['required', 'min:2', 'max:50'],
+            'name' => ['required', 'min:1', 'max:50'],
         ], [
             'name.required' => 'يجب تعبئت هذا الحقل',
             'name.max' => 'لايمكنك ادخال اقل من 50 حرف',

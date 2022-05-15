@@ -267,7 +267,7 @@
                         <h4 class="header-title mt-2">معلومات أضافية</h4>
                         <div class="mb-3">
                             <label for="project-overview" class="form-label">ملاحظات</label>
-                            <textarea class="form-control" id="project-overview" rows="5" placeholder="ملاحظات..."></textarea>
+                            <textarea class="form-control" name='notes' id="project-overview" rows="5" placeholder="ملاحظات..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">إضافة</button>
                     </div>
