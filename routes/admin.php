@@ -23,6 +23,7 @@ Route::get('/dashboard', function () {
 })->name('dash-home');
 
 Route::get('/add_auction', [AuctionController::class, 'create'])->name('add-auction');
+Route::get('/edit_auction', function () {return view('admin/edit_auction');})->name('edit-auction');
 Route::post('/store_auction', [AuctionController::class, 'store'])->name('store-auction');
 
 Route::get('/auctions_review', function () {

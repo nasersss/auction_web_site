@@ -20,7 +20,7 @@
 @endsection
 
 @section('page-title')
-أضافة مزاد
+
 @endsection
 
 @section('content')
@@ -82,7 +82,7 @@
                             </div>
                             <div class="col-lg-3 col-md-12">
                                 <label for="address" class="form-label">مكان السيارة الحالي (المحافظة)</label>
-                                <select required id='state' name="state" class="form-select mb-3">
+                                <select required id='state' class="form-select mb-3">
                                     <option selected disabled>أختر محافظة</option>
                                     @isset($states)
                                     @foreach($states as $state)
@@ -196,7 +196,7 @@
                                 <div class="mb-3 mt-3 mt-xl-0">
                                     <label for="projectname" class="mb-0">الصورة الاسياسية</label>
                                     <p class="text-muted font-14">حجم الصورة الموصى به 800 × 400 (بكسل)</p>
-                                    <div  class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
+                                    <div class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
                                         <div class="fallback">
                                             <input class="form-control" required name="mainImage" accept="image/*" type="file">
                                         </div>
@@ -216,7 +216,7 @@
                                 <div class="mb-3 mt-3 mt-xl-0">
                                     <label for="projectname" class="mb-0">صور اخرى</label>
                                     <p class="text-muted font-14">حجم الصورة الموصى به 800 × 400 (بكسل)</p>
-                                    <div  class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
+                                    <div class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
                                         <div class="fallback">
                                             <input type="file" required name="images[]" accept="image/*" id="formFileMultiple" multiple>
                                         </div>
