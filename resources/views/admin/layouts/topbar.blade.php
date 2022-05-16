@@ -30,9 +30,11 @@
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <i class="dripicons-bell noti-icon"></i>
-                @if(count($notifications) == 0)
+                @isset(Auth::user()->notificationTo)
+                @if(count(Auth::user()->notificationTo) == 0)
                 @else
                 <span class="noti-icon-badge"></span>
+                @endif
                 @endisset
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">
@@ -50,8 +52,8 @@
 
                 <div style="max-height: 230px;" data-simplebar="">
                     <!-- item-->
-                    @isset($notifications)
-                    @foreach($notifications as $notification)
+                    @isset(Auth::user()->notificationTo)
+                    @foreach(Auth::user()->notificationTo as $notification)
                     <a href="{{route('makeNotificationSeen', $notification->id)}}" class="dropdown-item notify-item">
                         <div class="notify-icon bg-primary">
                             <i class="mdi mdi-comment-account-outline"></i>

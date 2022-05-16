@@ -25,6 +25,7 @@ class AuctionController extends Controller
      */
     public function index(Request $request)
     {
+        
         $category = category::get();
         $state = State::with("city")->get();
         $vehicleType = VehicleType::get();
@@ -70,9 +71,10 @@ class AuctionController extends Controller
      */
     public function create()
     {
+        
         $category = category::get();
         $state = State::with("city")->get();
-        $notifications = Notification::where('to_user_id',Auth::user()->id)->where('is_seen',-1)->get();
+        $notifications = Notification::where('to_user_id', Auth::user()->id)->where('is_seen', -1)->get();
 
         $vehicleType = VehicleType::get();
         return view('admin/add_auction')->with([
@@ -113,7 +115,7 @@ class AuctionController extends Controller
         $auctionInfo->fuel = $request->fuel;
         $auctionInfo->city_id = $request->address;
         $auctionInfo->date_of_end_auction = $request->date_of_end_auction;
-        
+
         // if the auction is saved that will save and upload images of auction.
         if ($auctionInfo->save()) {
             $auctionMaineImage = new AuctionImage();
@@ -132,11 +134,7 @@ class AuctionController extends Controller
                 $auctionImage->save();
             }
 
-            $admins=User::where('role','<',1);
-            $notification = new NotificationController();
-            foreach($admins as $admin){
-                $notification->sendNotification($admin->id,'تم اضافة مزاد جديد ','index');
-            }
+
 
             return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
         }

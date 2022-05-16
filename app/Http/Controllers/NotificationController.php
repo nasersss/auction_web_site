@@ -61,7 +61,7 @@ class NotificationController extends Controller
         $notification->to_user_id=$toUserId;
         $notification->content=$content;
         $notification->route=$route;
-        return $notification->save();
+        $notification->save();
 
     }
 
