@@ -131,6 +131,13 @@ class AuctionController extends Controller
                 $auctionImage->auction_id = $auctionInfo->id;
                 $auctionImage->save();
             }
+
+            $admins=User::where('role','<',1);
+            $notification = new NotificationController();
+            foreach($admins as $admin){
+                $notification->sendNotification($admin->id,'تم اضافة مزاد جديد ','index');
+            }
+
             return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
         }
 

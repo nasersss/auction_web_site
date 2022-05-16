@@ -6,6 +6,7 @@ use App\Models\auction;
 use App\Models\category;
 use App\Models\Notification;
 use App\Models\State;
+use App\Models\User;
 use App\Models\VehicleType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -43,19 +44,25 @@ class NotificationController extends Controller
     }
 
     /**
-     * This function 
+     *  
      *
      * @param mixed $fromUserId
      * @param mixed $toUserId
      * @param mixed $content
      * @param mixed $route
      * 
-     * @return [type]
+     * @return boolean
      * 
      */
-    public function sendNotification($fromUserId,$toUserId,$content,$route)
+    public function sendNotification($toUserId,$content,$route)
     {
-        
+        $notification = new Notification();
+        $notification->from_user_id = Auth::user()->id;
+        $notification->to_user_id=$toUserId;
+        $notification->content=$content;
+        $notification->route=$route;
+        return $notification->save();
+
     }
 
     /**
