@@ -13,7 +13,6 @@ class CityController extends Controller
 
     public function create(){
         $state=State::get();
-    //    return response($state);
         return view("admin.address.city.add")->with("state",$state);
 
     }
@@ -63,7 +62,6 @@ class CityController extends Controller
             //
             $city = City::with("state")->find($cityId);
             $state=State::get();
-           // return response($city);
             return view('admin.address.city.edit')
                 ->with(['city'=> $city,'state'=>$state]);
         }
@@ -78,7 +76,6 @@ class CityController extends Controller
             $city->is_active = $request->is_active;
             if ($city->save())
                 return redirect()->route('list_City')->with(['success' => 'تم تحديث البيانات بنجاح']);
-
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
 }

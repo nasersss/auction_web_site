@@ -156,7 +156,7 @@ class AuctionController extends Controller
     public function uploadMainFile($file, $id)
     {
         $destination = public_path() . "/images/auction";
-        $fileName = $id . "_" . "main" . "_" . time() . "_" .  $file('mainImage')->getClientOriginalName();
+        $fileName = $id . "_" . "main" . "_" . time() . "_" .  $file->getClientOriginalName();
         $file->move($destination, $fileName);
         return $fileName;
     }
@@ -178,17 +178,28 @@ class AuctionController extends Controller
      * @param  \App\Models\auction  $auction
      * @return \Illuminate\Http\Response
      */
-    public function edit(auction $auction)
+    public function edit($auction_id)
     {
         $category = category::get();
         $state = State::with("city")->get();
-        
+
         $vehicleType = VehicleType::get();
-        return view('admin/add_auction')->with([
+        $auction = auction::find($auction_id);
+        return view('admin/edit_auction')->with([
+            'auction' => $auction,
             'categories' => $category,
             'vehicleTypes' => $vehicleType,
             'states' => $state,
         ]);
+    }
+
+    public function deleteImage($auctionId)
+    {
+        $auctionImage = AuctionImage::find($auctionId);
+        if ($auctionImage->delete()) {
+            return redirect()->back()->with(['success' => 'تم الحذف بنجاح']);
+        } else
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم يتم حذف البيانات']);
     }
 
     /**
@@ -198,9 +209,9 @@ class AuctionController extends Controller
      * @param  \App\Models\auction  $auction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $auction_id)
+    public function update(Request $request)
     {
-        $auctionInfo = auction::find($auction_id);
+        $auctionInfo = auction::find($request->id);
         $auctionInfo->color = $request->color;
         $auctionInfo->category_id = $request->category_id;
         $auctionInfo->odometer = $request->odometer;
@@ -216,12 +227,12 @@ class AuctionController extends Controller
         $auctionInfo->city_id = $request->address;
         // if the auction is saved that will save and upload images of auction.
         if ($auctionInfo->update()) {
-            $auctionMaineImage = AuctionImage::where('name', 'like', $auction_id . '_' . 'main' . '_' . '%');
+            $auctionMaineImage = AuctionImage::where('name', 'like', $request->id . '_' . 'main' . '_' . '%');
             if ($request->hasFile('mainImage')) {
                 if (realpath($auctionMaineImage->image)) {
                     unlink(realpath($auctionMaineImage->image));
                 }
-                $auctionMaineImage->image = $this->uploadMainFile($request->file('mainImage'), $auction_id);
+                $auctionMaineImage->image = $this->uploadMainFile($request->file('mainImage'), $request->id);
             }
             $auctionMaineImage->update();
             foreach ($request->file('images') as $image) {

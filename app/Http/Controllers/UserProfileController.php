@@ -69,7 +69,6 @@ class UserProfileController extends Controller
         $userInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultImage.png";
         if ($userInfo->save())
             return redirect()->route('profile')->with(['success' => 'تم تحديث البيانات بنجاح']);
-//            return response($userInfo);
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
@@ -83,7 +82,6 @@ class UserProfileController extends Controller
     {
         //
         $user = User::with('profile')->where('id', Auth::user()->id)->get();
-        // $user = User::with('profile')->where('id',$userProfile)->get();
         return view('admin.profile')
             ->with('users', $user);
     }
