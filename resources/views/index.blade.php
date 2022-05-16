@@ -26,7 +26,7 @@
 
     <div class="carousel-inner">
         @foreach($auctions as $auction)
-      <div class="carousel-item @if($loop->index==1) active @endif">
+      <div class="carousel-item @if($loop->index==0) active @endif">
         @foreach($auction->auctionImage as $image)
         @php
         $im = explode('_',$image->image);

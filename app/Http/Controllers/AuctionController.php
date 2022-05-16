@@ -26,7 +26,7 @@ class AuctionController extends Controller
      */
     public function index(Request $request)
     {
-        
+
         $category = category::get();
         $state = State::with("city")->get();
         $vehicleType = VehicleType::get();
@@ -72,7 +72,7 @@ class AuctionController extends Controller
      */
     public function create()
     {
-        
+
         $category = category::get();
         $state = State::with("city")->get();
         $notifications = Notification::where('to_user_id', Auth::user()->id)->where('is_seen', -1)->get();
@@ -111,13 +111,16 @@ class AuctionController extends Controller
             'min_bid'=>['required'],
             'date_of_end_auction'=>['required'],
             'mainImage'=>['required'],
-            'images[]'=>['required'],
+            'images'=>['required'],
 
         ],[
 
             'name.required' => 'يجب ملى حقل اسم السيارة',
             'name.min' => 'لايمكنك ادخال اقل من 2 احرف',
             'name.max' => 'لايمكنك ادخال اقل من 100 حرف',
+            'model.required'=>'يجب تعبئة الحقل الخاص بموديل السيارة',
+            'model.max'=>'  يجب ان يكون عدد الارقام 4',
+
             'color.required'=>'يجب اختيار لون لسيارة',
             'state.required'=>'يجب اختيار حالة السيارة',
             'address.required'=>'يجب  اخيار العنوان ',
@@ -130,7 +133,7 @@ class AuctionController extends Controller
             'min_bid.required'=>'يجب ملى حقل  الخاص با اقل سعر للمزاد',
             'date_of_end_auction.required'=>' يجب تحديد تاريح انتهاء المزاد ',
             'mainImage.required'=>'يجب تحديد الصورة الرئيسية للمزاد',
-            'images[].required'=>'يجب تحديد صور المزاد  ',
+            'images.required'=>'يجب تحديد صور المزاد  ',
 
 
 
@@ -192,9 +195,9 @@ class AuctionController extends Controller
      *
      * @param mixed $file
      * @param mixed $id
-     * 
+     *
      * @return string $fileName
-     * 
+     *
      */
     public function uploadFile($file, $id)
     {
