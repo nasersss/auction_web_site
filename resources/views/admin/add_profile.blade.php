@@ -26,11 +26,19 @@
 @section('content')
     <div class="row">
         <div class="col-12">
+            <div id="msg" class="alert alert-danger">
+                <strong id="err-msg"></strong>
+                </div>
+                    @if($errors->any())
+                    @foreach($errors->all() as $err)
+                        <p class="alert alert-danger">{{$err}}</p>
+                        @endforeach
+                    @endif
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">تعديل الملف الشخصي</h4>
                     <!--Start-->
-                    <form method="POST" action="{{route('store_profile',$userInfo->id)}}" enctype="multipart/form-data">
+                    <form method="POST" name="profile" class="validation" action="{{route('store_profile',$userInfo->id)}}" enctype="multipart/form-data">
                     @csrf
                         <div class="row">
                             <div class="mb-1 col-md-6">
@@ -47,7 +55,7 @@
                             </div> -->
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">الجوال</label>
-                                <input name='phone' type="text" class="form-control" id="inputAddress" placeholder="مثال 7396...">
+                                <input name='phone' id="phone" type="text" class="form-control" id="inputAddress" placeholder="مثال 7396...">
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="inputAddress" class="form-label">العنوان</label>
@@ -80,6 +88,7 @@
 @endsection
 
 @section('script')
+<script src="/assets/js/validation.js"></script>
 
 @endsection
 

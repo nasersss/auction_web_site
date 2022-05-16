@@ -24,9 +24,12 @@
 @endsection
 
 @section('content')
+<div id="msg" class="alert alert-danger">
+<strong id="err-msg"></strong>
+</div>
     @if($errors->any())
     @foreach($errors->all() as $err)
-        <p>{{$err}}</p>
+        <p class="alert alert-danger">{{$err}}</p>
         @endforeach
     @endif
     <div class="row">
@@ -44,7 +47,7 @@
                             @endif
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{ route('store_vehicle') }}" enctype="multipart/form-data">
+                    <form method="post" id="vehicle_types"  class="validation" action="{{ route('store_vehicle') }}" enctype="multipart/form-data">
                         @csrf
                     <div class="row">
 
@@ -62,7 +65,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">إضافة</button>
+                        <button type="submit" id="vehicle" class="btn btn-primary">إضافة</button>
 
                     </div>
                     </form>
@@ -74,10 +77,11 @@
     </div>
 
 
+
+
 @endsection
-
 @section('script')
-
+<script src="/assets/js/validation.js"></script>
 @endsection
 
 

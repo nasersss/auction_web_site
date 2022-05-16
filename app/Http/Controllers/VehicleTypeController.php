@@ -23,10 +23,11 @@ class VehicleTypeController extends Controller
         {
             //
             Validator::validate($request->all(), [
-                'name' => ['required', 'max:50'],
+                'name' => ['required', 'max:50','unique:vehicle_types'],
             ], [
                 'name.required' => 'يجب تعبئت هذا الحقل',
                 'name.max' => 'لايمكنك ادخال اقل من 50 حرف',
+                'name.unique'=>'الاسم الذي ادخلتة موجود مسبقاً'
 
             ]);
             $vehicle = new VehicleType();
@@ -51,6 +52,13 @@ class VehicleTypeController extends Controller
 
         public function update(Request $request, $vehicleId)
         {
+            Validator::validate($request->all(), [
+                'name' => ['required', 'max:50'],
+            ], [
+                'name.required' => 'يجب تعبئت هذا الحقل',
+                'name.max' => 'لايمكنك ادخال اقل من 50 حرف',
+
+            ]);
             //
             $vehicle = VehicleType::find($vehicleId);
             $vehicle->name = $request->name;
