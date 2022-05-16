@@ -148,3 +148,7 @@ Route::get('test/response/{info}', [apiTestController::class, 'showTest'])->name
 Route::get('test/cancel/{cancel}', [apiTestController::class, 'testCancel'])->name('testCancel');
 Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewCancel');
 
+
+Route::get('show_notification' ,[NotificationController::class,'index'])->name('show_notification');
+Route::get('makeNotificationSeen/{id}' ,[NotificationController::class,'makeNotificationSeen'])->name('makeNotificationSeen');
+

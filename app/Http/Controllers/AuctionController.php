@@ -6,6 +6,7 @@ use App\Models\auction;
 use App\Models\AuctionImage;
 use App\Models\category;
 use App\Models\City;
+use App\Models\Notification;
 use App\Models\State;
 use App\Models\User;
 use App\Models\UserProfile;
@@ -71,12 +72,14 @@ class AuctionController extends Controller
     {
         $category = category::get();
         $state = State::with("city")->get();
+        $notifications = Notification::where('to_user_id',Auth::user()->id)->where('is_seen',-1)->get();
 
         $vehicleType = VehicleType::get();
         return view('admin/add_auction')->with([
             'categories' => $category,
             'vehicleTypes' => $vehicleType,
             'states' => $state,
+            'notifications' => $notifications,
         ]);
     }
 
