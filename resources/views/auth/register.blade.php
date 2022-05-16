@@ -9,7 +9,7 @@
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="jawweb" name="author" />
     <!-- App favicon -->
-    {{-- <link rel="shortcut icon" href="assetsassets/images/favicon.ico"> --}}
+    {{-- <link rel="shortcut icon" href="assets/images/favicon.ico"> --}}
 
     <!-- App css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
@@ -24,54 +24,47 @@
         <div class="auth-fluid-form-box">
             <div class="align-items-center d-flex h-100">
                 <div class="card-body">
-
-                    <!-- Logo -->
-                    <div class="auth-brand text-center text-lg-start">
-                        <a href="index.html" class="logo-dark">
-                            <span><img src="assets/images/logo.png" alt="" height="18"></span>
-                        </a>
-                        <a href="index.html" class="logo-light">
-                            <span><img src="assets/images/logo.png" alt="" height="18"></span>
-                        </a>
-                    </div>
-
-                    <!-- title-->
-                    <h4 class="mt-0 heading">انشاء حساب جديد</h4>
-                    <p class="text-muted ">فضلا قم بتعبئة البيانات التالية لإنشاء حساب جديد لتستطيع المشاركة في المزادات المتاحة</p>
-
-                    <!-- form -->
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+                        <!-- Logo -->
+                        <div class="auth-brand text-center text-lg-start">
+                            <a href="index.html" class="logo-dark">
+                                <span><img src="assets/images/logoDark.png" alt="" height="18"></span>
+                            </a>
+                            <a href="index.html" class="logo-light">
+                                <span><img src="assets/images/logo.png" alt="" height="18"></span>
+                            </a>
+                        </div>
                         <div class="mb-1">
-                            <label for="fullname" class="form-label">الاسم الكامل </label>
-                            <input class="form-control" type="text" id="fullname" placeholder="ادخل اسمك الكامل" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            <label for="emailaddress" class="form-label">اسم المستخدم</label>
+                            <input class="form-control" type="text" id="emailaddress" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder=" ادخل اسم المستخدم بك">
                             @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <div class="alert alert-danger" role="alert">
+                                <strong> خطأ -</strong>{{ $message }}
+                            </div>
                             @enderror
                         </div>
                         <div class="mb-1">
                             <label for="emailaddress" class="form-label">البريد الالكتروني</label>
                             <input class="form-control" type="email" id="emailaddress" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder=" ادخل البريد الالكتروني الخاص بك">
                             @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <div class="alert alert-danger" role="alert">
+                                <strong> خطأ -</strong>{{ $message }}
+                            </div>
                             @enderror
                         </div>
                         <div class="mb-1">
                             <label for="password" class="form-label">كلمة المرور</label>
                             <input class="form-control" type="password" name="password" required autocomplete="new-password" id="password" placeholder="ادخل كلمة المرور">
                             @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <div class="alert alert-danger" role="alert">
+                                <strong> خطأ -</strong>{{ $message }}
+                            </div>
                             @enderror
                         </div>
                         <div class="mb-1">
                             <label for="password" class="form-label"> تاكيد كلمة المرور</label>
-                            <input class="form-control" type="confirm-password" name="password_confirmation" required autocomplete="new-password" id="password" placeholder="تاكيد كلمة المرور ">
+                            <input class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" id="password" placeholder="تاكيد كلمة المرور ">
                         </div>
                         <div class="mb-1">
                             <div class="form-check">
@@ -105,7 +98,7 @@
 
                     <!-- Footer-->
                     <footer class="footer footer-alt">
-                        <p class="text-muted">هل تمتلك حساب بالفعل سجل دخولك الان <a href="pages-login-2.html" class="text-muted ms-1"><b>سجل حسابك الان</b></a></p>
+                        <p class="text-muted">هل تمتلك حساب بالفعل سجل دخولك الان <a href="{{ route('login') }}" class="text-muted ms-1"><b>سجل حسابك الان</b></a></p>
                     </footer>
 
                 </div> <!-- end .card-body -->

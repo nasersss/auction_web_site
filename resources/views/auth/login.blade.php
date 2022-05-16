@@ -6,8 +6,7 @@
     <meta charset="utf-8" />
     <title>تسجيل الدخول</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Coderthemes" name="author" />
+
     <!-- App favicon -->
     {{-- <link rel="shortcut icon" href="assetsassets/images/favicon.ico"> --}}
 
@@ -29,12 +28,18 @@
                     <!-- Logo -->
                     <div class="auth-brand text-center text-lg-start">
                         <a href="index.html" class="logo-dark">
-                            <span><img src="assets/images/logo.png" alt="" height="18"></span>
+                            <span><img src="{{asset('assets/images/logoDark.png')}}" alt="" height="18"></span>
                         </a>
                         <a href="index.html" class="logo-light">
                             <span><img src="assets/images/logo.png" alt=""></span>
                         </a>
                     </div>
+                    @if(session()->has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <strong>{{ session()->get('error') }} </strong>
+                    </div>
+                    @endif
 
                     <!-- title-->
                     <h4 class="mt-1 heading">تسجيل الدخول</h4>
@@ -46,19 +51,20 @@
                         <div class="mb-3">
                             <label for="emailaddress" class="form-label">البريد الاكتروني</label>
                             <input class="form-control" type="email" id="emailaddress" required="" placeholder="ادخل بريدك الاكتروني" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
+
                             @error('email')
-                            <span class="" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <div class="alert alert-danger" role="alert">
+                                <strong> خطأ -</strong>{{ $message }}
+                            </div>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">كلمة المرور</label>
                             <input class="form-control" type="password" id="password" placeholder="ادخل كلمة المرور" name="password" required autocomplete="current-password">
                             @error('password')
-                                <span class="" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <div class="alert alert-danger" role="alert">
+                                <strong>خطأ -</strong>{{ $message }}
+                            </div>
                             @enderror
                             <a href="{{ route('password.request') }}" class="text-muted float-end"><small>هل نسيت كلمة المرور؟</small></a>
                         </div>
@@ -72,7 +78,7 @@
                         <div class="d-grid mb-0 text-center">
                             <button class="btn btn-primary" type="submit"><i class="mdi mdi-login"></i> تسجيل الدخول </button>
                         </div>
-                        
+
                         <!-- social-->
                         <div class="text-center mt-4">
                             <p class="text-muted font-16">تسجيل حسابك بواسطة</p>
@@ -96,10 +102,10 @@
 
                     <!-- Footer-->
                     <footer class="footer footer-alt">
-                    @if (Route::has('password.request'))
-                                                                                            <!-- {{ route('password.request') }} -->
-                        <p class="text-muted">لا تمتلك اي حساب قم بانشاء حسابك الان ؟ <a href="{{ route('password.request') }}" class="text-muted ms-1"><b>انشاء حساب</b></a></p>
-                    @endif
+                        @if (Route::has('password.request'))
+                        <!-- {{ route('password.request') }} -->
+                        <p class="text-muted">لا تمتلك اي حساب قم بانشاء حسابك الان ؟ <a href="{{ route('register') }}" class="text-muted ms-1"><b>انشاء حساب</b></a></p>
+                        @endif
                     </footer>
 
                 </div> <!-- end .card-body -->
@@ -113,7 +119,7 @@
                 <h2 class="mb-3">منصة مزادي كار اكبر منصة لمزاد السيارات في اليمن </h2>
                 <p class="lead"><i class="mdi mdi-format-quote-open"></i>لكل الاشخاص الراغبين عن مزاد للسيارات في جميع اننحاء الجمهورية اليمنية جاءت منصة مزادي كار لتخفيف عنائكم مع امكانية التوصيل الى جميع المحافظات فقط عليكم الاشتراك بالمنصة<i class="mdi mdi-format-quote-close"></i>
                 </p>
-                
+
             </div> <!-- end auth-user-testimonial-->
         </div>
         <!-- end Auth fluid right content -->

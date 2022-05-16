@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
         $destinations = [
             0 => 'superAdmin',
             1 => 'admin',
-            2 => 'home',
+            2 => 'index',
         ];
         $guards = empty($guards) ? [null] : $guards;
 

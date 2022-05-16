@@ -1,4 +1,3 @@
-@section('content')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,9 +11,9 @@
     {{-- <link rel="shortcut icon" href="assets/images/favicon.ico"> --}}
 
     <!-- App css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/app.min.ar.css" rel="stylesheet" type="text/css" id="light-style" />
-    <link href="assets/css/app-dark.min.ar.css" rel="stylesheet" type="text/css" id="dark-style" />
+    <link href="../../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/app.min.ar.css" rel="stylesheet" type="text/css" id="light-style" />
+    <link href="../../assets/css/app-dark.min.ar.css" rel="stylesheet" type="text/css" id="dark-style" />
 
 </head>
 
@@ -29,10 +28,10 @@
                     <!-- Logo -->
                     <div class="auth-brand text-center text-lg-start">
                         <a href="index.html" class="logo-dark">
-                            <span><img src="assets/images/logo.png" alt="" height="18"></span>
+                            <span><img src="../../assets/images/logoDark.png" alt="" height="18"></span>
                         </a>
                         <a href="index.html" class="logo-light">
-                            <span><img src="assets/images/logo.png" alt="" height="18"></span>
+                            <span><img src="../../assets/images/logoDark.png" alt="" height="18"></span>
                         </a>
                     </div>
 
@@ -103,4 +102,3 @@
 </body>
 
 </html>
-@endsection
