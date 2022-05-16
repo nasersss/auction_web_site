@@ -30,7 +30,12 @@
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <i class="dripicons-bell noti-icon"></i>
+                @isset(Auth::user()->notificationTo)
+                @if(count(Auth::user()->notificationTo) == 0)
+                @else
                 <span class="noti-icon-badge"></span>
+                @endif
+                @endisset
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">
 
@@ -47,27 +52,34 @@
 
                 <div style="max-height: 230px;" data-simplebar="">
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    @isset(Auth::user()->notificationTo)
+                    @foreach(Auth::user()->notificationTo as $notification)
+                    <a href="{{route('makeNotificationSeen', $notification->id)}}" class="dropdown-item notify-item">
                         <div class="notify-icon bg-primary">
                             <i class="mdi mdi-comment-account-outline"></i>
                         </div>
-                        <p class="notify-details">تم اضافة مزاد جديد
+                        <!-- <p class="notify-details">تم اضافة مزاد جديد  
+                            <small class="text-muted">قبل 1 دقيقة</small>
+                        </p> -->
+                        <p class="notify-details">{{$notification->content}}
                             <small class="text-muted">قبل 1 دقيقة</small>
                         </p>
                     </a>
+                    @endforeach
+                    @endisset
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <!-- <a href="javascript:void(0);" class="dropdown-item notify-item">
                         <div class="notify-icon bg-info">
                             <i class="mdi mdi-account-plus"></i>
                         </div>
                         <p class="notify-details">تم تسجيل مستخدم جديد
                             <small class="text-muted">قبل 1 ساعة</small>
                         </p>
-                    </a>
+                    </a> -->
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <!-- <a href="javascript:void(0);" class="dropdown-item notify-item">
                         <div class="notify-icon">
                             <img src="assets/images/users/avatar-11.jpg" class="img-fluid rounded-circle" alt="">
                         </div>
@@ -75,9 +87,9 @@
                         <p class="text-muted mb-0 user-msg">
                             <small>مرحبا توجد لدي مشكلة في اضافة مزاد</small>
                         </p>
-                    </a>
+                    </a> -->
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <!-- <a href="javascript:void(0);" class="dropdown-item notify-item">
                         <div class="notify-icon bg-info">
                             <i class="mdi mdi-heart"></i>
                         </div>
@@ -85,7 +97,7 @@
                             <b>أحمد</b>
                             <small class="text-muted">قبل 10 أيام</small>
                         </p>
-                    </a>
+                    </a> -->
                 </div>
 
                 <!-- All-->
@@ -120,7 +132,7 @@
                     <span class="account-user-name">{{ Auth::user()->name }}</span>
                     <span class="account-position">
                         @if(Auth::user()->role==0)
-                            مسؤول النظام
+                        مسؤول النظام
                         @elseif(Auth::user()->role==1)
                         مدير
                         @elseif(Auth::user()->role==2)
