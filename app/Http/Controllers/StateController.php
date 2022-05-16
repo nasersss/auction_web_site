@@ -29,6 +29,7 @@ class StateController extends Controller
         ], [
             'name.required' => 'يجب تعبئت هذا الحقل',
             'name.max' => 'لايمكنك ادخال اقل من 50 حرف',
+            'name.min' => 'يجب ان يكون الحقل المدخل اكثر من حرف واحد'
 
         ]);
         $state = new State();
@@ -54,6 +55,14 @@ class StateController extends Controller
     public function update(Request $request, $stateId)
     {
         //
+        Validator::validate($request->all(), [
+            'name' => ['required', 'min:1', 'max:50','unique:states'],
+        ], [
+            'name.required' => 'يجب تعبئت هذا الحقل',
+            'name.max' => 'لايمكنك ادخال اقل من 50 حرف',
+            'name.min' => 'يجب ان يكون الحقل المدخل اكثر من حرف واحد'
+
+        ]);
         $state = State::find($stateId);
         $state->name = $request->name;
         $state->is_active = $request->is_active;

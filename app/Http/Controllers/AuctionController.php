@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class AuctionController extends Controller
 {
@@ -98,6 +99,50 @@ class AuctionController extends Controller
      */
     public function store(Request $request)
     {
+        Validator::validate($request->all(),[
+            'name'=>['required','min:2','max:100'],
+            'color'=>['required'],
+            'state'=>['required'],
+            'model'=>['required','max:4'],
+            'address'=>['required'],
+            'vehicle_type'=>['required'],
+            'fuel'=>['required'],
+            'engine_type'=>['required'],
+            'ger_type'=>['required'],
+            'damage'=>['required'],
+            'odometer'=>['required'],
+            'stare_price'=>['required'],
+            'min_bid'=>['required'],
+            'date_of_end_auction'=>['required'],
+            'mainImage'=>['required'],
+            'images[]'=>['required'],
+
+        ],[
+
+            'name.required' => 'يجب ملى حقل اسم السيارة',
+            'name.min' => 'لايمكنك ادخال اقل من 2 احرف',
+            'name.max' => 'لايمكنك ادخال اقل من 100 حرف',
+            'color.required'=>'يجب اختيار لون لسيارة',
+            'state.required'=>'يجب اختيار حالة السيارة',
+            'address.required'=>'يجب  اخيار العنوان ',
+            'vehicle_type.required'=>'يجب اختيار نوع المركبة',
+            'fuel.required'=>'يجب اختيار نوع الوقود',
+            'ger_type.required'=>'يجب ملى نوع المحرك',
+            'damage.required'=>'يجب ملى حقل  الاضرار',
+            'odometer.required'=>'يجب ملى حقل  الخاص بالمسافات المقطوعة',
+            'stare_price.required'=>'يجب ملى حقل  الخاص بالسعر المبدئي',
+            'min_bid.required'=>'يجب ملى حقل  الخاص با اقل سعر للمزاد',
+            'date_of_end_auction.required'=>' يجب تحديد تاريح انتهاء المزاد ',
+            'mainImage.required'=>'يجب تحديد الصورة الرئيسية للمزاد',
+            'images[].required'=>'يجب تحديد صور المزاد  ',
+
+
+
+
+
+
+
+        ]);
         $auctionInfo = new auction();
         $auctionInfo->seller_id = Auth::user()->id;
         $auctionInfo->is_active = -1;

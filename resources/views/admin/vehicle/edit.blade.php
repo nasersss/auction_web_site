@@ -47,7 +47,7 @@
                             @endif
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{ route('update_vehicle',$vehicle->id) }}" enctype="multipart/form-data">
+                    <form method="post" id="vehicle_types" class="validation" action="{{ route('update_vehicle',$vehicle->id) }}" enctype="multipart/form-data">
                         @csrf
                     <div class="row">
 

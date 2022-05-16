@@ -21,12 +21,13 @@ class CityController extends Controller
     {
         //
         Validator::validate($request->all(), [
-            'name' => ['required', 'min:2', 'max:50'],
+            'name' => ['required', 'min:1', 'max:50'],
             'state_id'=>['required']
         ], [
             'name.required' => 'يجب تعبئت هذا الحقل',
             'name.max' => 'لايمكنك ادخال اقل من 50 حرف',
-            'state_id.required'=>'الرجاء اختيار محافظة'
+            'state_id.required'=>'الرجاء اختيار محافظة',
+            'name.min'=>'يجب ان يكون الحقل المدخل حرف واحد'
 
         ]);
         $city = new City();
@@ -71,6 +72,16 @@ class CityController extends Controller
 
         public function update(Request $request, $cityId)
         {
+            Validator::validate($request->all(), [
+                'name' => ['required', 'min:1', 'max:50'],
+                'state_id'=>['required']
+            ], [
+                'name.required' => 'يجب تعبئت هذا الحقل',
+                'name.max' => 'لايمكنك ادخال اقل من 50 حرف',
+                'state_id.required'=>'الرجاء اختيار محافظة',
+                'name.min'=>'يجب ان يكون الحقل المدخل حرف واحد'
+    
+            ]);
             //
             $city = City::find($cityId);
             $city->name = $request->name;

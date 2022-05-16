@@ -46,7 +46,7 @@
                             @endif
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{ route('update_state',$state->id) }}" enctype="multipart/form-data">
+                    <form method="post" id="state" class="validation" action="{{ route('update_state',$state->id) }}" enctype="multipart/form-data">
                         @csrf
                     <div class="row">
 
@@ -80,7 +80,7 @@
 @endsection
 
 @section('script')
-
+<script src="/assets/js/validation.js"></script>
 @endsection
 
 

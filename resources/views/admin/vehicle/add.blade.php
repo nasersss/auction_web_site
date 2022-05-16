@@ -47,7 +47,7 @@
                             @endif
             <div class="card">
                 <div class="card-body">
-                    <form method="post" name="vehicle_types"  action="{{ route('store_vehicle') }}" enctype="multipart/form-data">
+                    <form method="post" id="vehicle_types"  class="validation" action="{{ route('store_vehicle') }}" enctype="multipart/form-data">
                         @csrf
                     <div class="row">
 
@@ -65,7 +65,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">إضافة</button>
+                        <button type="submit" id="vehicle" class="btn btn-primary">إضافة</button>
 
                     </div>
                     </form>
@@ -75,8 +75,8 @@
             </div> <!-- end card-->
         </div> <!-- end col-->
     </div>
-    
-    
+
+
 
 
 @endsection

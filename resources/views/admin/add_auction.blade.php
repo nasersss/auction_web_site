@@ -25,6 +25,7 @@
 
 @section('content')
     <div class="row">
+        
         <div class="card">
             <div class="card-header">
                 <h4 class="my-1">إضافة مزاد جديد</h4>
@@ -78,7 +79,7 @@
                             <div class="col-lg-3 col-md-12">
                                 <label for="address" class="form-label">مكان السيارة الحالي (المحافظة)</label>
                                 <!--                             <input name="address" type="text" class="form-control" id="inputAddress" placeholder="مثال حضرموت-المكلا...">
-                                 -->                            <select required id='address' name="state" class="form-select mb-3">
+                                 -->  <select required id='address' name="" class="form-select mb-3">
                                     <option selected disabled>أختر محافظة</option>
                                     @isset($states)
                                         @foreach($states as $state)
@@ -273,7 +274,7 @@
                         <div class="row">
                             <div class="col-12 mb-3">
                                 <label for="project-overview" class="form-label">ملاحظات</label>
-                                <textarea class="form-control" id="project-overview" rows="5" placeholder="ملاحظات..."></textarea>
+                                <textarea name="notes" class="form-control" id="project-overview" rows="5" placeholder="ملاحظات..."></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary mb-3">إضافة</button>
 

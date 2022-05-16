@@ -94,6 +94,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $categoryId)
     {
+        Validator::validate($request->all(), [
+            'name' => ['required', 'min:2', 'max:20'],
+        ], [
+            'name.required' => 'يجب تعبئت هذا الحقل',
+            'name.min' => 'لايمكنك ادخال اقل من 2 احرف',
+            'name.max' => 'لايمكنك ادخال اقل من 20 حرف',
+
+        ]);
         //
         $category = Category::find($categoryId);
         $category->name = $request->name;
