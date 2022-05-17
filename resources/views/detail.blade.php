@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/detail.css">
     <link rel="stylesheet" href="/assets/css/header.css">
+  
     <title>التفاصيل</title>
 </head>
 
@@ -299,6 +300,15 @@
                 </div>
             </div>
 
+        </div>
+        <div class="m-4">
+            <div class="alert alert-danger alert-dismissible fade show">
+                <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> ملاحظة!</h4>
+                <p> عند مشاركتك في المزاد سيتم خصم 20% من محفظتك وفي حال عدم ترسية العين  عليك يتم إعادة المبلغ إلى المحفظة.</p>
+                <hr>
+                <p class="mb-0"> بإمكانك الإطلاع على سياسات الموقع لتعرف كيف تجرى المزادات <a href="{{ route('view_policies') }}"> انقر هنا لمعرفة المزيد</a></p>
+                
+            </div>
         </div>
     </div>
 

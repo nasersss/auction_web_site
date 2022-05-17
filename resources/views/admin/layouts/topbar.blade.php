@@ -30,9 +30,11 @@
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <i class="dripicons-bell noti-icon"></i>
+                @isset($notifications)
                 @if(count($notifications) == 0)
                 @else
                 <span class="noti-icon-badge"></span>
+                @endif
                 @endisset
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">

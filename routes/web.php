@@ -56,6 +56,8 @@ Route::get('/login',function(){
     Route::get('/ContactUs',[ContactUs::class,'ContactUs'])->name('ContactUs');
     Route::get('editphotoauction',[editphotoauction::class,"editphotoauction"])->name("editphotoauction");
     Route::get('Cart',[Cart::class,'Cart'])->name('Cart');
+    Route::get('ReceiptConfirmation',[ReceiptConfirmation::class,'ReceiptConfirmation'])->name('ReceiptConfirmation');
+    
 
 Route::get('/register', function () {
     return view('auth.register');
