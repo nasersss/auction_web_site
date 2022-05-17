@@ -152,3 +152,7 @@ Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewC
 Route::get('show_notification' ,[NotificationController::class,'index'])->name('show_notification');
 Route::get('makeNotificationSeen/{id}' ,[NotificationController::class,'makeNotificationSeen'])->name('makeNotificationSeen');
 
+####################    delivery rout
+Route::get('/delivery',[DeliveryController::class,'create']);
+Route::post('/store_delivery',[DeliveryController::class,'store'])->name('store_delivery');
+
