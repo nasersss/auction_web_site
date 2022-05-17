@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("police");
             $table->text("description");
             $table->unsignedBigInteger('user_id');
-            $table->boolean('is_active')->default(1);
+            $table->smallInteger('is_active')->default(1);
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
