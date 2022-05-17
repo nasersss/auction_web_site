@@ -31,6 +31,9 @@
     @endif
     <div class="row">
         <div class="col-12">
+            <div id="msg" class="alert alert-danger">
+                <strong id="err-msg"></strong>
+                </div>
             @if(session()->has('success'))
                             <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -44,7 +47,7 @@
                             @endif
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{ route('update_vehicle',$vehicle->id) }}" enctype="multipart/form-data">
+                    <form method="post" id="vehicle_types" class="validation" action="{{ route('update_vehicle',$vehicle->id) }}" enctype="multipart/form-data">
                         @csrf
                     <div class="row">
 
@@ -79,7 +82,7 @@
 @endsection
 
 @section('script')
-
+<script src="/assets/js/validation.js"></script>
 @endsection
 
 

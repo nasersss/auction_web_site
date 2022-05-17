@@ -6,6 +6,7 @@ use App\Models\auction;
 use App\Models\category;
 use App\Models\Notification;
 use App\Models\State;
+use App\Models\User;
 use App\Models\VehicleType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -27,35 +28,33 @@ class NotificationController extends Controller
     public function makeNotificationSeen($notificationId)
     {
 
-        $category = category::get();
-        $state = State::with("city")->get();
-
-        $vehicleType = VehicleType::get();
+        
         $notification = Notification::find($notificationId);
-        $notifications = Notification::where('to_user_id', Auth::user()->id)->where('is_seen', -1)->get();
-
         $notification->is_seen = 1;
         $notification->update();
-
-       
-        $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
         return redirect()->route("$notification->route");
     }
 
     /**
-     * This function 
+     *  
      *
      * @param mixed $fromUserId
      * @param mixed $toUserId
      * @param mixed $content
      * @param mixed $route
      * 
-     * @return [type]
+     * @return boolean
      * 
      */
-    public function sendNotification($fromUserId,$toUserId,$content,$route)
+    public function sendNotification($toUserId,$content,$route)
     {
-        
+        $notification = new Notification();
+        $notification->from_user_id = Auth::user()->id;
+        $notification->to_user_id=$toUserId;
+        $notification->content=$content;
+        $notification->route=$route;
+        $notification->save();
+
     }
 
     /**

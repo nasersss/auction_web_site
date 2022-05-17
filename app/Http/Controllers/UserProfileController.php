@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserProfileController extends Controller
 {
@@ -55,6 +56,29 @@ class UserProfileController extends Controller
      */
     public function store(Request $request, $userProfile)
     {
+        Validator::validate($request->all(), [
+            'name' => ['required', 'min:1', 'max:100','unique:users'],
+            'address' => ['required', 'min:1', 'max:200'],
+            'phone' => ['required', 'min:5', 'max:15'],
+
+        ], [
+            'name.required' => 'يجب تعبئت هذا الحقل',
+            'name.max' => 'لايمكنك ادخال اقل من 100 حرف',
+            'name.min' => 'يجب ان يكون الحقل المدخل اكثر من  واحد',
+            'name.unique' =>'الاسم الدي ادخلتة غير متاحة',
+
+            'address.required' => 'يجب تعبئت هذا الحقل',
+            'address.max' => 'لايمكنك ادخال اقل من 200 حرف',
+            'address.min' => 'يجب ان يكون الحقل المدخل اكثر من حرف واحد',
+
+
+            'phone.required' => 'يجب تعبئت هذا الحقل',
+            'phone.max' => 'لايمكنك ادخال اقل من 16 رقم',
+            'phone.min' => 'يجب ان يكون الحقل المدخل اكثر من 5 ارقام',
+
+
+
+        ]);
         $user = User::find($userProfile);
         $user->name = $request->name;
         $user->save();
@@ -69,7 +93,6 @@ class UserProfileController extends Controller
         $userInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultImage.png";
         if ($userInfo->save())
             return redirect()->route('profile')->with(['success' => 'تم تحديث البيانات بنجاح']);
-//            return response($userInfo);
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
@@ -83,7 +106,6 @@ class UserProfileController extends Controller
     {
         //
         $user = User::with('profile')->where('id', Auth::user()->id)->get();
-        // $user = User::with('profile')->where('id',$userProfile)->get();
         return view('admin.profile')
             ->with('users', $user);
     }
@@ -112,6 +134,28 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, $userProfile)
     {
+        Validator::validate($request->all(), [
+            'name' => ['required', 'min:1', 'max:100'],
+            'address' => ['required', 'min:1', 'max:200'],
+            'phone' => ['required', 'min:5', 'max:15'],
+
+        ], [
+            'name.required' => 'يجب تعبئت هذا الحقل',
+            'name.max' => 'لايمكنك ادخال اقل من 100 حرف',
+            'name.min' => 'يجب ان يكون الحقل المدخل اكثر من  واحد',
+
+            'address.required' => ' يجب تعبة الحقل الخاص بالعنوان   ',
+            'address.max' => 'لايمكنك ادخال اقل من 200 حرف',
+            'address.min' => 'يجب ان يكون الحقل المدخل اكثر من حرف واحد',
+
+
+            'phone.required' => ' يجب تعبة الحقل الخاص بارقم الهاتف   ',
+            'phone.max' => 'لايمكنك ادخال اكثر من 15 رقم',
+            'phone.min' => 'يجب ان يكون الحقل المدخل اكثر من 5 ارقام',
+
+
+
+        ]);
         $user = User::find($userProfile);
         $user->name = $request->name;
         $user->save();

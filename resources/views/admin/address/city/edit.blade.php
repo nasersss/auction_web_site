@@ -26,7 +26,7 @@
 @section('content')
     @if($errors->any())
     @foreach($errors->all() as $err)
-        <p>{{$err}}</p>
+        <p class="alert alert-danger">{{$err}}</p>
         @endforeach
     @endif
     <div class="row">
@@ -44,7 +44,7 @@
                             @endif
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{ route("update_city",$city->id) }}" enctype="multipart/form-data">
+                    <form method="post" class="validation" action="{{ route("update_city",$city->id) }}" enctype="multipart/form-data">
                         @csrf
                     <div class="row">
                         <div class="mb-3 col-md-6">
@@ -89,7 +89,7 @@
 @endsection
 
 @section('script')
-
+<script src="/assets/js/validation.js"></script>
 @endsection
 
 

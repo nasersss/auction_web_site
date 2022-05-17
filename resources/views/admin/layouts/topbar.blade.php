@@ -30,9 +30,13 @@
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <i class="dripicons-bell noti-icon"></i>
-                @if(count($notifications) == 0)
-                @else
+                @isset(Auth::user()->notificationTo)
+                @foreach(Auth::user()->notificationTo as $notification)
+                @if($notification->is_seen == -1)
                 <span class="noti-icon-badge"></span>
+                @break
+                @endif
+                @endforeach
                 @endisset
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">
@@ -50,8 +54,9 @@
 
                 <div style="max-height: 230px;" data-simplebar="">
                     <!-- item-->
-                    @isset($notifications)
-                    @foreach($notifications as $notification)
+                    @isset(Auth::user()->notificationTo)
+                    @foreach(Auth::user()->notificationTo as $notification)
+                    @if($notification->is_seen==-1)
                     <a href="{{route('makeNotificationSeen', $notification->id)}}" class="dropdown-item notify-item">
                         <div class="notify-icon bg-primary">
                             <i class="mdi mdi-comment-account-outline"></i>
@@ -63,6 +68,7 @@
                             <small class="text-muted">قبل 1 دقيقة</small>
                         </p>
                     </a>
+                    @endif
                     @endforeach
                     @endisset
 
