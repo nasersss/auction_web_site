@@ -12,7 +12,8 @@ class apiTestController extends Controller
   public function showTest(){
     $info = Route::current()->parameter('info');
    
-     // $data=json_decode($info);
+     // $data=json_base64_decode($info);
+     base64_decode($info);
      $data= $arrayFormat=json_decode($info,true);
  
  

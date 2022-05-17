@@ -24,6 +24,7 @@
 @endsection
 
 @section('content')
+
 @if(session()->has('error'))
 <div class="alert alert-danger" role="alert">
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -43,6 +44,7 @@
             <div class="card-header">
                 <h4 class="my-1">تعديل مزاد </h4>
             </div>
+            <input type="hidden" name="id" value="@isset($auction->id){{$auction->id}}@endisset">
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-2">
@@ -57,10 +59,11 @@
                             <div class="mb-2 col-lg-4 col-md-12">
                                 <label for="category" class="form-label">نوع السيارة</label>
                                 <select value="@isset($auction->category_id){{$auction->category_id}}@endisset" required name="category_id" class="form-select" id="category">
-                                    <option disabled>أختر احدى الانوع</option>
-
-                                    <option value="2">بي أم دبليو</option>
-                                    <option value="3">فيراري</option>
+                                <option disabled>أختر احدى الانوع</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
                                 </select>
                             </div>
                             <div class="mb-2 col-lg-4 col-md-12">
@@ -106,7 +109,7 @@
                                     @isset($states)
                                     @foreach($states as $state)
                                     @foreach($state->city as $city)
-                                    <option style="display: none;" class="edit_citys edit_state-{{$city->state_id}}" value="{{$city->id}}">{{$city->name}}</option>
+                                    <option class="edit_citys edit_state-{{$city->state_id}}" value="{{$city->id}}">{{$city->name}}</option>
                                     @endforeach
                                     @endforeach
                                     @endisset
@@ -181,7 +184,7 @@
                                     <p class="text-muted font-14">حجم الصورة الموصى به 800 × 400 (بكسل)</p>
                                     <div class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
                                         <div class="fallback">
-                                            <input class="form-control" required name="mainImage" accept="image/*" type="file">
+                                            <input class="form-control" name="mainImage" accept="image/*" type="file">
                                         </div>
 
                                         <div class="dz-message needsclick">
@@ -201,7 +204,7 @@
                                     <p class="text-muted font-14">حجم الصورة الموصى به 800 × 400 (بكسل)</p>
                                     <div class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
                                         <div class="fallback">
-                                            <input type="file" required name="images[]" accept="image/*" id="formFileMultiple" multiple>
+                                            <input type="file" name="images[]" accept="image/*" id="formFileMultiple" multiple>
                                         </div>
 
                                         <div class="dz-message needsclick">
@@ -221,22 +224,18 @@
                             <!-- file preview template -->
                             @isset($auction->auctionImage)
                             @foreach($auction->auctionImage as $image)
-                            <div id="uploadPreviewTemplate">
+                            <div id="uploadPreviewTemplate" class="col-12 col-sm-6 col-md-4">
                                 <div class="card mt-1 mb-0 shadow-none border">
                                     <div class="p-2">
                                         <div class="row">
                                             <div class="col-auto">
                                                 <img data-dz-thumbnail="" src="{{$image->image}}" class="avatar-lg rounded bg-light" alt="">
                                             </div>
-                                            <div class="col ps-0">
-                                                <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name=""></a>
-                                                <p class="mb-0" data-dz-size=""></p>
-                                            </div>
-                                            <div class="col-auto">
+
+                                            <div class="col-2">
                                                 <!-- Button -->
                                                 <a href="{{route('delete_auction_image',$image->id)}}" class="btn btn-link btn-lg text-muted" data-dz-remove="">
-                                                    <i class="dripicons-cross">
-                                                    </i>
+                                                <i class="mdi mdi-delete"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -261,7 +260,7 @@
                             <label for="project-overview" class="form-label">ملاحظات</label>
                             <textarea name="notes" class="form-control" id="project-overview" rows="5" placeholder="ملاحظات...">@isset($auction->notes){{$auction->notes}}@endisset</textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary mb-3">إضافة</button>
+                        <button type="submit" class="btn btn-primary mb-3">تعديل</button>
 
                     </div>
 

@@ -260,8 +260,9 @@ class AuctionController extends Controller
     public function update(Request $request)
     {
         $auctionInfo = auction::find($request->id);
-        $auctionInfo->color = $request->color;
+        // return response($request);
         $auctionInfo->category_id = $request->category_id;
+        $auctionInfo->color = $request->color;
         $auctionInfo->odometer = $request->odometer;
         $auctionInfo->damage = $request->damage;
         $auctionInfo->vehicle_type_id = $request->vehicle_type;
@@ -273,9 +274,10 @@ class AuctionController extends Controller
         $auctionInfo->ger_type = $request->ger_type;
         $auctionInfo->fuel = $request->fuel;
         $auctionInfo->city_id = $request->address;
+
         // if the auction is saved that will save and upload images of auction.
         if ($auctionInfo->update()) {
-            $auctionMaineImage = AuctionImage::where('name', 'like', $request->id . '_' . 'main' . '_' . '%');
+            $auctionMaineImage = AuctionImage::where('image', 'like', $request->id . '_' . 'main' . '_' . '%')->first();
             if ($request->hasFile('mainImage')) {
                 if (realpath($auctionMaineImage->image)) {
                     unlink(realpath($auctionMaineImage->image));
@@ -290,9 +292,6 @@ class AuctionController extends Controller
                 $auctionImage->auction_id = $auctionInfo->id;
                 $auctionImage->save();
             }
-
-
-
             return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
         }
 
@@ -375,4 +374,5 @@ class AuctionController extends Controller
     {
         //
     }
+
 }
