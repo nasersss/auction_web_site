@@ -152,3 +152,6 @@ Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewC
 Route::get('show_notification' ,[NotificationController::class,'index'])->name('show_notification');
 Route::get('makeNotificationSeen/{id}' ,[NotificationController::class,'makeNotificationSeen'])->name('makeNotificationSeen');
 
+Route::get('invoice',function(){
+    return view('admin.invoice');
+});
