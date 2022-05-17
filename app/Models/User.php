@@ -90,7 +90,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * Check if the user is authenticate and has admin role
      *
      * @return boolean
-     * 
+     *
      */
     public function isAdmin()
     {
@@ -109,7 +109,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * Check if the user is authenticate and has super admin role
      *
      * @return boolean
-     * 
+     *
      */
     public function isSuperAdmin()
     {
