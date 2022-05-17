@@ -26,7 +26,7 @@
 
     <div class="carousel-inner">
         @foreach($auctions as $auction)
-      <div class="carousel-item @if($loop->index==1) active @endif">
+      <div class="carousel-item @if($loop->index==0) active @endif">
         @foreach($auction->auctionImage as $image)
         @php
         $im = explode('_',$image->image);
@@ -386,7 +386,7 @@
 
 
 
-        <div class="col-md-4 my-3">
+        <div class=" col-12  col-md-6  col-lg-4 my-3">
           <div class="card rounded">
             <div class="card-image">
               <span class="card-notify-year">@if($auction->state == 1) مستخدم @else جديد @endif
