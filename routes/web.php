@@ -156,3 +156,6 @@ Route::get('makeNotificationSeen/{id}' ,[NotificationController::class,'makeNoti
 Route::get('/delivery',[DeliveryController::class,'create']);
 Route::post('/store_delivery',[DeliveryController::class,'store'])->name('store_delivery');
 
+Route::get('orders',function(){
+    return view('order');
+});

@@ -28,7 +28,7 @@ class DeliveryController extends Controller
 
 
         if($delivery->save())
-        return back()->with(['success'=>"data saving successfully"]);
+        return redirect()->route('index')->with(['success'=>"data saving successfully"]);
         return back()->with(['error'=>"error"]);
 
 

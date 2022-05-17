@@ -1,124 +1,253 @@
-@extends('admin.layouts.main')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('title')
-    أضافة مدينة
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{asset('assets/css/vendor/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" type="text/css">
+    <!-- third party css end -->
 
-@endsection
+    <!-- App css -->
+    <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/css/app-ar.min.css')}}" rel="stylesheet" type="text/css" id="light-style">
 
-@section('css')
 
-@endsection
-@section('breadcrumb-item')
-المدن
-@endsection
-@section('breadcrumb-item2')
-    إضافة مدينة جديد
-@endsection
+    <link rel="stylesheet" href="assets/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/css/all.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/header.css">
 
-@section('breadcrumb-item-active')
-    المدن
-@endsection
+    <title>التوصيل</title>
+</head>
 
-@section('page-title')
-    أضافة مدينة
-@endsection
+<body>
+    @extends('master')
+    @section('content')
 
-@section('content')
-    @if($errors->any())
-    @foreach($errors->all() as $err)
-        <p class="alert alert-danger">{{$err}}</p>
-        @endforeach
-    @endif
-    <div class="row">
-        <div class="col-12">
-            <div id="msg" class="alert alert-danger">
-                <strong id="err-msg"></strong>
-                </div>
-            @if(session()->has('success'))
-                            <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                <strong>{{ session()->get('success') }} </strong>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+
+                        <!-- Checkout Steps -->
+                        <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                            <li class="nav-item">
+                                <a href="#billing-information" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0 active">
+                                    <i class="mdi mdi-account-circle font-18"></i>
+                                    <span class="d-none d-lg-block">المعلومات الشخصية</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#shipping-information" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
+                                    <i class="mdi mdi-truck-fast font-18"></i>
+                                    <span class="d-none d-lg-block">معلومات التوصيل</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Steps Information -->
+                        <div class="tab-content">
+
+                            <!-- Billing Content-->
+                            <div class="tab-pane show active" id="billing-information" style="margin-top: -100px;">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4 class="mt-2">المعلومات الشخصية</h4>
+                                        <form method="post" action="{{ route('store_delivery') }}">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label for="billing-first-name" class="form-label">اسم المستلم</label><span class="text-danger">*</span>
+                                                        <input class="form-control" type="text"  name="res_name" value="{{ old('res_name') }}" placeholder="ادخل اسم المستلم" id="billing-first-name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label for="billing-phone" class="form-label">رقم الهاتف <span class="text-danger">*</span></label>
+                                                        <input class="form-control" type="text" name="phone" value="{{ old('phone') }}" placeholder=" 777 xxxx xxx" id="billing-phone">
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end row -->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label for="billing-email-address" class="form-label">نوع بطاقة الهوية <span class="text-danger">*</span></label>
+                                                        <select required name="res_id_type" class="form-control" >
+                                                            <option selected disabled>أختر  نوع بطاقة الهوية</option>
+                                                            <option value="بطاقة شخصية"> بطاقة شخصية </option>
+                                                            <option value="جواز سفر">  جواز سفر </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label for="billing-phone" class="form-label">رقم بطاقة الهوية <span class="text-danger">*</span></label>
+                                                        <input class="form-control" name="res_id_num" type="text" placeholder="(xx) xxx xxxx xxx" id="billing-phone">
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end row -->
+
+                                            <div>
+
+                                                    <div class="text-sm-end">
+                                                        <button class="btn btn-danger" onclick="myFunction()" style="float: left;">
+                                                            <i class="mdi mdi-truck-fast me-1"></i> الخطوة التالي </button>
+
+                                                </div> <!-- end col -->
+                                            </div> <!-- end row -->
+
+                                    </div>
+
+                                </div> <!-- end row-->
                             </div>
-                            @elseif(session()->has('error'))
-                            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                <strong>{{ session()->get('success') }} </strong>
+                            <!-- End Billing Information Content-->
+
+                            <!-- Shipping Content-->
+                            <div class="tab-pane" id="shipping-information" style="margin-top: -100px;">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <h4 class="mt-2">معلومات الموقع</h4>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label for="new-adr-address" class="form-label">المحافظة</label>
+                                                        <select class="form-control" id="state" required  >
+                                                            <option selected disabled>أختر محافظة</option>
+                                                            @isset($states)
+                                                            @foreach($states as $state)
+                                                            <option value="{{$state->id}}">{{$state->name}}</option>
+                                                            @endforeach
+                                                            @endisset
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label for="new-adr-address" class="form-label">المدينة</label>
+                                                        <select required name="city" id='city' class="form-control mb-3">
+                                                            <option selected disabled>أختر مدينة</option>
+                                                            @isset($states)
+                                                            @foreach($states as $state)
+                                                            @foreach($state->city as $city)
+                                                            <option style="display: none;" class="citys state-{{$city->state_id}}" value="{{$city->id}}">{{$city->name}}</option>
+                                                            @endforeach
+                                                            @endforeach
+                                                            @endisset
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div> <!-- end row -->
+                                            {{-- <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="mb-3">
+                                                        <label for="new-adr-town-city" class="form-label">المحافظة</label>
+                                                        <input class="form-control" type="text" placeholder="مثلا حضرموت" id="new-adr-town-city">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="mb-3">
+                                                        <label for="new-adr-state" class="form-label">المدينة</label>
+                                                        <input class="form-control" type="text" placeholder="مثلا المكلا" id="new-adr-state">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="mb-3">
+                                                        <label for="new-adr-zip-postal" class="form-label">المنطقة</label>
+                                                        <input class="form-control" type="text" placeholder="مثلا الشرج" id="new-adr-zip-postal">
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end row --> --}}
+                                            <div class="row mt-4">
+                                                <div class="col-sm-6">
+                                                    <a href="#" class="btn text-muted d-none d-sm-inline-block btn-link fw-semibold">
+                                                        <i class="mdi mdi-arrow-right"></i>الخطوة السابقة</a>
+                                                </div> <!-- end col -->
+                                                <div class="col-sm-6">
+                                                    <div class="text-sm-end">
+                                                        <button  type="submit" class="btn btn-danger">
+                                                            <i class="mdi mdi-cash-multiple me-1"></i>أكمال الدفع</button>
+                                                    </div>
+                                                </div> <!-- end col -->
+                                            </div> <!-- end row -->
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="border p-3 mt-4 mt-lg-0 rounded">
+                                            <h4 class="header-title mb-3">اجمالي الطلب</h4>
+
+                                            <div class="table-responsive">
+                                                <table class="table table-centered mb-0">
+                                                    <tbody>
+                                                    <tr class="text-end">
+                                                        <td>
+                                                            <h6 class="m-0">سعر السيارة:</h6>
+                                                        </td>
+                                                        <td class="text-end">
+                                                            $5000
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="text-end">
+                                                        <td>
+                                                            <h6 class="m-0">سعر التوصيل:</h6>
+                                                        </td>
+                                                        <td class="text-end">
+                                                            مجاني
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="text-end">
+                                                        <td>
+                                                            <h5 class="m-0">الإجمالي:</h5>
+                                                        </td>
+                                                        <td class="text-end fw-semibold">
+                                                            $5000
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- end table-responsive -->
+                                        </div> <!-- end .border-->
+
+                                    </div> <!-- end col -->
+                                </div> <!-- end row-->
                             </div>
-                            @endif
-            <div class="card">
-                <div class="card-body">
-                    <form method="post" class="validation"  action="{{ route("store_delivery") }}" enctype="multipart/form-data">
-                        @csrf
-                    <div class="row">
-                        <div class="mb-3 col-md-6">
-                            <label for="inputAddress" class="form-label">اسم المستلم   </label>
-                            <input type="text" name="res_name" class="form-control" id="inputAddress" placeholder="مثال المكلا..">
-                        </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label for="inputAddress" class="form-label">بطاقة الهوية  </label>
-                                <select required name="res_id_type" class="form-select mb-3">
-                                    <option selected disabled>أختر  نوع بطاقة الهوية</option>
-                                    <option value="بطاقة شخصية"> بطاقة شخصية </option>
-                                    <option value="جواز سفر">  جواز سفر </option>
-                                </select>
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="inputAddress" class="form-label">رقم الهوية   </label>
-                                <input type="text" name="res_id_num" class="form-control" id="inputAddress" placeholder="مثال المكلا..">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="inputAddress" class="form-label">رقم الهاتف   </label>
-                                <input type="text" name="phone" class="form-control" id="inputAddress" placeholder="مثال المكلا..">
-                            </div>
-                            <h2>
-                                العنوان
-                            </h2>
-                            <div class="mb-3 col-md-6">
-                                <label for="inputAddress" class="form-label">المحافظة  </label>
-                                <select required id="state" class="form-select mb-3">
-                                    <option selected disabled>أختر محافظة</option>
-
-@foreach($states as $state)
-<option value="{{ $state->id }}">{{ $state->name }}</option>
-
-@endforeach
-                                </select>
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="inputAddress" class="form-label">المدينة  </label>
-                                <select required name="city" id="city" class="form-select mb-3">
-                                    <option selected disabled>أختر مدينة</option>
-                                    @isset($states)
-                                    @foreach($states as $state)
-                                    @foreach($state->city as $city)
-                                    <option style="display: none;" class="citys state-{{$city->state_id}}" value="{{$city->id}}">{{$city->name}}</option>
-                                    @endforeach
-                                    @endforeach
-                                    @endisset
-                                </select>
-                            </div>
+                            <!-- End Shipping Information Content-->
 
 
-                        <button type="submit" class="btn btn-primary">إضافة</button>
 
-                    </div>
-                    </form>
-                    <!-- end row -->
+                        </div> <!-- end tab content-->
 
-                </div> <!-- end card-body -->
-            </div> <!-- end card-->
-        </div> <!-- end col-->
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col -->
+        </div>
+
     </div>
+    <script src="/assets/js/state_city.js"></script>
+    <script>
+        const tab = document.getElementById("billing-information");
+        const tab = document.getElementById("shipping-information");
+    </script>
+
+
+    @endsection
+    <script src="/assets/js/pages/demo.form-wizard.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.js"></script>
+    <script src="/assets/js/vendor.min.js"></script>
 
 
 
-@endsection
 
-@section('script')
-<script src="/assets/js/state_city.js"></script>
-{{-- <script src="/assets/js/validation.js"></script> --}}
+</body>
 
-@endsection
-
-
+</html>
