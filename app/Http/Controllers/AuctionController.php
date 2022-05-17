@@ -201,6 +201,8 @@ class AuctionController extends Controller
         return $fileName;
     }
 
+
+
     public function uploadMainFile($file, $id)
     {
         $destination = public_path() . "/images/auction";
@@ -217,7 +219,11 @@ class AuctionController extends Controller
      */
     public function show(auction $auction)
     {
-        //
+        $auctionImage = AuctionImage::find($auctionId);
+        if ($auctionImage->delete()) {
+            return redirect()->back()->with(['success' => 'تم الحذف بنجاح']);
+        } else
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم يتم حذف البيانات']);
     }
 
     /**
