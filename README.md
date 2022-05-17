@@ -11,7 +11,7 @@ of Requirements for Web Bootcamp
 1. Fuad Al-amoudi
 2. Abdurhman 
 3. Sameeh Edrees
-4. Mohammed Zobair 
+4. Mohammed Zubair 
 5. Nasser Esmail Al-Ghaithi
 
 ## language
