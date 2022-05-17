@@ -19,4 +19,9 @@ class City extends Model
     {
         return $this->hasMany(auction::class,"city_id");
     }
+
+    public function delivery()
+    {
+        return $this->hasMany(Delivery::class, 'city_id');
+    }
 }
