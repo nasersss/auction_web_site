@@ -1,20 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\auction;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 class PymentContoller extends Controller
 {
   public function showPyment(){
     $info = Route::current()->parameter('info');
     $info = base64_decode($info);
-     
-     $data= $arrayFormat=json_decode($info ,true);
- 
- 
+      $data= $arrayFormat=json_decode($info ,true);
+    
+       $paidAmount =  $data['customer_account_info']['paid_amount'];
+       $orderRefernce = $data['customer_account_info']['order_reference_id'];
+
        for($i=0;$i<count($data);$i++){
            $status=array_column($arrayFormat,'status');
            $paid_amount=array_column($arrayFormat,'paid_amount');
@@ -22,13 +24,11 @@ class PymentContoller extends Controller
            $card_type= array_column($arrayFormat,'card_type');
            $created_at=array_column($arrayFormat,'created_at');
            $updated_at=array_column($arrayFormat,'updated_at');
- 
- 
        }
        $card_type=str_replace('+',' ',$card_type[0]);
        $card_holder=str_replace('+',' ',$card_holder[0]);
  
-       
+       // add to 10% to superAdmin wellt 
  return view('paymentViews.testResponse',compact('paid_amount','status','card_holder','card_type','created_at'));
  }
  
@@ -94,12 +94,15 @@ class PymentContoller extends Controller
           if ($err) {
             echo " Error #:" . $err;
           } else {
+            //return json_decode($response)->invoice->invoice_referance;
+
            //return  json_decode($response);
            $url = json_decode($response)->invoice->next_url;
           
            return redirect()->away($url);
       
           }
+          
       
     }
 }

@@ -53,8 +53,10 @@ class BiddingController extends Controller
             // return redirect()->back()->with(['error' => 'يرجا شحن حسابك لانك لا تمكلك نقود كافية للقيام بالمزايدة']);
           // $auction = ( new PymentController);
             $payment = new PymentContoller();
-            return  $payment->makePyment($auction);
+           
+           return  $payment->makePyment($auction);
         }
+
 
         $auction->curren_price += $request->amount;
         $auction->number_of_participate += 1;
@@ -65,6 +67,8 @@ class BiddingController extends Controller
         if (isset($biddings->payed_amount)) {
             $payedAmount = $biddings->payed_amount;
         }
+
+
         $newBidding = new Bidding();
         $payerWallet = Wallet::where('user_id', Auth::user()->id)->where('coin_type', 0)->first();
         $adminWallet->amount += (($auction->curren_price + $request->amount) * 10 / 100) - $payedAmount;
