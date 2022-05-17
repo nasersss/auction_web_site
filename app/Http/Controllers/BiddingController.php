@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Models\auction;
 use App\Models\Bidding;
-use App\Models\User;
-use App\Models\Wallet;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class BiddingController extends Controller
@@ -39,17 +38,22 @@ class BiddingController extends Controller
      */
     public function store(Request $request)
     {
+
         if (!Auth::check()) {
             return redirect()->route('login')->with(['error' => 'عذرا لا تملك الصلاحية لدخول هذه الصفخة يرجا تسجيل الدخول او انشاء حساب']);
         }
 
         $user = User::with('wallet')->find(Auth::user()->id);
         $auction = auction::find($request->auction_id);
+
         if ($request->amount < $auction->min_bid) {
             return redirect()->back()->with(['error' => 'لايمكنك ادخال مبلغ اقل من ' . $auction->min_bid . '$ ' . ' لانها اقل قيمة للمزايدة']);
         }
-        if (($auction->curren_price + $request->amount) * 10 / 100 > $user->wallet[0]->amount) {
-            return redirect()->back()->with(['error' => 'يرجا شحن حسابك لانك لا تمكلك نقود كافية للقيام بالمزايدة']);
+        if (($auction->curren_price + $request->amount) * 10 / 100 > $user->balance) {
+            // return redirect()->back()->with(['error' => 'يرجا شحن حسابك لانك لا تمكلك نقود كافية للقيام بالمزايدة']);
+          // $auction = ( new PymentController);
+            $payment = new PymentContoller();
+            return  $payment->makePyment($auction);
         }
 
         $auction->curren_price += $request->amount;
