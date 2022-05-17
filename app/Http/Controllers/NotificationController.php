@@ -27,8 +27,6 @@ class NotificationController extends Controller
 
     public function makeNotificationSeen($notificationId)
     {
-
-        
         $notification = Notification::find($notificationId);
         $notification->is_seen = 1;
         $notification->update();

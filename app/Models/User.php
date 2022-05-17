@@ -76,6 +76,11 @@ class User extends Authenticatable implements MustVerifyEmail,Wallet
         return $this->hasMany(auction::class, 'seller_id');
     }
 
+    public function delivery()
+    {
+        return $this->hasMany(Delivery::class, 'payer_id');
+    }
+
     /**
      * Check if the user is authenticate and has admin role
      *
