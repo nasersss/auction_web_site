@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('auction_id');
             $table->foreign('auction_id')->references('id')->on('auctions')->onUpdate('cascade')->onDelete('cascade');
             $table->string('image')->nullable();
-            $table->string('is_active')->nullable()->default(1);
+            $table->smallInteger('is_active')->default(1);
             $table->timestamps();
         });
     }

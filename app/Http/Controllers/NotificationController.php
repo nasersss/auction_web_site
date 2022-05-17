@@ -28,18 +28,10 @@ class NotificationController extends Controller
     public function makeNotificationSeen($notificationId)
     {
 
-        $category = category::get();
-        $state = State::with("city")->get();
-
-        $vehicleType = VehicleType::get();
+        
         $notification = Notification::find($notificationId);
-        $notifications = Notification::where('to_user_id', Auth::user()->id)->where('is_seen', -1)->get();
-
         $notification->is_seen = 1;
         $notification->update();
-
-       
-        $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
         return redirect()->route("$notification->route");
     }
 

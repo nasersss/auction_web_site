@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('to_user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('content');
             $table->string('route');
-            $table->boolean('is_seen')->default(-1);
+            $table->smallInteger('is_seen')->default(-1);
             $table->timestamps();
         });
     }

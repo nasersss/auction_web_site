@@ -75,14 +75,12 @@ class AuctionController extends Controller
 
         $category = category::get();
         $state = State::with("city")->get();
-        $notifications = Notification::where('to_user_id', Auth::user()->id)->where('is_seen', -1)->get();
 
         $vehicleType = VehicleType::get();
         return view('admin/add_auction')->with([
             'categories' => $category,
             'vehicleTypes' => $vehicleType,
             'states' => $state,
-            'notifications' => $notifications,
         ]);
     }
 
@@ -163,14 +161,10 @@ class AuctionController extends Controller
         $auctionInfo->fuel = $request->fuel;
         $auctionInfo->city_id = $request->address;
         $auctionInfo->date_of_end_auction = $request->date_of_end_auction;
-
         // if the auction is saved that will save and upload images of auction.
         if ($auctionInfo->save()) {
             $auctionMaineImage = new AuctionImage();
-            $destination = public_path() . "/images/auction";
-            $fileName = $auctionInfo->id . "_" . "main" . "_" . time() . "_" .  $request->file('mainImage')->getClientOriginalName();
-            $request->file('mainImage')->move($destination, $fileName);
-            $auctionMaineImage->image = $fileName;
+            $auctionMaineImage->image = $this->uploadMainFile($request->file('mainImage'), $auctionInfo->id);
             $auctionMaineImage->is_active = -1;
             $auctionMaineImage->auction_id = $auctionInfo->id;
             $auctionMaineImage->save();
@@ -207,6 +201,14 @@ class AuctionController extends Controller
         return $fileName;
     }
 
+    public function uploadMainFile($file, $id)
+    {
+        $destination = public_path() . "/images/auction";
+        $fileName = $id . "_" . "main" . "_" . time() . "_" .  $file->getClientOriginalName();
+        $file->move($destination, $fileName);
+        return $fileName;
+    }
+
     /**
      * Display the specified auction.
      *
@@ -224,9 +226,28 @@ class AuctionController extends Controller
      * @param  \App\Models\auction  $auction
      * @return \Illuminate\Http\Response
      */
-    public function edit(auction $auction)
+    public function edit($auction_id)
     {
-        //
+        $category = category::get();
+        $state = State::with("city")->get();
+
+        $vehicleType = VehicleType::get();
+        $auction = auction::find($auction_id);
+        return view('admin/edit_auction')->with([
+            'auction' => $auction,
+            'categories' => $category,
+            'vehicleTypes' => $vehicleType,
+            'states' => $state,
+        ]);
+    }
+
+    public function deleteImage($auctionId)
+    {
+        $auctionImage = AuctionImage::find($auctionId);
+        if ($auctionImage->delete()) {
+            return redirect()->back()->with(['success' => 'تم الحذف بنجاح']);
+        } else
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم يتم حذف البيانات']);
     }
 
     /**
@@ -236,8 +257,46 @@ class AuctionController extends Controller
      * @param  \App\Models\auction  $auction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, auction $auction)
+    public function update(Request $request)
     {
+        $auctionInfo = auction::find($request->id);
+        $auctionInfo->color = $request->color;
+        $auctionInfo->category_id = $request->category_id;
+        $auctionInfo->odometer = $request->odometer;
+        $auctionInfo->damage = $request->damage;
+        $auctionInfo->vehicle_type_id = $request->vehicle_type;
+        $auctionInfo->name = $request->name;
+        $auctionInfo->model = $request->model;
+        $auctionInfo->state = $request->state;
+        $auctionInfo->engine_type = $request->engine_type;
+        $auctionInfo->notes = $request->notes;
+        $auctionInfo->ger_type = $request->ger_type;
+        $auctionInfo->fuel = $request->fuel;
+        $auctionInfo->city_id = $request->address;
+        // if the auction is saved that will save and upload images of auction.
+        if ($auctionInfo->update()) {
+            $auctionMaineImage = AuctionImage::where('name', 'like', $request->id . '_' . 'main' . '_' . '%');
+            if ($request->hasFile('mainImage')) {
+                if (realpath($auctionMaineImage->image)) {
+                    unlink(realpath($auctionMaineImage->image));
+                }
+                $auctionMaineImage->image = $this->uploadMainFile($request->file('mainImage'), $request->id);
+            }
+            $auctionMaineImage->update();
+            foreach ($request->file('images') as $image) {
+                $auctionImage = new AuctionImage();
+                $auctionImage->image = $this->uploadFile($image, $auctionInfo->id);
+                $auctionImage->is_active = -1;
+                $auctionImage->auction_id = $auctionInfo->id;
+                $auctionImage->save();
+            }
+
+
+
+            return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
+        }
+
+        return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
     public function viewAuction(Request $request)

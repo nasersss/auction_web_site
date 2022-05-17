@@ -23,7 +23,11 @@ Route::get('/dashboard', function () {
 })->name('dash-home');
 
 Route::get('/add_auction', [AuctionController::class, 'create'])->name('add-auction');
+Route::get('/edit_auction/{categoryId}', [AuctionController::class,'edit'])->name('edit-auction');
+Route::post('/update_auction', [AuctionController::class,'update'])->name('update-auction');
 Route::post('/store_auction', [AuctionController::class, 'store'])->name('store-auction');
+Route::get('/delete_auction_image/{id}', [AuctionController::class, 'deleteImage'])->name('delete_auction_image');
+
 
 Route::get('/auctions_review', function () {
 return view('admin/auctions_review');
