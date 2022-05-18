@@ -22,15 +22,6 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/add_view', [Maincontroller::class, 'show']);
 
-
-// Route::get('/home',function(){
-//     return view('index');
-// })->name('home');
-
-// Route::get('/home',function(){
-//     return view('index');
-// })->name('users');
-
 Route::get('/test', function () {
     return view('admin.test');
 })->name('test');
@@ -38,9 +29,6 @@ Route::get('/test', function () {
 Route::get('/auction', function () {
     return view('auction');
 })->name('auction');
-// Route::get('/detail',function(){
-//     return view('detail');
-//     })->name('details-car');
 
 Route::get('/admin', function () {
     return view('admin.dashboard_home');
@@ -137,3 +125,5 @@ Route::get('pyment/cancel', [PymentContoller::class, 'viewCancel'])->name('viewC
 Route::get('show_notification', [NotificationController::class, 'index'])->name('show_notification');
 Route::get('makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
 Route::post('comfirmPyment', [BiddingController::class, 'addAmountOfBidding'])->name('comfirmPyment');
+
+Route::get('/order', function () {return view('order');})->name('order');

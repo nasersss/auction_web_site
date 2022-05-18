@@ -57,7 +57,7 @@ class UserProfileController extends Controller
     public function store(Request $request, $userProfile)
     {
         Validator::validate($request->all(), [
-            'name' => ['required', 'min:1', 'max:100','unique:users'],
+            'name' => ['required', 'min:1', 'max:100'],
             'address' => ['required', 'min:1', 'max:200'],
             'phone' => ['required', 'min:5', 'max:15'],
 

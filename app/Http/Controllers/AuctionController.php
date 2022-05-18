@@ -93,45 +93,45 @@ class AuctionController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::validate($request->all(),[
-            'name'=>['required','min:2','max:100'],
-            'color'=>['required'],
-            'state'=>['required'],
-            'model'=>['required','max:4'],
-            'address'=>['required'],
-            'vehicle_type'=>['required'],
-            'fuel'=>['required'],
-            'engine_type'=>['required'],
-            'ger_type'=>['required'],
-            'damage'=>['required'],
-            'odometer'=>['required'],
-            'stare_price'=>['required'],
-            'min_bid'=>['required'],
-            'date_of_end_auction'=>['required'],
-            'mainImage'=>['required'],
-            'images'=>['required'],
+        Validator::validate($request->all(), [
+            'name' => ['required', 'min:2', 'max:100'],
+            'color' => ['required'],
+            'state' => ['required'],
+            'model' => ['required', 'max:4'],
+            'address' => ['required'],
+            'vehicle_type' => ['required'],
+            'fuel' => ['required'],
+            'engine_type' => ['required'],
+            'ger_type' => ['required'],
+            'damage' => ['required'],
+            'odometer' => ['required'],
+            'stare_price' => ['required'],
+            'min_bid' => ['required'],
+            'date_of_end_auction' => ['required'],
+            'mainImage' => ['required'],
+            'images' => ['required'],
 
-        ],[
+        ], [
 
             'name.required' => 'يجب ملى حقل اسم السيارة',
             'name.min' => 'لايمكنك ادخال اقل من 2 احرف',
             'name.max' => 'لايمكنك ادخال اقل من 100 حرف',
-            'model.required'=>'يجب تعبئة الحقل الخاص بموديل السيارة',
-            'model.max'=>'  يجب ان يكون عدد الارقام 4',
+            'model.required' => 'يجب تعبئة الحقل الخاص بموديل السيارة',
+            'model.max' => '  يجب ان يكون عدد الارقام 4',
 
-            'color.required'=>'يجب اختيار لون لسيارة',
-            'state.required'=>'يجب اختيار حالة السيارة',
-            'address.required'=>'يجب  اخيار العنوان ',
-            'vehicle_type.required'=>'يجب اختيار نوع المركبة',
-            'fuel.required'=>'يجب اختيار نوع الوقود',
-            'ger_type.required'=>'يجب ملى نوع المحرك',
-            'damage.required'=>'يجب ملى حقل  الاضرار',
-            'odometer.required'=>'يجب ملى حقل  الخاص بالمسافات المقطوعة',
-            'stare_price.required'=>'يجب ملى حقل  الخاص بالسعر المبدئي',
-            'min_bid.required'=>'يجب ملى حقل  الخاص با اقل سعر للمزاد',
-            'date_of_end_auction.required'=>' يجب تحديد تاريح انتهاء المزاد ',
-            'mainImage.required'=>'يجب تحديد الصورة الرئيسية للمزاد',
-            'images.required'=>'يجب تحديد صور المزاد  ',
+            'color.required' => 'يجب اختيار لون لسيارة',
+            'state.required' => 'يجب اختيار حالة السيارة',
+            'address.required' => 'يجب  اخيار العنوان ',
+            'vehicle_type.required' => 'يجب اختيار نوع المركبة',
+            'fuel.required' => 'يجب اختيار نوع الوقود',
+            'ger_type.required' => 'يجب ملى نوع المحرك',
+            'damage.required' => 'يجب ملى حقل  الاضرار',
+            'odometer.required' => 'يجب ملى حقل  الخاص بالمسافات المقطوعة',
+            'stare_price.required' => 'يجب ملى حقل  الخاص بالسعر المبدئي',
+            'min_bid.required' => 'يجب ملى حقل  الخاص با اقل سعر للمزاد',
+            'date_of_end_auction.required' => ' يجب تحديد تاريح انتهاء المزاد ',
+            'mainImage.required' => 'يجب تحديد الصورة الرئيسية للمزاد',
+            'images.required' => 'يجب تحديد صور المزاد  ',
 
 
 
@@ -177,6 +177,12 @@ class AuctionController extends Controller
             }
 
 
+            $admins = User::where('role', '<', 2)->get();
+            $users = User::where('role', 2)->get();
+            foreach ($admins as  $admin) {
+                $notification = new NotificationController();
+                $notification->sendNotification($admin->id, 'تم اضافة مزاد جديد', 'edit-auction/' . $auctionInfo->id);
+            }
 
             return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
         }
@@ -201,6 +207,8 @@ class AuctionController extends Controller
         return $fileName;
     }
 
+
+
     public function uploadMainFile($file, $id)
     {
         $destination = public_path() . "/images/auction";
@@ -217,7 +225,11 @@ class AuctionController extends Controller
      */
     public function show(auction $auction)
     {
-        //
+        $auctionImage = AuctionImage::find($auction);
+        if ($auctionImage->delete()) {
+            return redirect()->back()->with(['success' => 'تم الحذف بنجاح']);
+        } else
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم يتم حذف البيانات']);
     }
 
     /**
@@ -278,20 +290,31 @@ class AuctionController extends Controller
         // if the auction is saved that will save and upload images of auction.
         if ($auctionInfo->update()) {
             $auctionMaineImage = AuctionImage::where('image', 'like', $request->id . '_' . 'main' . '_' . '%')->first();
+
             if ($request->hasFile('mainImage')) {
-                if (realpath($auctionMaineImage->image)) {
-                    unlink(realpath($auctionMaineImage->image));
+                if ($auctionMaineImage != null) {
+                    if (realpath($auctionMaineImage->image)) {
+                        unlink(realpath($auctionMaineImage->image));
+                    }
+                    $auctionMaineImage->image = $this->uploadMainFile($request->file('mainImage'), $request->id);
+                    $auctionMaineImage->update();
+                } else {
+                    $auctionMaineImage = new AuctionImage();
+                    $auctionMaineImage->image = $this->uploadMainFile($request->file('mainImage'), $request->id);
+                    $auctionMaineImage->auction_id = $request->id;
+                    $auctionMaineImage->save();
                 }
-                $auctionMaineImage->image = $this->uploadMainFile($request->file('mainImage'), $request->id);
             }
-            $auctionMaineImage->update();
-            foreach ($request->file('images') as $image) {
-                $auctionImage = new AuctionImage();
-                $auctionImage->image = $this->uploadFile($image, $auctionInfo->id);
-                $auctionImage->is_active = -1;
-                $auctionImage->auction_id = $auctionInfo->id;
-                $auctionImage->save();
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $auctionImage = new AuctionImage();
+                    $auctionImage->image = $this->uploadFile($image, $auctionInfo->id);
+                    $auctionImage->is_active = -1;
+                    $auctionImage->auction_id = $auctionInfo->id;
+                    $auctionImage->save();
+                }
             }
+
             return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
         }
 
@@ -374,5 +397,4 @@ class AuctionController extends Controller
     {
         //
     }
-
 }

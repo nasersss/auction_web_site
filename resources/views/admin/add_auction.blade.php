@@ -286,7 +286,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary mb-3">إضافة</button>
 
-                    </div>
+                </div>
 
                 </div>
 
@@ -298,6 +298,7 @@
     </div>
     </div>
 
+<script src="assets/js/state_city.js"></script>
 
 </form>
 
