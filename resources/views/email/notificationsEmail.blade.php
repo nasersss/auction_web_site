@@ -285,7 +285,6 @@
         }
 
         .heading-section-white h2 {
-            font-family:
             line-height: 1;
             padding-bottom: 0;
         }
@@ -379,9 +378,9 @@
                         <tr>
                             <td>
                                 <div class="text" style="padding: 0 2.5em; text-align: center;">
-                                    <h2>مرحبا بك في مزادي كار</h2>
-                                    <h3>تم اضافة مزاد جديد للإطلاع </h3>
-                                    <p><a href="#" class="btn btn-primary">اضغط هنا</a></p>
+                                    <h2>مرحبا بك {{$notification->toUser->name}} في مزادي كار</h2>
+                                    <h3>{{$notification->content}}</h3>
+                                    <p><a href="{{route($notification->route)}}" class="btn btn-primary">اضغط هنا</a></p>
                                 </div>
                             </td>
                         </tr>

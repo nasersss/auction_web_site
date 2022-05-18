@@ -219,7 +219,7 @@ class AuctionController extends Controller
      */
     public function show(auction $auction)
     {
-        $auctionImage = AuctionImage::find($auctionId);
+        $auctionImage = AuctionImage::find($auction);
         if ($auctionImage->delete()) {
             return redirect()->back()->with(['success' => 'تم الحذف بنجاح']);
         } else
