@@ -44,7 +44,7 @@
         <div class="m-4">
             <div class="alert alert-danger alert-dismissible fade show">
                 <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> ملاحظة!</h4>
-                <p> عند مشاركتك في المزاد سيتم خصم 20% من محفظتك وفي حال عدم ترسية العين  عليك يتم إعادة المبلغ إلى المحفظة.</p>
+                <p>   عند مشاركتك لابد أن يكون لديك في محفظتك  20% من سعر السيارة الاساسي   .</p>
                 <hr>
                 <p class="mb-0"> بإمكانك الإطلاع على سياسات الموقع لتعرف كيف تجرى المزادات <a href="{{ route('view_policies') }}"> انقر هنا لمعرفة المزيد</a></p>
                 
@@ -82,10 +82,9 @@
                             @isset($auctions->curren_price)
                             {{ $auctions->curren_price}}$
                             @endisset
-                            <span></span> <span>
-                            </span></span>
-
+                        </span>
                     </div>
+                    
                     <div class="auction-info-two mb-3">
                         <div class="row">
                             <div class="col-4">

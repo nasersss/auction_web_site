@@ -21,13 +21,13 @@ class PymentContoller extends Controller
            $card_type= array_column($arrayFormat,'card_type');
            $created_at=array_column($arrayFormat,'created_at');
            $updated_at=array_column($arrayFormat,'updated_at');
-           $order_reference_id=array_column($arrayFormat,'order_reference_id');
+           //$order_reference_id=array_column($arrayFormat,'order_reference_id');
        }
        $card_type=str_replace('+',' ',$card_type[0]);
        $card_holder=str_replace('+',' ',$card_holder[0]);
- 
+ //return $data;
        // add to 10% to superAdmin wellt 
- return view('receiptConfirmation',compact('paid_amount','status','card_holder','card_type','created_at','order_reference_id'));
+ return view('receiptConfirmation',compact('paid_amount','status','card_holder','card_type','created_at'));
  }
  
     
