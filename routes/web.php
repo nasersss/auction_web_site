@@ -22,15 +22,6 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/add_view', [Maincontroller::class, 'show']);
 
-
-// Route::get('/home',function(){
-//     return view('index');
-// })->name('home');
-
-// Route::get('/home',function(){
-//     return view('index');
-// })->name('users');
-
 Route::get('/test', function () {
     return view('admin.test');
 })->name('test');
@@ -38,9 +29,6 @@ Route::get('/test', function () {
 Route::get('/auction', function () {
     return view('auction');
 })->name('auction');
-// Route::get('/detail',function(){
-//     return view('detail');
-//     })->name('details-car');
 
 Route::get('/admin', function () {
     return view('admin.dashboard_home');
@@ -111,12 +99,6 @@ Route::post('update_state/{stateId}', [StateController::class, 'update'])->name(
 Route::get('toggle_state/{stateId}', [StateController::class, 'toggle'])->name('toggle_state');
 Route::get('list_state', [StateController::class, 'listState'])->name('list_state');
 
-
-Route::get('test', [apiTestController::class, 'index'])->name('test');
-Route::get('test/response/{info}', [apiTestController::class, 'showTest'])->name('test/response');
-Route::get('test/cancel/{cancel}', [apiTestController::class, 'testCancel'])->name('testCancel');
-Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewCancel');
-
 ############## route city
 
 Route::get('/add_city', [CityController::class, "create"])->name("add_city");
@@ -142,5 +124,27 @@ Route::get('test/cancel/{cancel}', [apiTestController::class, 'testCancel'])->na
 Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewCancel');
 
 
-Route::get('show_notification', [NotificationController::class, 'index'])->name('show_notification');
-Route::get('makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
+Route::get('show_notification' ,[NotificationController::class,'index'])->name('show_notification');
+Route::get('makeNotificationSeen/{id}' ,[NotificationController::class,'makeNotificationSeen'])->name('makeNotificationSeen');
+
+
+####################### route  vehicle_types
+
+Route::get('/add_vehicle',[VehicleTypeController::class,"create"])->name("add_vehicle");
+Route::post('/save_vehicle',[VehicleTypeController::class,"store"])->name("store_vehicle");
+Route::get('edit_vehicle/{Id}',[VehicleTypeController::class,'edit'])->name('edit_vehicle');
+Route::post('update_vehicle/{Id}',[VehicleTypeController::class,'update'])->name('update_vehicle');
+Route::get('toggle_vehicle/{Id}',[VehicleTypeController::class,'toggle'])->name('toggle_vehicle');
+Route::get('list_vehicle',[VehicleTypeController::class,'listVehicle'])->name('list_vehicle');
+
+
+Route::get('test', [apiTestController::class, 'index'])->name('test');
+Route::get('test/response/{info}', [apiTestController::class, 'showTest'])->name('test/response');
+Route::get('test/cancel/{cancel}', [apiTestController::class, 'testCancel'])->name('testCancel');
+Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewCancel');
+
+
+Route::get('show_notification' ,[NotificationController::class,'index'])->name('show_notification');
+Route::get('makeNotificationSeen/{id}' ,[NotificationController::class,'makeNotificationSeen'])->name('makeNotificationSeen');
+
+Route::get('/order', function () {return view('order');})->name('order');

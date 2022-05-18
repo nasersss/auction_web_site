@@ -26,8 +26,8 @@ class Notification extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(Notification $notification)
     {
-        return $this->view('view.name');
+        return $this->view('email.notificationsEmail')->with('notification',$notification);
     }
 }
