@@ -328,7 +328,7 @@ class AuctionController extends Controller
         $state = State::with("city")->get();
         $vehicleType = VehicleType::get();
         if ($request->method() == 'GET') {
-            $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
+            $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now())->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
             return view('index')->with([
                 "auctions" => $auction,
                 'categories' => $category,
@@ -371,9 +371,14 @@ class AuctionController extends Controller
     // this function show list of all auctions
     function auctionReview()
     {
-
-        $auction = auction::with(["user", "category", "auctionImage"])->get();
-        return view("admin.auctions_review")->with("auctions", $auction);
+        $user = User::find(Auth::user()->id);
+        if ($user->role < 2) {
+            $auctions = auction::with(["user", "category", "auctionImage"])->orderBy('created_at', 'desc')->get();
+            return view("admin.auctions_review")->with("auctions", $auctions);
+        } else {
+            $auction = auction::where('seller_id', $user->id)->orderBy('created_at', 'desc')->get();
+            return view("admin.userAuction")->with("auctions", $auction);
+        }
     }
 
     public function toggle($auctionId)
@@ -398,9 +403,7 @@ class AuctionController extends Controller
         //
     }
 
-    public function userAuction($userId){
-        $auction=auction::where('seller_id',$userId)->orderBy('created_at', 'desc')->get();
-        return view("admin.userAuction")->with("auctions",$auction);
-
+    public function userAuction($userId)
+    {
     }
 }

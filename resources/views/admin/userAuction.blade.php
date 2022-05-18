@@ -5,7 +5,8 @@
 @endsection
 
 @section('css')
-
+<link rel="stylesheet" href="/assets/css/ionicons.min.css">
+<link rel="stylesheet" href="/assets/css/all.css">
 @endsection
 @section('breadcrumb-item')
     المزادات
@@ -57,6 +58,8 @@
 {{--                                    <th>تاريخ الانتهاء</th>--}}
                                     <th>الحالة</th>
                                     <th>حالة المزاد</th>
+                                    <th></th>
+                                    <th></th>
                                     <th style="width: 85px;">العمليات</th>
                                 </tr>
                                 </thead>
@@ -69,23 +72,33 @@
                                       {{ $loop->iteration }}
                                     </td>
                                     <td>
-                                         {{-- <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48"> --}}
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            {{-- <a href="{{ route('action_detail',$auction->id)}}" class="text-body">{{ $auction->name }}</a> --}}
-سنتافي
-                                        </p>
+                                        @isset($auction->name)
+
+
+                                        <a href="{{ route('action_detail',$auction->id)}}" class="text-body">{{ $auction->name }}</a>
+                                        @endisset
                                     </td>
                                     <td>
+                                        @isset($auction->category->name)
                                         {{ $auction->category->name }}
+                                        @endisset
                                     </td>
                                     <td>
+                                        @isset($auction->model )
                                 {{ $auction->model }}
+                                @endisset
                                     </td>
                                     <td>
+                                        @isset($auction->stare_price )
                                         {{ $auction->stare_price }}
+
+                                        @endisset
                                     </td>
                                     <td>
-                                            {{-- {{ $auction->stare_price }} --}}10000
+                                        @isset($auction->curren_price)
+                                        {{ $auction->curren_price }}
+
+                                        @endisset
                                     </td>
                                     <td>
                                         @isset($auction->is_active)
@@ -99,14 +112,34 @@
                                         @endisset
                                     </td>
                                     <td>
-                                        <span class="badge badge-success-lighten">{{ "جاري" }}</span>
-                                    </td>
+                                        @isset($auction->date_of_end_auction)
 
-                                    <td class="table-action">
-                                        {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="mdi mdi-delete"></i></a> --}}
+
+                                        @if($auction->date_of_end_auction <  \Carbon\Carbon::now())
+                                        <span class="badge badge-danger-lighten">{{ "انتهى" }}</span>
+                                        @else
+                                        <span class="badge badge-warning-lighten">{{ "جاري" }}</span>
+                                        @endif
+                                        @endisset
                                     </td>
+<td>
+    <a href="" class="btn btn-danger"> ارساء المزاد </a>
+
+</td>
+<td>
+    <a href="" class="btn btn-success"> تمديد </a>
+
+</td>
+
+                                        <td class="table-action">
+                                            @isset($auction->id)
+                                            <a href="{{ route("edit-auction",$auction->id) }}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+
+                                            @endisset
+
+
+                                            {{-- <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="mdi mdi-delete"></i></a> --}}
+                                        </td>
                                 </tr>
                                 @endforeach
 
@@ -139,6 +172,6 @@
     <!-- demo app -->
     <script src="assets/js/pages/demo.products.js"></script>
     <!-- end demo js-->
-
+"لاتوجد مزادات خاصة بك"
 
 @endsection
