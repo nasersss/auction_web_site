@@ -80,14 +80,13 @@ class BiddingController extends Controller
      * 
      */
     public function addAmountOfBidding(Request $request){
+        session_start();
         $auction = auction::find($_SESSION['auction']['id']);
         $admin = User::where('role',0)->first();
-        session_start();
-        //return $_SESSION['auction'];
-        //return $_SESSION['amountOfBidding'];
-        Auth::user()->deposit($request->paid_amount);
-        Auth::user()->withdraw($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at]);
-        $admin->deposit($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at,'FromuserId'=>Auth::user()->id]);
+        
+        Auth::user()->deposit($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at]);
+        //Auth::user()->withdraw($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at]);
+        //$admin->deposit($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at,'FromuserId'=>Auth::user()->id]);
 
         $auction->curren_price += $_SESSION['amountOfBidding'];
         $auction->number_of_participate += 1;
