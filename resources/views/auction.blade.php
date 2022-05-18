@@ -60,8 +60,8 @@
                                 <div class="input-field">
                                     <div class="icon-wrap">
                                         <img src="/assets/images/search.png" width="30">
-                                    </div>
-                                    <input id="search" type="text" placeholder="بحث..." />
+                                    </div> <input id="search" type="text" placeholder="بحث..." />
+                                   
                                     <div class="result-count" onclick="myFunction()">
                                         <img src="/assets/images/Advanced_Search.png" width="30">بحث متقدم
                                     </div>
@@ -75,9 +75,11 @@
                                         <div class="input-select">
                                             <select name="category_id" class="form-select mb-3">
                                                 <option selected disabled value="">.أختر احدى الماركات</option>
+                                                @isset($categories)
                                                 @foreach($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                                 @endforeach
+                                                @endisset
                                             </select>
                                         </div>
                                     </div>
@@ -178,7 +180,7 @@
                 <!-- Category Card -->
 
 
-                @if($auctions!=null)
+                @isset($auctions)
                 @foreach($auctions as $auction)
 
 
@@ -218,10 +220,7 @@
 
 
                 @endforeach
-                @else
-                <h1>لاتوجد مزادات حالية</h1>
                 @endisset
-
 
 
 
