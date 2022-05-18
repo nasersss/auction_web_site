@@ -34,9 +34,6 @@
                 <!-- /NAV -->
             </div>
             <div class="header-icons">
-                <div id="search" class="search-icon icon">
-                    <i class="fas fa-search"></i>
-                </div>
                 {{-- <div class="show icon"><i class="fa fa-globe" aria-hidden="true"></i></div> --}}
                 <!-- <div class="show"> <a href="{{ route('login') }}"> <i class="fas fa-user"></i></a> </div> -->
                 @guest
@@ -55,6 +52,9 @@
             {{-- <i  class="show icon user" onclick="userSelection()" style="background: #eee"> <a href="#" style="color:var(--secondary)"> <i class="fas fa-user"></i></a>--}}
             <div class="show icon user" onclick="userSelection()" style="background-image: url('@isset(Auth::user()->profile->image) {{Auth::user()->profile->image}}@else images/users/defaultImage.png @endisset');background-size: cover;">
                 <div id="list-user" class="list-user">
+                    
+                        
+                        <a href=""><img src=" images/users/defaultImage.png" class="imguser"><div class="name-auth"> {{ Auth::user()->name }}</div> </a>
                     <a href="{{route('profile')}}"><i class="fas fa-user"></i> الملف الشخصي</a>
                     <a href="{{ route('add-auction') }}"><i class="fas fa-cog"></i>اضافة مزاد</a>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -62,7 +62,6 @@
                 </div>
             </div>
 
-            <div class="name-auth"> {{ Auth::user()->name }}</div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
             </form>
@@ -84,59 +83,7 @@
     </nav>
 
     </div>
-    <!-- /TOP HEADER -->
-
-    <!-- MAIN HEADER -->
-    <div id="header">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <!-- LOGO -->
-                <div class="col-md-3">
-
-                </div>
-                <!-- /LOGO -->
-
-                <!-- SEARCH BAR -->
-
-                <div class="col-md-6">
-                    <div class="header-search">
-                        <form>
-                            <select class="input-select">
-                                <option value="0">جميع الفئات</option>
-                                <option value="1">تويوتا</option>
-                                <option value="1"> هونداي</option>
-                            </select>
-                            <input class="input" placeholder="Search here">
-                            <button class="search-btn">البحث</button>
-                        </form>
-                    </div>
-                </div>
-                <!-- /SEARCH BAR -->
-
-                <!-- ACCOUNT -->
-                <div class="col-md-3 clearfix parent-false-icon">
-                    <div class="header-ctn">
-                        <!-- Wishlist -->
-                        <div id="close">
-                            <i class="fas fa-times"></i>
-                        </div>
-                        <!-- /Wishlist -->
-
-                        <!-- Cart -->
-
-
-
-                    </div>
-                </div>
-                <!-- /ACCOUNT -->
-            </div>
-            <!-- row -->
-        </div>
-        <!-- container -->
-    </div>
-    <!-- /MAIN HEADER -->
+   
 
 </header>
 

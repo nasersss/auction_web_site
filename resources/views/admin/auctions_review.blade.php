@@ -106,9 +106,29 @@
                                     </td>
 
                                     <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                        {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a> --}}
+                                        
+                                        {{-- <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="uil-eye-slash" ></i></a>
+                                        
+                                        <a href="javascript:void(0);" class="action-icon" style="display: none" id="view"> <i class="mdi mdi-eye"></i></a> --}}
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                       
+                                        @isset($auction->is_active)
+                                        @if($auction->is_active==1)
+                                        <span class="badge badge-success-lighten"></span>
+                                        <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="uil-eye-slash" ></i></a>
+                                        
+                   
+                                        @else
+                                        <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>   
+                                        @endif                                      
+                                        
+                                       
+
+                                        @endisset
+
+                                        
+
                                     </td>
                                 </tr>
                                 @endforeach
@@ -131,6 +151,7 @@
 
 @section('script')
     <!-- third party js -->
+    
     <script src="assets/js/vendor/jquery.dataTables.min.js"></script>
     <script src="assets/js/vendor/dataTables.bootstrap5.js"></script>
     <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
@@ -141,7 +162,7 @@
 
     <!-- demo app -->
     <script src="assets/js/pages/demo.products.js"></script>
+    
     <!-- end demo js-->
-
 
 @endsection
