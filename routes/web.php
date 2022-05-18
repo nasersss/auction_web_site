@@ -5,6 +5,10 @@ use App\Models\City;
 use App\Models\UserProfile;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Events\message;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -158,4 +162,8 @@ Route::post('/store_delivery',[DeliveryController::class,'store'])->name('store_
 
 Route::get('orders',function(){
     return view('order');
+});
+
+Route::get('/i',function(){
+    return view('admin.invoice');
 });
