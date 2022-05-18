@@ -381,4 +381,10 @@ class AuctionController extends Controller
     {
         //
     }
+
+    public function userAuction($userId){
+        $auction=auction::where('seller_id',$userId)->orderBy('created_at', 'desc')->get();
+        return view("admin.userAuction")->with("auctions",$auction);
+
+    }
 }
