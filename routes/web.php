@@ -136,3 +136,4 @@ Route::get('pyment/cancel', [PymentContoller::class, 'viewCancel'])->name('viewC
 
 Route::get('show_notification', [NotificationController::class, 'index'])->name('show_notification');
 Route::get('makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
+Route::post('comfirmPyment', [BiddingController::class, 'addAmountOfBidding'])->name('comfirmPyment');

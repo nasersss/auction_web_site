@@ -13,9 +13,6 @@ class PymentContoller extends Controller
     $info = Route::current()->parameter('info');
     $info = base64_decode($info);
       $data= $arrayFormat=json_decode($info ,true);
-    
-       $paidAmount =  $data['customer_account_info']['paid_amount'];
-       $orderRefernce = $data['customer_account_info']['order_reference_id'];
 
        for($i=0;$i<count($data);$i++){
            $status=array_column($arrayFormat,'status');
@@ -24,12 +21,13 @@ class PymentContoller extends Controller
            $card_type= array_column($arrayFormat,'card_type');
            $created_at=array_column($arrayFormat,'created_at');
            $updated_at=array_column($arrayFormat,'updated_at');
+           $order_reference_id=array_column($arrayFormat,'order_reference_id');
        }
        $card_type=str_replace('+',' ',$card_type[0]);
        $card_holder=str_replace('+',' ',$card_holder[0]);
  
        // add to 10% to superAdmin wellt 
- return view('paymentViews.testResponse',compact('paid_amount','status','card_holder','card_type','created_at'));
+ return view('receiptConfirmation',compact('paid_amount','status','card_holder','card_type','created_at','order_reference_id'));
  }
  
     

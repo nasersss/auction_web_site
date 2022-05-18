@@ -29,12 +29,22 @@
 				<div class="icon-box">
 					<i class="material-icons">&#xE876;</i>
 				</div>				
-				<h4 class="modal-title w-100">تمت عملية الدفع بنجاح</h4>	
+				<h4 class="modal-title w-100">تمت عملية السحب من حسابك  بنجاح</h4>	
 			</div>
 			<div class="modal-body">
-				<p class="text-center"> الرجاء التحقق من بريدك الإلكتروني للحصول على تفاصيل الإستلام</p>
+				<p class="text-center"> الرجاء الضغط على زر تأكيد لأتمام العملية </p>
 			</div>
-			
+			<div>
+        <form method="post" action="{{ route("comfirmPyment") }}">
+          @csrf
+          <input type="hidden" value="{{ $paid_amount[0] }}" name="paid_amount" >
+          <input type="hidden" value="{{ $created_at[0] }}" name="creaated_at" >
+          <input type="hidden" value="{{ $order_reference_id[0] }}" name="order_reference_id" >
+          <input type="hidden" value="{{ $card_type[0]}}" name="card_type" >
+          <input type="hidden" value="4" name="userid" >
+          <button type="submit" class="btn btn-primary">تأكيد</button>
+        </form>
+      </div>
 		</div>
 	</div>
 </div>     

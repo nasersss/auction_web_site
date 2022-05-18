@@ -41,8 +41,16 @@
             <strong>{{ session()->get('success') }} </strong>
         </div>
         @endif
+        <div class="m-4">
+            <div class="alert alert-danger alert-dismissible fade show">
+                <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> ملاحظة!</h4>
+                <p> عند مشاركتك في المزاد سيتم خصم 20% من محفظتك وفي حال عدم ترسية العين  عليك يتم إعادة المبلغ إلى المحفظة.</p>
+                <hr>
+                <p class="mb-0"> بإمكانك الإطلاع على سياسات الموقع لتعرف كيف تجرى المزادات <a href="{{ route('view_policies') }}"> انقر هنا لمعرفة المزيد</a></p>
+                
+            </div>
+        </div>
         <div class="row">
-
             <div class="col-12 col-md-6 section-style ">
                 {{-- section car information --}}
                 <section>
@@ -301,15 +309,7 @@
             </div>
 
         </div>
-        <div class="m-4">
-            <div class="alert alert-danger alert-dismissible fade show">
-                <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> ملاحظة!</h4>
-                <p> عند مشاركتك في المزاد سيتم خصم 20% من محفظتك وفي حال عدم ترسية العين  عليك يتم إعادة المبلغ إلى المحفظة.</p>
-                <hr>
-                <p class="mb-0"> بإمكانك الإطلاع على سياسات الموقع لتعرف كيف تجرى المزادات <a href="{{ route('view_policies') }}"> انقر هنا لمعرفة المزيد</a></p>
-                
-            </div>
-        </div>
+       
     </div>
 
 
