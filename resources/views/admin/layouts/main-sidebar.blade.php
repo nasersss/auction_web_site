@@ -70,6 +70,12 @@
                 </div>
             </li>
             <li class="side-nav-item">
+                <a href="{{route('wallet')}}" class="side-nav-link">
+                    <i class="dripicons-wallet"></i>
+                    <span>المحفظة</span>
+                </a>
+            </li>
+            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages" class="side-nav-link">
                     <i class="uil-envelope"></i>
                     <span> التقارير </span>
