@@ -44,7 +44,9 @@ class BiddingController extends Controller
          
         //$user = User::with('wallet')->find(Auth::user()->id);
         $auction = auction::find($request->auction_id);
-
+        session_start();
+        $_SESSION["auction"] = $auction;
+        $_SESSION["amountOfBidding"] = $request->amount;
         if ($request->amount < $auction->min_bid) {
             return redirect()->back()->with(['error' => 'لايمكنك ادخال مبلغ اقل من ' . $auction->min_bid . '$ ' . ' لانها اقل قيمة للمزايدة']);
         }
@@ -78,22 +80,23 @@ class BiddingController extends Controller
      * 
      */
     public function addAmountOfBidding(Request $request){
-       
+        $auction = auction::find($_SESSION['auction']['id']);
         $admin = User::where('role',0)->first();
-
+        session_start();
+        //return $_SESSION['auction'];
+        //return $_SESSION['amountOfBidding'];
         Auth::user()->deposit($request->paid_amount);
-        Auth::user()->withdraw($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$request->order_reference_id,'creaated_at'=>$request->creaated_at]);
-        $admin->deposit($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$request->order_reference_id,'creaated_at'=>$request->creaated_at,'FromuserId'=>Auth::user()->id]);
+        Auth::user()->withdraw($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at]);
+        $admin->deposit($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at,'FromuserId'=>Auth::user()->id]);
 
-        $auction = auction::find($request->order_reference_id);
-        $auction->curren_price += $request->amount;
+        $auction->curren_price += $_SESSION['amountOfBidding'];
         $auction->number_of_participate += 1;
         $auction->update();
 
         $newBidding = new Bidding();
         $newBidding->user_id = Auth::user()->id;
-        $newBidding->auction_id = $request->order_reference_id;
-        $newBidding->bidding_amount =150;//must be modfy to gevin by requst or save the amout in session then claa here
+        $newBidding->auction_id = $auction->id;
+        $newBidding->bidding_amount = $_SESSION['amountOfBidding'];//must be modfy to gevin by requst or save the amout in session then claa here
         $newBidding->payed_amount = (($auction->curren_price + $request->amount) * 10 / 100);
         $newBidding->save();
 
