@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Models;
-use Bavix\Wallet\Traits\HasWallet;
-use Bavix\Wallet\Interfaces\Wallet;
+
 use App\Http\Controllers\BiddingController;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,9 +11,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements MustVerifyEmail,Wallet
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable,HasWallet;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -56,6 +55,12 @@ class User extends Authenticatable implements MustVerifyEmail,Wallet
     {
         return $this->hasOne(UserProfile::class, 'user_id');
     }
+
+    public function wallet()
+    {
+        return $this->hasMany(Wallet::class, 'user_id');
+    }
+
     public function notificationFrom()
     {
         return $this->hasMany(Notification::class, 'from_user_id');
@@ -76,16 +81,11 @@ class User extends Authenticatable implements MustVerifyEmail,Wallet
         return $this->hasMany(auction::class, 'seller_id');
     }
 
-    public function delivery()
-    {
-        return $this->hasMany(Delivery::class, 'payer_id');
-    }
-
     /**
      * Check if the user is authenticate and has admin role
      *
      * @return boolean
-     *
+     * 
      */
     public function isAdmin()
     {
@@ -104,7 +104,7 @@ class User extends Authenticatable implements MustVerifyEmail,Wallet
      * Check if the user is authenticate and has super admin role
      *
      * @return boolean
-     *
+     * 
      */
     public function isSuperAdmin()
     {

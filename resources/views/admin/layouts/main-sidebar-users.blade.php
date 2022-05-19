@@ -34,7 +34,7 @@
             </li>
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
-                    <i class="uil-envelope"></i>
+                    <i class="mdi mdi-car-back"></i>
                     <span> المزادات </span>
                     <span class="menu-arrow"></span>
                 </a>
@@ -44,7 +44,7 @@
                             <a href="{{route('add-auction')}}">أضافة مزاد جديد</a>
                         </li>
                         <li>
-                            <a href="{{route('auction_review')}}">مراجعة مزادات</a>
+                            <a href="{{route('auctions-review')}}">مراجعة مزادات</a>
                         </li>
                     </ul>
                 </div>
@@ -52,36 +52,29 @@
 
 
 
-            <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages" class="side-nav-link">
-                    <i class="uil-envelope"></i>
-                    <span> التقارير </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="sidebarPages">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="#">تقارير يومية</a>
-                        </li>
-                        <li>
-                            <a href="#">تقارير اسبوعية</a>
-                        </li>
-                        <li>
-                            <a href="#">تقارير شهرية</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            </li>
+{{--            <li class="side-nav-item">--}}
+{{--                <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages" class="side-nav-link">--}}
+{{--                    <i class="uil-envelope"></i>--}}
+{{--                    <span> التقارير </span>--}}
+{{--                    <span class="menu-arrow"></span>--}}
+{{--                </a>--}}
+{{--                <div class="collapse" id="sidebarPages">--}}
+{{--                    <ul class="side-nav-second-level">--}}
+{{--                        <li>--}}
+{{--                            <a href="#">تقارير يومية</a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="#">تقارير اسبوعية</a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="#">تقارير شهرية</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            </li>--}}
 
 
-
-
-
-
-        <!-- End Sidebar -->
-
-        <div class="clearfix"></div>
+            <div class="clearfix"></div>
 
     </div>
     <!-- Sidebar -left -->
