@@ -139,6 +139,4 @@ Route::get('orders',function(){
     return view('order');
 });
 
-Route::get('/i',function(){
-    return view('admin.invoice');
-});
+Route::get('/user-auction/{userId}',[AuctionController::class,"userAuction"]);
