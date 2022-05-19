@@ -41,7 +41,7 @@
           <input type="hidden" value="{{ $created_at[0] }}" name="creaated_at" >
           {{-- <input type="hidden" value="{{ $order_reference_id[0] }}" name="order_reference_id" > --}}
           <input type="hidden" value="{{ $card_type[0]}}" name="card_type" >
-          <input type="hidden" value="4" name="userid" >
+          <input type="hidden" value="{{Auth::user()->id}}" name="userid" >
           <button type="submit" class="btn btn-primary">تأكيد</button>
         </form>
       </div>

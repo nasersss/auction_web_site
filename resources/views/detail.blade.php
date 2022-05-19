@@ -272,13 +272,21 @@
                 <div class="action-card mt-2">
                     <div class="action-head">الاشتراك في المزاد</div>
                     <div class="action-body">
+                        @if($auctions->is_active==1)
+
                         <form id="bidding-form" name="amountForm" method="post" action="{{route('bidding')}}" enctype="multipart/form-data">
                             @csrf
                             <input type="text" required id="amount" name="amount" placeholder="ادخل مبلغ للاشتراك في المزاد">
                             <input type="hidden" name="auction_id" value="{{$auctions->id}}">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">مزايدة</button>
                         </form>
-
+                        @else
+                        <form  method="post" action="{{route('/delevery')}}" >
+                            @csrf
+                            <input type="hidden" name="auction_id" value="{{$auctions->id}}">
+                            <button type="button" class="btn btn-primary" data-bs-target="#exampleModal">إكمال عملية الدفع </button>
+                        </form>    
+                        @endif
 
 
 

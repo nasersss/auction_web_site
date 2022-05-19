@@ -52,10 +52,22 @@ class NotificationController extends Controller
      * @return boolean
      * 
      */
-    public function sendNotification($toUserId, $content, $route)
+    public function sendNotification($form = null,$toUserId, $content, $route)
     {
         $notification = new Notification();
-        $notification->from_user_id = Auth::user()->id;
+        if($form==null)
+            $form = Auth::user()->id;
+        $notification->from_user_id = $form;
+        $notification->to_user_id = $toUserId;
+        $notification->content = $content;
+        $notification->route = $route;
+        $notification->save();
+    }
+    public function sendNotificationFromAdmin($toUserId, $content, $route)
+    {
+        $notification = new Notification();
+        $admin = User::where('role',0)->first();
+        $notification->from_user_id = $admin->id;
         $notification->to_user_id = $toUserId;
         $notification->content = $content;
         $notification->route = $route;

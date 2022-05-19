@@ -42,7 +42,6 @@ class BiddingController extends Controller
             return redirect()->route('login')->with(['error' => 'عذرا لا تملك الصلاحية لدخول هذه الصفخة يرجا تسجيل الدخول او انشاء حساب']);
         }
          
-        //$user = User::with('wallet')->find(Auth::user()->id);
         $auction = auction::find($request->auction_id);
         session_start();
         $_SESSION["auction"] = $auction;
@@ -51,10 +50,9 @@ class BiddingController extends Controller
             return redirect()->back()->with(['error' => 'لايمكنك ادخال مبلغ اقل من ' . $auction->min_bid . '$ ' . ' لانها اقل قيمة للمزايدة']);
         }
         if (($auction->curren_price + $request->amount) * 10 / 100 > Auth::user()->balance) {
-            // return redirect()->back()->with(['error' => 'يرجا شحن حسابك لانك لا تمكلك نقود كافية للقيام بالمزايدة'])
             $payment = new PymentContoller();
-           
-           return  $payment->makePyment($auction);
+            $percentageFromStrartPrice = $auction->stare_price*0.2;
+           return  $payment->makePyment($auction,$percentageFromStrartPrice);
         }
         $auction->curren_price += $request->amount;
         $auction->number_of_participate += 1;
@@ -83,8 +81,8 @@ class BiddingController extends Controller
         session_start();
         $auction = auction::find($_SESSION['auction']['id']);
         $admin = User::where('role',0)->first();
-        
-        Auth::user()->deposit($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at]);
+        $paidAmout = $request->paid_amount;
+        Auth::user()->deposit($paidAmout,['paid_amount'=>$paidAmout,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at]);
         //Auth::user()->withdraw($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at]);
         //$admin->deposit($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at,'FromuserId'=>Auth::user()->id]);
 

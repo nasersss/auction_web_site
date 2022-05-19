@@ -83,12 +83,15 @@ Route::group(['middleware' => 'is.admin'], function () {
     Route::post('update_user/{PoliceId}', [UserProfileController::class, 'updateUser'])->name('update_users');
 });
 ##########################
-
+//Auction
 Route::get('/', [AuctionController::class, "viewAuction"])->name("index");
 Route::post('/', [AuctionController::class, "viewAuction"])->name("index");
 Route::get('detail_car/{carId}', [AuctionController::class, "detailAuction"])->name("action_detail");
 Route::get('/auction_review', [AuctionController::class, "auctionReview"])->name("auction_review");
 Route::get('/toggle_auctions/{auctionId}', [AuctionController::class, "toggle"])->name("toggle_auction");
+Route::get('/endauction',  [AuctionController::class, "checkAucationDate"])->name('endauction');
+Route::get('/derlevery',[PymentContoller::class, 'deleveryPyment'])->name('derlevery');
+
 
 ############## route address
 ############## route state
@@ -127,3 +130,7 @@ Route::get('makeNotificationSeen/{id}', [NotificationController::class, 'makeNot
 Route::post('comfirmPyment', [BiddingController::class, 'addAmountOfBidding'])->name('comfirmPyment');
 
 Route::get('/order', function () {return view('order');})->name('order');
+
+Route::get('/derlevery',[PymentContoller::class, 'index'])->name('derlevery');
+
+

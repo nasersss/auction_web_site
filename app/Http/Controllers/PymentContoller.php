@@ -21,13 +21,13 @@ class PymentContoller extends Controller
            $card_type= array_column($arrayFormat,'card_type');
            $created_at=array_column($arrayFormat,'created_at');
            $updated_at=array_column($arrayFormat,'updated_at');
-           //$order_reference_id=array_column($arrayFormat,'order_reference_id');
+           $order_reference_id=array_column($arrayFormat,'order_reference_id');
        }
        $card_type=str_replace('+',' ',$card_type[0]);
        $card_holder=str_replace('+',' ',$card_holder[0]);
  //return $data;
        // add to 10% to superAdmin wellt 
- return view('receiptConfirmation',compact('paid_amount','status','card_holder','card_type','created_at'));
+ return view('receiptConfirmation',compact('paid_amount','status','card_holder','card_type','created_at','order_reference_id'));
  }
  
     
@@ -40,9 +40,9 @@ class PymentContoller extends Controller
      * @return route
      * 
      */
-    public function makePyment(auction $auction){
+    public function makePyment(auction $auction,$amountOfPayment){
+
     
-        $percentageFromStrartPrice = $auction->stare_price*0.2;
         $data = [
             "order_reference" => $auction->id,
             "products" => [
@@ -50,11 +50,11 @@ class PymentContoller extends Controller
                     "id" =>   $auction->id,
                     "product_name" => $auction->name,
                     "quantity" => 1,
-                    "unit_amount" =>  $percentageFromStrartPrice
+                    "unit_amount" =>  $amountOfPayment
                   )
             ],
            "currency" => "US",
-            "total_amount" =>   $percentageFromStrartPrice,
+            "total_amount" =>  $amountOfPayment,
             "success_url" => "http://127.0.0.1:8000/pyment/response",
             "cancel_url" => "http://127.0.0.1:8000/pyment/cancel",
             "metadata" => [
@@ -96,9 +96,7 @@ class PymentContoller extends Controller
 
            //return  json_decode($response);
            $url = json_decode($response)->invoice->next_url;
-          
            return redirect()->away($url);
-      
           }
           
       
