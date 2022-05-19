@@ -84,7 +84,6 @@ Route::group(['middleware' => 'is.admin'], function () {
 });
 ##########################
 //Auction
-Route::get('/', [AuctionController::class, "viewAuction"])->name("index");
 Route::post('/', [AuctionController::class, "viewAuction"])->name("index");
 Route::get('detail_car/{carId}', [AuctionController::class, "detailAuction"])->name("action_detail");
 Route::get('/auction_review', [AuctionController::class, "auctionReview"])->name("auction_review");
@@ -129,7 +128,8 @@ Route::get('show_notification', [NotificationController::class, 'index'])->name(
 Route::get('makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
 Route::post('comfirmPyment', [BiddingController::class, 'addAmountOfBidding'])->name('comfirmPyment');
 
-Route::get('/order', function () {return view('order');})->name('order');
+##Oerder Route 
+Route::post('/order', function () {return view('order');})->name('order');
 
 Route::get('/derlevery',[PymentContoller::class, 'index'])->name('derlevery');
 
