@@ -34,6 +34,7 @@
                         <p class="alert alert-danger">{{$err}}</p>
                         @endforeach
                     @endif
+                    @include('message')
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">تعديل الملف الشخصي</h4>

@@ -12,7 +12,7 @@
     المحفظة
 @endsection
 @section('breadcrumb-item2')
-    حركة الفلوس
+    حركة الاموال
 @endsection
 
 @section('breadcrumb-item-active')

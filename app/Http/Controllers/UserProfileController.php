@@ -20,19 +20,30 @@ class UserProfileController extends Controller
     public function index()
     {
         //
-        $user = User::with('profile')->get();
-        return view('user.profile')
-            ->with('users', $user);
+        try {
+
+            $user = User::with('profile')->get();
+            return view('user.profile')
+                ->with('users', $user);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
     /**
      * list listUser function used to display all users
      */
-    public function listUser(){
+    public function listUser()
+    {
+        try {
 
-      $user=User::with('profile')->where('role','!=','0')->get();
-        return view('admin.users.view_users')
-            ->with('users', $user);
+
+            $user = User::with('profile')->where('role', '!=', '0')->get();
+            return view('admin.users.view_users')
+                ->with('users', $user);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
     /**
@@ -42,10 +53,14 @@ class UserProfileController extends Controller
      */
     public function create()
     {
-        //
-        $userInfo = User::find(Auth::user()->id);
-        return view('admin.add_profile')
-            ->with('userInfo', $userInfo);
+        try {
+
+
+            $userInfo = User::find(Auth::user()->id);
+            return view('admin.add_profile')->with('userInfo', $userInfo);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
     /**
@@ -56,44 +71,50 @@ class UserProfileController extends Controller
      */
     public function store(Request $request, $userProfile)
     {
-        Validator::validate($request->all(), [
-            'name' => ['required', 'min:1', 'max:100'],
-            'address' => ['required', 'min:1', 'max:200'],
-            'phone' => ['required', 'min:5', 'max:15'],
 
-        ], [
-            'name.required' => 'يجب تعبئت هذا الحقل',
-            'name.max' => 'لايمكنك ادخال اقل من 100 حرف',
-            'name.min' => 'يجب ان يكون الحقل المدخل اكثر من  واحد',
-            'name.unique' =>'الاسم الدي ادخلتة غير متاحة',
+        try {
 
-            'address.required' => 'يجب تعبئت هذا الحقل',
-            'address.max' => 'لايمكنك ادخال اقل من 200 حرف',
-            'address.min' => 'يجب ان يكون الحقل المدخل اكثر من حرف واحد',
+            Validator::validate($request->all(), [
+                'name' => ['required', 'min:1', 'max:100'],
+                'address' => ['required', 'min:1', 'max:200'],
+                'phone' => ['required', 'min:5', 'max:15'],
 
+            ], [
+                'name.required' => 'يجب تعبئت هذا الحقل',
+                'name.max' => 'لايمكنك ادخال اقل من 100 حرف',
+                'name.min' => 'يجب ان يكون الحقل المدخل اكثر من  واحد',
+                'name.unique' => 'الاسم الدي ادخلتة غير متاحة',
 
-            'phone.required' => 'يجب تعبئت هذا الحقل',
-            'phone.max' => 'لايمكنك ادخال اقل من 16 رقم',
-            'phone.min' => 'يجب ان يكون الحقل المدخل اكثر من 5 ارقام',
+                'address.required' => 'يجب تعبئت هذا الحقل',
+                'address.max' => 'لايمكنك ادخال اقل من 200 حرف',
+                'address.min' => 'يجب ان يكون الحقل المدخل اكثر من حرف واحد',
 
 
+                'phone.required' => 'يجب تعبئت هذا الحقل',
+                'phone.max' => 'لايمكنك ادخال اقل من 16 رقم',
+                'phone.min' => 'يجب ان يكون الحقل المدخل اكثر من 5 ارقام',
 
-        ]);
-        $user = User::find($userProfile);
-        $user->name = $request->name;
-        $user->save();
-        $userInfo  = new UserProfile();
-        $userInfo->id = $userProfile;
-        $userInfo->user_id = $userProfile;
-        $userInfo->phone = $request->phone;
-        $userInfo->address = $request->address;
-        $userInfo->facebook = $request->facebook;
-        $userInfo->twitter = $request->twitter;
-        $userInfo->instagram = $request->instagram;
-        $userInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultImage.png";
-        if ($userInfo->save())
-            return redirect()->route('profile')->with(['success' => 'تم تحديث البيانات بنجاح']);
-        return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+
+
+            ]);
+            $user = User::find($userProfile);
+            $user->name = $request->name;
+            $user->save();
+            $userInfo  = new UserProfile();
+            $userInfo->id = $userProfile;
+            $userInfo->user_id = $userProfile;
+            $userInfo->phone = $request->phone;
+            $userInfo->address = $request->address;
+            $userInfo->facebook = $request->facebook;
+            $userInfo->twitter = $request->twitter;
+            $userInfo->instagram = $request->instagram;
+            $userInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultImage.png";
+            if ($userInfo->save())
+                return redirect()->route('profile')->with(['success' => 'تم تحديث البيانات بنجاح']);
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
     /**
@@ -104,10 +125,15 @@ class UserProfileController extends Controller
      */
     public function show()
     {
-        //
-        $user = User::with('profile')->where('id', Auth::user()->id)->get();
-        return view('admin.profile')
-            ->with('users', $user);
+        try {
+
+
+            $user = User::with('profile')->where('id', Auth::user()->id)->get();
+            return view('admin.profile')
+                ->with('users', $user);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
     /**
@@ -118,11 +144,16 @@ class UserProfileController extends Controller
      */
     public function edit($userProfile)
     {
-        $userInfo = User::with('profile')->find($userProfile);
-        return view('admin.edit_profile')
-            ->with('userInfo', $userInfo);
-        // return response($userInfo);
 
+        try {
+
+            $userInfo = User::with('profile')->find($userProfile);
+            return view('admin.edit_profile')
+                ->with('userInfo', $userInfo);
+            // return response($userInfo);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
     /**
@@ -134,52 +165,57 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, $userProfile)
     {
-        Validator::validate($request->all(), [
-            'name' => ['required', 'min:1', 'max:100'],
-            'address' => ['required', 'min:1', 'max:200'],
-            'phone' => ['required', 'min:5', 'max:15'],
+        try {
 
-        ], [
-            'name.required' => 'يجب تعبئت هذا الحقل',
-            'name.max' => 'لايمكنك ادخال اقل من 100 حرف',
-            'name.min' => 'يجب ان يكون الحقل المدخل اكثر من  واحد',
+            Validator::validate($request->all(), [
+                'name' => ['required', 'min:1', 'max:100'],
+                'address' => ['required', 'min:1', 'max:200'],
+                'phone' => ['required', 'min:5', 'max:15'],
 
-            'address.required' => ' يجب تعبة الحقل الخاص بالعنوان   ',
-            'address.max' => 'لايمكنك ادخال اقل من 200 حرف',
-            'address.min' => 'يجب ان يكون الحقل المدخل اكثر من حرف واحد',
+            ], [
+                'name.required' => 'يجب تعبئت هذا الحقل',
+                'name.max' => 'لايمكنك ادخال اقل من 100 حرف',
+                'name.min' => 'يجب ان يكون الحقل المدخل اكثر من  واحد',
 
-
-            'phone.required' => ' يجب تعبة الحقل الخاص بارقم الهاتف   ',
-            'phone.max' => 'لايمكنك ادخال اكثر من 15 رقم',
-            'phone.min' => 'يجب ان يكون الحقل المدخل اكثر من 5 ارقام',
+                'address.required' => ' يجب تعبة الحقل الخاص بالعنوان   ',
+                'address.max' => 'لايمكنك ادخال اقل من 200 حرف',
+                'address.min' => 'يجب ان يكون الحقل المدخل اكثر من حرف واحد',
 
 
+                'phone.required' => ' يجب تعبة الحقل الخاص بارقم الهاتف   ',
+                'phone.max' => 'لايمكنك ادخال اكثر من 15 رقم',
+                'phone.min' => 'يجب ان يكون الحقل المدخل اكثر من 5 ارقام',
 
-        ]);
-        $user = User::find($userProfile);
-        $user->name = $request->name;
-        $user->save();
-        $userInfo = UserProfile::find($userProfile);
-        $userInfo->phone = $request->phone;
-        $userInfo->address = $request->address;
-        $userInfo->facebook = $request->facebook;
-        $userInfo->twitter = $request->twitter;
-        $userInfo->instagram = $request->instagram;
-        if ($request->image !=null) {
-            if ( realpath($userInfo->image) ) {
-                unlink(realpath($userInfo->image));
+
+
+            ]);
+            $user = User::find($userProfile);
+            $user->name = $request->name;
+            $user->save();
+            $userInfo = UserProfile::find($userProfile);
+            $userInfo->phone = $request->phone;
+            $userInfo->address = $request->address;
+            $userInfo->facebook = $request->facebook;
+            $userInfo->twitter = $request->twitter;
+            $userInfo->instagram = $request->instagram;
+            if ($request->image != null) {
+                if (realpath($userInfo->image)) {
+                    unlink(realpath($userInfo->image));
+                }
             }
-        }
-        if ($request->hasFile('image')) {
-            if (realpath($userInfo->image)) {
-                unlink(realpath($userInfo->image));
+            if ($request->hasFile('image')) {
+                if (realpath($userInfo->image)) {
+                    unlink(realpath($userInfo->image));
+                }
+                $userInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultImage.png";
             }
-            $userInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultImage.png";
+            if ($userInfo->save())
+                return redirect()->route('profile')->with(['success' => 'تم تحديث البيانات بنجاح']);
+            // return response($userInfo);
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
-        if ($userInfo->save())
-            return redirect()->route('profile')->with(['success' => 'تم تحديث البيانات بنجاح']);
-        // return response($userInfo);
-        return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
     /**
@@ -192,38 +228,86 @@ class UserProfileController extends Controller
     {
         //{
     }
-    public function toggle($userId){
-        $users = User::with("profile")->find($userId);//find($PoliceId);
-        $users->is_active *= -1;
-        if ($users->save())
-            return back()->with(['success' => 'تم تحديث البيانات بنجاح']);
 
-        return back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+
+    /**
+     * @param mixed $userId
+     *this function used for convert is active from 1 to -1
+     * @return [type]
+     */
+    public function toggle($userId)
+    {
+
+        try {
+
+            $users = User::with("profile")->find($userId); //find($PoliceId);
+            $users->is_active *= -1;
+            if ($users->save())
+                return back()->with(['success' => 'تم تحديث البيانات بنجاح']);
+
+            return back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
-    public function editUser($userId){
-        $user=User::find($userId);
-        return view("admin.users.edit")->with("users",$user);
+    /**
+     * @param mixed $userId
+     * this function used for display page that through inserted data
+     * @return [type]
+     */
+    public function editUser($userId)
+    {
+        try {
+            $user = User::find($userId);
+            return view("admin.users.edit")->with("users", $user);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
-    public function updateUser(Request $request , $userId){
-        $users = User::find($userId);
 
-        $users->role = $request->role;
+    /**
+     * @param Request $request
+     * @param mixed $userId
+     *  this function used to update data from user table
+     * @return [type]
+     */
+    public function updateUser(Request $request, $userId)
+    {
+        try {
 
-        $users->is_active = $request->is_active;
 
-        if ($users->save())
-            return redirect()->route('list-user')->with(['success' => 'تم تحديث البيانات بنجاح']);
+            $users = User::find($userId);
 
-        return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+            $users->role = $request->role;
+
+            $users->is_active = $request->is_active;
+
+            if ($users->save())
+                return redirect()->route('list-user')->with(['success' => 'تم تحديث البيانات بنجاح']);
+
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
+    /**
+     * @param mixed $file
+     *this function used to upload user photo
+     * @return [type]
+     */
     public function uploadFile($file)
     {
-        $destination = public_path() . "/images/users/";
-        $fileName = time() . "_" . $file->getClientOriginalName();
-        $file->move($destination, $fileName);
-        return $fileName;
+        try {
+
+            $destination = public_path() . "/images/users/";
+            $fileName = time() . "_" . $file->getClientOriginalName();
+            $file->move($destination, $fileName);
+            return $fileName;
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 }

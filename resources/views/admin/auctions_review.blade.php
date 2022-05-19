@@ -31,7 +31,7 @@
 
 
                         <div class="table-responsive">
-                            @if(session()->has('success'))
+                            {{-- @if(session()->has('success'))
                             <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 <strong>{{ session()->get('success') }} </strong>
@@ -41,7 +41,9 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 <strong>{{ session()->get('success') }} </strong>
                             </div>
-                            @endif
+                            @endif --}}
+                            @include('message')
+
                             <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable">
                                 <thead class="table-light">
                                 <tr>
@@ -107,27 +109,27 @@
 
                                     <td class="table-action">
                                         {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a> --}}
-                                        
+
                                         {{-- <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="uil-eye-slash" ></i></a>
-                                        
+
                                         <a href="javascript:void(0);" class="action-icon" style="display: none" id="view"> <i class="mdi mdi-eye"></i></a> --}}
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                       
+                                        <a href="{{ route('edit-auction',$auction->id) }}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+
                                         @isset($auction->is_active)
                                         @if($auction->is_active==1)
                                         <span class="badge badge-success-lighten"></span>
                                         <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="uil-eye-slash" ></i></a>
-                                        
-                   
+
+
                                         @else
-                                        <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>   
-                                        @endif                                      
-                                        
-                                       
+                                        <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                        @endif
+
+
 
                                         @endisset
 
-                                        
+
 
                                     </td>
                                 </tr>
@@ -151,7 +153,7 @@
 
 @section('script')
     <!-- third party js -->
-    
+
     <script src="assets/js/vendor/jquery.dataTables.min.js"></script>
     <script src="assets/js/vendor/dataTables.bootstrap5.js"></script>
     <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
@@ -162,7 +164,7 @@
 
     <!-- demo app -->
     <script src="assets/js/pages/demo.products.js"></script>
-    
+
     <!-- end demo js-->
 
 @endsection

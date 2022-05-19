@@ -39,6 +39,9 @@ class BiddingController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+
+
         if (!Auth::check()) {
             return redirect()->route('login')->with(['error' => 'عذرا لا تملك الصلاحية لدخول هذه الصفخة يرجا تسجيل الدخول او انشاء حساب']);
         }
@@ -75,16 +78,24 @@ class BiddingController extends Controller
         // $test= $user->wallet[0]->amount ;    //$request->amount;
         return response($biddings);
         return redirect()->back()->with(['success' => 'تمت عملية المزايدة بنجاح']);
+         } catch (\Throwable $error) {
+            throw $error->getMessage();
+        }
     }
 
     public function whenAuctionClosed()
     {
+        try {
+
         $badd = new Bidding();
         $badd->user_id = 100;
         $badd->auction_id = 12;
         $badd->bidding_amount = 1250;
         $badd->payed_amount = 1254;
         $badd->save();
+    } catch (\Throwable $error) {
+        throw $error->getMessage();
+    }
     }
 
     /**

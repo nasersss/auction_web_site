@@ -35,12 +35,14 @@
     <div class="row">
 
         <div class="col-12">
-            @if(session()->has('success'))
+            {{-- @if(session()->has('success'))
             <div class="alert alert-danger success-dismissible bg-success text-white border-0 fade show" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 <strong>{{ session()->get('success') }} </strong>
             </div>
-            @endif
+            @endif --}}
+            @include('message')
+
             <div class="card">
                 <div class="card-body">
                     <!-- <div class="row mb-2">
@@ -125,9 +127,9 @@
                                         <span class="badge badge-success-lighten"></span>
                                         <a href="{{ route("toggle_users",$user->id) }}" class="action-icon"> <i class="uil-eye-slash" ></i></a>
                                         @else
-                                        <a href="{{ route("toggle_users",$user->id) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>   
-                                        @endif 
-                                        @endisset  
+                                        <a href="{{ route("toggle_users",$user->id) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                        @endif
+                                        @endisset
                                 </td>
                             </tr>
 

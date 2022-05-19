@@ -25,7 +25,7 @@
 
 @section('content')
 
-@if(session()->has('error'))
+{{-- @if(session()->has('error'))
 <div class="alert alert-danger" role="alert">
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     <strong>{{ session()->get('error') }} </strong>
@@ -36,7 +36,8 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     <strong>{{ session()->get('success') }} </strong>
 </div>
-@endif
+@endif --}}
+@include('message')
 <form method="post" action="{{route('update-auction')}}" enctype="multipart/form-data">
     @csrf
     <div class="row">

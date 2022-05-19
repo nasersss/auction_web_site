@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 class AboutUs extends Controller
 {
     public function AboutUs(){
-        return view('about us');
+        try {
+
+            return view('about us');
+
+        } catch (\Throwable $error) {
+$error->getMessage();
+        }
+
 }
 }

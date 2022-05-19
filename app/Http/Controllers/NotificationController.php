@@ -21,12 +21,26 @@ class NotificationController extends Controller
      */
     public function index()
     {
+        try {
+
         $notifications = Notification::where('to_user_id', Auth::user()->id)->where('is_seen', -1)->get();
         return response($notifications);
+
+    } catch (\Throwable $error) {
+        throw $error->getMessage();
+    }
     }
 
+    /**
+     * @param mixed $notificationId
+     *
+     * this function used for make notification seen
+     * @return [type]
+     */
     public function makeNotificationSeen($notificationId)
     {
+        try {
+
         $notification = Notification::find($notificationId);
         $notification->is_seen = 1;
         $notification->update();
@@ -39,27 +53,36 @@ class NotificationController extends Controller
             $route = $route[0];
             return redirect()->route("$route", "$parameter");
         }
+    } catch (\Throwable $error) {
+        throw $error->getMessage();
+    }
     }
 
     /**
-     *  
+     *
+     * this function used to sent notification to user
      *
      * @param mixed $fromUserId
      * @param mixed $toUserId
      * @param mixed $content
      * @param mixed $route
-     * 
+     *
      * @return boolean
-     * 
+     *
      */
     public function sendNotification($toUserId, $content, $route)
     {
+        try {
+
         $notification = new Notification();
         $notification->from_user_id = Auth::user()->id;
         $notification->to_user_id = $toUserId;
         $notification->content = $content;
         $notification->route = $route;
         $notification->save();
+    } catch (\Throwable $error) {
+        throw $error->getMessage();
+    }
     }
 
     /**

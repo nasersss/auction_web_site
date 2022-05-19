@@ -24,6 +24,16 @@ class AdminController extends Controller
      */
     public function index()
     {
+        try{
+            
         return view('admin/dashboard_home');
     }
+    catch(\Exception $e)
+    {
+return $e->getMessage();
+    }
+
+    }
+
+
 }

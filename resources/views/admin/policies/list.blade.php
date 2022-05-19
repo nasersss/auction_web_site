@@ -28,12 +28,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    @if(session()->has('success'))
+                    {{-- @if(session()->has('success'))
                     <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         <strong>{{ session()->get('success') }} </strong>
                     </div>
-                    @endif
+                    @endif --}}
+                    @include('message')
+
                     <div class="row mb-2">
                         <div class="col-sm-4">
                             <a href="{{ route("add_policies") }}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i>إضافة سياسة جديدة</a>
@@ -80,9 +82,9 @@
                                     <span class="badge badge-success-lighten"></span>
                                     <a href="{{ route("toggle_policies",$police->id) }}" class="action-icon"> <i class="uil-eye-slash" ></i></a>
                                     @else
-                                    <a href="{{ route("toggle_policies",$police->id) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>   
-                                    @endif 
-                                    @endisset  
+                                    <a href="{{ route("toggle_policies",$police->id) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                    @endif
+                                    @endisset
                                 </td>
                             </tr>
                             @endforeach

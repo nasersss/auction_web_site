@@ -10,13 +10,18 @@ class apiTestController extends Controller
    * This function is used to show the success page with the amount and the other details
    */
   public function showTest(){
+
+    try {
+        //code...
+
+
     $info = Route::current()->parameter('info');
-   
+
      // $data=json_base64_decode($info);
      base64_decode($info);
      $data= $arrayFormat=json_decode($info,true);
- 
- 
+
+
        for($i=0;$i<count($data);$i++){
            $status=array_column($arrayFormat,'status');
            $paid_amount=array_column($arrayFormat,'paid_amount');
@@ -24,44 +29,54 @@ class apiTestController extends Controller
            $card_type= array_column($arrayFormat,'card_type');
            $created_at=array_column($arrayFormat,'created_at');
            $updated_at=array_column($arrayFormat,'updated_at');
- 
- 
+
+
        }
        $card_type=str_replace('+',' ',$card_type[0]);
        $card_holder=str_replace('+',' ',$card_holder[0]);
- 
-       
+
+
  return view('paymentViews.testResponse',compact('paid_amount','status','card_holder','card_type','created_at'));
+} catch (\Throwable $error) {
+    throw $error->getMessage();
+}
  }
- 
+
  /**
     * This function is used to show the cancel page with
-    * @param cancel 
+    * @param cancel
     */
  public function testCancel(){
- 
+
+    try {
+
+
    $cancel = Route::current()->parameter('cancel');
- 
+
    // return $cancel;
    return view('paymentViews.cancel_payment',compact('cancel'));
- 
+} catch (\Throwable $error) {
+    throw $error->getMessage();
+}
+
  }
- 
+
  public function viewCancel(){
- 
-  
+
+
    return view('paymentViews.cancel_payment');
- 
+
+
  }
- 
- 
+
+
  /**
   * The index function which is used for posting the data to the api
   */
      public function index(){
          $data = [
              "order_reference" => "123412",
-             
+
              "products" => [
                array(
                  "id" => 1,
@@ -89,14 +104,14 @@ class apiTestController extends Controller
                "Customer name" => "somename",
                "order id" => 0
              ]
-       
+
            ];
-       
-       
-       
-       
+
+
+
+
            $curl = curl_init();
-       
+
            curl_setopt_array($curl, array(
              CURLOPT_URL => "https://waslpayment.com/api/test/merchant/payment_order",
              CURLOPT_RETURNTRANSFER => true,
@@ -106,30 +121,30 @@ class apiTestController extends Controller
              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
              CURLOPT_CUSTOMREQUEST => "POST",
              CURLOPT_POSTFIELDS => json_encode($data),
-       
+
              CURLOPT_HTTPHEADER => array(
-            
+
                "private-key: rRQ26GcsZzoEhbrP2HZvLYDbn9C9et",
                "public-key: HGvTMLDssJghr9tlN9gr4DVYt0qyBy",
                "Content-Type:  application/x-www-form-urlencoded"
-       
-       
+
+
              ),
            ));
-       
+
            $response = curl_exec($curl);
            $err = curl_error($curl);
-       
+
            curl_close($curl);
-       
+
            if ($err) {
              dd( " Error #:" . $err);
            } else {
              //echo $response;
-             
+
            dd($response);
-       
+
            }
-       
+
      }
 }

@@ -24,6 +24,11 @@ class SuperAdminController extends Controller
      */
     public function index()
     {
-        return view('superAdmin');
+        try {
+
+            return view('superAdmin');
+        } catch (\Throwable $error) {
+            throw $error;
+        }
     }
 }

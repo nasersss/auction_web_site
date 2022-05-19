@@ -30,6 +30,8 @@
     @endif
     <div class="row">
         <div class="col-12">
+            @include('message')
+
             <div id="msg" class="alert alert-danger">
                 <strong id="err-msg"></strong>
                 </div>

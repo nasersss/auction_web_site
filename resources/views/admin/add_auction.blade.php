@@ -32,7 +32,7 @@
         <p class="alert alert-danger">{{$err}}</p>
         @endforeach
     @endif
-
+@include('message')
 <form method="post" id="auction" name="auction" action="{{route('store-auction')}}" enctype="multipart/form-data">
     @csrf
     <div class="row">
