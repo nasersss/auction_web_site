@@ -22,6 +22,10 @@ Route::get('/dashboard', function () {
     return view('admin/home');
 })->name('dash-home');
 
+Route::get('/wallet', function () {
+    return view('admin/wallet');
+})->name('wallet');
+
 Route::get('/add_auction', [AuctionController::class, 'create'])->name('add-auction');
 Route::get('/edit_auction/{categoryId}', [AuctionController::class,'edit'])->name('edit-auction');
 Route::post('/update_auction', [AuctionController::class,'update'])->name('update-auction');
