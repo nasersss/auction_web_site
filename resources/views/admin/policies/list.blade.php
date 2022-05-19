@@ -75,7 +75,14 @@
 
                                 <td>
                                     <a href="{{ route("edit_policies",$police->id) }}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                    <a href="{{ route("toggle_policies",$police->id) }}" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    @isset($police->is_active)
+                                    @if($police->is_active==1)
+                                    <span class="badge badge-success-lighten"></span>
+                                    <a href="{{ route("toggle_policies",$police->id) }}" class="action-icon"> <i class="uil-eye-slash" ></i></a>
+                                    @else
+                                    <a href="{{ route("toggle_policies",$police->id) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>   
+                                    @endif 
+                                    @endisset  
                                 </td>
                             </tr>
                             @endforeach

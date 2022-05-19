@@ -199,3 +199,12 @@
                         margin: 0 4%;
                     }
                 }
+                
+                @media print {
+                    header {
+                        display: none !important;
+                    }
+                    footer {
+                        display: none !important;
+                    }
+                }

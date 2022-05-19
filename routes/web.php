@@ -6,6 +6,10 @@ use App\Models\City;
 use App\Models\UserProfile;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Events\message;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -130,7 +134,12 @@ Route::post('comfirmPyment', [BiddingController::class, 'addAmountOfBidding'])->
 
 ##Oerder Route 
 Route::post('/order', function () {return view('order');})->name('order');
-
+####################    delivery rout
+Route::get('/delivery',[DeliveryController::class,'create']);
+Route::post('/store_delivery',[DeliveryController::class,'store'])->name('store_delivery');
+Route::get('/invoice',function(){
+    return view('admin.invoice');
+});
 Route::get('/derlevery',[PymentContoller::class, 'index'])->name('derlevery');
 
 
