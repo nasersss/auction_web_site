@@ -375,7 +375,7 @@
                                     <div class="text" style="padding: 0 2.5em; text-align: center;">
                                         <h2>مرحبا بك {{$notification->toUser->name}} في مزادي كار</h2>
                                         <h3>{{$notification->content}}</h3>
-                                        <p><a href="{{route($notification->route)}}" class="btn btn-primary">اضغط هنا</a></p>
+                                        <p><a href="{{route('makeNotificationSeen', $notification->id)}}" class="btn btn-primary">اضغط هنا</a></p>
                                     </div>
                                 </td>
                             </tr>

@@ -17,15 +17,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('closing:bidding')->everyMinute();
-        // $schedule->call(function () {
-            // $badd = new Bidding();
-            // $badd->user_id = 100;
-            // $badd->auction_id = 12;
-            // $badd->bidding_amount = 1250;
-            // $badd->payed_amount = 1254;
-            // $badd->save();
-            // dispatch(new Bidd);
-        // })->everyMinute();
     }
 
     /**
