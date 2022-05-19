@@ -182,7 +182,7 @@ class AuctionController extends Controller
             $users = User::where('role', 2)->get();
             foreach ($admins as  $admin) {
                 $notification = new NotificationController();
-                $notification->sendNotification($admin->id, 'تم اضافة مزاد جديد', 'edit-auction/' . $auctionInfo->id);
+                $notification->sendNotification(Auth::user()->id,$admin->id, 'تم اضافة مزاد جديد', 'edit-auction/' . $auctionInfo->id);
             }
 
             return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
@@ -329,7 +329,7 @@ class AuctionController extends Controller
         $state = State::with("city")->get();
         $vehicleType = VehicleType::get();
         if ($request->method() == 'GET') {
-            $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
+            $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now())->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
             return view('index')->with([
                 "auctions" => $auction,
                 'categories' => $category,
@@ -372,9 +372,14 @@ class AuctionController extends Controller
     // this function show list of all auctions
     function auctionReview()
     {
-
-        $auction = auction::with(["user", "category", "auctionImage"])->get();
-        return view("admin.auctions_review")->with("auctions", $auction);
+        $user = User::find(Auth::user()->id);
+        if ($user->role < 2) {
+            $auctions = auction::with(["user", "category", "auctionImage"])->orderBy('created_at', 'desc')->get();
+            return view("admin.auctions_review")->with("auctions", $auctions);
+        } else {
+            $auction = auction::where('seller_id', $user->id)->orderBy('created_at', 'desc')->get();
+            return view("admin.userAuction")->with("auctions", $auction);
+        }
     }
 
     public function toggle($auctionId)
@@ -405,35 +410,29 @@ class AuctionController extends Controller
      * @return [type]
      * 
      */
-    public function checkAucationDate(){
+    public function checkAucationDate()
+    {
         $auctions = auction::where('is_active', 1)->get();
         $currentTime = date("Y-m-d H:i:s");
-        foreach ($auctions as $auction ) {
-        $endAucationTime =  $auction->date_of_end_auction;        
-        if(strtotime($currentTime) > strtotime($endAucationTime))
-        {  
-             $auctionControl = new AuctionController;
-            $auctionId = $auction->id;
-            // return $auctionId;
-            $lastBidding = Bidding::where('auction_id', $auctionId)->orderBy('created_at', 'desc')->first();
-            if($lastBidding ==null){
-                $auctionControl->toggle($auctionId); 
+        foreach ($auctions as $auction) {
+            $endAucationTime =  $auction->date_of_end_auction;
+            if (strtotime($currentTime) > strtotime($endAucationTime)) {
+                $auctionControl = new AuctionController;
+                $auctionId = $auction->id;
+                // return $auctionId;
+                $lastBidding = Bidding::where('auction_id', $auctionId)->orderBy('created_at', 'desc')->first();
+                if ($lastBidding == null) {
+                    $auctionControl->toggle($auctionId);
+                } else {
+                    $uesrId = $lastBidding->user_id;
+                    $user = User::where('id', $uesrId)->get();
+                    $admin = User::where('role', 0)->first();
+                    $notification = new NotificationController();
+                    $notification->sendNotificationFromAdmin($uesrId, 'عزيزي العميل لقد رسي المزاد عليك   ', 'action_detail/' . $auctionId);
+                    $notification->sendNotificationFromAdmin($admin->id, 'لقد رسى المزاد على المستخدم ', 'edit-auction/' . $auctionId);
+                    $auctionControl->toggle($auctionId);
+                }
             }
-            else 
-            {
-            $uesrId = $lastBidding->user_id;
-            $user = User::where('id',$uesrId)->get();
-            $admin = User::where('role',0)->first();
-            $notification = new NotificationController();
-            $notification->sendNotificationFromAdmin( $uesrId, 'عزيزي العميل لقد رسي المزاد عليك   ', 'action_detail/' . $auctionId);
-            $notification->sendNotification($admin->id,$admin->id, 'لقد رسى المزاد على المستخدم ', 'edit-auction/' . $auctionId);
-            $auctionControl->toggle($auctionId);
-                
-            } 
-        } 
         }
-      
-          
     }
-            
 }
