@@ -264,8 +264,10 @@
                                     </div>
                                     <input id="search" type="text" placeholder="بحث..." />
                                     <div class="result-count" onclick="myFunction()">
-                                        <img src="/assets/images/Advanced_Search.png" width="30">بحث متقدم
+                                        <img src="/assets/images/Advanced_Search.png" width="30">
+                                        <p> بحث متقدم</p>
                                     </div>
+                                   
                                 </div>
                             </div>
                             <div class="advance-search" id="myDIV">
@@ -389,7 +391,14 @@
         <div class="col-md-4 my-3">
           <div class="card rounded">
             <div class="card-image">
-              <span class="card-notify-year">@if($auction->state == 1) مستخدم @else جديد @endif
+              <span class="card-notify-year" style="background-color:#6c76e4">
+                
+                @if($auction->state == 1) مستخدم 
+                @else 
+                <span class="card-notify-year" style="background-color:rgb(235, 39, 39)">
+                جديد
+                @endif
+                </span>
               </span>
               @foreach($auction->auctionImage as $image)
               @php
@@ -428,23 +437,20 @@
 
       </div>
   </section>
-  <section id="about" class="about mt-5">
-    <div class="container" data-aos="fade-up">
-
-      <div class="section-header">
-        <h2>التعريف بمنصة مزادي كار</h2>
-        <p>هي منصة إلكترونية تتيح للمزايدين المزايدة إلكترونياً على السيارات في المزاد بواسطة وسائل دفع إلكترونية و
-          عملية المزايدة في الموقع الإلكتروني موثوقة، وتتفق مع قوانين إقامة المزادات والبيع والشراء في الجمهورية اليمنية وايضاُ
-          يمكن الاطلاع على مجريات المزادات بدون تسجيل الدخول من خلال الضغط على 'عرض التفاصيل' في المزاد المطلوب </p>
-      </div>
-    </div>
-  </section>
+  <div class="row align-items-center">
+<div class="col-lg-6">
+  <h4 class="font-weight-bold" id="headrs"> <i class="fa fa-leaf fa-2x mb-3 text-primary"></i>التعريف بمنصة مزادي كار</h4>
+  <p class="font-italic text-muted mb-4"> هي منصة إلكترونية تتيح للمزايدين المزايدة إلكترونياً على السيارات في المزاد بواسطة وسائل دفع إلكترونية و
+عملية المزايدة في الموقع الإلكتروني موثوقة، وتتفق مع قوانين إقامة المزادات والبيع والشراء في الجمهورية اليمنية وايضاُ 
+يمكن الاطلاع على مجريات المزادات بدون تسجيل الدخول من خلال الضغط على 'عرض التفاصيل' في المزاد المطلوب  </p>
+</div>
+<div class="img-car"><img src="assets/images/العربية-للسيارات-حملة-نهاية-السنة-2016.png" alt="" class="img-fluid mb-4 mb-lg-0"></div>
   <div class="container">
     <h2 id="method_header">طريقة إستخدام النظام</h2>
     <div class="row">
       <div class="tab-content col-6">
 
-        <div class="tab-pane active d-none show" id="tab-1">
+        <div class="tab-pane active " id="tab-1">
           <div class="md-stepper-horizontal orange">
             <div class="md-step active done">
               <div class="md-step-circle"><span>4</span></div>
@@ -489,7 +495,7 @@
         <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
           <div class="service-item position-relative">
             <div class="icon">
-              <img src="assets/images/card-id-identity-svgrepo-com.svg">
+              <img src="assets/images/icons8-credit-card-48.png">
             </div>
             <h4>وسائل دفع الكترونية</h4>
             <p>يمكن دفع مبالغ مالية واسترجاعها من خلال وسائل دفع الكترونية</p>
@@ -509,7 +515,7 @@
         <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
           <div class="service-item position-relative">
             <div class="icon">
-              <img src="assets/images/checklist-document-file-svgrepo-com.svg">
+              <img src="assets/images/icons8-protect-40.png">
             </div>
             <h4>أمان الموقع</h4>
             <p>عمليات المزايدة بداخل الموقع تكون بأعلى وسائل الحماية والامن داخل وخارج الجمهورية اليمنية </p>

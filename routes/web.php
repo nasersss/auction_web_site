@@ -37,9 +37,15 @@ Route::get('/test',function(){
 Route::get('/auction',function(){
     return view('auction');
 })->name('auction');
+
+
+Route::get('/createAcount',function(){
+    return view('createAcount');
+})->name('createAcount');
 // Route::get('/detail',function(){
 //     return view('detail');
 //     })->name('details-car');
+
 
 Route::get('/admin',function(){
     return view('admin.dashboard_home');
@@ -61,6 +67,8 @@ Route::get('/login',function(){
 
 Route::get('/register', function () {
     return view('auth.register');
+
+   
 })->name("register");
 Route::get('/reset', function () {
     return view('auth.reset');

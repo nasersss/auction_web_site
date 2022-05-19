@@ -25,6 +25,7 @@
                     <li><a href="{{  route('view_policies')}}">الاسئلة الشائعة</a></li>
                     <li><a href="{{  route('ContactUs')}}">تواصل معنا</a></li>
                     <li class="show-menu"><a href="{{ route('login') }}">تسجيل الدخول</a></li>
+                   
                     {{-- <li class="show-menu"><a href="#"> اللغة</a></li> --}}
                     <div>
 
@@ -36,18 +37,20 @@
             <div class="header-icons">
                 {{-- <div class="show icon"><i class="fa fa-globe" aria-hidden="true"></i></div> --}}
                 <!-- <div class="show"> <a href="{{ route('login') }}"> <i class="fas fa-user"></i></a> </div> -->
+             
                 @guest
                 @if (Route::has('login'))
-
-                <div class="show login"> <a href="{{ route('login') }}">تسجيل الدخول</a>
-
+                
+                <div class="show register"> <a href="{{ route('createAcount') }}"> إنشاء حساب</a>
                 </div>
-
+                <div class="show login"> <a href="{{ route('login') }}">تسجيل الدخول</a>
+                </div>
             </div>
+           
             @endif
             @else
 
-
+          
 
             {{-- <i  class="show icon user" onclick="userSelection()" style="background: #eee"> <a href="#" style="color:var(--secondary)"> <i class="fas fa-user"></i></a>--}}
             <div class="show icon user" onclick="userSelection()" style="background-image: url('@isset(Auth::user()->profile->image) {{Auth::user()->profile->image}}@else images/users/defaultImage.png @endisset');background-size: cover;">

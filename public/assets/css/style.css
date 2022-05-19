@@ -5804,7 +5804,9 @@ button.bg-dark:focus {
 .align-items-center {
   -webkit-box-align: center !important;
   -ms-flex-align: center !important;
-  align-items: center !important; }
+  align-items: center !important;
+  margin:150px 0 150px 0;
+}
 
 .align-items-baseline {
   -webkit-box-align: baseline !important;
@@ -7948,11 +7950,7 @@ button.bg-dark:focus {
 @media (min-width: 768px) {
   .text-md-left {
     text-align: left !important; }
-  .text-md-right {
-    text-align: right !important; }
-  .text-md-center {
-    text-align: center !important; } }
-
+  }
 @media (min-width: 992px) {
   .text-lg-left {
     text-align: left !important; }
@@ -8049,7 +8047,9 @@ a.text-dark:hover, a.text-dark:focus {
   color: #212529 !important; }
 
 .text-muted {
-  color: #6c757d !important; }
+  color: #6c757d !important;
+  line-height: 30px;
+}
 
 .text-black-50 {
   color: rgba(0, 0, 0, 0.5) !important; }
@@ -8309,6 +8309,9 @@ width: 80%;
     #demo ,#demo1,#demo2{
       color: #ff4444;
     }
+    #ads{
+      margin-top: 70px;
+    }
  #ads .card-notify-badge {
   position: absolute;
   left: -10px;
@@ -8319,7 +8322,6 @@ width: 80%;
   color: #fff;
   padding: 5px 10px;
   font-size: 14px;
-
 }
 
 #ads .card-notify-year {
@@ -8404,7 +8406,24 @@ width: 80%;
   }
 #ads .ad-title h5 {
   text-transform: uppercase;
-  font-size: 15px;
+  font-size: 25px;
+  font-weight: bold;
+  
+}
+#headrs{
+  color: #6c76e4;
+  text-align: center;
+}
+
+#headrs i{
+ position: relative;
+ left: 30px;
+ font-size: 1em;
+ 
+}
+.img-car img{
+  float: left ;
+  width: 600px;
 }
      .card {
         background: #fff;
@@ -8412,7 +8431,7 @@ width: 80%;
         transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
         border: 0;
         border-radius: 1rem;
-        margin:20px;
+        margin-top:20px;
     }
 
      .card-img,
@@ -8686,13 +8705,12 @@ width: 80%;
 .featured-services h3{
   text-align: center;
  position: relative;
- top: 14px;
+ top: 60px;
  color:#6c76e4;
  font-weight: bold;
  margin: 100px 0 100px 0;
 
 }
-
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
@@ -9334,7 +9352,7 @@ margin-top: 80px;
   .footer-10 p {
     color: #000 ;
   font-size: 15px;
-text-align: right;}
+text-align: left;}
   .footer-10 a {
     color: #000; }
   .footer-10 .con.con-1 {
