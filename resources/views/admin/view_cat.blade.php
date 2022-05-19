@@ -74,7 +74,14 @@
 
                                 <td>
                                     <a href="edit_categories/{{$category->id}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                    <a href="toggle_categories/{{$category->id}}" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    @isset($category->is_active)
+                                    @if($category->is_active==1)
+                                    <span class="badge badge-success-lighten"></span>
+                                    <a href="{{ route("toggle_categories",$category->id) }}" class="action-icon"> <i class="uil-eye-slash" ></i></a>
+                                    @else
+                                    <a href="{{ route("toggle_categories",$category->id) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>   
+                                    @endif 
+                                    @endisset  
                                 </td>
                             </tr>
                             @endforeach
