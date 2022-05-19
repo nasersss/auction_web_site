@@ -122,24 +122,22 @@ Route::post('update_vehicle/{Id}', [VehicleTypeController::class, 'update'])->na
 Route::get('toggle_vehicle/{Id}', [VehicleTypeController::class, 'toggle'])->name('toggle_vehicle');
 Route::get('list_vehicle', [VehicleTypeController::class, 'listVehicle'])->name('list_vehicle');
 
-###Pyment route 
+###Pyment and order route 
 Route::get('pyment/response/{info}', [PymentContoller::class, 'showPyment'])->name('pyment/response');
 Route::get('pyment/cancel/{cancel}', [PymentContoller::class, 'pymentCancel'])->name('pymentCancel');
 Route::get('pyment/cancel', [PymentContoller::class, 'viewCancel'])->name('viewCancel');
-
+// Route::post('/order',[PymentContoller::class, 'pymentDelevry'] )->name('order');
 
 Route::get('show_notification', [NotificationController::class, 'index'])->name('show_notification');
 Route::get('makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
 Route::post('comfirmPyment', [BiddingController::class, 'addAmountOfBidding'])->name('comfirmPyment');
 
-##Oerder Route 
-Route::post('/order', function () {return view('order');})->name('order');
 ####################    delivery rout
-Route::get('/delivery',[DeliveryController::class,'create']);
+Route::get('/delivery',[DeliveryController::class,'create'])->name('delivery');
 Route::post('/store_delivery',[DeliveryController::class,'store'])->name('store_delivery');
-Route::get('/invoice',function(){
+Route::post('/invoice',function(){
     return view('admin.invoice');
-});
-Route::get('/derlevery',[PymentContoller::class, 'index'])->name('derlevery');
+})->name('pymentDelevry');
+// Route::get('/derlevery',[PymentContoller::class, 'index'])->name('derlevery');
 
 

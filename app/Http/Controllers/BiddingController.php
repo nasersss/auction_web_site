@@ -89,14 +89,13 @@ class BiddingController extends Controller
         $auction->curren_price += $_SESSION['amountOfBidding'];
         $auction->number_of_participate += 1;
         $auction->update();
-
         $newBidding = new Bidding();
         $newBidding->user_id = Auth::user()->id;
         $newBidding->auction_id = $auction->id;
         $newBidding->bidding_amount = $_SESSION['amountOfBidding'];//must be modfy to gevin by requst or save the amout in session then claa here
         $newBidding->payed_amount = (($auction->curren_price + $request->amount) * 10 / 100);
         $newBidding->save();
-
+        session_start();
       
         return redirect('detail_car/'.$auction->id.'')->with(['success' => 'تمت عملية المزايدة بنجاح']);
     

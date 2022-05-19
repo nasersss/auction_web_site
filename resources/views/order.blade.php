@@ -77,7 +77,7 @@
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="billing-email-address" class="form-label">نوع بطاقة الهوية <span class="text-danger">*</span></label>
-                                                        <select required name="res_id_type" class="form-control" >
+                                                        <select required name="receiver_identity_type" class="form-control" >
                                                             <option selected disabled>أختر  نوع بطاقة الهوية</option>
                                                             <option value="بطاقة شخصية"> بطاقة شخصية </option>
                                                             <option value="جواز سفر">  جواز سفر </option>
@@ -87,7 +87,7 @@
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="billing-phone" class="form-label">رقم بطاقة الهوية <span class="text-danger">*</span></label>
-                                                        <input class="form-control" name="res_id_num" type="text" placeholder="(xx) xxx xxxx xxx" id="billing-phone">
+                                                        <input class="form-control" name="receiver_identity_number" type="text" placeholder="(xx) xxx xxxx xxx" id="billing-phone">
                                                     </div>
                                                 </div>
                                             </div> <!-- end row -->
@@ -173,7 +173,7 @@
                                                             <h6 class="m-0">سعر السيارة:</h6>
                                                         </td>
                                                         <td class="text-end">
-                                                            $5000
+                                                            {{$auction->curren_price}}
                                                         </td>
                                                     </tr>
                                                     <tr class="text-end">
@@ -181,7 +181,7 @@
                                                             <h6 class="m-0">سعر التوصيل:</h6>
                                                         </td>
                                                         <td class="text-end">
-                                                            مجاني
+                                                            {{200}}
                                                         </td>
                                                     </tr>
                                                     <tr class="text-end">
@@ -189,7 +189,7 @@
                                                             <h5 class="m-0">الإجمالي:</h5>
                                                         </td>
                                                         <td class="text-end fw-semibold">
-                                                            $5000
+                                                            {{$auction->curren_price+200}}
                                                         </td>
                                                     </tr>
                                                     </tbody>

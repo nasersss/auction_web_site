@@ -24,7 +24,15 @@
 				<p class="text-center"> الرجاء الضغط على زر تأكيد لأتمام العملية </p>
 			</div>
 			<div>
+
+        @php 
+        session_start();
+        @endphp
+        @isset( $_SESSION["delivery"])
+        <form method="post" action="{{ route("pymentDelevry") }}">
+        @else 
         <form method="post" action="{{ route("comfirmPyment") }}">
+        @endisset
           @csrf
           <input type="hidden" value="{{ $paid_amount[0] }}" name="paid_amount" >
           <input type="hidden" value="{{ $created_at[0] }}" name="creaated_at" >

@@ -41,8 +41,6 @@ class PymentContoller extends Controller
      * 
      */
     public function makePyment(auction $auction,$amountOfPayment){
-
-    
         $data = [
             "order_reference" => $auction->id,
             "products" => [
@@ -98,7 +96,7 @@ class PymentContoller extends Controller
            $url = json_decode($response)->invoice->next_url;
            return redirect()->away($url);
           }
+        }
           
-      
+           
     }
-}
