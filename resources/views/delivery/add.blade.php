@@ -58,18 +58,19 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <h4 class="mt-2">المعلومات الشخصية</h4>
-                                        <form>
+                                        <form method="post" action="{{ route('store_delivery') }}">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="billing-first-name" class="form-label">اسم المستلم</label><span class="text-danger">*</span>
-                                                        <input class="form-control" type="text" name="res_name" placeholder="ادخل الاسم" id="billing-first-name">
+                                                        <input class="form-control" type="text"  name="res_name" value="{{ old('res_name') }}" placeholder="ادخل اسم المستلم" id="billing-first-name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="billing-phone" class="form-label">رقم الهاتف <span class="text-danger">*</span></label>
-                                                        <input class="form-control" type="text" name="phone" placeholder=" 777 xxxx xxx" id="billing-phone">
+                                                        <input class="form-control" type="text" name="phone" value="{{ old('phone') }}" placeholder=" 777 xxxx xxx" id="billing-phone">
                                                     </div>
                                                 </div>
                                             </div> <!-- end row -->
@@ -117,15 +118,33 @@
                                                 <div class="col-12">
                                                     <div class="mb-3">
                                                         <label for="new-adr-address" class="form-label">المحافظة</label>
-                                                        <input class="form-control" type="text" placeholder="ادخل عنوانك" id="new-adr-address">
+                                                        <select class="form-control" id="state" required  >
+                                                            <option selected disabled>أختر محافظة</option>
+                                                            @isset($states)
+                                                            @foreach($states as $state)
+                                                            <option value="{{$state->id}}">{{$state->name}}</option>
+                                                            @endforeach
+                                                            @endisset
+
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="mb-3">
                                                         <label for="new-adr-address" class="form-label">المدينة</label>
-                                                        <input class="form-control" name="city" type="text" placeholder="ادخل عنوانك" id="new-adr-address">
+                                                        <select required name="city" id='city' class="form-control mb-3">
+                                                            <option selected disabled>أختر مدينة</option>
+                                                            @isset($states)
+                                                            @foreach($states as $state)
+                                                            @foreach($state->city as $city)
+                                                            <option style="display: none;" class="citys state-{{$city->state_id}}" value="{{$city->id}}">{{$city->name}}</option>
+                                                            @endforeach
+                                                            @endforeach
+                                                            @endisset
+                                                        </select>
                                                     </div>
                                                 </div>
+                                                
                                             </div> <!-- end row -->
                                             {{-- <div class="row">
                                                 <div class="col-md-4">
@@ -154,8 +173,8 @@
                                                 </div> <!-- end col -->
                                                 <div class="col-sm-6">
                                                     <div class="text-sm-end">
-                                                        <a href="apps-ecommerce-checkout.html" class="btn btn-danger">
-                                                            <i class="mdi mdi-cash-multiple me-1"></i>أكمال الدفع</a>
+                                                        <button  type="submit" class="btn btn-danger">
+                                                            <i class="mdi mdi-cash-multiple me-1"></i>أكمال الدفع</button>
                                                     </div>
                                                 </div> <!-- end col -->
                                             </div> <!-- end row -->
@@ -213,6 +232,7 @@
         </div>
 
     </div>
+    <script src="/assets/js/state_city.js"></script>
     <script>
         const tab = document.getElementById("billing-information");
         const tab = document.getElementById("shipping-information");
@@ -220,7 +240,6 @@
 
 
     @endsection
-
     <script src="/assets/js/pages/demo.form-wizard.js"></script>
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.js"></script>
