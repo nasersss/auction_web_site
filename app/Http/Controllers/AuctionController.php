@@ -11,6 +11,7 @@ use App\Models\State;
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\VehicleType;
+use App\Models\Bidding;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -397,4 +398,42 @@ class AuctionController extends Controller
     {
         //
     }
+
+    /**
+     * [This function  used to check all auction date ]
+     *
+     * @return [type]
+     * 
+     */
+    public function checkAucationDate(){
+        $auctions = auction::where('is_active', 1)->get();
+        $currentTime = date("Y-m-d H:i:s");
+        foreach ($auctions as $auction ) {
+        $endAucationTime =  $auction->date_of_end_auction;        
+        if(strtotime($currentTime) > strtotime($endAucationTime))
+        {  
+             $auctionControl = new AuctionController;
+            $auctionId = $auction->id;
+            // return $auctionId;
+            $lastBidding = Bidding::where('auction_id', $auctionId)->orderBy('created_at', 'desc')->first();
+            if($lastBidding ==null){
+                $auctionControl->toggle($auctionId); 
+            }
+            else 
+            {
+            $uesrId = $lastBidding->user_id;
+            $user = User::where('id',$uesrId)->get();
+            $admin = User::where('role',0)->first();
+            $notification = new NotificationController();
+            $notification->sendNotificationFromAdmin( $uesrId, 'عزيزي العميل لقد رسي المزاد عليك   ', 'action_detail/' . $auctionId);
+            $notification->sendNotification($admin->id,$admin->id, 'لقد رسى المزاد على المستخدم ', 'edit-auction/' . $auctionId);
+            $auctionControl->toggle($auctionId);
+                
+            } 
+        } 
+        }
+      
+          
+    }
+            
 }
