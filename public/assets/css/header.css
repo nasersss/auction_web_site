@@ -462,6 +462,25 @@ header {
     justify-items: center;
     position: relative;
     right: 70px;
+    margin: 10px;
+}
+
+.register {
+    background: #ffc107;
+    width: 30%;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    position: relative;
+    right: 70px;
+    margin: 10px;
+    
+}
+.register a{
+    color: #fff !important;
+    font-size: 15px;
 }
 
 .login a {
@@ -485,8 +504,6 @@ header {
 .logo {
     left: 0 !important;
 }
-
-
 /*=========================================================
       13 -> RESPONSIVE
   ===========================================================*/

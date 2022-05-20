@@ -34,7 +34,11 @@ Route::get('/auction', function () {
     return view('auction');
 })->name('auction');
 
-Route::get('/admin', function () {
+Route::get('/createAcount',function(){
+    return view('createAcount');
+})->name('createAcount');
+
+Route::get('/admin',function(){
     return view('admin.dashboard_home');
 });
 
@@ -53,6 +57,8 @@ Route::get('Cart', [Cart::class, 'Cart'])->name('Cart');
 
 Route::get('/register', function () {
     return view('auth.register');
+
+   
 })->name("register");
 Route::get('/reset', function () {
     return view('auth.reset');

@@ -68,10 +68,6 @@
                                         <span class="badge badge-danger-lighten">غير نشط</span>
                                     @endif
                                 </td>
-
-
-
-
                                 <td>
                                     <a href="edit_categories/{{$category->id}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                     @isset($category->is_active)
