@@ -40,7 +40,6 @@ Route::get('/auction',function(){
 //     })->name('details-car');
 
 
-<<<<<<< HEAD
 Route::get('/createAcount',function(){
     return view('createAcount');
 })->name('createAcount');
@@ -48,8 +47,6 @@ Route::get('/createAcount',function(){
 Route::get('/admin',function(){
     return view('admin.dashboard_home');
 });
-=======
->>>>>>> 7ee99e7635038760a4ba2d962ffbb82faaf012b8
 
 Route::get('/login',function(){
     return view('auth.login');
