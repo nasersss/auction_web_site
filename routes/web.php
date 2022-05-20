@@ -68,7 +68,7 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
-Route::get('/dash-user',function(){return view('admin.dash-user-home')->name('dash-user');});
+Route::get('/dash-user',function(){return view('admin.dash-user-home');})->name('dash-user');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/superAdmin', [SuperAdminController::class, 'index'])->name('superAdmin');

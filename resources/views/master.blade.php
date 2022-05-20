@@ -66,7 +66,6 @@
                         <a href="{{ route('dash-user') }}"><i class="fas fa-cog"></i>لوحة التحكم</a>
 
                     @endif
-                    <a href="{{ route('add-auction') }}"><i class="fas fa-cog"></i>لوحة التحكم</a>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fas fa-sign-out"></i>تسجيل الخروج</a>
                 </div>
