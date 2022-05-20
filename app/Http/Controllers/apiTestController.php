@@ -38,7 +38,7 @@ class apiTestController extends Controller
 
  return view('paymentViews.testResponse',compact('paid_amount','status','card_holder','card_type','created_at'));
 } catch (\Throwable $error) {
-    throw $error->getMessage();
+    return redirect()->back()->with(['error'=>"هناك خطاء "]);
 }
  }
 
@@ -56,16 +56,26 @@ class apiTestController extends Controller
    // return $cancel;
    return view('paymentViews.cancel_payment',compact('cancel'));
 } catch (\Throwable $error) {
-    throw $error->getMessage();
+    return redirect()->back()->with(['error'=>"هناك خطاء "]);
 }
 
  }
 
+ /**
+  * this function show cancel page
+  * @return [type]
+  */
  public function viewCancel(){
 
+try {
+    //code...
 
    return view('paymentViews.cancel_payment');
 
+} catch (\Throwable $th) {
+    return redirect()->back()->with(['error'=>"هناك خطاء "]);
+
+}
 
  }
 
@@ -74,6 +84,9 @@ class apiTestController extends Controller
   * The index function which is used for posting the data to the api
   */
      public function index(){
+         try {
+
+
          $data = [
              "order_reference" => "123412",
 
@@ -145,6 +158,10 @@ class apiTestController extends Controller
            dd($response);
 
            }
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(["error"=>"هناك حطاء"]);
+        }
 
      }
+
 }

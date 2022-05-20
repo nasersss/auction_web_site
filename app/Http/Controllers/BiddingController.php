@@ -79,7 +79,8 @@ class BiddingController extends Controller
         return response($biddings);
         return redirect()->back()->with(['success' => 'تمت عملية المزايدة بنجاح']);
          } catch (\Throwable $error) {
-            throw $error->getMessage();
+
+            return back()->with(['error'=>"حدث خطاء لم تتم العملية بنجاح"]);
         }
     }
 
@@ -94,7 +95,7 @@ class BiddingController extends Controller
         $badd->payed_amount = 1254;
         $badd->save();
     } catch (\Throwable $error) {
-        throw $error->getMessage();
+        return back()->with(['error'=>"حدث خطاء لم تتم العملية بنجاح"]);
     }
     }
 

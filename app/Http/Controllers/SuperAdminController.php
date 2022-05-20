@@ -28,7 +28,7 @@ class SuperAdminController extends Controller
 
             return view('superAdmin');
         } catch (\Throwable $error) {
-            throw $error;
+            return view('error');
         }
     }
 }

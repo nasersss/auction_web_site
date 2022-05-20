@@ -208,3 +208,30 @@
                         display: none !important;
                     }
                 }
+                
+                .error-img {
+                    display: flex;
+                    align-items: center;
+                    align-content: center;
+                    justify-items: center;
+                    justify-content: center;
+                }
+                
+                .error-img img {
+                    width: 40%;
+                }
+                
+                .error-msg {
+                    padding: 10% 0 2%;
+                    text-align: center;
+                }
+                
+                .error-msg h4 {
+                    text-align: center;
+                    color: var(--secondary);
+                }
+                
+                .error-msg h3 {
+                    text-align: center;
+                    color: var(--red);
+                }

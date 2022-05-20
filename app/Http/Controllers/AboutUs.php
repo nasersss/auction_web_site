@@ -12,7 +12,7 @@ class AboutUs extends Controller
             return view('about us');
 
         } catch (\Throwable $error) {
-$error->getMessage();
+return view('error');
         }
 
 }

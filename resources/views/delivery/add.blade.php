@@ -111,6 +111,12 @@
                             <!-- Shipping Content-->
                             <div class="tab-pane" id="shipping-information" style="margin-top: -100px;">
                                 <div class="row">
+                                    @if($errors->any())
+    @foreach($errors->all() as $err)
+        <p class="alert alert-danger">{{$err}}</p>
+        @endforeach
+    @endif
+                                    @include('message')
                                     <div class="col-lg-8">
                                         <h4 class="mt-2">معلومات الموقع</h4>
 
@@ -144,7 +150,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div> <!-- end row -->
                                             {{-- <div class="row">
                                                 <div class="col-md-4">

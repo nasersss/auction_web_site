@@ -11,7 +11,8 @@ class Cart extends Controller
 
         return view('Cart');
     } catch (\Throwable $error) {
-        throw $error->getMessage();
+        return back()->with(['error'=>"حدث خطاء لم تتم العملية بنجاح"]);
+
     }
 }
 }

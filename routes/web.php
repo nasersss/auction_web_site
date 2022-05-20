@@ -140,3 +140,6 @@ Route::get('orders',function(){
 });
 
 Route::get('/user-auction/{userId}',[AuctionController::class,"userAuction"]);
+Route::get('/error',function(){
+    return view('error');
+});

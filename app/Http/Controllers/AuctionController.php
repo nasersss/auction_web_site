@@ -68,7 +68,7 @@ class AuctionController extends Controller
             /**
              * getMessage function show error message if it found error
              */
-            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا ما   ']);
         }
     }
 
@@ -93,7 +93,7 @@ class AuctionController extends Controller
 
             /**
              */
-            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا ما   ']);
         }
     }
 
@@ -156,7 +156,7 @@ class AuctionController extends Controller
             $auctionInfo->damage = $request->damage;
             $auctionInfo->vehicle_type_id = $request->vehicle_type;
             $auctionInfo->name = $request->name;
-            $auctionInfo->model = $request->model;
+            $auctionInfo->model = $request->mdel;
             $auctionInfo->state = $request->state;
             $auctionInfo->engine_type = $request->engine_type;
             $auctionInfo->notes = $request->notes;
@@ -168,7 +168,14 @@ class AuctionController extends Controller
             $auctionInfo->fuel = $request->fuel;
             $auctionInfo->city_id = $request->address;
             $auctionInfo->date_of_end_auction = $request->date_of_end_auction;
+        } catch (\Throwable $error) {
+
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
             // if the auction is saved that will save and upload images of auction.
+            try {
+                //code...
+
             if ($auctionInfo->save()) {
 
                 $auctionMaineImage = new AuctionImage();
@@ -196,10 +203,10 @@ class AuctionController extends Controller
             }
 
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
-        } catch (\Throwable $error) {
-           
-            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(["error"=>"there error found"]);
         }
+
     }
 
     /**
@@ -439,7 +446,7 @@ class AuctionController extends Controller
             $auctionCar = auction::with(["auctionImage", "category"])->find($carId);
             return view("detail")->with("auctions", $auctionCar);
         } catch (\Throwable $error) {
-            throw $error->getMessage();
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا ما   ']);
         }
     }
 
