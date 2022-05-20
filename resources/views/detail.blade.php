@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/detail.css">
     <link rel="stylesheet" href="/assets/css/header.css">
-  
+
     <title>التفاصيل</title>
 </head>
 
@@ -44,10 +44,10 @@
         <div class="m-4">
             <div class="alert alert-danger alert-dismissible fade show">
                 <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> ملاحظة!</h4>
-                <p>   عند مشاركتك لابد أن يكون لديك في محفظتك  20% من سعر السيارة الاساسي   .</p>
+                <p> عند مشاركتك لابد أن يكون لديك في محفظتك 20% من سعر السيارة الاساسي .</p>
                 <hr>
                 <p class="mb-0"> بإمكانك الإطلاع على سياسات الموقع لتعرف كيف تجرى المزادات <a href="{{ route('view_policies') }}"> انقر هنا لمعرفة المزيد</a></p>
-                
+
             </div>
         </div>
         <div class="row">
@@ -84,7 +84,7 @@
                             @endisset
                         </span>
                     </div>
-                    
+
                     <div class="auction-info-two mb-3">
                         <div class="row">
                             <div class="col-4">
@@ -281,11 +281,11 @@
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">مزايدة</button>
                         </form>
                         @else
-                        <form  method="post" action="{{route('/delevery')}}" >
+                        <form method="post" action="{{route('/delevery')}}">
                             @csrf
                             <input type="hidden" name="auction_id" value="{{$auctions->id}}">
                             <button type="button" class="btn btn-primary" data-bs-target="#exampleModal">إكمال عملية الدفع </button>
-                        </form>    
+                        </form>
                         @endif
 
 
@@ -316,11 +316,25 @@
             </div>
 
         </div>
-       
+
     </div>
 
 
     @endsection
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('1f4f0e30162086a946a7', {
+            cluster: 'mt1'
+        });
+
+        var channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function(data) {
+            alert(JSON.stringify(data));
+        });
+    </script>
     <script src="/assets/js/jquery.min.js"></script>
 
 
