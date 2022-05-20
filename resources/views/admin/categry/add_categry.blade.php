@@ -35,6 +35,7 @@
     @endif
     <div class="row">
         <div class="col-12">
+            @include('message')
             <div class="card">
                 <div class="card-body">
                     <form method="post" class="validation" action="{{route('store_categories')}}" enctype="multipart/form-data">

@@ -24,6 +24,7 @@
         <div class="auth-fluid-form-box">
             <div class="align-items-center d-flex h-100">
                 <div class="card-body">
+                    @include('message')
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <!-- Logo -->

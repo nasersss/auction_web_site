@@ -1,26 +1,26 @@
 @extends('admin.layouts.main')
 
 @section('title')
-    المزادات | مراجعة
-
+مزاداتي
 @endsection
 
 @section('css')
-
+<link rel="stylesheet" href="/assets/css/ionicons.min.css">
+<link rel="stylesheet" href="/assets/css/all.css">
 @endsection
 @section('breadcrumb-item')
     المزادات
 @endsection
 @section('breadcrumb-item2')
-    مراجعة المزادت
+     مزاداتي
 @endsection
 
 @section('breadcrumb-item-active')
-    المزادات
+    مزاداتي
 @endsection
 
 @section('page-title')
-    مراجعة المزادت
+    مزاداتي
 @endsection
 
 @section('content')
@@ -43,57 +43,63 @@
                             </div>
                             @endif --}}
                             @include('message')
-
                             <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable">
                                 <thead class="table-light">
                                 <tr>
-                                    <th class="all" style="width: 20px;">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck1">
-                                            <label class="form-check-label" for="customCheck1">&nbsp;</label>
-                                        </div>
-                                    </th>
+
+                                    <th>#</th>
                                     <th class="all">السيارات</th>
                                     <th>النوع</th>
                                     <th>الموديل</th>
-                                    <th>اسم صاحب المزاد</th>
-                                    <th>السعر المدئي</th>
+                                    <th>السعر المبدئي</th>
+                                    <th>سعر المزاد الحالي</th>
+
 {{--                                    <th>العطى الحالي</th>--}}
 {{--                                    <th>تاريخ الاضافة</th>--}}
 {{--                                    <th>تاريخ الانتهاء</th>--}}
                                     <th>الحالة</th>
+                                    <th>حالة المزاد</th>
+                                    <th></th>
+                                    <th></th>
                                     <th style="width: 85px;">العمليات</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($auctions as $auction)
+                        @foreach($auctions as $auction)
 
 
                                 <tr>
                                     <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
+                                      {{ $loop->iteration }}
                                     </td>
                                     <td>
-                                         {{-- <img src="assets/images/products/product-1.png" alt="contact-img" title="contact-img" class="rounded me-3" height="48"> --}}
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="{{ route('action_detail',$auction->id)}}" class="text-body">{{ $auction->name }}</a>
+                                        @isset($auction->name)
 
-                                        </p>
+
+                                        <a href="{{ route('action_detail',$auction->id)}}" class="text-body">{{ $auction->name }}</a>
+                                        @endisset
                                     </td>
                                     <td>
+                                        @isset($auction->category->name)
                                         {{ $auction->category->name }}
+                                        @endisset
                                     </td>
                                     <td>
-                                        {{ $auction->model }}
+                                        @isset($auction->model )
+                                {{ $auction->model }}
+                                @endisset
                                     </td>
                                     <td>
-                                        {{ $auction->user->name }}
-                                    </td>
-                                    <td>
+                                        @isset($auction->stare_price )
                                         {{ $auction->stare_price }}
+
+                                        @endisset
+                                    </td>
+                                    <td>
+                                        @isset($auction->curren_price)
+                                        {{ $auction->curren_price }}
+
+                                        @endisset
                                     </td>
                                     <td>
                                         @isset($auction->is_active)
@@ -106,32 +112,35 @@
 
                                         @endisset
                                     </td>
-
-                                    <td class="table-action">
-                                        {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a> --}}
-
-                                        {{-- <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="uil-eye-slash" ></i></a>
-
-                                        <a href="javascript:void(0);" class="action-icon" style="display: none" id="view"> <i class="mdi mdi-eye"></i></a> --}}
-                                        <a href="{{ route('edit-auction',$auction->id) }}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-
-                                        @isset($auction->is_active)
-                                        @if($auction->is_active==1)
-                                        <span class="badge badge-success-lighten"></span>
-                                        <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="uil-eye-slash" ></i></a>
+                                    <td>
+                                        @isset($auction->date_of_end_auction)
 
 
+                                        @if($auction->date_of_end_auction <  \Carbon\Carbon::now())
+                                        <span class="badge badge-danger-lighten">{{ "انتهى" }}</span>
                                         @else
-                                        <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                        <span class="badge badge-warning-lighten">{{ "جاري" }}</span>
                                         @endif
-
-
-
                                         @endisset
-
-
-
                                     </td>
+<td>
+    <a href="" class="btn btn-danger"> ارساء المزاد </a>
+
+</td>
+<td>
+    <a href="" class="btn btn-success"> تمديد </a>
+
+</td>
+
+                                        <td class="table-action">
+                                            @isset($auction->id)
+                                            <a href="{{ route("edit-auction",$auction->id) }}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+
+                                            @endisset
+
+
+                                            {{-- <a href="{{ route("toggle_auction",$auction->id) }}" class="action-icon"> <i class="mdi mdi-delete"></i></a> --}}
+                                        </td>
                                 </tr>
                                 @endforeach
 
@@ -153,10 +162,6 @@
 
 @section('script')
     <!-- third party js -->
-<<<<<<< HEAD:resources/views/admin/auction/auctions_review.blade.php
-=======
-
->>>>>>> 99b9a74c55a70a1a8b981ff754fed6eef7b7d272:resources/views/admin/auctions_review.blade.php
     <script src="assets/js/vendor/jquery.dataTables.min.js"></script>
     <script src="assets/js/vendor/dataTables.bootstrap5.js"></script>
     <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
@@ -167,11 +172,7 @@
 
     <!-- demo app -->
     <script src="assets/js/pages/demo.products.js"></script>
-<<<<<<< HEAD:resources/views/admin/auction/auctions_review.blade.php
-=======
-
->>>>>>> 99b9a74c55a70a1a8b981ff754fed6eef7b7d272:resources/views/admin/auctions_review.blade.php
     <!-- end demo js-->
-
+"لاتوجد مزادات خاصة بك"
 
 @endsection

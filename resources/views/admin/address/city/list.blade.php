@@ -26,12 +26,21 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @if(session()->has('success'))
-            <div class="alert alert-danger success-dismissible bg-success text-white border-0 fade show" role="alert">
+            {{-- @if(session()->has('success'))
+            <div class="alert alert-success success-dismissible bg-success text-white border-0 fade show" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 <strong>{{ session()->get('success') }} </strong>
             </div>
-            @endif
+            @elseif(session()->has('success'))
+                <div class="alert alert-danger danger-dismissible bg-danger text-white border-0 fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <strong>{{ session()->get('success') }} </strong>
+                </div>
+
+
+            @endif --}}
+            @include('message')
+
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-2">
@@ -76,7 +85,14 @@
 
                                 <td>
                                     <a href="{{ route("edit_city",$city->id) }}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                    <a href="{{ route("toggle_city",$city->id) }}" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    @isset($city->is_active)
+                                    @if($city->is_active==1)
+                                    <span class="badge badge-success-lighten"></span>
+                                    <a href="{{ route("toggle_city",$city->id) }}" class="action-icon"> <i class="uil-eye-slash" ></i></a>
+                                    @else
+                                    <a href="{{ route("toggle_city",$city->id) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                    @endif
+                                    @endisset
                                 </td>
                             </tr>
                             @endforeach

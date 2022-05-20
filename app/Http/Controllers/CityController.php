@@ -11,42 +11,86 @@ class CityController extends Controller
 {
     //
 
-    public function create(){
-        $state=State::get();
-        return view("admin.address.city.add")->with("state",$state);
+    /**
+     * this function used to display that through inserter city data
+     * @return [type]
+     */
+    public function create()
+    {
+        try {
 
+            $state = State::get();
+            return view("admin.address.city.add")->with("state", $state);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
+
+
+
+    /**
+     * @param Request $request
+     *
+     * this function used to insert city data in table
+     *
+     * @return [type]
+     */
     public function store(Request $request)
     {
-        //
-        Validator::validate($request->all(), [
-            'name' => ['required', 'min:1', 'max:50'],
-            'state_id'=>['required']
-        ], [
-            'name.required' => 'يجب تعبئت هذا الحقل',
-            'name.max' => 'لايمكنك ادخال اقل من 50 حرف',
-            'state_id.required'=>'الرجاء اختيار محافظة',
-            'name.min'=>'يجب ان يكون الحقل المدخل حرف واحد'
+        try {
 
-        ]);
-        $city = new City();
-        $city->name = $request->name;
-        $city->state_id = $request->state_id;
-        $city->is_active = $request->is_active;
-        if ($city->save())
-            return redirect()->route('list_City')->with(['success' => 'تم اضافة البيانات بنجاح']);
+            Validator::validate($request->all(), [
+                'name' => ['required', 'min:1', 'max:50'],
+                'state_id' => ['required']
+            ], [
+                'name.required' => 'يجب تعبئت هذا الحقل',
+                'name.max' => 'لايمكنك ادخال اقل من 50 حرف',
+                'state_id.required' => 'الرجاء اختيار محافظة',
+                'name.min' => 'يجب ان يكون الحقل المدخل حرف واحد'
 
-        return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
-    }
+            ]);
+            $city = new City();
+            $city->name = $request->name;
+            $city->state_id = $request->state_id;
+            $city->is_active = $request->is_active;
+            if ($city->save())
+                return redirect()->route('list_City')->with(['success' => 'تم اضافة البيانات بنجاح']);
 
-    public function listCity(){
-        $city=City::with("state")->get();
-        return view("admin.address.city.list")->with("city",$city);
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
 
         }
+    }
 
-        public function toggle($cityId)
-        {
+    /**
+     *
+     *this function used to display all city with state that related with theme
+     * @return [type]
+     */
+    public function listCity()
+    {
+
+        try {
+            $city = City::with("state")->get();
+            return view("admin.address.city.list")->with("city", $city);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
+    }
+
+
+    /**
+     * @param mixed $cityId
+     *
+     * This function used to convert from is active from 1 to -1
+     *
+     * @return [type]
+     */
+    public function toggle($cityId)
+    {
+        try {
+
 
             $city = City::find($cityId);
             $city->is_active *= -1;
@@ -54,31 +98,56 @@ class CityController extends Controller
                 return back()->with(['success' => 'تم تحديث البيانات بنجاح']);
 
             return back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
+    }
 
 
 
-        public function edit($cityId)
-        {
+    /**
+     * @param mixed $cityId
+     *
+     * This function used to display page that through can update data
+     *
+     * @return [type]
+     */
+    public function edit($cityId)
+    {
+        try {
             //
             $city = City::with("state")->find($cityId);
-            $state=State::get();
+            $state = State::get();
             return view('admin.address.city.edit')
-                ->with(['city'=> $city,'state'=>$state]);
+                ->with(['city' => $city, 'state' => $state]);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
+    }
 
 
-        public function update(Request $request, $cityId)
-        {
+    /**
+     * @param Request $request
+     * @param mixed $cityId
+     *
+     * this function used to update city data in database
+     *
+     * @return [type]
+     */
+    public function update(Request $request, $cityId)
+    {
+        try {
+
+
             Validator::validate($request->all(), [
                 'name' => ['required', 'min:1', 'max:50'],
-                'state_id'=>['required']
+                'state_id' => ['required']
             ], [
                 'name.required' => 'يجب تعبئت هذا الحقل',
                 'name.max' => 'لايمكنك ادخال اقل من 50 حرف',
-                'state_id.required'=>'الرجاء اختيار محافظة',
-                'name.min'=>'يجب ان يكون الحقل المدخل حرف واحد'
-    
+                'state_id.required' => 'الرجاء اختيار محافظة',
+                'name.min' => 'يجب ان يكون الحقل المدخل حرف واحد'
+
             ]);
             //
             $city = City::find($cityId);
@@ -88,5 +157,8 @@ class CityController extends Controller
             if ($city->save())
                 return redirect()->route('list_City')->with(['success' => 'تم تحديث البيانات بنجاح']);
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        } catch (\Throwable $error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
+    }
 }

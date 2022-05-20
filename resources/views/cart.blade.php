@@ -17,13 +17,14 @@
 <body>
     @extends('master')
     @section('content')
+    @include('message')
     <div class="container mt-5 p-3 rounded cart">
         <div class="row no-gutters">
             <div class="col-md-8">
                 <div class="product-details mr-2">
                     <div class="d-flex flex-row align-items-center"><i class="fa fa-long-arrow-left"></i><span class="ml-2">السلة</span></div>
                     <hr>
-                    
+
                     <div class="d-flex justify-content-between"><span>لديك منتجين في سلتك</span>
                         <div class="d-flex flex-row align-items-center"><span class="text-black-50">فرز حسب:</span>
                             <div class="price ml-2"><span class="mr-1">السعر</span><i class="fa fa-angle-down"></i></div>
@@ -66,10 +67,10 @@
                                 <div class="product-info-detail">
                 <div class="column">
                 <span>نيسان</span><span>12000 <span>$</span></span>
-                
+
                 </div>
                 <div class="column">
-                    
+
                     <span>مرسيدس</span><span>15000 <span>$</span></span>
                     </div>
                 <div class="column">
@@ -80,12 +81,12 @@
                 <div class="text">الاجمالي</div>
                 <div class="price">27000 <span>$</span></div>
                                 </div>
-                
+
                                 <div class="payment">
                                     <div class="description">
                                         <span>طرق الدفع المتاحة عبر الموقع</span>
                                     </div>
-                
+
                                       <div class="payment-item"> <input type="radio" name="payment-gateway" value="VisaSystem"><div>Visa System</div></div>
                                      <div class="payment-item"> <input type="radio" name="payment-gateway" value="PaypalSystem"><div>Paypal System"</div></div>
                                        <div class="payment-item"><input type="radio" name="payment-gateway" value="MasterCardSystem"><div>master card system</div></div>
@@ -94,8 +95,8 @@
                 <div id="master"><a href=""><button class="payment-btn">Master Card  </button></a></div>
                                 </div>
                                <a href="http://waslpayment.com/api/test/merchant/do_payment_order/qyt78NKIDC"><button class="order-btn">تاكيد الشراء</button></a>
-                
-                
+
+
                             </div>
                         </div>
                     </div>
@@ -106,7 +107,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 </div>
     </div>
-             
+
 @endsection
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

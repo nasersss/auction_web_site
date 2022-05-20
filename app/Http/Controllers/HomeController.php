@@ -23,6 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        try {
+
         return view('index');
+    } catch (\Throwable $error) {
+        throw $error->getMessage();
+    }
     }
 }

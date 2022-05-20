@@ -24,6 +24,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin/home');
+        try {
+
+            return view('admin/dashboard_home');
+        } catch (\Exception $e) {
+            return view('error');
+        }
     }
 }

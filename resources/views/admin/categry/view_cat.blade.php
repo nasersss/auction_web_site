@@ -26,12 +26,9 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @if(session()->has('success'))
-            <div class="alert alert-danger success-dismissible bg-success text-white border-0 fade show" role="alert">
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                <strong>{{ session()->get('success') }} </strong>
-            </div>
-            @endif
+            
+            @include('message')
+
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-2">
@@ -70,7 +67,14 @@
                                 </td>
                                 <td>
                                     <a href="edit_categories/{{$category->id}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                    <a href="toggle_categories/{{$category->id}}" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    @isset($category->is_active)
+                                    @if($category->is_active==1)
+                                    <span class="badge badge-success-lighten"></span>
+                                    <a href="{{ route("toggle_categories",$category->id) }}" class="action-icon"> <i class="uil-eye-slash" ></i></a>
+                                    @else
+                                    <a href="{{ route("toggle_categories",$category->id) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                    @endif
+                                    @endisset
                                 </td>
                             </tr>
                             @endforeach

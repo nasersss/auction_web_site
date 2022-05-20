@@ -82,15 +82,6 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/superAdmin', [SuperAdminController::class, 'index'])->name('superAdmin');
 
-
-// Route::get('/listCategories', [App\Http\Controllers\CategoryController::class, 'index'])->name('listCategories');
-// Route::get('/createCategory', [App\Http\Controllers\CategoryController::class, 'create'])->name('createCategory');
-// Route::get('/storeCategory', [App\Http\Controllers\CategoryController::class, 'store'])->name('storeCategory');
-// Route::get('/editCategory', [App\Http\Controllers\CategoryController::class, 'edit'])->name('editCategory');
-// Route::get('/updateCategory', [App\Http\Controllers\CategoryController::class, 'update'])->name('updateCategory');
-// Route::get('/toggleCategory', [App\Http\Controllers\CategoryController::class, 'toggle'])->name('toggleCategory');
-// Route::get('/uploadFileCategory', [App\Http\Controllers\CategoryController::class, 'uploadFile'])->name('uploadFileCategory');
-
 ########## polices route #######
 Route::group(['middleware' => 'is.admin'], function () {
 Route::get('/list_policies',[PoliciesController::class,"listPolicies"])->name("list_policies");
@@ -148,12 +139,9 @@ Route::get('toggle_vehicle/{Id}',[VehicleTypeController::class,'toggle'])->name(
 Route::get('list_vehicle',[VehicleTypeController::class,'listVehicle'])->name('list_vehicle');
 
 
-Route::get('test', [apiTestController::class, 'index'])->name('test');
-Route::get('test/response/{info}', [apiTestController::class, 'showTest'])->name('test/response');
-Route::get('test/cancel/{cancel}', [apiTestController::class, 'testCancel'])->name('testCancel');
-Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewCancel');
-
-
 Route::get('show_notification' ,[NotificationController::class,'index'])->name('show_notification');
 Route::get('makeNotificationSeen/{id}' ,[NotificationController::class,'makeNotificationSeen'])->name('makeNotificationSeen');
 
+####################    delivery rout
+Route::get('/delivery',[DeliveryController::class,'create']);
+Route::post('/store_delivery',[DeliveryController::class,'store'])->name('store_delivery');
