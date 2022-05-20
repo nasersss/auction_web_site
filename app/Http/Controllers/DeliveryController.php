@@ -30,6 +30,8 @@ class DeliveryController extends Controller
         $delivery->payer_id=Auth::user()->id;;
         $delivery->auction_id=$auction->id;
         $delivery->city_id=$request->city;
+        $delivery->paid_amout = $amountOfPayment;
+        $delivery->amout_delever=200;
         if($delivery->save())
         {
             session_start();

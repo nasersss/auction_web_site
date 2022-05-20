@@ -182,7 +182,7 @@ class AuctionController extends Controller
             $users = User::where('role', 2)->get();
             foreach ($admins as  $admin) {
                 $notification = new NotificationController();
-                $notification->sendNotification(Auth::user()->id,$admin->id, 'تم اضافة مزاد جديد', 'edit-auction/' . $auctionInfo->id);
+                $notification->sendNotification(Auth::user()->id,$admin->id, 'تم اضافة مزاد جديد', 'auction_review');
             }
 
             return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
@@ -366,8 +366,15 @@ class AuctionController extends Controller
 
     public function detailAuction($carId)
     {
+        $is_ready_to_sell= 1;
         $auctionCar = auction::with(["auctionImage", "category"])->find($carId);
+        $payer = Bidding::where('auction_id',$auctionCar->id)->orderBy('id', 'desc')->first();
+        if($auctionCar->is_active == 1)
         return view("detail")->with("auctions", $auctionCar);
+        else if($is_ready_to_sell == 1 && Auth::user()->id==$payer->user_id)
+            return view("detail")->with("auctions", $auctionCar);
+        else 
+        return 0;
     }
     // this function show list of all auctions
     function auctionReview()
@@ -382,15 +389,30 @@ class AuctionController extends Controller
         }
     }
 
+    /**
+     * [This function used to active auction]
+     *
+     * @param mixed $auctionId
+     * 
+     * @return [type]
+     * 
+     */
     public function toggle($auctionId)
     {
 
         $auction = auction::find($auctionId);
         $auction->is_active *= -1;
-        if ($auction->save())
+        if ($auction->save()){
+            $admin = User::where('role', 0)->first();
+            $notification = new NotificationController();
+            $notification->sendNotificationFromAdmin($auction->seller_id, 'عزيزي العميل لقد تم تفعيل مزادك الخاص بالسيارة ' .$auction->name.' بنجاح  شكرا لك ', 'edit_auction/' . $auctionId);
+            
             return back()->with(['success' => 'تم تحديث البيانات بنجاح']);
+        }
+        else{
+            return back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
 
-        return back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
     /**
@@ -411,7 +433,8 @@ class AuctionController extends Controller
      * 
      */
     public function checkAucationDate()
-    {
+    {   
+        $notification = new NotificationController();
         $auctions = auction::where('is_active', 1)->get();
         $currentTime = date("Y-m-d H:i:s");
         foreach ($auctions as $auction) {
@@ -419,10 +442,10 @@ class AuctionController extends Controller
             if (strtotime($currentTime) > strtotime($endAucationTime)) {
                 $auctionControl = new AuctionController;
                 $auctionId = $auction->id;
-                // return $auctionId;
                 $lastBidding = Bidding::where('auction_id', $auctionId)->orderBy('created_at', 'desc')->first();
                 if ($lastBidding == null) {
                     $auctionControl->toggle($auctionId);
+                    $notification->sendNotificationFromAdmin($auction->seller_id, 'عزيزي العميل عفوا مزادك لم يشارك فيه احد وقد انتهت مدته يرجى تمديد المدة  ', 'edit_auction/' . $auctionId);
                 } else {
                     $uesrId = $lastBidding->user_id;
                     $user = User::where('id', $uesrId)->get();
@@ -430,9 +453,54 @@ class AuctionController extends Controller
                     $notification = new NotificationController();
                     $notification->sendNotificationFromAdmin($uesrId, 'عزيزي العميل لقد رسي المزاد عليك   ', 'action_detail/' . $auctionId);
                     $notification->sendNotificationFromAdmin($admin->id, 'لقد رسى المزاد على المستخدم ', 'edit-auction/' . $auctionId);
+                    $notification->sendNotificationFromAdmin($auction->seller_id, 'مبروك  ' .$auction->user->name.' لقد رسي مزادك الخاص بالسيارة '.$auction->name.' بمبلغ '.$auction->curren_price.' هل انت موافق على عملية البيع اضغط على موافق للبيع أو تمديد ', 'comfirmSell/'. $auctionId);
+
                     $auctionControl->toggle($auctionId);
                 }
             }
         }
+        
     }
+    /**
+     * [ makeAuctionToSell Method used to 
+     *      active auction to sell]
+     *
+     * @param Request $request
+     * 
+     * @return [type]
+     * 
+     */
+    public function makeAuctionToSell(Request $request){
+        $auctionID = $request->auctionId;
+        $auction = auction::find($auctionID);
+        $auction->is_ready_to_sell *= -1;
+        if ($auction->update())
+              return redirect('/');;
+        return back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+    }
+    /**
+     * [This function used to extended time of auction ]
+     *
+     * @param Request $request
+     * 
+     * @return [type]
+     * 
+     */
+    public function actionTimeExtended(Request $request){
+        $auctionId = $request->auctionId;
+        $auction = auction::find($auctionId);
+        $auction->date_of_end_auction =$request->date_of_end_auction;
+        if ($auction->update())
+              {
+                $username = Auth::user()->name;
+                $admin = User::where('role', 0)->first();
+                $notification = new NotificationController();
+                $notification->sendNotificationFromAdmin($admin->id, 'لقد قام المستخدم ' . $username.'بتمديد المزاد الخاص به الرجاء مراجعة المزاد ', 'edit-auction/' . $auctionId);
+
+              }
+        else {
+
+        }
+    }
+
 }

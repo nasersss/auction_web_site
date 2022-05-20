@@ -88,11 +88,13 @@ Route::group(['middleware' => 'is.admin'], function () {
 });
 ##########################
 //Auction
-Route::post('/', [AuctionController::class, "viewAuction"])->name("index");
+Route::get('/', [AuctionController::class, "viewAuction"])->name("index");
 Route::get('detail_car/{carId}', [AuctionController::class, "detailAuction"])->name("action_detail");
 Route::get('/auction_review', [AuctionController::class, "auctionReview"])->name("auction_review");
 Route::get('/toggle_auctions/{auctionId}', [AuctionController::class, "toggle"])->name("toggle_auction");
 Route::get('/endauction',  [AuctionController::class, "checkAucationDate"])->name('endauction');
+Route::post('/makeAuctionToSell',  [AuctionController::class, "makeAuctionToSell"])->name('isActiveToSell');
+Route::post('/actionTimeExtended',  [AuctionController::class, "actionTimeExtended"])->name('actionTimeExtended');
 Route::get('/derlevery',[PymentContoller::class, 'deleveryPyment'])->name('derlevery');
 
 
@@ -126,7 +128,6 @@ Route::get('list_vehicle', [VehicleTypeController::class, 'listVehicle'])->name(
 Route::get('pyment/response/{info}', [PymentContoller::class, 'showPyment'])->name('pyment/response');
 Route::get('pyment/cancel/{cancel}', [PymentContoller::class, 'pymentCancel'])->name('pymentCancel');
 Route::get('pyment/cancel', [PymentContoller::class, 'viewCancel'])->name('viewCancel');
-// Route::post('/order',[PymentContoller::class, 'pymentDelevry'] )->name('order');
 
 Route::get('show_notification', [NotificationController::class, 'index'])->name('show_notification');
 Route::get('makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
@@ -135,9 +136,12 @@ Route::post('comfirmPyment', [BiddingController::class, 'addAmountOfBidding'])->
 ####################    delivery rout
 Route::get('/delivery',[DeliveryController::class,'create'])->name('delivery');
 Route::post('/store_delivery',[DeliveryController::class,'store'])->name('store_delivery');
-Route::post('/invoice',function(){
-    return view('admin.invoice');
-})->name('pymentDelevry');
-// Route::get('/derlevery',[PymentContoller::class, 'index'])->name('derlevery');
+
+##order 
+Route::post('/paymentOfDelevry',[OrderController::class,'paymentOfDeleviry'])->name('paymentOfDeleviry');
+Route::get('/comfirmDelevery/{id}',[OrderController::class,'comfirmDelevery'])->name('comfirmDelevery');
+Route::get('/comfirmSell/{id}',[OrderController::class,'comfirmSell'])->name('comfirmSell');
+Route::get('/testwallt',[OrderController::class,'testwallt'])->name('testwallt');
+
 
 

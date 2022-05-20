@@ -281,11 +281,13 @@
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">مزايدة</button>
                         </form>
                         @else
+
                         <form  method="get" action="{{route('delivery')}}" >
                             @csrf
                             <input type="hidden" name="auction_id" value="{{$auctions->id}}">
                             <button type="submit" class="btn btn-primary" data-bs-target="#exampleModal">إكمال عملية الدفع </button>
-                        </form>    
+                        </form> 
+                           
                         @endif
 
 

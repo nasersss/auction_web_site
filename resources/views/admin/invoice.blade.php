@@ -82,15 +82,15 @@
                                         <div class="row d-print-flex">
                                             <div class="col-sm-6">
                                                 <div class="float-end mt-3">
-                                                    <p><b>اسم المستلم : عبدالرحمن الصنعاني </b></p>
+                                                    <p><b>اسم المشتري :  {{Auth::user()->name}} </b></p>
                                                 </div>
 
                                             </div><!-- end col -->
                                             <div class="col-sm-4 offset-sm-2">
                                                 <div class="mt-3 float-sm-end">
-                                                    <p class="font-13"><strong>تاريح الطلب </strong> &nbsp;&nbsp;&nbsp; Jan 17, 2018</p>
+                                                    <p class="font-13"><strong>تاريح الطلب </strong> &nbsp;&nbsp;&nbsp; {{$delever->created_at}}</p>
                                                     {{-- <p class="font-13"><strong>Order Status: </strong> <span class="badge bg-success float-end">Paid</span></p> --}}
-                                                    <p class="font-13"><strong> رقم الطلب </strong>&nbsp;&nbsp;&nbsp; #018555</p>
+                                                    <p class="font-13"><strong> رقم الطلب </strong>&nbsp;&nbsp;&nbsp; {{$delever->id}}</p>
                                                 </div>
                                             </div><!-- end col -->
                                         </div>
@@ -100,19 +100,22 @@
                                             <div class="col-sm-4">
                                                 <h6>بيانات المرسل </h6>
                                                 <address>
-                                                    محمد زبير<br>
-                                                   حضرموت - المكلا<br>
-                                                    <abbr title="Phone">التلفون:</abbr> 775123554
+                                                    الاسم : {{ $delever->auction->user->name}} <br>
+                                                    العنوان: {{$delever->auction->city->state->name}} - {{ $delever->auction->city->name}}<br>
+                                                    
+                                                    الجوال :@isset($delever->auction->user->profile->phone){{$delever->auction->user->profile->phone}} @endisset
+
                                                 </address>
                                             </div> <!-- end col-->
 
                                             <div class="col-sm-4">
                                                 <h6> بيانات المستلم</h6>
                                                 <address>
-                                                    عبد الرحمن الصنعاني <br>
-                                                    حضرموت - حضرموت<br>
-                                                    <abbr title="Phone">رقم الهوية:</abbr> 546587448<br>
-                                                    <abbr title="Phone">التلفون:</abbr> 770440550
+                                                    الاسم : {{$delever->receiver_name}} <br>
+                                                  العنوان :{{$delever->city->state->name}} - {{$delever->city->name}}<br>
+                                                  نوع الهوية : {{$delever->receiver_identity_type}}<br>
+                                                  رقم الهوية : {{$delever->receiver_identity_number}}<br>
+                                                  رقم الجوال : {{$delever->receiver_identity_number}}
                                                 </address>
                                             </div> <!-- end col-->
 
@@ -139,13 +142,12 @@
                                                         <tr>
                                                             <td>1</td>
                                                             <td>
-                                                                <b>Laptop</b> <br>
-                                                                Brand Model VGN-TXN27N/B
-                                                                11.1" Notebook PC
+                                                                <b>{{$delever->auction->name}} {{$delever->auction->model}}</b> <br>
+                                                                اللون :{{$delever->auction->color}} -   الجير :{{$delever->auction->ger_type}},
                                                             </td>
-                                                            <td>$1</td>
-                                                            <td>$1799.00</td>
-                                                            <td class="text-end">$1799.00</td>
+                                                            <td>200 $</td>
+                                                            <td>{{$pymentInfo->paid_amount-200}} $</td>
+                                                            <td class="text-end">{{$pymentInfo->paid_amount}} $</td>
                                                         </tr>
 
 
@@ -163,14 +165,14 @@
                                                     <small>
                                                         - يرجى التاكد من هوية المستلم قبل تسليم السيارة                                                    </small>
                                                     <small><br>
-                                                        - يرجى تاكيد استلام السيارة لتاكيد الدفع
+                                                        - الرجاء مراجعة الايمل الشخصي أو صفحة الاشعارات لتأكيد استلام السيارة 
                                                     </small>
                                                 </div>
                                             </div> <!-- end col -->
                                             <div class="col-sm-6">
                                                 <div class="float-start mt-3 mt-sm-0">
                                                     <h5> الاجمالي النهائي</h5>
-                                                    <h3>$4635.00 </h3>
+                                                    <h3>{{$pymentInfo->paid_amount}}  $</h3>
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div> <!-- end col -->
@@ -179,8 +181,8 @@
 
                                         <div class="d-print-none mt-4">
                                             <div class="text-end">
-                                                <a href="javascript:window.print()" class="btn btn-primary"><i class="mdi mdi-printer"></i> Print</a>
-                                                <a href="javascript: void(0);" class="btn btn-info">Submit</a>
+                                                <a href="javascript:window.print()" class="btn btn-primary float-left"><i class="mdi mdi-printer"></i>طباعة</a>
+                                                {{-- <a href="javascript: void(0);" class="btn btn-info">Submit</a> --}}
                                             </div>
                                         </div>
                                         <!-- end buttons -->

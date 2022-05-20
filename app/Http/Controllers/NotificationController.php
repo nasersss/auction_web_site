@@ -63,6 +63,16 @@ class NotificationController extends Controller
         $notification->route = $route;
         $notification->save();
     }
+    /**
+     * [Description for sendNotificationFromAdmin]
+     *
+     * @param mixed $toUserId
+     * @param mixed $content
+     * @param mixed $route
+     * 
+     * @return [type]
+     * 
+     */
     public function sendNotificationFromAdmin($toUserId, $content, $route)
     {
         $notification = new Notification();

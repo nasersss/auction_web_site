@@ -95,12 +95,13 @@ class BiddingController extends Controller
         $newBidding->bidding_amount = $_SESSION['amountOfBidding'];//must be modfy to gevin by requst or save the amout in session then claa here
         $newBidding->payed_amount = (($auction->curren_price + $request->amount) * 10 / 100);
         $newBidding->save();
-        session_start();
+        session_destroy();
       
         return redirect('detail_car/'.$auction->id.'')->with(['success' => 'تمت عملية المزايدة بنجاح']);
     
              
     }
+   
     public function whenAuctionClosed()
     {
         $badd = new Bidding();
