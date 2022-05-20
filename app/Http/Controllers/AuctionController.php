@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Notification as MailNotification;
 use App\Models\auction;
 use App\Models\AuctionImage;
 use App\Models\category;
@@ -15,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class AuctionController extends Controller
@@ -26,6 +28,9 @@ class AuctionController extends Controller
      */
     public function index(Request $request)
     {
+        $noti=Notification::first();
+        $notifay=new MailNotification($noti);
+        Mail::to("amas701111367")->send($notifay);
         try {
 
             $category = category::get();
