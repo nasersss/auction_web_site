@@ -375,7 +375,10 @@
                                     <div class="text" style="padding: 0 2.5em; text-align: center;">
                                         <h2>مرحبا بك {{$notification->toUser->name}} في مزادي كار</h2>
                                         <h3>{{$notification->content}}</h3>
-                                        <p><a href="{{route($notification->route)}}" class="btn btn-primary">اضغط هنا</a></p>
+                                        @php
+                                        $route = explode('/',$notification->route);
+                                        @endphp
+                                        <p><a href="{{route($route[0],$route[1])}}" class="btn btn-primary">اضغط هنا</a></p>
                                     </div>
                                 </td>
                             </tr>

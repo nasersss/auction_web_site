@@ -89,7 +89,7 @@ Route::group(['middleware' => 'is.admin'], function () {
 ##########################
 //Auction
 Route::get('/', [AuctionController::class, "viewAuction"])->name("index");
-Route::get('detail_car/{carId}', [AuctionController::class, "detailAuction"])->name("action_detail");
+Route::get('aildet_car/{carId}', [AuctionController::class, "detailAuction"])->name("action_detail");
 Route::get('/auction_review', [AuctionController::class, "auctionReview"])->name("auction_review");
 Route::get('/toggle_auctions/{auctionId}', [AuctionController::class, "toggle"])->name("toggle_auction");
 Route::get('/endauction',  [AuctionController::class, "checkAucationDate"])->name('endauction');
@@ -141,7 +141,7 @@ Route::post('/store_delivery',[DeliveryController::class,'store'])->name('store_
 Route::post('/paymentOfDelevry',[OrderController::class,'paymentOfDeleviry'])->name('paymentOfDeleviry');
 Route::get('/comfirmDelevery/{id}',[OrderController::class,'comfirmDelevery'])->name('comfirmDelevery');
 Route::get('/comfirmSell/{id}',[OrderController::class,'comfirmSell'])->name('comfirmSell');
-Route::get('/testwallt',[OrderController::class,'testwallt'])->name('testwallt');
+Route::post('/makeDeleverDone',[OrderController::class,'makeDeleverDone'])->name('makeDeleverDone');
 
 
 

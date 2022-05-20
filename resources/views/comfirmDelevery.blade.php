@@ -24,9 +24,10 @@
 				<p class="text-center">  الرجاء تأكسد عملية استلام السيارة عن طريق الضغط على الزر تأكيد </p>
 			</div>
 			<div>
-        <form method="post">
+        <form method="post" action="{{route('makeDeleverDone')}}">
           @csrf
           <input type="hidden" value="{{Auth::user()->id}}" name="userid" >
+          <input type="hidden" value="{{$deleviryId}}" name="deleverId">
           <button type="submit" class="btn btn-primary">تأكيد</button>
         </form>
       </div>

@@ -108,15 +108,71 @@ class OrderController extends Controller
      */
     public function comfirmDelevery($deleviryId ){
         $deleviry = Delivery::find($deleviryId);
-    
          return view('comfirmDelevery')->with('deleviryId',$deleviry->id);
          
     }
     public function comfirmSell($auctionId){
         $auction = auction::find($auctionId);
-        
         return view('comfirmSell')->with('auction',$auction);
-    
     }
+    /**
+     * [This function used to stor order ]
+     *
+     * @param Request $request
+     * 
+     * @return [type]
+     * 
+     */
+    public function makeDeleverDone(Request $request){
+        
+        $delever = Delivery::find($request->deleverId);
+        $payer = Auth::user();
+        $paidAmout = $delever->paid_amout;
+        $seller = $delever->auction->user;
+        $admin  = User::where('role',0)->first();
+        $order = new OrderController();
+        $auctionPrice = $delever->auction->curren_price;
+        $startPrice =  $delever->auction->stare_price;
+        $amoutOfSystem  = $order->discountAmountOfSystem($auctionPrice);
+        $payer->transfer($admin,$amoutOfSystem,['amout'=>'تم خصم مبلغ '.$amoutOfSystem,'From'=>$payer->name,'to'=>$admin->name,'For'=>$delever->auction->id]);
+        $seller->transfer($admin,$amoutOfSystem,['amout'=>'تم خصم مبلغ '.$amoutOfSystem,'From'=>$seller->name,'to'=>$admin->name,'For'=>$delever->auction->id]);
+        $payer->transfer($seller,$auctionPrice-$startPrice*0.2,['amout'=>'تم خصم مبلغ '.$amoutOfSystem,'From'=>$payer->name,'to'=>$seller->name,'For'=>$delever->auction->id]);
+
+        $order = new Order();
+        $order->system_balance_from_seller =  $amoutOfSystem;
+        $order->system_balance_from_payer	= $amoutOfSystem;
+        $order->delivery_id = $delever->id;
+        try {
+            $order->save();
+             return redirect('/');
+        } catch (\Throwable $th) {
+            return 0;
+        }
+        
+        
+         
+
+    }
+/**
+ * [Description for discountAmountOfSystemFromSeller]
+ *
+ * @param mixed $amount
+ * 
+ * @return [int]
+ * 
+ */
+public function discountAmountOfSystem($amount){
+    $net = $amount*0.1;
+    return $net;
+}/**
+ * [ discountAmountOfSystemFromSell]
+ *
+ * @param mixed $amount
+ * 
+ * @return [int]
+ * 
+ */
+
+
    
 }   

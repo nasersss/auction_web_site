@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Mail\Notification as MailNotification;
 use App\Models\auction;
 use App\Models\AuctionImage;
 use App\Models\category;
@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class AuctionController extends Controller
@@ -76,13 +77,14 @@ class AuctionController extends Controller
 
         $category = category::get();
         $state = State::with("city")->get();
-
         $vehicleType = VehicleType::get();
+
         return view('admin/add_auction')->with([
             'categories' => $category,
             'vehicleTypes' => $vehicleType,
             'states' => $state,
         ]);
+
     }
 
 
@@ -184,8 +186,12 @@ class AuctionController extends Controller
                 $notification = new NotificationController();
                 $notification->sendNotification(Auth::user()->id,$admin->id, 'تم اضافة مزاد جديد', 'auction_review');
             }
+           
+            $payment = new PymentContoller();
+            $percentageFromStrartPrice = $auctionInfo->stare_price*0.2;
+           return  $payment->makePyment($auctionInfo,$percentageFromStrartPrice);
 
-            return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
+            // return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
         }
 
         return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
@@ -399,14 +405,24 @@ class AuctionController extends Controller
      */
     public function toggle($auctionId)
     {
-
+        $notification = new NotificationController();
         $auction = auction::find($auctionId);
         $auction->is_active *= -1;
         if ($auction->save()){
-            $admin = User::where('role', 0)->first();
-            $notification = new NotificationController();
             $notification->sendNotificationFromAdmin($auction->seller_id, 'عزيزي العميل لقد تم تفعيل مزادك الخاص بالسيارة ' .$auction->name.' بنجاح  شكرا لك ', 'edit_auction/' . $auctionId);
-            
+
+            // $users = User::chunck(10,function($data){
+                // This for each will send notfication and email to all user 
+                $users = User::get();
+                foreach ($users as $user) {
+                    $notification->sendNotificationFromAdmin($user->id, 'تمت اضافة مزاد جديد ', 'action_detail/' . $auctionId);
+                    $notify = Notification::where('to_user_id',$user->id)->orderBy('id','desc')->first();
+                    $MailNotification = new MailNotification($notify);
+                    Mail::to($user->email)->send($MailNotification);
+                }
+            // });
+
+            $admin = User::where('role', 0)->first();            
             return back()->with(['success' => 'تم تحديث البيانات بنجاح']);
         }
         else{
