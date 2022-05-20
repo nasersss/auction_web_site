@@ -27,18 +27,12 @@ class NotificationController extends Controller
 
     public function makeNotificationSeen($notificationId)
     {
+
+        
         $notification = Notification::find($notificationId);
         $notification->is_seen = 1;
         $notification->update();
-        $route = explode('/', $notification->route);
-        $parameter = null;
-        if (count($route) == 1)
-            return redirect()->route("$notification->route");
-        else {
-            $parameter = $route[1];
-            $route = $route[0];
-            return redirect()->route("$route", "$parameter");
-        }
+        return redirect()->route("$notification->route");
     }
 
     /**
@@ -52,26 +46,15 @@ class NotificationController extends Controller
      * @return boolean
      * 
      */
-    public function sendNotification($form = null,$toUserId, $content, $route)
+    public function sendNotification($toUserId,$content,$route)
     {
         $notification = new Notification();
-        if($form==null)
-            $form = Auth::user()->id;
-        $notification->from_user_id = $form;
-        $notification->to_user_id = $toUserId;
-        $notification->content = $content;
-        $notification->route = $route;
+        $notification->from_user_id = Auth::user()->id;
+        $notification->to_user_id=$toUserId;
+        $notification->content=$content;
+        $notification->route=$route;
         $notification->save();
-    }
-    public function sendNotificationFromAdmin($toUserId, $content, $route)
-    {
-        $notification = new Notification();
-        $admin = User::where('role',0)->first();
-        $notification->from_user_id = $admin->id;
-        $notification->to_user_id = $toUserId;
-        $notification->content = $content;
-        $notification->route = $route;
-        $notification->save();
+
     }
 
     /**

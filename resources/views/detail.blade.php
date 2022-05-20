@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/detail.css">
     <link rel="stylesheet" href="/assets/css/header.css">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7ee99e7635038760a4ba2d962ffbb82faaf012b8
     <title>التفاصيل</title>
 </head>
 
@@ -41,6 +44,7 @@
             <strong>{{ session()->get('success') }} </strong>
         </div>
         @endif
+<<<<<<< HEAD
         <div class="m-4">
             <div class="alert alert-danger alert-dismissible fade show">
                 <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> ملاحظة!</h4>
@@ -50,7 +54,10 @@
 
             </div>
         </div>
+=======
+>>>>>>> 7ee99e7635038760a4ba2d962ffbb82faaf012b8
         <div class="row">
+
             <div class="col-12 col-md-6 section-style ">
                 {{-- section car information --}}
                 <section>
@@ -82,9 +89,14 @@
                             @isset($auctions->curren_price)
                             {{ $auctions->curren_price}}$
                             @endisset
-                        </span>
-                    </div>
+                            <span></span> <span>
+                            </span></span>
 
+                    </div>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7ee99e7635038760a4ba2d962ffbb82faaf012b8
                     <div class="auction-info-two mb-3">
                         <div class="row">
                             <div class="col-4">
@@ -272,14 +284,13 @@
                 <div class="action-card mt-2">
                     <div class="action-head">الاشتراك في المزاد</div>
                     <div class="action-body">
-                        @if($auctions->is_active==1)
-
                         <form id="bidding-form" name="amountForm" method="post" action="{{route('bidding')}}" enctype="multipart/form-data">
                             @csrf
                             <input type="text" required id="amount" name="amount" placeholder="ادخل مبلغ للاشتراك في المزاد">
                             <input type="hidden" name="auction_id" value="{{$auctions->id}}">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">مزايدة</button>
                         </form>
+<<<<<<< HEAD
                         @else
                         <form method="post" action="{{route('/delevery')}}">
                             @csrf
@@ -287,6 +298,9 @@
                             <button type="button" class="btn btn-primary" data-bs-target="#exampleModal">إكمال عملية الدفع </button>
                         </form>
                         @endif
+=======
+
+>>>>>>> 7ee99e7635038760a4ba2d962ffbb82faaf012b8
 
 
 
@@ -316,7 +330,10 @@
             </div>
 
         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7ee99e7635038760a4ba2d962ffbb82faaf012b8
     </div>
 
 

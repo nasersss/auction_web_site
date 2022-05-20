@@ -162,8 +162,8 @@ header {
 #header {
     display: none;
     background-color: var(--primaryColor);
-    /* height: 80px; */
 }
+
 .header-logo {
     float: left;
 }
@@ -214,11 +214,12 @@ header {
 
 .header-search {
     padding: 15px 0px;
-    
 }
+
 .header-search form {
     position: relative;
 }
+
 .header-search form .input-select {
     margin-right: -4px;
     border-radius: 0px 40px 40px 0px;
@@ -356,11 +357,11 @@ header {
 .list-user {
     background-color: #fff;
     position: absolute;
-    width: 500%;
+    width: 450%;
     z-index: 2;
     top: 35px;
     right: -56px;
-    padding: 15px;
+    padding: 10px;
     border-radius: 5px;
     font-size: 14px;
     display: none;
@@ -393,7 +394,6 @@ header {
         width: 50%;
         text-align: center;
         margin: 25px 0;
-       
     }
     .search-icon {
         background: var(--secondary) !important;
@@ -402,7 +402,9 @@ header {
         display: flex;
         justify-content: space-between;
         justify-items: center;
-       
+    }
+    .header-container div a img {
+        width: 124%;
     }
     .main-nav {
         display: block !important;
@@ -490,17 +492,12 @@ header {
 
 .name-auth {
     position: absolute;
-    color: #000;
-    font-size: 13px;
+    right: 100%;
+    width: 28%;
+    font-size: 12px;
     font-weight: 600;
-  right: 50px;
+}
 
-}
-.imguser{
-    position: relative;
-    right: 40px;
-   
-}
 .logo {
     left: 0 !important;
 }
@@ -513,7 +510,6 @@ header {
 @media only screen and (max-width: 991px) {
     #top-header .header-links.pull-left {
         float: none !important;
-       
     }
     #top-header .header-links.pull-right {
         float: none !important;
@@ -532,7 +528,6 @@ header {
 }
 
 @media only screen and (max-width: 767px) {
-   
     .section-title .section-nav {
         float: none;
         margin-top: 10px;
@@ -549,7 +544,6 @@ header {
     [class*='col-xs'] {
         width: 100%;
     }
-   
     .store-grid {
         float: none;
         margin-top: 10px;
@@ -558,7 +552,6 @@ header {
         float: none;
         margin-top: 10px;
     }
-
 }
 
 
@@ -572,8 +565,4 @@ header {
 
 .menu-style {
     font-size: 35px;
-}
-.alert a{
-text-decoration: underline;
-color: #6c76e4;
 }

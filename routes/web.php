@@ -1,15 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\UserProfile;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Events\message;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -24,16 +19,28 @@ use Illuminate\Http\Response;
 
 
 
-Route::get('/add_view', [Maincontroller::class, 'show']);
+Route::get('/add_view',[Maincontroller::class,'show']);
 
-Route::get('/test', function () {
-    return view('admin.test');
-})->name('test');
 
-Route::get('/auction', function () {
+// Route::get('/home',function(){
+//     return view('index');
+// })->name('home');
+
+// Route::get('/home',function(){
+//     return view('index');
+// })->name('users');
+
+
+
+Route::get('/auction',function(){
     return view('auction');
 })->name('auction');
+// Route::get('/detail',function(){
+//     return view('detail');
+//     })->name('details-car');
 
+
+<<<<<<< HEAD
 Route::get('/createAcount',function(){
     return view('createAcount');
 })->name('createAcount');
@@ -41,19 +48,20 @@ Route::get('/createAcount',function(){
 Route::get('/admin',function(){
     return view('admin.dashboard_home');
 });
+=======
+>>>>>>> 7ee99e7635038760a4ba2d962ffbb82faaf012b8
 
-Route::get('/login', function () {
+Route::get('/login',function(){
     return view('auth.login');
 });
 
 
-Route::get('/ContactUs', [ContactUs::class, 'ContactUs'])->name('ContactUs');
-Route::get('/AboutUs', [AboutUs::class, 'AboutUs'])->name('AboutUs');
-Route::get('/CommonQuestion', [CommonQuestion::class, 'CommonQuestion'])->name('CommonQuestion');
-Route::get('/ContactUs', [ContactUs::class, 'ContactUs'])->name('ContactUs');
-Route::get('editphotoauction', [editphotoauction::class, "editphotoauction"])->name("editphotoauction");
-Route::get('Cart', [Cart::class, 'Cart'])->name('Cart');
-
+    Route::get('/ContactUs',[ContactUs::class,'ContactUs'])->name('ContactUs');
+    Route::get('/AboutUs',[AboutUs::class,'AboutUs'])->name('AboutUs');
+    Route::get('/CommonQuestion',[CommonQuestion::class,'CommonQuestion'])->name('CommonQuestion');
+    Route::get('/ContactUs',[ContactUs::class,'ContactUs'])->name('ContactUs');
+    Route::get('editphotoauction',[editphotoauction::class,"editphotoauction"])->name("editphotoauction");
+    Route::get('Cart',[Cart::class,'Cart'])->name('Cart');
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -72,36 +80,42 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
-
+Route::get('/dash-user',function(){return view('admin.dash-user-home');})->name('dash-user');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/superAdmin', [SuperAdminController::class, 'index'])->name('superAdmin');
 
+
+// Route::get('/listCategories', [App\Http\Controllers\CategoryController::class, 'index'])->name('listCategories');
+// Route::get('/createCategory', [App\Http\Controllers\CategoryController::class, 'create'])->name('createCategory');
+// Route::get('/storeCategory', [App\Http\Controllers\CategoryController::class, 'store'])->name('storeCategory');
+// Route::get('/editCategory', [App\Http\Controllers\CategoryController::class, 'edit'])->name('editCategory');
+// Route::get('/updateCategory', [App\Http\Controllers\CategoryController::class, 'update'])->name('updateCategory');
+// Route::get('/toggleCategory', [App\Http\Controllers\CategoryController::class, 'toggle'])->name('toggleCategory');
+// Route::get('/uploadFileCategory', [App\Http\Controllers\CategoryController::class, 'uploadFile'])->name('uploadFileCategory');
+
 ########## polices route #######
 Route::group(['middleware' => 'is.admin'], function () {
-    Route::get('/list_policies', [PoliciesController::class, "listPolicies"])->name("list_policies");
-    Route::get('/add_policies', [PoliciesController::class, "addPolicies"])->name("add_policies");
-    Route::post('/save_policies', [PoliciesController::class, "store"])->name("save_policies");
-    Route::get('edit_policies/{PoliceId}', [PoliciesController::class, 'edit'])->name('edit_policies');
-    Route::post('update_policies/{PoliceId}', [PoliciesController::class, 'update'])->name('update_policies');
-    Route::get('toggle_policies/{PoliceId}', [PoliciesController::class, 'toggle'])->name('toggle_policies');
-    Route::get('/view_policies', [PoliciesController::class, 'viewPolicies'])->name('view_policies');
-    ########## user route
-    Route::get('/list_user', [UserProfileController::class, "listUser"])->name("list-user");
-    Route::get('toggle_users/{userId}', [UserProfileController::class, 'toggle'])->name('toggle_users');
-    Route::get('edit_users/{userId}', [UserProfileController::class, 'editUser'])->name('edit_user');
-    Route::post('update_user/{PoliceId}', [UserProfileController::class, 'updateUser'])->name('update_users');
+Route::get('/list_policies',[PoliciesController::class,"listPolicies"])->name("list_policies");
+Route::get('/add_policies',[PoliciesController::class,"addPolicies"])->name("add_policies");
+Route::post('/save_policies',[PoliciesController::class,"store"])->name("save_policies");
+Route::get('edit_policies/{PoliceId}',[PoliciesController::class,'edit'])->name('edit_policies');
+Route::post('update_policies/{PoliceId}',[PoliciesController::class,'update'])->name('update_policies');
+Route::get('toggle_policies/{PoliceId}',[PoliciesController::class,'toggle'])->name('toggle_policies');
+Route::get('/view_policies',[PoliciesController::class,'viewPolicies'])->name('view_policies');
+########## user route
+Route::get('/list_user',[UserProfileController::class,"listUser"])->name("list-user");
+Route::get('toggle_users/{userId}',[UserProfileController::class,'toggle'])->name('toggle_users');
+Route::get('edit_users/{userId}',[UserProfileController::class,'editUser'])->name('edit_user');
+Route::post('update_user/{PoliceId}',[UserProfileController::class,'updateUser'])->name('update_users');
 });
 ##########################
-//Auction
-Route::get('/', [AuctionController::class, "viewAuction"])->name("index");
-Route::post('/', [AuctionController::class, "viewAuction"])->name("index");
-Route::get('detail_car/{carId}', [AuctionController::class, "detailAuction"])->name("action_detail");
-Route::get('/auction_review', [AuctionController::class, "auctionReview"])->name("auction_review");
-Route::get('/toggle_auctions/{auctionId}', [AuctionController::class, "toggle"])->name("toggle_auction");
-Route::get('/endauction',  [AuctionController::class, "checkAucationDate"])->name('endauction');
-Route::get('/derlevery',[PymentContoller::class, 'deleveryPyment'])->name('derlevery');
 
+Route::get('/',[AuctionController::class,"viewAuction"])->name("index");
+Route::post('/',[AuctionController::class,"viewAuction"])->name("index");
+Route::get('detail_car/{carId}',[AuctionController::class,"detailAuction"])->name("action_detail");
+Route::get('/auction_review',[AuctionController::class,"auctionReview"])->name("auction_review");
+Route::get('/toggle_auctions/{auctionId}',[AuctionController::class,"toggle"])->name("toggle_auction");
 
 ############## route address
 ############## route state
@@ -111,47 +125,38 @@ Route::get('edit_state/{stateId}',[StateController::class,'edit'])->name('edit_s
 Route::post('update_state/{stateId}',[StateController::class,'update'])->name('update_state');
 Route::get('toggle_state/{stateId}',[StateController::class,'toggle'])->name('toggle_state');
 Route::get('list_state',[StateController::class,'listState'])->name('list_state');
+
+
+Route::get('test', [apiTestController::class, 'index'])->name('test');
+Route::get('test/response/{info}', [apiTestController::class, 'showTest'])->name('test/response');
+Route::get('test/cancel/{cancel}', [apiTestController::class, 'testCancel'])->name('testCancel');
+Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewCancel');
+
 ############## route city
 
-Route::get('/add_city', [CityController::class, "create"])->name("add_city");
-Route::post('/save_city', [CityController::class, "store"])->name("store_city");
-Route::get('edit_city/{cityId}', [CityController::class, 'edit'])->name('edit_city');
-Route::post('update_city/{cityId}', [CityController::class, 'update'])->name('update_city');
-Route::get('toggle_city/{cityId}', [CityController::class, 'toggle'])->name('toggle_city');
-Route::get('list_city', [CityController::class, 'listCity'])->name('list_City');
+Route::get('/add_city',[CityController::class,"create"])->name("add_city");
+Route::post('/save_city',[CityController::class,"store"])->name("store_city");
+Route::get('edit_city/{cityId}',[CityController::class,'edit'])->name('edit_city');
+Route::post('update_city/{cityId}',[CityController::class,'update'])->name('update_city');
+Route::get('toggle_city/{cityId}',[CityController::class,'toggle'])->name('toggle_city');
+Route::get('list_city',[CityController::class,'listCity'])->name('list_City');
 
 ####################### route  vehicle_types
 
-Route::get('/add_vehicle', [VehicleTypeController::class, "create"])->name("add_vehicle");
-Route::post('/save_vehicle', [VehicleTypeController::class, "store"])->name("store_vehicle");
-Route::get('edit_vehicle/{Id}', [VehicleTypeController::class, 'edit'])->name('edit_vehicle');
-Route::post('update_vehicle/{Id}', [VehicleTypeController::class, 'update'])->name('update_vehicle');
-Route::get('toggle_vehicle/{Id}', [VehicleTypeController::class, 'toggle'])->name('toggle_vehicle');
-Route::get('list_vehicle', [VehicleTypeController::class, 'listVehicle'])->name('list_vehicle');
-
-###Pyment route 
-Route::get('pyment/response/{info}', [PymentContoller::class, 'showPyment'])->name('pyment/response');
-Route::get('pyment/cancel/{cancel}', [PymentContoller::class, 'pymentCancel'])->name('pymentCancel');
-Route::get('pyment/cancel', [PymentContoller::class, 'viewCancel'])->name('viewCancel');
+Route::get('/add_vehicle',[VehicleTypeController::class,"create"])->name("add_vehicle");
+Route::post('/save_vehicle',[VehicleTypeController::class,"store"])->name("store_vehicle");
+Route::get('edit_vehicle/{Id}',[VehicleTypeController::class,'edit'])->name('edit_vehicle');
+Route::post('update_vehicle/{Id}',[VehicleTypeController::class,'update'])->name('update_vehicle');
+Route::get('toggle_vehicle/{Id}',[VehicleTypeController::class,'toggle'])->name('toggle_vehicle');
+Route::get('list_vehicle',[VehicleTypeController::class,'listVehicle'])->name('list_vehicle');
 
 
-Route::get('show_notification', [NotificationController::class, 'index'])->name('show_notification');
-Route::get('makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
-Route::post('comfirmPyment', [BiddingController::class, 'addAmountOfBidding'])->name('comfirmPyment');
+Route::get('test', [apiTestController::class, 'index'])->name('test');
+Route::get('test/response/{info}', [apiTestController::class, 'showTest'])->name('test/response');
+Route::get('test/cancel/{cancel}', [apiTestController::class, 'testCancel'])->name('testCancel');
+Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewCancel');
 
-####################    delivery rout
-Route::get('/delivery',[DeliveryController::class,'create']);
-Route::post('/store_delivery',[DeliveryController::class,'store'])->name('store_delivery');
 
-Route::get('orders',function(){
-    return view('order');
-});
-
-Route::get('/invoice',function(){
-    return view('admin.invoice');
-});
-Route::get('/order', function () {return view('order');})->name('order');
-
-Route::get('/derlevery',[PymentContoller::class, 'index'])->name('derlevery');
-
+Route::get('show_notification' ,[NotificationController::class,'index'])->name('show_notification');
+Route::get('makeNotificationSeen/{id}' ,[NotificationController::class,'makeNotificationSeen'])->name('makeNotificationSeen');
 
