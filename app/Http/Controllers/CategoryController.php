@@ -18,7 +18,7 @@ class CategoryController extends Controller
     {
 
         $categories = Category::orderBy('id', 'desc')->get();
-        return view('admin.view_cat')
+        return view('admin.categry.view_cat')
             ->with('categories', $categories);
     }
 
@@ -30,7 +30,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        return view('admin.add_categry');
+        return view('admin.categry.add_categry');
     }
 
     /**
@@ -81,7 +81,7 @@ class CategoryController extends Controller
     {
         //
         $category = Category::find($categoryId);
-        return view('admin.edit_categry')
+        return view('admin.categry.edit_categry')
             ->with('category', $category);
     }
 

@@ -77,7 +77,7 @@ class AuctionController extends Controller
         $state = State::with("city")->get();
 
         $vehicleType = VehicleType::get();
-        return view('admin/add_auction')->with([
+        return view('admin.auction.add_auction')->with([
             'categories' => $category,
             'vehicleTypes' => $vehicleType,
             'states' => $state,
@@ -245,7 +245,7 @@ class AuctionController extends Controller
 
         $vehicleType = VehicleType::get();
         $auction = auction::find($auction_id);
-        return view('admin/edit_auction')->with([
+        return view('admin.auction.edit_auction')->with([
             'auction' => $auction,
             'categories' => $category,
             'vehicleTypes' => $vehicleType,

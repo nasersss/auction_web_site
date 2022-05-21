@@ -44,7 +44,7 @@ class UserProfileController extends Controller
     {
         //
         $userInfo = User::find(Auth::user()->id);
-        return view('admin.add_profile')
+        return view('admin.profile.add_profile')
             ->with('userInfo', $userInfo);
     }
 
@@ -106,7 +106,7 @@ class UserProfileController extends Controller
     {
         //
         $user = User::with('profile')->where('id', Auth::user()->id)->get();
-        return view('admin.profile')
+        return view('admin.profile.profile')
             ->with('users', $user);
     }
 
@@ -119,7 +119,7 @@ class UserProfileController extends Controller
     public function edit($userProfile)
     {
         $userInfo = User::with('profile')->find($userProfile);
-        return view('admin.edit_profile')
+        return view('admin.profile.edit_profile')
             ->with('userInfo', $userInfo);
         // return response($userInfo);
 
