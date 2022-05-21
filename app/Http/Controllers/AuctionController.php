@@ -86,7 +86,7 @@ class AuctionController extends Controller
             $state = State::with("city")->get();
 
             $vehicleType = VehicleType::get();
-            return view('admin/add_auction')->with([
+            return view('admin.auction.add_auction')->with([
                 'categories' => $category,
                 'vehicleTypes' => $vehicleType,
                 'states' => $state,
@@ -280,22 +280,20 @@ class AuctionController extends Controller
     {
         try {
 
-            $category = category::get();
-            $state = State::with("city")->get();
-
-            $vehicleType = VehicleType::get();
-            $auction = auction::find($auction_id);
-            return view('admin/edit_auction')->with([
-                'auction' => $auction,
-                'categories' => $category,
-                'vehicleTypes' => $vehicleType,
-                'states' => $state,
-            ]);
-        } catch (\Throwable $error) {
-            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
-        }
+        $vehicleType = VehicleType::get();
+        $auction = auction::find($auction_id);
+        return view('admin.auction.edit_auction')->with([
+            'auction' => $auction,
+            'categories' => $category,
+            'vehicleTypes' => $vehicleType,
+            'states' => $state,
+        ]);
     }
+    catch (\Throwable $error) {
+        return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم حدف الصور بنجاح']);
 
+    }
+    }
     /**
      * @param mixed $auctionId
      *This function delete images if user inter any images that not related of his auction

@@ -19,10 +19,12 @@ class CategoryController extends Controller
         try {
 
             $categories = Category::orderBy('id', 'desc')->get();
-            return view('admin.view_cat')->with('categories', $categories);
-        } catch (\Throwable $error) {
-            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
-        }
+            return view('admin.categry.view_cat')
+                ->with('categories', $categories);
+                    }
+            catch (\Throwable $error) {
+                        return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+                    }
     }
 
     /**
@@ -33,10 +35,9 @@ class CategoryController extends Controller
     public function create()
     {
         try {
-
-            //
-            return view('admin.add_categry');
-        } catch (\Throwable $error) {
+            return view('admin.categry.add_categry');  
+              }
+        catch (\Throwable $error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
     }
@@ -92,11 +93,9 @@ class CategoryController extends Controller
     public function edit($categoryId)
     {
         try {
-            //code...
-
             //
             $category = Category::find($categoryId);
-            return view('admin.edit_categry')
+            return view('admin.categry.edit_categry')
                 ->with('category', $category);
         } catch (\Throwable $error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);

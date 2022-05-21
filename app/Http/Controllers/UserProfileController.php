@@ -53,11 +53,10 @@ class UserProfileController extends Controller
      */
     public function create()
     {
-        try {
-
-
+        try {        
             $userInfo = User::find(Auth::user()->id);
-            return view('admin.add_profile')->with('userInfo', $userInfo);
+            return view('admin.profile.add_profile')
+                ->with('userInfo', $userInfo);
         } catch (\Throwable $error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
@@ -125,11 +124,9 @@ class UserProfileController extends Controller
      */
     public function show()
     {
-        try {
-
-
+        try {       
             $user = User::with('profile')->where('id', Auth::user()->id)->get();
-            return view('admin.profile')
+            return view('admin.profile.profile')
                 ->with('users', $user);
         } catch (\Throwable $error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
@@ -144,13 +141,10 @@ class UserProfileController extends Controller
      */
     public function edit($userProfile)
     {
-
         try {
-
             $userInfo = User::with('profile')->find($userProfile);
-            return view('admin.edit_profile')
+            return view('admin.profile.edit_profile')
                 ->with('userInfo', $userInfo);
-            // return response($userInfo);
         } catch (\Throwable $error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
