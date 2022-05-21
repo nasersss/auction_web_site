@@ -158,7 +158,7 @@ class AuctionController extends Controller
             $auctionInfo->damage = $request->damage;
             $auctionInfo->vehicle_type_id = $request->vehicle_type;
             $auctionInfo->name = $request->name;
-            $auctionInfo->model = $request->mdel;
+            $auctionInfo->model = $request->model;
             $auctionInfo->state = $request->state;
             $auctionInfo->engine_type = $request->engine_type;
             $auctionInfo->notes = $request->notes;
@@ -170,16 +170,10 @@ class AuctionController extends Controller
             $auctionInfo->fuel = $request->fuel;
             $auctionInfo->city_id = $request->address;
             $auctionInfo->date_of_end_auction = $request->date_of_end_auction;
-        } catch (\Throwable $error) {
-
-            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
-        }
+      
         // if the auction is saved that will save and upload images of auction.
-        try {
-            //code...
 
             if ($auctionInfo->save()) {
-
                 $auctionMaineImage = new AuctionImage();
                 $auctionMaineImage->image = $this->uploadMainFile($request->file('mainImage'), $auctionInfo->id);
                 $auctionMaineImage->is_active = -1;
@@ -191,22 +185,21 @@ class AuctionController extends Controller
                     $auctionImage->is_active = -1;
                     $auctionImage->auction_id = $auctionInfo->id;
                     $auctionImage->save();
-                }
-
-
+                }//end foreach
             $admins = User::where('role', '<', 2)->get();
             $users = User::where('role', 2)->get();
             foreach ($admins as  $admin) {
                 $notification = new NotificationController();
                 $notification->sendNotification(Auth::user()->id,$admin->id, 'تم اضافة مزاد جديد', 'auction_review');
-            }
+            }//end admin foeach
            
             $payment = new PymentContoller();
             $percentageFromStrartPrice = $auctionInfo->stare_price*0.2;
            return  $payment->makePyment($auctionInfo,$percentageFromStrartPrice);
 
         }
-    }catch (\Throwable $th) {
+    }
+    catch (\Throwable $th) {
             return redirect()->back()->with(["error" => "there error found"]);
             // return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
         }
@@ -464,7 +457,7 @@ class AuctionController extends Controller
             $user = User::find(Auth::user()->id);
             if ($user->role < 2) {
                 $auctions = auction::with(["user", "category", "auctionImage"])->orderBy('created_at', 'desc')->get();
-                return view("admin.auctions_review")->with("auctions", $auctions);
+                return view("admin.auction.auctions_review")->with("auctions", $auctions);
             } else {
                 $auction = auction::where('seller_id', $user->id)->orderBy('created_at', 'desc')->get();
                 return view("admin.userAuction")->with("auctions", $auction);

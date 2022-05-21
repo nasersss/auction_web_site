@@ -95,11 +95,13 @@ class BiddingController extends Controller
      */
     public function addAmountOfBidding(Request $request)
     {
-        session_start();
-        $auction = auction::find($_SESSION['auction']['id']);
+        $auctionId = $request->order_reference;
+        $auction = auction::find($auctionId);
         $admin = User::where('role', 0)->first();
+        $authUser =  Auth::user();
         $paidAmout = $request->paid_amount;
-        Auth::user()->deposit($paidAmout, ['paid_amount' => $paidAmout, 'order_reference_id' => $auction->id, 'creaated_at' => $request->creaated_at]);
+        $authUser->deposit(5000);
+        // $authUser->deposit($paidAmout,['paid_amount' => $paidAmout, 'order_reference_id' => $auction->id, 'creaated_at' => $request->creaated_at]);
         //Auth::user()->withdraw($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at]);
         //$admin->deposit($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at,'FromuserId'=>Auth::user()->id]);
 

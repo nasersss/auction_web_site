@@ -153,10 +153,6 @@
 
 @section('script')
     <!-- third party js -->
-<<<<<<< HEAD:resources/views/admin/auction/auctions_review.blade.php
-=======
-
->>>>>>> 99b9a74c55a70a1a8b981ff754fed6eef7b7d272:resources/views/admin/auctions_review.blade.php
     <script src="assets/js/vendor/jquery.dataTables.min.js"></script>
     <script src="assets/js/vendor/dataTables.bootstrap5.js"></script>
     <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
