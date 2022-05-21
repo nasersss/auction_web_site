@@ -12,10 +12,6 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/detail.css">
     <link rel="stylesheet" href="/assets/css/header.css">
-<<<<<<< HEAD
-
-=======
->>>>>>> 7ee99e7635038760a4ba2d962ffbb82faaf012b8
     <title>التفاصيل</title>
 </head>
 
@@ -44,18 +40,6 @@
             <strong>{{ session()->get('success') }} </strong>
         </div>
         @endif
-<<<<<<< HEAD
-        <div class="m-4">
-            <div class="alert alert-danger alert-dismissible fade show">
-                <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> ملاحظة!</h4>
-                <p> عند مشاركتك لابد أن يكون لديك في محفظتك 20% من سعر السيارة الاساسي .</p>
-                <hr>
-                <p class="mb-0"> بإمكانك الإطلاع على سياسات الموقع لتعرف كيف تجرى المزادات <a href="{{ route('view_policies') }}"> انقر هنا لمعرفة المزيد</a></p>
-
-            </div>
-        </div>
-=======
->>>>>>> 7ee99e7635038760a4ba2d962ffbb82faaf012b8
         <div class="row">
 
             <div class="col-12 col-md-6 section-style ">
@@ -93,10 +77,6 @@
                             </span></span>
 
                     </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 7ee99e7635038760a4ba2d962ffbb82faaf012b8
                     <div class="auction-info-two mb-3">
                         <div class="row">
                             <div class="col-4">
@@ -292,11 +272,21 @@
                         </form>
 <<<<<<< HEAD
                         @else
+<<<<<<< HEAD
                         <form method="post" action="{{route('/delevery')}}">
                             @csrf
                             <input type="hidden" name="auction_id" value="{{$auctions->id}}">
                             <button type="button" class="btn btn-primary" data-bs-target="#exampleModal">إكمال عملية الدفع </button>
                         </form>
+=======
+
+                        <form  method="get" action="{{route('delivery')}}" >
+                            @csrf
+                            <input type="hidden" name="auction_id" value="{{$auctions->id}}">
+                            <button type="submit" class="btn btn-primary" data-bs-target="#exampleModal">إكمال عملية الدفع </button>
+                        </form> 
+                           
+>>>>>>> 0ef1539429aa78b6a2765bed83adc014c9e88ad7
                         @endif
 =======
 

@@ -98,13 +98,16 @@ Route::get('edit_users/{userId}',[UserProfileController::class,'editUser'])->nam
 Route::post('update_user/{PoliceId}',[UserProfileController::class,'updateUser'])->name('update_users');
 });
 ##########################
+//Auction
+Route::get('/', [AuctionController::class, "viewAuction"])->name("index");
+Route::get('/toggle_auctions/{auctionId}', [AuctionController::class, "toggle"])->name("toggle_auction");
+Route::get('/endauction',  [AuctionController::class, "checkAucationDate"])->name('endauction');
+Route::post('/makeAuctionToSell',  [AuctionController::class, "makeAuctionToSell"])->name('isActiveToSell');
+Route::post('/actionTimeExtended',  [AuctionController::class, "actionTimeExtended"])->name('actionTimeExtended');
+Route::get('/derlevery',[PymentContoller::class, 'deleveryPyment'])->name('derlevery');
 
-Route::get('/',[AuctionController::class,"viewAuction"])->name("index");
-Route::post('/',[AuctionController::class,"viewAuction"])->name("index");
 Route::get('detail_car/{carId}',[AuctionController::class,"detailAuction"])->name("action_detail");
 Route::get('/auction_review',[AuctionController::class,"auctionReview"])->name("auction_review");
-Route::get('/toggle_auctions/{auctionId}',[AuctionController::class,"toggle"])->name("toggle_auction");
-
 ############## route address
 ############## route state
 Route::get('/add_state',[StateController::class,"create"])->name("add_state");
@@ -113,12 +116,6 @@ Route::get('edit_state/{stateId}',[StateController::class,'edit'])->name('edit_s
 Route::post('update_state/{stateId}',[StateController::class,'update'])->name('update_state');
 Route::get('toggle_state/{stateId}',[StateController::class,'toggle'])->name('toggle_state');
 Route::get('list_state',[StateController::class,'listState'])->name('list_state');
-
-
-Route::get('test', [apiTestController::class, 'index'])->name('test');
-Route::get('test/response/{info}', [apiTestController::class, 'showTest'])->name('test/response');
-Route::get('test/cancel/{cancel}', [apiTestController::class, 'testCancel'])->name('testCancel');
-Route::get('test/cancel', [apiTestController::class, 'viewCancel'])->name('viewCancel');
 
 ############## route city
 
@@ -138,12 +135,24 @@ Route::post('update_vehicle/{Id}',[VehicleTypeController::class,'update'])->name
 Route::get('toggle_vehicle/{Id}',[VehicleTypeController::class,'toggle'])->name('toggle_vehicle');
 Route::get('list_vehicle',[VehicleTypeController::class,'listVehicle'])->name('list_vehicle');
 
+###Pyment and order route 
+Route::get('pyment/response/{info}', [PymentContoller::class, 'showPyment'])->name('pyment/response');
+Route::get('pyment/cancel/{cancel}', [PymentContoller::class, 'pymentCancel'])->name('pymentCancel');
+Route::get('pyment/cancel', [PymentContoller::class, 'viewCancel'])->name('viewCancel');
 
-Route::get('show_notification' ,[NotificationController::class,'index'])->name('show_notification');
-Route::get('makeNotificationSeen/{id}' ,[NotificationController::class,'makeNotificationSeen'])->name('makeNotificationSeen');
+Route::get('show_notification', [NotificationController::class, 'index'])->name('show_notification');
+Route::get('makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
+Route::post('comfirmPyment', [BiddingController::class, 'addAmountOfBidding'])->name('comfirmPyment');
 
 ####################    delivery rout
-Route::get('/delivery',[DeliveryController::class,'create']);
+Route::get('/delivery',[DeliveryController::class,'create'])->name('delivery');
 Route::post('/store_delivery',[DeliveryController::class,'store'])->name('store_delivery');
 
-Route::get('/aaa',[AuctionController::class,'aaa'])->name('aaa');
+##order 
+Route::post('/paymentOfDelevry',[OrderController::class,'paymentOfDeleviry'])->name('paymentOfDeleviry');
+Route::get('/comfirmDelevery/{id}',[OrderController::class,'comfirmDelevery'])->name('comfirmDelevery');
+Route::get('/comfirmSell/{id}',[OrderController::class,'comfirmSell'])->name('comfirmSell');
+Route::post('/makeDeleverDone',[OrderController::class,'makeDeleverDone'])->name('makeDeleverDone');
+
+
+

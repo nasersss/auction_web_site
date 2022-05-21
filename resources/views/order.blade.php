@@ -58,20 +58,18 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <h4 class="mt-2">المعلومات الشخصية</h4>
-                                        <form method="post" action="{{ route('store_delivery') }}">
-                                            @csrf
-                                            <input type="hidden" value="{{$auction->id}}" name="autionId">
+                                        <form>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="billing-first-name" class="form-label">اسم المستلم</label><span class="text-danger">*</span>
-                                                        <input class="form-control" type="text"  name="receiver_name" value="{{ old('receiver_name') }}" placeholder="ادخل اسم المستلم" id="billing-first-name">
+                                                        <input class="form-control" type="text" name="res_name" placeholder="ادخل الاسم" id="billing-first-name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="billing-phone" class="form-label">رقم الهاتف <span class="text-danger">*</span></label>
-                                                        <input class="form-control" type="text" name="phone" value="{{ old('phone') }}" placeholder=" 777 xxxx xxx" id="billing-phone">
+                                                        <input class="form-control" type="text" name="phone" placeholder=" 777 xxxx xxx" id="billing-phone">
                                                     </div>
                                                 </div>
                                             </div> <!-- end row -->
@@ -112,12 +110,6 @@
                             <!-- Shipping Content-->
                             <div class="tab-pane" id="shipping-information" style="margin-top: -100px;">
                                 <div class="row">
-                                    @if($errors->any())
-    @foreach($errors->all() as $err)
-        <p class="alert alert-danger">{{$err}}</p>
-        @endforeach
-    @endif
-                                    @include('message')
                                     <div class="col-lg-8">
                                         <h4 class="mt-2">معلومات الموقع</h4>
 
@@ -125,33 +117,15 @@
                                                 <div class="col-12">
                                                     <div class="mb-3">
                                                         <label for="new-adr-address" class="form-label">المحافظة</label>
-                                                        <select class="form-control" id="state" required  >
-                                                            <option selected disabled>أختر محافظة</option>
-                                                            @isset($states)
-                                                            @foreach($states as $state)
-                                                            <option value="{{$state->id}}">{{$state->name}}</option>
-                                                            @endforeach
-                                                            @endisset
-
-                                                        </select>
+                                                        <input class="form-control" type="text" placeholder="ادخل عنوانك" id="new-adr-address">
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="mb-3">
                                                         <label for="new-adr-address" class="form-label">المدينة</label>
-                                                        <select required name="city" id='city' class="form-control mb-3">
-                                                            <option selected disabled>أختر مدينة</option>
-                                                            @isset($states)
-                                                            @foreach($states as $state)
-                                                            @foreach($state->city as $city)
-                                                            <option style="display: none;" class="citys state-{{$city->state_id}}" value="{{$city->id}}">{{$city->name}}</option>
-                                                            @endforeach
-                                                            @endforeach
-                                                            @endisset
-                                                        </select>
+                                                        <input class="form-control" name="city" type="text" placeholder="ادخل عنوانك" id="new-adr-address">
                                                     </div>
                                                 </div>
-
                                             </div> <!-- end row -->
                                             {{-- <div class="row">
                                                 <div class="col-md-4">
@@ -180,8 +154,8 @@
                                                 </div> <!-- end col -->
                                                 <div class="col-sm-6">
                                                     <div class="text-sm-end">
-                                                        <button  type="submit" class="btn btn-danger">
-                                                            <i class="mdi mdi-cash-multiple me-1"></i>أكمال الدفع</button>
+                                                        <a href="apps-ecommerce-checkout.html" class="btn btn-danger">
+                                                            <i class="mdi mdi-cash-multiple me-1"></i>أكمال الدفع</a>
                                                     </div>
                                                 </div> <!-- end col -->
                                             </div> <!-- end row -->
@@ -199,15 +173,7 @@
                                                             <h6 class="m-0">سعر السيارة:</h6>
                                                         </td>
                                                         <td class="text-end">
-                                                          {{ $auction->curren_price}}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="text-end">
-                                                        <td>
-                                                            <h6 class="m-0">قيمة الظمان:</h6>
-                                                        </td>
-                                                        <td class="text-end" style="color: red">
-                                                          {{ $auction->stare_price * .2}} -
+                                                            {{$auction->curren_price}}
                                                         </td>
                                                     </tr>
                                                     <tr class="text-end">
@@ -223,7 +189,7 @@
                                                             <h5 class="m-0">الإجمالي:</h5>
                                                         </td>
                                                         <td class="text-end fw-semibold">
-                                                           {{$auction->curren_price+200-$auction->stare_price * .2}}
+                                                            {{$auction->curren_price+200}}
                                                         </td>
                                                     </tr>
                                                     </tbody>
@@ -247,7 +213,6 @@
         </div>
 
     </div>
-    <script src="/assets/js/state_city.js"></script>
     <script>
         const tab = document.getElementById("billing-information");
         const tab = document.getElementById("shipping-information");
@@ -255,6 +220,7 @@
 
 
     @endsection
+
     <script src="/assets/js/pages/demo.form-wizard.js"></script>
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.js"></script>

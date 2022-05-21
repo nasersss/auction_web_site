@@ -30,13 +30,8 @@ class ClosingBidding extends Command
      */
     public function handle()
     {
-        // $badd = new Bidding();
-        // $badd->user_id = 1;
-        // $badd->auction_id = 1;
-        // $badd->bidding_amount = 1250;
-        // $badd->payed_amount = 1254;
-        // $badd->save();
-        // $this->info('Successfully.');
-        // Mail::to('amas701111367@gmail.com')->send(new Notification());
+        $auction = new AuctionControlle ();
+        $auciton->checkAucationDate();
+        $this->info('Successfully.');
     }
 }

@@ -23,12 +23,11 @@ class NotificationController extends Controller
     {
         try {
 
-        $notifications = Notification::where('to_user_id', Auth::user()->id)->where('is_seen', -1)->get();
-        return response($notifications);
-
-    } catch (\Throwable $error) {
-        throw $error->getMessage();
-    }
+            $notifications = Notification::where('to_user_id', Auth::user()->id)->where('is_seen', -1)->get();
+            return response($notifications);
+        } catch (\Throwable $error) {
+            throw $error->getMessage();
+        }
     }
 
     /**
@@ -41,21 +40,21 @@ class NotificationController extends Controller
     {
         try {
 
-        $notification = Notification::find($notificationId);
-        $notification->is_seen = 1;
-        $notification->update();
-        $route = explode('/', $notification->route);
-        $parameter = null;
-        if (count($route) == 1)
-            return redirect()->route("$notification->route");
-        else {
-            $parameter = $route[1];
-            $route = $route[0];
-            return redirect()->route("$route", "$parameter");
+            $notification = Notification::find($notificationId);
+            $notification->is_seen = 1;
+            $notification->update();
+            $route = explode('/', $notification->route);
+            $parameter = null;
+            if (count($route) == 1)
+                return redirect()->route("$notification->route");
+            else {
+                $parameter = $route[1];
+                $route = $route[0];
+                return redirect()->route("$route", "$parameter");
+            }
+        } catch (\Throwable $error) {
+            throw $error->getMessage();
         }
-    } catch (\Throwable $error) {
-        throw $error->getMessage();
-    }
     }
 
     /**
@@ -70,19 +69,39 @@ class NotificationController extends Controller
      * @return boolean
      *
      */
-    public function sendNotification($toUserId,$content,$route)
+    public function sendNotification($toUserId, $content, $route)
     {
         try {
 
-        $notification = new Notification();
-        $notification->from_user_id = Auth::user()->id;
-        $notification->to_user_id=$toUserId;
-        $notification->content=$content;
-        $notification->route=$route;
-        $notification->save();
-    } catch (\Throwable $error) {
-        throw $error->getMessage();
+            $notification = new Notification();
+            $notification->from_user_id = Auth::user()->id;
+            $notification->to_user_id = $toUserId;
+            $notification->content = $content;
+            $notification->route = $route;
+            $notification->save();
+        } catch (\Throwable $error) {
+            throw $error->getMessage();
+        }
     }
+    /**
+     * [Description for sendNotificationFromAdmin]
+     *
+     * @param mixed $toUserId
+     * @param mixed $content
+     * @param mixed $route
+     * 
+     * @return [type]
+     * 
+     */
+    public function sendNotificationFromAdmin($toUserId, $content, $route)
+    {
+        $notification = new Notification();
+        $admin = User::where('role', 0)->first();
+        $notification->from_user_id = $admin->id;
+        $notification->to_user_id = $toUserId;
+        $notification->content = $content;
+        $notification->route = $route;
+        $notification->save();
     }
 
     /**

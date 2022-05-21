@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Mail;
-
 use App\Models\Notification as ModelsNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,7 +12,6 @@ class Notification extends Mailable
     use Queueable, SerializesModels;
 
     public $notification;
-
     /**
      * Create a new message instance.
      *
@@ -31,6 +29,6 @@ class Notification extends Mailable
      */
     public function build()
     {
-        return $this->view('email.notificationsEmail')->with('notification', $this->notification);
+        return $this->view('email.notificationsEmail')->with('notification',$this->notification);
     }
 }
