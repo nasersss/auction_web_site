@@ -124,8 +124,12 @@ class OrderController extends Controller
      * 
      */
     public function makeDeleverDone(Request $request){
-        
+        try {
+
         $delever = Delivery::find($request->deleverId);
+        $auction = auction::find($delever->auction->id);
+        $auction->is_received *=-1;
+        $auction->update();
         $payer = Auth::user();
         $paidAmout = $delever->paid_amout;
         $seller = $delever->auction->user;
@@ -142,7 +146,7 @@ class OrderController extends Controller
         $order->system_balance_from_seller =  $amoutOfSystem;
         $order->system_balance_from_payer	= $amoutOfSystem;
         $order->delivery_id = $delever->id;
-        try {
+       
             $order->save();
              return redirect('/');
         } catch (\Throwable $th) {

@@ -470,7 +470,6 @@ class AuctionController extends Controller
                     $notification->sendNotificationFromAdmin($uesrId, 'عزيزي العميل لقد رسي المزاد عليك   ', 'action_detail/' . $auctionId);
                     $notification->sendNotificationFromAdmin($admin->id, 'لقد رسى المزاد على المستخدم ', 'edit-auction/' . $auctionId);
                     $notification->sendNotificationFromAdmin($auction->seller_id, 'مبروك  ' .$auction->user->name.' لقد رسي مزادك الخاص بالسيارة '.$auction->name.' بمبلغ '.$auction->curren_price.' هل انت موافق على عملية البيع اضغط على موافق للبيع أو تمديد ', 'comfirmSell/'. $auctionId);
-
                     $auctionControl->toggle($auctionId);
                 }
             }
