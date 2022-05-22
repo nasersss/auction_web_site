@@ -58,8 +58,6 @@
                                     <option selected disabled>أختر احدى الانوع</option>
                                     @foreach($categories as $category)
                                     <option value="{{$category->id}}">{{$category->name}}</option>
-                                    <!-- <option value="2">بي أم دبليو</option>
-                                            <option value="3">فيراري</option> -->
                                     @endforeach
                                 </select>
                             </div>

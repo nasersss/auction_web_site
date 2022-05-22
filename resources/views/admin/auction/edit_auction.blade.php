@@ -28,6 +28,7 @@
 @include('message')
 <form method="post" action="{{route('update-auction')}}" enctype="multipart/form-data">
     @csrf
+    <input type="hidden" value="@isset($auction->id){{$auction->id}}@endisset" name="id" value="">
     <div class="row">
         <div class="card">
             <div class="card-header">
@@ -47,10 +48,10 @@
                             <div class="mb-1 col-lg-4 col-md-12">
                                 <label for="category" class="form-label">نوع السيارة</label>
                                 <select value="@isset($auction->category_id){{$auction->category_id}}@endisset" required name="category_id" class="form-select" id="category">
-                                    <option disabled>أختر احدى الانوع</option>
-
-                                    <option value="2">بي أم دبليو</option>
-                                    <option value="3">فيراري</option>
+                                    <option  disabled>أختر احدى الانوع</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="mb-1 col-lg-4 col-md-12">
@@ -171,7 +172,7 @@
                                     <p class="text-muted font-14">حجم الصورة الموصى به 800 × 400 (بكسل)</p>
                                     <div class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
                                         <div class="fallback">
-                                            <input class="form-control" required name="mainImage" accept="image/*" type="file">
+                                            <input class="form-control"  name="mainImage" accept="image/*" type="file">
                                         </div>
 
                                         <div class="dz-message needsclick">
@@ -191,7 +192,7 @@
                                     <p class="text-muted font-14">حجم الصورة الموصى به 800 × 400 (بكسل)</p>
                                     <div class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
                                         <div class="fallback">
-                                            <input class="form-control" required name="images[]" accept="image/*" type="file" multiple>
+                                            <input class="form-control"  name="images[]" accept="image/*" type="file" multiple>
                                         </div>
 
                                         <div class="dz-message needsclick">
@@ -251,7 +252,7 @@
                             <label for="project-overview" class="form-label">ملاحظات</label>
                             <textarea name="notes" class="form-control" id="project-overview" rows="5" placeholder="ملاحظات...">@isset($auction->notes){{$auction->notes}}@endisset</textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary mb-3">إضافة</button>
+                        <button type="submit" class="btn btn-primary mb-3">تعديل</button>
 
                     </div>
 

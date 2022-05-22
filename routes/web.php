@@ -35,14 +35,6 @@ Route::get('/add_view',[Maincontroller::class,'show']);
 Route::get('/auction',function(){
     return view('auction');
 })->name('auction');
-// Route::get('/detail',function(){
-//     return view('detail');
-//     })->name('details-car');
-
-
-Route::get('/createAcount',function(){
-    return view('createAcount');
-})->name('createAcount');
 
 Route::get('/admin',function(){
     return view('admin.dashboard_home');
@@ -102,6 +94,7 @@ Route::post('update_user/{PoliceId}',[UserProfileController::class,'updateUser']
 Route::get('/', [AuctionController::class, "viewAuction"])->name("index");
 Route::get('/toggle_auctions/{auctionId}', [AuctionController::class, "toggle"])->name("toggle_auction");
 Route::get('/endauction',  [AuctionController::class, "checkAucationDate"])->name('endauction');
+Route::get('/endOneauction/{id}',  [AuctionController::class, "endOneauction"])->name('endOneauction');
 Route::post('/makeAuctionToSell',  [AuctionController::class, "makeAuctionToSell"])->name('isActiveToSell');
 Route::post('/actionTimeExtended',  [AuctionController::class, "actionTimeExtended"])->name('actionTimeExtended');
 Route::get('/derlevery',[PymentContoller::class, 'deleveryPyment'])->name('derlevery');

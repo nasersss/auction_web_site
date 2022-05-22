@@ -124,7 +124,7 @@
                                         @endisset
                                     </td>
 <td>
-    <a href="" class="btn btn-danger"> ارساء المزاد </a>
+    <a href="{{route('endOneauction',$auction->id)}}" class="btn btn-danger"> ارساء المزاد </a>
 
 </td>
 <td>

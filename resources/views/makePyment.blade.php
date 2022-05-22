@@ -5,7 +5,8 @@
     <!-- CSS only -->
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> -->
 <link href="{{asset('assets/css/app-ar.min.css')}}" rel="stylesheet" type="text/css" id="light-style">
-    <title>عملية التاكيد</title>
+<link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
+<title>عملية التاكيد</title>
     <style>
         @import url(../fonts/DIN.css);
         body {
@@ -76,10 +77,11 @@
                         <div class="col-md-12 p-5">
                             <div class="text-center">
                                 <div class="d-flex justify-content-center mb-5 flex-column align-items-center"> 
-                                    <span class="check1"><i class="fa fa-check"></i></span> 
+                                    <span class="check1"><i class="dripicons-checkmark"></i></span> 
+                                    
                                     <span class="font-weight-bold">يرجاء شحن محفضتك</span> 
-                                        <small class="mt-2">سوف يتم خصم نسبة 20 % من محفضتك للتأكيد العملية يرجاء الضغط على الزر ادناه</small> 
-                                         
+                                        <small class="mt-2">عليك شحن محفظتك لدينا بمبلغ<strong> ${{$auctionInfo->curren_price*0.2}}</strong>لضمان مصداقية الموقع وملكية المركبة</small> 
+                                         <strong>وسيتم ارجعاها لك عند انتهاء المزاد بلإضافة لمبلغ بيع السيارة </strong>
                                     </div> 
                                     <a href="/" ><button class="btn btn-danger btn-block confirm-button">رفض العملية</button></a>
 
