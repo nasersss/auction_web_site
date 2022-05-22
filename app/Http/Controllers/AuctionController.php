@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Mail\Notification as MailNotification;
 use App\Models\auction;
 use App\Models\AuctionImage;
 use App\Models\Bidding;
@@ -18,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\Notification as MailNotification;
 
 class AuctionController extends Controller
 {
@@ -108,6 +108,7 @@ class AuctionController extends Controller
      */
     public function store(Request $request)
     {
+        
         try {
             Validator::validate($request->all(), [
                 'name' => ['required', 'min:2', 'max:100'],
@@ -195,13 +196,13 @@ class AuctionController extends Controller
            
             $payment = new PymentContoller();
             $percentageFromStrartPrice = $auctionInfo->stare_price*0.2;
-           return  $payment->makePyment($auctionInfo,$percentageFromStrartPrice);
-
-        }
+             if(Auth::user()->balance<$percentageFromStrartPrice)
+                 return  $payment->makePyment($auctionInfo,$percentageFromStrartPrice);
+            return redirect()->back()->with(["success" => "تمت اضافة المزاد بنجاح "]);
+     }
     }
     catch (\Throwable $th) {
             return redirect()->back()->with(["error" => "there error found"]);
-            // return redirect()->route('index')->with(['success' => 'تم تحديث البيانات بنجاح']);
         }
     }
 
@@ -487,11 +488,19 @@ class AuctionController extends Controller
             // $users = User::chunck(10,function($data){
                 // This for each will send notfication and email to all user 
                 $users = User::get();
-                foreach ($users as $user) {
-                    $notification->sendNotificationFromAdmin($user->id, 'تمت اضافة مزاد جديد ', 'action_detail/' . $auctionId);
-                    $notify = Notification::where('to_user_id',$user->id)->orderBy('id','desc')->first();
-                    $MailNotification = new MailNotificatin($notify);
-                    Mail::to($user->email)->send($MailNotification);
+                if( $auction->is_active == 1)
+                {
+                    foreach ($users as $user) {
+                    
+                        $notification->sendNotificationFromAdmin($user->id, 'تمت اضافة مزاد جديد ', 'action_detail/' . $auctionId);
+                        $notify = Notification::where('to_user_id',$user->id)->orderBy('id','desc')->first();
+                        try {
+                            $MailNotification = new MailNotification($notify);
+                            Mail::to($user->email)->send($MailNotification);
+                        } catch (\Throwable $th) {
+                            return back()->with(['error' => 'تم تحديث البيانات بنجاح ولكن هناك خطاء في الاتصال بالانترنت لم يتم ارسال الايميلات']);
+                        }    
+                    } 
                 }
             // });
 

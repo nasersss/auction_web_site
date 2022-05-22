@@ -107,7 +107,7 @@ Route::post('/actionTimeExtended',  [AuctionController::class, "actionTimeExtend
 Route::get('/derlevery',[PymentContoller::class, 'deleveryPyment'])->name('derlevery');
 
 Route::get('detail_car/{carId}',[AuctionController::class,"detailAuction"])->name("action_detail");
-Route::get('/auction_review',[AuctionController::class,"auctionReview"])->name("auction_review");
+Route::get('/auction_review',[AuctionController::class,"auctionReview"])->name("auctions-review");
 ############## route address
 ############## route state
 Route::get('/add_state',[StateController::class,"create"])->name("add_state");
@@ -139,6 +139,7 @@ Route::get('list_vehicle',[VehicleTypeController::class,'listVehicle'])->name('l
 Route::get('pyment/response/{info}', [PymentContoller::class, 'showPyment'])->name('pyment/response');
 Route::get('pyment/cancel/{cancel}', [PymentContoller::class, 'pymentCancel'])->name('pymentCancel');
 Route::get('pyment/cancel', [PymentContoller::class, 'viewCancel'])->name('viewCancel');
+Route::post('/doPayment', [PymentContoller::class, 'doPayment'])->name('doPaymetn');
 
 Route::get('show_notification', [NotificationController::class, 'index'])->name('show_notification');
 Route::get('makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');

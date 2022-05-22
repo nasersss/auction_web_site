@@ -75,8 +75,8 @@ class BiddingController extends Controller
             $newBidding->bidding_amount = $request->amount;
             $newBidding->payed_amount = (($auction->curren_price + $request->amount) * 10 / 100);
             $newBidding->save();
-            // $test= $user->wallet[0]->amount ;    //$request->amount;
-            // return response($biddings);
+            session_start();
+            $_SESSION['amountOfBidding'];
             return redirect()->back()->with(['success' => 'تمت عملية المزايدة بنجاح']);
         } catch (\Throwable $error) {
 
@@ -100,23 +100,27 @@ class BiddingController extends Controller
         $admin = User::where('role', 0)->first();
         $authUser =  Auth::user();
         $paidAmout = $request->paid_amount;
-        $authUser->deposit(5000);
-        // $authUser->deposit($paidAmout,['paid_amount' => $paidAmout, 'order_reference_id' => $auction->id, 'creaated_at' => $request->creaated_at]);
+         $authUser->deposit($paidAmout,['paid_amount' => $paidAmout, 'order_reference_id' => $auction->id, 'creaated_at' => $request->creaated_at]);
         //Auth::user()->withdraw($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at]);
         //$admin->deposit($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at,'FromuserId'=>Auth::user()->id]);
-
-        $auction->curren_price += $_SESSION['amountOfBidding'];
-        $auction->number_of_participate += 1;
-        $auction->update();
-        $newBidding = new Bidding();
-        $newBidding->user_id = Auth::user()->id;
-        $newBidding->auction_id = $auction->id;
-        $newBidding->bidding_amount = $_SESSION['amountOfBidding']; //must be modfy to gevin by requst or save the amout in session then claa here
-        $newBidding->payed_amount = (($auction->curren_price + $request->amount) * 10 / 100);
-        $newBidding->save();
-        session_destroy();
-
-        return redirect('detail_car/' . $auction->id . '')->with(['success' => 'تمت عملية المزايدة بنجاح']);
+        if(isset($_SESSION['amountOfBidding']))
+        {
+            session_start();
+            $auction->curren_price += $_SESSION['amountOfBidding'];
+            $auction->number_of_participate += 1;
+            $auction->update();
+            $newBidding = new Bidding();
+            $newBidding->user_id = Auth::user()->id;
+            $newBidding->auction_id = $auction->id;
+            $newBidding->bidding_amount = $_SESSION['amountOfBidding']; //must be modfy to gevin by requst or save the amout in session then claa here
+            $newBidding->payed_amount = (($auction->curren_price + $request->amount) * 10 / 100);
+            $newBidding->save();
+            session_destroy();
+            return redirect('detail_car/' . $auction->id . '')->with(['success' => 'تمت عملية المزايدة بنجاح']);
+        
+        }else{
+            return redirect('/auctions_review')->with(['success'=>'تمت عملية تسدسد حسابك بنجاح']);
+        }   
     }
 
     public function whenAuctionClosed()

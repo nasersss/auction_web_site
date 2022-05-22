@@ -284,6 +284,7 @@
                             <label for="project-overview" class="form-label">ملاحظات</label>
                             <textarea class="form-control" name="notes" id="project-overview" rows="5" placeholder="ملاحظات..."></textarea>
                         </div>
+                      
                         <button type="submit" class="btn btn-primary mb-3">إضافة</button>
 
                     </div>

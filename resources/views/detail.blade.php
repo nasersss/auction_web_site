@@ -270,28 +270,12 @@
                             <input type="hidden" name="auction_id" value="{{$auctions->id}}">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">مزايدة</button>
                         </form>
-<<<<<<< HEAD
                         @else
-<<<<<<< HEAD
                         <form method="post" action="{{route('/delevery')}}">
                             @csrf
                             <input type="hidden" name="auction_id" value="{{$auctions->id}}">
                             <button type="button" class="btn btn-primary" data-bs-target="#exampleModal">إكمال عملية الدفع </button>
                         </form>
-=======
-
-                        <form  method="get" action="{{route('delivery')}}" >
-                            @csrf
-                            <input type="hidden" name="auction_id" value="{{$auctions->id}}">
-                            <button type="submit" class="btn btn-primary" data-bs-target="#exampleModal">إكمال عملية الدفع </button>
-                        </form> 
-                           
->>>>>>> 0ef1539429aa78b6a2765bed83adc014c9e88ad7
-                        @endif
-=======
-
->>>>>>> 7ee99e7635038760a4ba2d962ffbb82faaf012b8
-
 
 
 
@@ -320,10 +304,6 @@
             </div>
 
         </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 7ee99e7635038760a4ba2d962ffbb82faaf012b8
     </div>
 
 

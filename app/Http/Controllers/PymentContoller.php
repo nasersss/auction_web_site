@@ -43,7 +43,16 @@ class PymentContoller extends Controller
      * @return route
      * 
      */
+    public function dopayment(Request $request){
+      $auctionId = $request->auctionId;
+      $auction = auction::find( $auctionId);
+      $percentageFromStrartPrice = $auction->curren_price*0.2;
+      $payment = new PymentContoller();
+      return  $payment->makePyment($auction,$percentageFromStrartPrice);
+    }
+
     public function makePyment(auction $auction,$amountOfPayment){
+
         $data = [
             "order_reference" => $auction->id,
             "products" => [
