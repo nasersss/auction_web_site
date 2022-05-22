@@ -163,10 +163,6 @@
 
     <!-- demo app -->
     <script src="assets/js/pages/demo.products.js"></script>
-<<<<<<< HEAD:resources/views/admin/auction/auctions_review.blade.php
-=======
-
->>>>>>> 99b9a74c55a70a1a8b981ff754fed6eef7b7d272:resources/views/admin/auctions_review.blade.php
     <!-- end demo js-->
 
 

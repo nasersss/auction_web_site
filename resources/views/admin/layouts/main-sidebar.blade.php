@@ -62,9 +62,6 @@
                         <li>
                             <a href="{{route('list-user')}}">عرض المستخدمين</a>
                         </li>
-                        <li>
-                            <a href="#">إدارة المستخدمين</a>
-                        </li>
 
                     </ul>
                 </div>

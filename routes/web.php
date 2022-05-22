@@ -154,6 +154,7 @@ Route::post('/paymentOfDelevry',[OrderController::class,'paymentOfDeleviry'])->n
 Route::get('/comfirmDelevery/{id}',[OrderController::class,'comfirmDelevery'])->name('comfirmDelevery');
 Route::get('/comfirmSell/{id}',[OrderController::class,'comfirmSell'])->name('comfirmSell');
 Route::post('/makeDeleverDone',[OrderController::class,'makeDeleverDone'])->name('makeDeleverDone');
+Route::get('/wallte',[OrderController::class,'showWallts']);
 
 
 

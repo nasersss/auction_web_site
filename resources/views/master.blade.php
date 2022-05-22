@@ -46,7 +46,7 @@
                 @guest
                 @if (Route::has('login'))
                 
-                <div class="show register"> <a href="{{ route('createAcount') }}"> إنشاء حساب</a>
+                <div class="show register"> <a href="{{ route('register') }}"> إنشاء حساب</a>
                 </div>
                 <div class="show login"> <a href="{{ route('login') }}">تسجيل الدخول</a>
                 </div>

@@ -47,7 +47,5 @@ Route::group(['middleware' => 'is.admin'], function () {
     Route::get('edit_categories/{categoryId}', [CategoryController::class, 'edit'])->name('edit_categories');
     Route::get('toggle_categories/{categoryId}', [CategoryController::class, 'toggle'])->name('toggle_categories');
     Route::post('save_categories', [CategoryController::class, 'store'])->name('store_categories');
-    Route::post('update_categories/{categoryId}', [CategoryController::class, 'update'])->name('update_categories');
-
-   
+    Route::post('update_categories/{categoryId}', [CategoryController::class, 'update'])->name('update_categories');   
 });

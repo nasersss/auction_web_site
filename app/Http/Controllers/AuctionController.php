@@ -197,7 +197,7 @@ class AuctionController extends Controller
             $payment = new PymentContoller();
             $percentageFromStrartPrice = $auctionInfo->stare_price*0.2;
              if(Auth::user()->balance<$percentageFromStrartPrice)
-                 return  $payment->makePyment($auctionInfo,$percentageFromStrartPrice);
+                return view('makePyment')->with('auctionInfo',$auctionInfo);
             return redirect()->back()->with(["success" => "تمت اضافة المزاد بنجاح "]);
      }
     }

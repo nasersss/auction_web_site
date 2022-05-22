@@ -168,14 +168,11 @@ class OrderController extends Controller
 public function discountAmountOfSystem($amount){
     $net = $amount*0.1;
     return $net;
-}/**
- * [ discountAmountOfSystemFromSell]
- *
- * @param mixed $amount
- * 
- * @return [int]
- * 
- */
+}
+public function showWallts(){
+    return view('admin.wallet');
+}
+
 
 
    

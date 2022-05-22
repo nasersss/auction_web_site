@@ -52,7 +52,6 @@ class PymentContoller extends Controller
     }
 
     public function makePyment(auction $auction,$amountOfPayment){
-
         $data = [
             "order_reference" => $auction->id,
             "products" => [
@@ -76,7 +75,7 @@ class PymentContoller extends Controller
           $curl = curl_init();
        
           curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://waslpayment.com/api/test/merchant/payment_order",
+            CURLOPT_URL => "https://waslpayment.com/api/v1/merchant/payment_order",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -86,8 +85,8 @@ class PymentContoller extends Controller
             CURLOPT_POSTFIELDS => json_encode($data),
       
             CURLOPT_HTTPHEADER => array(
-              "private-key: rRQ26GcsZzoEhbrP2HZvLYDbn9C9et",
-              "public-key: HGvTMLDssJghr9tlN9gr4DVYt0qyBy",
+              "private-key: KEXCZA4cKGugBCAasrQ2veQa21qTOpa8b4m1AdeeBkcKwKN9JN",
+              "public-key: Jauq1WwuGLqf8ftiSxVWpfs2B",
               "Content-Type:  application/x-www-form-urlencoded"
       
       
@@ -102,9 +101,6 @@ class PymentContoller extends Controller
           if ($err) {
             echo " Error #:" . $err;
           } else {
-            //return json_decode($response)->invoice->invoice_referance;
-
-           //return  json_decode($response);
            $url = json_decode($response)->invoice->next_url;
            return redirect()->away($url);
           }
