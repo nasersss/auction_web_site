@@ -68,7 +68,7 @@
                     </a> -->
                     <a href="{{route('makeNotificationSeen', $notification->id)}}" class="dropdown-item notify-item">
                         <div class="notify-icon">
-                            <img src="@isset($notification->fromUser->profile->image) {{$notification->fromUser->profile->image}} @else images/users/defaultImage.png @endisset" class="img-fluid rounded-circle" alt="">
+                            <img src="@isset($notification->fromUser->profile->image) {{$notification->fromUser->profile->image}} @else /images/users/defaultImage.png @endisset" class="img-fluid rounded-circle" alt="">
                         </div>
                         <p class="notify-details">{{ Auth::user()->name }}</p>
                         <p style="padding-right: 46px;" class="text-muted mb-0 user-msg">
@@ -133,14 +133,7 @@
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
-                    <img src="
-                       @isset(Auth::user()->profile->image)
-                    {{Auth::user()->profile->image}}
-                    @else
-                        images/users/defaultImage.png
-
-                    @endisset
-                   " alt="user-image" class="rounded-circle">
+                    <img src="@isset(Auth::user()->profile->image){{Auth::user()->profile->image}}@else /images/users/defaultImage.png @endisset" alt="user-image" class="rounded-circle">
                 </span>
                 <span>
                     <span class="account-user-name">{{ Auth::user()->name }}</span>

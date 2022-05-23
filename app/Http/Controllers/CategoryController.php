@@ -65,9 +65,7 @@ class CategoryController extends Controller
             $newCategory->is_active = $request->is_active;
             $newCategory->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultCategoryegory.png";
             if ($newCategory->save())
-                return redirect()->route('list_categories')->with(['success' => 'تم اضافة البيانات بنجاح']);
-
-            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+            return redirect()->back()->with(['success' => 'تمت إضافة البيانات بنجاح ']);
         } catch (\Throwable $th) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }

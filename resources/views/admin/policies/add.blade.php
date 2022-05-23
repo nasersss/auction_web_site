@@ -45,15 +45,16 @@
                         @csrf
                     <div class="row">
 
-                            <div class="mb-3 col-md-6">
+                            <div class="mb-3 col-md-12">
                                 <label for="inputAddress" class="form-label">السياسة</label>
                                 <input type="text" name="name" class="form-control" id="inputAddress" placeholder="ماهي السياسة ؟">
                             </div>
-                            <div class="mb-3 col-md-6">
+                            <div class="mb-3 col-md-12">
                                 <label for="inputAddress" class="form-label">وصف السياسة</label>
-                                <input type="text" name="des" class="form-control" id="inputAddress" placeholder="وصف السياسة">
+                                <textarea class="form-control" name="des" id="inputAddress" rows="5" placeholder="وصف السياسة..."></textarea>
+
                             </div>
-                        <div class="mb-1 col-md-3">
+                        <div class="mb-1 col-md-12">
                             <label for="inputAddress" class="form-label">الحالة</label>
                             <select name="is_active" class="form-select mb-3">
 
