@@ -169,7 +169,12 @@ public function discountAmountOfSystem($amount){
     $net = $amount*0.1;
     return $net;
 }
-public function showWallts(){
+public function showWallet(){
+    // $user1=Auth::user();
+    // $user2=User::first();
+    // $user1->deposit(10,['descripe'=>'تم ينتنتسينتؤلانتسيلاؤ']); 
+    // return $user1->wallet->transactions[12]->meta; // 10
+    
     return view('admin.wallet');
 }
 
