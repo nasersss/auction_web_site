@@ -158,9 +158,9 @@ class OrderController extends Controller
             $order->delivery_id = $delever->id;
 
             $order->save();
-            return redirect('/');
+            return redirect('success');
         } catch (\Throwable$th) {
-            return 0;
+            return view('error.error');
         }
 
     }

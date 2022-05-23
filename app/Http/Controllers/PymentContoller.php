@@ -31,13 +31,16 @@ class PymentContoller extends Controller
        $order_reference = $data['order_reference'];
 
        session_start();
-        $auction = auction::find($order_reference);
-        $admin = User::where('role',0)->first();
-        $paidAmout = $auction->stare_price*0.2;
-        Auth::user()->deposit($paidAmout,['order_reference_id'=>$auction->id,'creaated_at'=>$created_at,'userName'=>Auth::user()->name,'auctionName'=>$auction->name,'auctionModle'=>$auction->model]);
-        
+          if(isset($_SESSION["delivery"] )){
+          $deleviry = new OrderController();
+          return $deleviry->paymentOfDeleviry($paid_amount);
+         }
         if(isset($_SESSION['amountOfBidding']))
             {
+                $auction = auction::find($order_reference);
+                $admin = User::where('role',0)->first();
+                $paidAmout = $auction->stare_price*0.2;
+                 Auth::user()->deposit($paidAmout,['order_reference_id'=>$auction->id,'creaated_at'=>$created_at,'userName'=>Auth::user()->name,'auctionName'=>$auction->name,'auctionModle'=>$auction->model]);      
                 $auction->curren_price += $_SESSION['amountOfBidding'];
                 $auction->number_of_participate += 1;
                 $auction->update();
@@ -47,16 +50,12 @@ class PymentContoller extends Controller
                 $newBidding->bidding_amount = $_SESSION['amountOfBidding'];//must be modfy to gevin by requst or save the amout in session then claa here
                 $newBidding->payed_amount = (($auction->curren_price + $_SESSION['amountOfBidding']) * 10 / 100);
                 $newBidding->save();
+                // remove all session variables
+                session_unset();
+                // destroy the session
                 session_destroy();
                 return redirect('detail_car/'.$auction->id.'')->with(['success' => '  تمت عملية المزايدة بنجاح مع خصم نسبة المزايدة ']);        
-            }
-            else if(isset($_SESSION["delivery"] )){
-              $deleviry = new OrderController();
-              return $deleviry->paymentOfDeleviry($paid_amount);
-            }
-            else{
-                return redirect('/auction_review')->with(['success' => 'تمت عملية تسديد نسبة ضمان إضافة مزاد جديد بنجاح ']);        
-            }  
+            } 
             return 1; 
        // add to 10% to superAdmin wellt 
         //return view('success');

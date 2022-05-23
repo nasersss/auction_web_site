@@ -68,6 +68,10 @@ class BiddingController extends Controller
         $newBidding->bidding_amount = $request->amount;
         $newBidding->payed_amount = (($auction->curren_price + $request->amount) * 10 / 100);
         $newBidding->save();
+        // remove all session variables
+            session_unset();    
+            // destroy the session
+            session_destroy();
         return redirect()->back()->with(['success' => 'تمت عملية المزايدة بنجاح']);
     }
 

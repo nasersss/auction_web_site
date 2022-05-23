@@ -10,7 +10,7 @@
 <link href="assets/css/app-ar.min.css" rel="stylesheet" type="text/css" id="light-style"> -->
 <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
 <link href="{{asset('assets/css/app-ar.min.css')}}" rel="stylesheet" type="text/css" id="light-style">
-    <title>تمت عملية الدفع بنجاح</title>
+    <title>تمت العملية بنجاح  </title>
     <style>
         @import url(../fonts/DIN.css);
         body {
@@ -86,9 +86,9 @@
                                 <div class="d-flex justify-content-center mb-5 flex-column align-items-center"> 
                                     <span class="check1"><i class="dripicons-checkmark"></i></span> 
                                     
-                                        <h4 class="mt-2">تمت عملية الدفع بنجاح</h4> 
+                                        <h4 class="mt-2">تمت العملية  بنجاح</h4> 
                                     </div> 
-                                        
+                                    <a href="/" class="disabled">  <button class="btn btn-success">عودة للرئيسية </button></a>
                                         
                             </div>
                         </div>
