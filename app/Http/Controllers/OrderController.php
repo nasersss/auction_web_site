@@ -139,6 +139,7 @@ class OrderController extends Controller
             $delever = Delivery::find($request->deleverId);
             $auction = auction::find($delever->auction->id);
             $auction->is_received *= -1;
+            $auction->is_active=-1;
             $auction->update();
             $payer = Auth::user();
             $paidAmout = $delever->paid_amout;
@@ -158,7 +159,8 @@ class OrderController extends Controller
             $order->delivery_id = $delever->id;
 
             $order->save();
-            return redirect('success');
+            
+            return view('success');
         } catch (\Throwable$th) {
             return view('error.error');
         }

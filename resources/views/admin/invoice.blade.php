@@ -7,16 +7,16 @@
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
         <meta content="" name="MAZADI CAR">
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}">
+        <link rel="shortcut icon" href="{{asset('/assets/images/favicon.png')}}">
 
         <!-- App css -->
-        {{-- <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"> --}}
-        <link href="{{asset('assets/css/app-ar.min.css')}}" rel="stylesheet" type="text/css" id="light-style">
-        {{-- <link href="{{asset('assets/css/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="dark-style"> --}}
-        <link rel="stylesheet" href="assets/css/ionicons.min.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link href="assets/css/search.css" rel="stylesheet" />
-  <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="{{asset('/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('/assets/css/app-ar.min.css')}}" rel="stylesheet" type="text/css" id="light-style">
+        <link href="{{asset('/assets/css/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="dark-style">
+        <link rel="stylesheet" href="/assets/css/ionicons.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link href="/assets/css/search.css" rel="stylesheet" />
+  <link href="/assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/all.css">
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/home.css">
@@ -147,8 +147,10 @@
                                                             </td>
                                                             <td>200 $</td>
                                                             <td>{{$paidAmout-200}} $</td>
-                                                            <td class="text-end">{{ $paidAmout}} $</td>
+                                                            <td class="text-end">{{$paidAmout}} $</td>
                                                         </tr>
+
+
                                                         </tbody>
                                                     </table>
                                                 </div> <!-- end table-responsive-->
@@ -320,8 +322,8 @@
 
 
         <!-- bundle -->
-        <script src="assets/js/vendor.min.js"></script>
-        <script src="assets/js/app.min.js"></script>
+        <script src="/assets/js/vendor.min.js"></script>
+        <script src="/assets/js/app.min.js"></script>
 
     </body>
 </html>
