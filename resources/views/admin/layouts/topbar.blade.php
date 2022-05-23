@@ -9,23 +9,23 @@
                     <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
                 </form>
             </div>
-        </li>
-        <li class="dropdown notification-list topbar-dropdown">
+       <!--  </li> -->
+        <!-- <li class="dropdown notification-list topbar-dropdown">
             <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <img src="{{asset('assets/images/flags/ar.jpg')}}" alt="user-image" class="me-0 me-sm-1" height="12">
                 <span class="align-middle d-none d-sm-inline-block">عربي</span> <i class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu">
-
+ -->
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+               <!--  <a href="javascript:void(0);" class="dropdown-item notify-item">
                     <img src="{{asset('assets/images/flags/us.jpg')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
                 </a>
 
 
 
-            </div>
-        </li>
+            </div> -->
+       <!--  </li> -->
 
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -45,9 +45,7 @@
                 <div class="dropdown-item noti-title">
                     <h5 class="m-0">
                         <span class="float-start">
-                            <a href="javascript: void(0);" class="text-dark">
-                                <small>مسح الكل</small>
-                            </a>
+                            
                         </span>الإشعارات
                     </h5>
                 </div>
@@ -57,15 +55,27 @@
                     @isset(Auth::user()->notificationTo)
                     @foreach(Auth::user()->notificationTo as $notification)
                     @if($notification->is_seen==-1)
-                    <a href="{{route('makeNotificationSeen', $notification->id)}}" class="dropdown-item notify-item">
+                    <!-- <a href="{{route('makeNotificationSeen', $notification->id)}}" class="dropdown-item notify-item">
                         <div class="notify-icon bg-primary">
                             <i class="mdi mdi-comment-account-outline"></i>
-                        </div>
+                        </div> -->
                         <!-- <p class="notify-details">تم اضافة مزاد جديد  
                             <small class="text-muted">قبل 1 دقيقة</small>
                         </p> -->
-                        <p class="notify-details">{{$notification->content}}
+                        <!-- <p class="notify-details">{{$notification->content}}
                             <small class="text-muted">قبل 1 دقيقة</small>
+                        </p>
+                    </a> -->
+                    <a href="{{route('makeNotificationSeen', $notification->id)}}" class="dropdown-item notify-item">
+                        <div class="notify-icon">
+                            <img src="@isset($notification->fromUser->profile->image) {{$notification->fromUser->profile->image}} @else images/users/defaultImage.png @endisset" class="img-fluid rounded-circle" alt="">
+                        </div>
+                        <p class="notify-details">{{ Auth::user()->name }}</p>
+                        <p style="padding-right: 46px;" class="text-muted mb-0 user-msg">
+                            <small>{{$notification->content}}</small>
+                        </p>
+                        <p class="notify-details">
+                            <small class="text-muted">@isset($notification->created_at) {{$notification->created_at}} @endisset</small>
                         </p>
                     </a>
                     @endif
@@ -105,9 +115,9 @@
                 </div>
 
                 <!-- All-->
-                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                <!-- <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
                     View All
-                </a>
+                </a> -->
 
             </div>
         </li>

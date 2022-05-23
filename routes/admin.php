@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuctionController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\CategoryController;
@@ -42,6 +43,7 @@ Route::get('/view_categry', [CategoryController::class, 'index'])->name('view_ca
 
 /*Category*/
 Route::group(['middleware' => 'is.admin'], function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('list_categories', [CategoryController::class, 'index'])->name('view_cat');
     Route::get('add_categories', [CategoryController::class, 'create'])->name('add-cat');
     Route::get('edit_categories/{categoryId}', [CategoryController::class, 'edit'])->name('edit_categories');

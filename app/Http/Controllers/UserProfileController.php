@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\auction;
+use App\Models\Bidding;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
 
@@ -12,6 +14,16 @@ use Illuminate\Support\Facades\Validator;
 
 class UserProfileController extends Controller
 {
+    public function userDashboard()
+    {
+        $auctions = auction::where('seller_id',Auth::user()->id)->get();
+        $biddings = Bidding::select('auction_id')->groupBy('auction_id')->where('user_id',Auth::user()->id)->get();
+        // return $biddings;
+        return view('admin.dash-user-home')->with([
+                                                    'auctions'=>$auctions,
+                                                    'biddings'=>$biddings,
+                                                ]);
+    }
     /**
      * Display a listing of the resource.
      *

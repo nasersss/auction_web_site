@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Order;
 use App\Models\auction;
 use App\Models\Delivery;
-use App\Models\Order;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +28,6 @@ class OrderController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -87,7 +86,7 @@ class OrderController extends Controller
      */
     public function paymentOfDeleviry($paid_amount)
     {
-        // try {
+        try {
         $delever = Delivery::find($_SESSION['delivery']['id']);
         $paidAmout= $paid_amount[0];
         Auth::user()->deposit($paidAmout, ['paidAmout' => $paidAmout, 'order-delever' => $delever->id, 'creaated_at' => $delever->creaated_at, 'auction_id' => $delever->auction->id]);
@@ -99,9 +98,9 @@ class OrderController extends Controller
                                                           
         return view('admin.invoice')->with(['delever' => $delever, 'paidAmout' =>$paidAmout]);
 
-        // } catch (\Throwable $th) {
-        //     return view('error.error');
-        // }
+        } catch (\Throwable $th) {
+            return view('error.error');
+        }
         
     }
     /**
@@ -117,7 +116,6 @@ class OrderController extends Controller
     {
         $deleviry = Delivery::find($deleviryId);
         return view('comfirmDelevery')->with('deleviryId', $deleviry->id);
-
     }
     public function comfirmSell($auctionId)
     {
@@ -157,9 +155,7 @@ class OrderController extends Controller
             $order->system_balance_from_seller = $amoutOfSystem;
             $order->system_balance_from_payer = $amoutOfSystem;
             $order->delivery_id = $delever->id;
-
             $order->save();
-            
             return view('success');
         } catch (\Throwable$th) {
             return view('error.error');
@@ -179,9 +175,8 @@ class OrderController extends Controller
         $net = $amount * 0.1;
         return $net;
     }
-    public function showWallts()
+    public function showWallet()
     {
         return view('admin.wallet');
     }
-
 }

@@ -32,14 +32,8 @@ Route::get('/add_view',[Maincontroller::class,'show']);
 
 
 
-Route::get('/auction',function(){
-    return view('auction');
-})->name('auction');
-
-Route::get('/admin',function(){
-    return view('admin.dashboard_home');
-});
-
+Route::get('/auction',[AuctionController::class,'index'])->name('auction');
+Route::post('/auction',[AuctionController::class,'index'])->name('auction');
 Route::get('/login',function(){
     return view('auth.login');
 });
@@ -69,8 +63,7 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
-Route::get('/dash-user',function(){return view('admin.dash-user-home');})->name('dash-user');
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/dash-user',[UserProfileController::class,'userDashboard'])->name('dash-user');
 
 Route::get('/superAdmin', [SuperAdminController::class, 'index'])->name('superAdmin');
 
@@ -147,7 +140,7 @@ Route::post('/paymentOfDelevry',[OrderController::class,'paymentOfDeleviry'])->n
 Route::get('/comfirmDelevery/{id}',[OrderController::class,'comfirmDelevery'])->name('comfirmDelevery');
 Route::get('/comfirmSell/{id}',[OrderController::class,'comfirmSell'])->name('comfirmSell');
 Route::post('/makeDeleverDone',[OrderController::class,'makeDeleverDone'])->name('makeDeleverDone');
-Route::get('/wallte',[OrderController::class,'showWallts']);
+Route::get('/wallet',[OrderController::class,'showWallet'])->name('wallet');
 
 
 

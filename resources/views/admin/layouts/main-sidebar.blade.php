@@ -1,7 +1,7 @@
 <div class="leftside-menu">
 
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-light">
+    <a href="{{route('index')}}" class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="{{asset('assets/images/logo-dash.png')}}" alt="" height="40">
                     </span>
@@ -11,7 +11,7 @@
     </a>
 
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-dark">
+    <a href="{{route('index')}}" class="logo text-center logo-dark">
                     <span class="logo-lg">
                         <img src="{{asset('assets/images/logo-dark.png')}}" alt="" height="16">
                     </span>
@@ -33,6 +33,12 @@
                 </a>
             </li>
             <li class="side-nav-item">
+                <a href="{{route('wallet')}}" class="side-nav-link">
+                    <i class="dripicons-wallet"></i>
+                    <span>المحفظة</span>
+                </a>
+            </li>
+            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
                     <i class="mdi mdi-car-back"></i>
                     <span> المزادات </span>
@@ -49,7 +55,7 @@
                     </ul>
                 </div>
             </li>
-
+           
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarProjects" aria-expanded="false" aria-controls="sidebarProjects" class="side-nav-link">
