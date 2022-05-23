@@ -80,8 +80,8 @@
                                     <span class="check1"><i class="dripicons-checkmark"></i></span> 
                                     
                                     <span class="font-weight-bold">يرجاء شحن محفضتك</span> 
-                                        <small class="mt-2">عليك شحن محفظتك لدينا بمبلغ<strong> ${{$auction->stare_price*0.2}}</strong>لضمان مصداقية الموقع وملكية المركبة</small> 
-                                         <strong>وسيتم ارجعاها لك عند انتهاء المزاد بلإضافة لمبلغ بيع السيارة </strong>
+                                        <small class="mt-2">عليك شحن محفظتك لدينا بمبلغ<strong> ${{$auction->stare_price*0.2}}</strong>لضمان مصداقية الموقع وجديتك في الاشتراك في المزاد </small> 
+                                         <strong>وسيتم ارجاعها لك عند انتهاء المزاد</strong>
                                     </div> 
                                     <a href="/" ><button class="btn btn-danger btn-block confirm-button">رفض العملية</button></a>
 

@@ -51,13 +51,15 @@ class PymentContoller extends Controller
                 return redirect('detail_car/'.$auction->id.'')->with(['success' => '  تمت عملية المزايدة بنجاح مع خصم نسبة المزايدة ']);        
             }
             else if(isset($_SESSION["delivery"] )){
-              
+              $deleviry = new OrderController();
+              return $deleviry->paymentOfDeleviry($paid_amount);
             }
             else{
                 return redirect('/auction_review')->with(['success' => 'تمت عملية تسديد نسبة ضمان إضافة مزاد جديد بنجاح ']);        
-            }   
+            }  
+            return 1; 
        // add to 10% to superAdmin wellt 
- return view('success');
+        //return view('success');
  }
  
     
