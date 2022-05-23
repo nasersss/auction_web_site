@@ -1,20 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="/assets/css/ionicons.min.css">
-    <link rel="stylesheet" href="/assets/css/all.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/detail.css">
-    <link rel="stylesheet" href="/assets/css/header.css">
-    <title>التفاصيل</title>
+ @include('header.head-details')
 </head>
-
 <body>
     @extends('master')
     @section('content')
@@ -55,30 +44,92 @@
                                     @endisset </span> - <span> @isset($auctions->name)
                                     {{ $auctions->name}}
                                     @endisset </span></h4>
-                            <h4><span>
-                                    @isset($auctions->name)
-                                    {{ $auctions->city->state->name}} - {{ $auctions->city->name}}
+                                    @isset($auctions->state)
+                                    @if($auctions->state=="جديد")
+                                    <h5 style="color: #d30606;font-weight: bolder">{{$auctions->state}}</h5>
+                                    @else
+                                    <h5 style="color:blue;font-weight: bolder">{{$auctions->state}}</h5>
+                                    @endif
                                     @endisset
-                                </span></h4>
+                                    @isset($auctions->city)
+                            <h6><span>
 
+                                </span></h6>
+                                @endisset
                         </div>
+                    </div>
+                    <div class="head-title">
+                        <h5>
+                                @isset($auctions->city)
+                                {{ $auctions->city->state->name}} - {{ $auctions->city->name}}
+                                @endisset
+                            </span></h5>
+
                     </div>
                 </section>
                 {{-- end section car information --}}
                 {{-- start section car auction --}}
                 <section>
-                    <div class="auction-info-one my-3">
-                        <div>السعر الحالي للمزاد :</div>
-                        <span class="auction-price">
+                    <div class="auction-primary-info-container">
+<div class="auction-primary-info">
+    @isset($auctions->color)
+    {{ $auctions->color}}
+    @endisset
+</div>
+<div class="auction-primary-info">
+    @isset($auctions->model)
+    {{ $auctions->model}}
+    @endisset
+    </div>
+    <div class="auction-primary-info">
+        @isset($auctions->engine_type)
+        {{ $auctions->engine_type}}
+        @endisset
+    </div>
+                    </div>
+                    <div class="row">
+                    <div class="  auction-info-one ">
+                        <div class="mb-2">السعر الحالي للمزاد :</div>
+                        <div class="auction-price">
                             @isset($auctions->curren_price)
                             {{ $auctions->curren_price}}$
                             @endisset
-                            <span></span> <span>
-                            </span></span>
+                        </div>
 
                     </div>
-                    <div class="auction-info-two mb-3">
-                        <div class="row">
+                    <div class=" auction-info-one ">
+                        <div class="mb-2">  اقل قيمة في المزاد :</div>
+                        <div class="auction-price ">
+                            @isset($auctions->min_bid)
+                            {{ $auctions->min_bid}}$
+                            @endisset
+                        </div>
+
+                    </div>
+                    <div class=" auction-info-one ">
+                        <div class="mb-2">عدد المشاركات :</div>
+                        <div class="auction-price">
+                            @isset($auctions->number_of_participate)
+                            {{ $auctions->number_of_participate}}
+                            @endisset
+                        </div>
+
+                    </div>
+
+                    <div class=" auction-info-one ">
+                        <div class="mb-2">موعد انتهاء المزاد :</div>
+                        <h1 id="timer"  class="d-none">@isset($auctions->date_of_end_auction){{ $auctions->date_of_end_auction }}@endisset</h1>
+                        <div class="auction-price" id="demo">
+
+                        </div>
+
+                    </div>
+
+
+                    </div>
+
+                {{-- <div class="auction-info-two mb-3"> --}}
+                        {{-- <div class="row">
                             <div class="col-4">
                                 <h5 class="text-align"> وقت انتهاء المزاد</h5>
                                 <div class="text-align"> <span>
@@ -104,13 +155,13 @@
                             </div>
 
 
-                        </div>
-
-                    </div>
+                        </div> --}}
+{{--
+                    </div> --}}
                 </section>
                 {{-- end section car auction --}}
                 {{-- start section car images --}}
-                <section>
+                <section class="my-3">
                     <div class="main-image mb-3">
                         {{-- <div class="arrow-right"> <i id="next" class="fas fa-angle-right  "></i></div>
 
@@ -129,7 +180,7 @@
                         <div id="btn-right" class="arrow-right"> <i class="fas fa-angle-right  "></i></div>
 
                         <div id="btn-left" class="arrow-left"><i class="fas fa-angle-left "></i></div>
-                        <div id="slider" class="image-slider-container">
+                        <div id="slider" class="image-slider-container mt-3">
                             <div class="image ">
                                 <img src="{{$image->image}}" class="img_active" alt="">
 
@@ -169,25 +220,26 @@
 
             {{-- start scection detail informarion about car --}}
             <div class="col-12 col-md-6">
-                <h4 class="bold"> المعلومات الاساسية</h4>
+                <h4 class="info">  تفاصيل حول السيارة</h4>
                 <div class="detail-info-container">
                     <div class="detail-info-row">
                         <span>اسم السيارة</span>
-                        <span>
+                        <span class="bold">
                             @isset($auctions->name)
                             {{ $auctions->name}}
                             @endisset
                         </span>
                     </div>
                     <div class="detail-info-row">
-                        <span>الشركة المصنعة</span><span>
+                        <span>الشركة المصنعة</span>
+                        <span class="bold">
                             @isset($auctions->category->name)
                             {{ $auctions->category->name}}
                             @endisset
                         </span>
                     </div>
                     <div class="detail-info-row">
-                        <span> الموديل</span><span>
+                        <span> الموديل</span><span class="bold">
                             @isset($auctions->model)
                             {{ $auctions->model}}
                             @endisset
@@ -195,7 +247,7 @@
                     </div>
 
                     <div class="detail-info-row">
-                        <span> اللون</span><span>
+                        <span> اللون</span><span class="bold">
                             @isset($auctions->color)
                             {{ $auctions->color}}
                             @endisset
@@ -203,14 +255,14 @@
                     </div>
 
                     <div class="detail-info-row">
-                        <span> الحالة</span><span>
+                        <span> الحالة</span><span class="bold">
                             @isset($auctions->state)
                             {{$auctions->state}}
                             @endisset
                         </span>
                     </div>
                     <div class="detail-info-row">
-                        <span> الاضرار</span><span>
+                        <span> الاضرار</span><span class="bold">
                             @isset($auctions->damage)
                             {{ $auctions->damage}}
                             @endisset
@@ -219,14 +271,14 @@
 
                     <div class="detail-info-row">
                         <span> المسافات المقطوعة</span>
-                        <span>@isset($auctions->odometer)
+                        <span class="bold">@isset($auctions->odometer)
                             {{ $auctions->odometer}}
                             @endisset
                             <span>km</span></span>
                     </div>
 
                     <div class="detail-info-row">
-                        <span> نوع القير</span><span>
+                        <span> نوع القير</span><span class="bold">
                             @isset($auctions->ger_type)
                             {{$auctions->ger_type}}
 
@@ -236,14 +288,14 @@
 
                     <div class="detail-info-row">
                         <span> نوع المحرك</span>
-                        <span> @isset($auctions->engine_type)
+                        <span class="bold"> @isset($auctions->engine_type)
                             {{ $auctions->engine_type}}
                             @endisset
                         </span>
                     </div>
 
                     <div class="detail-info-row">
-                        <span> نوع الوقود</span><span>
+                        <span > نوع الوقود</span><span class="bold">
                             @isset($auctions->fuel)
                             {{$auctions->fuel}}
 
@@ -253,7 +305,7 @@
 
                     <div class="detail-info-row">
                         <span> ملاحظات</span>
-                        <span> @isset($auctions->notes)
+                        <span class="bold"> @isset($auctions->notes)
                             {{ $auctions->notes}}
                             @endisset
                         </span>
@@ -264,23 +316,14 @@
                 <div class="action-card mt-2">
                     <div class="action-head">الاشتراك في المزاد</div>
                     <div class="action-body">
-                        @if($auctions->is_active==1)
-
                         <form id="bidding-form" name="amountForm" method="post" action="{{route('bidding')}}" enctype="multipart/form-data">
                             @csrf
                             <input type="text" required id="amount" name="amount" placeholder="ادخل مبلغ للاشتراك في المزاد">
                             <input type="hidden" name="auction_id" value="{{$auctions->id}}">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">مزايدة</button>
                         </form>
-                        @else
 
-                        <form  method="get" action="{{route('delivery')}}" >
-                            @csrf
-                            <input type="hidden" name="auction_id" value="{{$auctions->id}}">
-                            <button type="submit" class="btn btn-primary" data-bs-target="#exampleModal">إكمال عملية الدفع </button>
-                        </form> 
-                           
-                        @endif
+
 
 
 
@@ -309,33 +352,20 @@
             </div>
 
         </div>
+        <div class="m-4">
+            <div class="alert alert-danger alert-dismissible fade show">
+                <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> ملاحظة!</h4>
+                <p> عند مشاركتك في المزاد سيتم خصم 20% من محفظتك وفي حال عدم ترسية العين  عليك يتم إعادة المبلغ إلى المحفظة.</p>
+                <hr>
+                <p class="mb-0"> بإمكانك الإطلاع على سياسات الموقع لتعرف كيف تجرى المزادات <a href="{{ route('view_policies') }}"> انقر هنا لمعرفة المزيد</a></p>
+
+            </div>
+        </div>
     </div>
 
-
+<script src="/assets/js/slider.js"></script>
+<script src="/assets/js/main.js"></script>
     @endsection
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-    <script>
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('1f4f0e30162086a946a7', {
-            cluster: 'mt1'
-        });
-
-        var channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function(data) {
-            alert(JSON.stringify(data));
-        });
-    </script>
-    <script src="/assets/js/jquery.min.js"></script>
-
-
-    <script src="/assets/js/bootstrap.bundle.js"></script>
-    <script src="/assets/js/vendor.min.js"></script>
-
-
-
-
 </body>
-
+@include('footer.footer-details')
 </html>

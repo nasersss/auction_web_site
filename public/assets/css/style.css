@@ -3425,7 +3425,8 @@ input[type="button"].btn-block {
   text-align: center; }
 
 .tab-content > .tab-pane {
-  display: none; }
+  display: none;
+}
 
 .tab-content > .active {
   display: block; }
@@ -8182,7 +8183,7 @@ width: 80%;
     letter-spacing: .1rem;
   text-align: center;
 }
-   
+
   .custom-table tbody tr:not(.spacer) {
     border-radius: 7px;
     overflow: hidden;
@@ -8192,7 +8193,7 @@ width: 80%;
     .custom-table tbody tr:not(.spacer):hover {
       -webkit-box-shadow: 0 2px 10px -5px rgba(0, 0, 0, 0.1);
       box-shadow: 0 2px 10px -5px rgba(0, 0, 0, 0.1); }
-  
+
     .custom-table tbody tr th:first-child, .custom-table tbody tr td:first-child {
       border-top-left-radius: 7px;
       border-bottom-left-radius: 7px; }
@@ -8324,17 +8325,21 @@ width: 80%;
 }
 
 #ads .card-notify-year {
-  position: absolute;
-  right: -10px;
-  top: -20px;
-  background: #ff4444;
-  border-radius: 50%;
-  text-align: center;
-  color: #fff;
-  font-size: 14px;
-  width: 50px;
-  height: 50px;
-  padding: 15px 0 0 0;
+    position: absolute;
+    right: -21px;
+    top: -23px;
+    background: #ff4444;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    width: 50px;
+    height: 50px;
+    padding: 15px 0 0 0;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    font-weight: bolder;
 }
 
 
@@ -8407,7 +8412,7 @@ width: 80%;
   text-transform: uppercase;
   font-size: 25px;
   font-weight: bold;
-  
+
 }
 #headrs{
   color: #6c76e4;
@@ -8418,7 +8423,7 @@ width: 80%;
  position: relative;
  left: 30px;
  font-size: 1em;
- 
+
 }
 .img-car img{
   float: left ;
@@ -8463,7 +8468,7 @@ width: 80%;
         font-size: 15px
     }
 
-   
+
 
     .label-top {
         position: absolute;
@@ -8518,46 +8523,46 @@ width: 80%;
     color: #fff;
     font-weight: bold;
   }
-  
+
   .product-details {
     padding: 10px;
   }
-  
- 
-  
+
+
+
   .cart {
     background: #fff;
     text-align: right;
   }
-  
+
   .p-about {
     font-size: 12px;
   }
-  
+
   .table-shadow {
     -webkit-box-shadow: 5px 5px 15px -2px rgba(0,0,0,0.42);
     box-shadow: 5px 5px 15px -2px rgba(0,0,0,0.42);
   }
-  
+
   .type {
     font-weight: 400;
     font-size: 10px;
-   
+
   }
-  
+
   label.radio {
     cursor: pointer;
   }
-  
+
   label.radio input {
     position: absolute;
     top: 0;
     left: 0;
     visibility: hidden;
     pointer-events: none;
-   
+
   }
-  
+
   label.radio span {
     padding: 1px 12px;
     border: 2px solid #ada9a9;
@@ -8567,59 +8572,59 @@ width: 80%;
     text-transform: uppercase;
     font-size: 11px;
     font-weight: 300;
-    
+
   }
-  
+
   label.radio input:checked + span {
     border-color: #fff;
     background-color: blue;
     color: #fff;
   }
-  
+
   .credit-inputs {
     background: rgb(102,102,221);
     color: #fff !important;
     border-color: rgb(102,102,221);
   }
-  
+
   .credit-inputs::placeholder {
     color: #fff;
     font-size: 13px;
   }
-  
+
   .credit-card-label {
     font-size: 9px;
     font-weight: 300;
- 
+
   }
-  
+
   .form-control.credit-inputs:focus {
     background: rgb(102,102,221);
     border: rgb(102,102,221);
   }
-  
+
   .line {
     border-bottom: 1px solid rgb(102,102,221);
   }
-  
+
   .information span {
     font-size: 12px;
     font-weight: 500;
-   
+
   }
-  
+
   .information {
     margin-bottom: 5px;
   }
-  
+
   .items {
     -webkit-box-shadow: 5px 5px 4px -1px rgba(0,0,0,0.25);
     box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.08);
   }
-  
+
   .spec {
     font-size: 11px;
-   
+
   }
 /*--------------------------------------------------------------
 # Featured Services Section
@@ -8731,7 +8736,7 @@ width: 80%;
 .section-header p {
   margin: 0 auto;
   color: #000;
- 
+
 }
 @media (min-width: 1280px) {
   .section-header p {
@@ -8773,9 +8778,10 @@ width: 80%;
 }
 
 .md-stepper-horizontal {
-	display:table;
+	display:flex;
 	width:100%;
 	margin:0 auto;
+    justify-content: center;
 	background-color:#FFFFFF;
 	box-shadow: 0 3px 8px -6px rgba(0,0,0,.50);
 }
@@ -9017,17 +9023,17 @@ width: 80%;
     .related h3 {
         font-weight: 900
     }
-    
-   
+
+
 .bg-contact100 {
-  width: 100%;  
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
  }
- 
+
  .container-contact100 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -9040,7 +9046,7 @@ width: 80%;
   padding: 15px;
   background: rgba(132,106,221,0.9);
  }
- 
+
  .wrap-contact100 {
   width: 1163px;
   background: #fff;
@@ -9055,25 +9061,25 @@ width: 80%;
   justify-content: space-between;
   padding: 110px 130px 157px 148px;
  }
- 
+
  /*------------------------------------------------------------------
  [  ]*/
  .contact100-pic {
   width: 310px;
   padding-top: 55px;
  }
- 
+
  .contact100-pic img {
   max-width: 100%;
  }
- 
- 
+
+
  /*------------------------------------------------------------------
  [  ]*/
  .contact100-form {
   width: 390px;
  }
- 
+
  .contact100-form-title {
   display: block;
   font-family: Montserrat-ExtraBold;
@@ -9084,7 +9090,7 @@ width: 80%;
   padding-bottom: 36px;
   text-align: center;
  }
- 
+
  input.input100 {
   height: 50px;
   border-radius: 5px;
@@ -9092,11 +9098,11 @@ width: 80%;
   padding: 0 30px 0 50px;
   text-align: right;
  }
- 
+
  input.input100[name="email"] {
   padding: 0 30px 0 54px;
  }
- 
+
  textarea.input100 {
   min-height: 150px;
   border-radius: 5px;
@@ -9104,7 +9110,7 @@ width: 80%;
   padding: 14px 30px;
   text-align: right;
  }
- 
+
  /*---------------------------------------------*/
  .wrap-input100 {
   position: relative;
@@ -9112,7 +9118,7 @@ width: 80%;
   z-index: 1;
   margin-bottom: 10px;
  }
- 
+
  .input100 {
   display: block;
   width: 100%;
@@ -9122,8 +9128,8 @@ width: 80%;
   line-height: 1.5;
   color: #666666;
  }
- 
- 
+
+
  /*------------------------------------------------------------------
  [ Focus ]*/
  .focus-input100 {
@@ -9138,26 +9144,26 @@ width: 80%;
   box-shadow: 0px 0px 0px 0px;
   color: rgba(132,106,221, 0.5);
  }
- 
+
  .input100:focus + .focus-input100 {
   -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
   animation: anim-shadow 0.5s ease-in-out forwards;
  }
- 
+
  @-webkit-keyframes anim-shadow {
   to {
     box-shadow: 0px 0px 60px 25px;
     opacity: 0;
   }
  }
- 
+
  @keyframes anim-shadow {
   to {
     box-shadow: 0px 0px 60px 25px;
     opacity: 0;
   }
  }
- 
+
  .symbol-input100 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -9175,13 +9181,13 @@ width: 80%;
   pointer-events: none;
   color: #aaaaaa;
   font-size: 15px;
- 
+
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
  }
- 
+
  #icon{
    position: relative;
    right: 350px;
@@ -9190,7 +9196,7 @@ width: 80%;
   color: #846add;
   padding-left: 22px;
  }
- 
+
  /*-----------------------------------------------------------------
  [ Button ]*/
  .container-contact100-form-btn {
@@ -9204,7 +9210,7 @@ width: 80%;
   justify-content: center;
   padding-top: 20px;
  }
- 
+
  .contact100-form-btn {
   width: 100%;
   height: 50px;
@@ -9223,64 +9229,64 @@ width: 80%;
   justify-content: center;
   align-items: center;
   padding: 0 25px;
- 
+
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
  }
- 
+
  .contact100-form-btn:hover {
   background:#484f5d ;
  }
- 
+
  /*------------------------------------------------------------------
  [ Responsive ]*/
- 
+
  @media (max-width: 1200px) {
   .contact100-pic {
     width: 33.5%;
   }
- 
+
   .contact100-form {
     width: 44%;
   }
  }
- 
+
  @media (max-width: 992px) {
   .wrap-contact100 {
     padding: 110px 80px 157px 90px;
   }
- 
+
   .contact100-pic {
     width: 35%;
   }
- 
+
   .contact100-form {
     width: 55%;
   }
  }
- 
+
  @media (max-width: 768px) {
   .wrap-contact100 {
     padding: 110px 80px 157px 80px;
   }
- 
+
   .contact100-pic {
     display: none;
   }
- 
+
   .contact100-form {
     width: 100%;
   }
  }
- 
+
  @media (max-width: 576px) {
   .wrap-contact100 {
     padding: 110px 15px 157px 15px;
   }
  }
- 
+
 
     footer {
         background: #212529;
@@ -9430,6 +9436,51 @@ text-align: left;}
   .footer-10 .ftco-footer-social li a {
     background: #6c76e4;
     color: #fff; }
+
+.modal-confirm {
+	color: #636363;
+	width: 325px;
+	font-size: 14px;
+}
+.modal-confirm .modal-content {
+	padding: 20px;
+	border-radius: 5px;
+	border: none;
+}
+.modal-confirm .modal-header {
+	border-bottom: none;
+	position: relative;
+}
+.modal-confirm h4 {
+	text-align: center;
+	font-size: 26px;
+	margin: 30px 0 -15px;
+}
+.modal-confirm .icon-box {
+	color: #fff;
+	position: absolute;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	top: -70px;
+	width: 95px;
+	height: 95px;
+	border-radius: 50%;
+	z-index: 9;
+	background: #82ce34;
+	padding: 15px;
+	text-align: center;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.modal-confirm .icon-box i {
+	font-size: 58px;
+	position: relative;
+	top: 3px;
+}
+.modal-confirm.modal-dialog {
+	margin-top: 150px;
+}
+
     @import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');

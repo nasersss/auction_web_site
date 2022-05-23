@@ -1,24 +1,13 @@
+
 <!doctype html>
 <html lang="en">
 
 <head>
-  <title>مزادي كار | الرئيسية</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/ionicons.min.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link href="assets/css/search.css" rel="stylesheet" />
-  <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/all.css">
-  <link rel="stylesheet" href="assets/css/header.css">
-  <link rel="stylesheet" href="assets/css/home.css">
-
+ <title>مزادي كار | الرئيسية</title>
+ @include('header.head')
 </head>
-
 <body>
+
   @extends('master')
   @section( 'content')
   <!--slider-->
@@ -76,8 +65,7 @@
                         <th>
                           الحالة
                         </th>
-                        <td>
-                            @if($auction->state == 1) مستخدم @else جديد @endif </td>
+                        <td>@if($auction->state == 1) مستخدم @else جديد @endif </td>
                       </tr>
                       <tr>
                         <th>
@@ -267,7 +255,7 @@
                                         <img src="/assets/images/Advanced_Search.png" width="30">
                                         <p> بحث متقدم</p>
                                     </div>
-                                   
+
                                 </div>
                             </div>
                             <div class="advance-search" id="myDIV">
@@ -391,15 +379,19 @@
         <div class=" col-12  col-md-6  col-lg-4 my-3">
           <div class="card rounded">
             <div class="card-image">
-              <span class="card-notify-year" style="background-color:#6c76e4">
-                
-                @if($auction->state == 1) مستخدم 
-                @else 
-                <span class="card-notify-year" style="background-color:rgb(235, 39, 39)">
-                جديد
+
+                @if($auction->state == 1)
+                <div class="card-notify-year" style="background-color:#6c76e4">
+
+{{ "مستخدم" }}
+                </div>
+                @else
+                <div class="card-notify-year" style="background-color:#ff4444">
+                    {{ "جديد" }}
+               </div>
                 @endif
-                </span>
-              </span>
+
+
               @foreach($auction->auctionImage as $image)
               @php
               $im = explode('_',$image->image);
@@ -440,15 +432,15 @@
   <div class="row align-items-center">
 <div class="col-lg-6">
   <h4 class="font-weight-bold" id="headrs"> <i class="fa fa-leaf fa-2x mb-3 text-primary"></i>التعريف بمنصة مزادي كار</h4>
-  <p class="font-italic text-muted mb-4"> هي منصة إلكترونية تتيح للمزايدين المزايدة إلكترونياً على السيارات في المزاد بواسطة وسائل دفع إلكترونية و
-عملية المزايدة في الموقع الإلكتروني موثوقة، وتتفق مع قوانين إقامة المزادات والبيع والشراء في الجمهورية اليمنية وايضاُ 
+  <p class=" text-muted mb-4"> هي منصة إلكترونية تتيح للمزايدين المزايدة إلكترونياً على السيارات في المزاد بواسطة وسائل دفع إلكترونية و
+عملية المزايدة في الموقع الإلكتروني موثوقة، وتتفق مع قوانين إقامة المزادات والبيع والشراء في الجمهورية اليمنية وايضاُ
 يمكن الاطلاع على مجريات المزادات بدون تسجيل الدخول من خلال الضغط على 'عرض التفاصيل' في المزاد المطلوب  </p>
 </div>
 <div class="img-car"><img src="assets/images/العربية-للسيارات-حملة-نهاية-السنة-2016.png" alt="" class="img-fluid mb-4 mb-lg-0"></div>
   <div class="container">
     <h2 id="method_header">طريقة إستخدام النظام</h2>
     <div class="row">
-      <div class="tab-content col-6">
+      <div class="tab-content col-12 col-md-6">
 
         <div class="tab-pane active " id="tab-1">
           <div class="md-stepper-horizontal orange">
@@ -538,16 +530,6 @@
 
 
   @endsection
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/popper.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
-  <script src="assets/js/main.js"></script>
-
-
-</body>
-
+  </body>
+  @include('footer.footer')
 </html>

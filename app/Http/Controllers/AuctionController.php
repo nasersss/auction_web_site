@@ -32,7 +32,7 @@ class AuctionController extends Controller
             $state = State::with("city")->get();
             $vehicleType = VehicleType::get();
             if ($request->method() == 'GET') {
-                $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now()->add(-51, 'day'))->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
+                $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now())->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
                 return view('auction')->with([
                     "auctions" => $auction,
                     'categories' => $category,
@@ -56,7 +56,7 @@ class AuctionController extends Controller
                 if ($request->date_of_end_auction != null) {
                     $auction->where("date_of_end_auction", '<=', $request->date_of_end_auction)->where("date_of_end_auction", '>=', Carbon::now());
                 }
-                $auction = $auction->get();
+                $auction = $auction->where('is_active', 1)->get();
                 return view('auction')->with([
                     "auctions" => $auction,
                     'categories' => $category,

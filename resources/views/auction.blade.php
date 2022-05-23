@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="s007 mt-3">
-                        <form method="post" action="{{ route('auctions') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('auction') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="inner-form">
                                 <div class="basic-search">
@@ -209,6 +209,7 @@
 
     </div>
 @endsection
+<script src="/assets/js/search.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"

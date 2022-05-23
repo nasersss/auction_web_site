@@ -33,7 +33,7 @@ Route::get('/add_view',[Maincontroller::class,'show']);
 
 
 Route::get('/auction',[AuctionController::class,'index'])->name('auction');
-
+Route::post('/auction',[AuctionController::class,'index'])->name('auction');
 Route::get('/admin',function(){
     return view('admin.dashboard_home');
 });
