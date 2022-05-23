@@ -1,12 +1,16 @@
 
+<!DOCTYPE html>
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
-<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> -->
-<link href="{{asset('assets/css/app-ar.min.css')}}" rel="stylesheet" type="text/css" id="light-style">
+<!-- <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/app-ar.min.css" rel="stylesheet" type="text/css" id="light-style"> -->
 <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
-<title>عملية التاكيد</title>
+<link href="{{asset('assets/css/app-ar.min.css')}}" rel="stylesheet" type="text/css" id="light-style">
+    <title>تمت عملية الدفع بنجاح</title>
     <style>
         @import url(../fonts/DIN.css);
         body {
@@ -37,13 +41,17 @@
             background-color: #63d19e;
             color: #fff;
             font-size: 17px;
-            width: 60px;
-            height: 60px;
+            width: 100px;
+            height: 100px;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             margin-bottom: 10px
         }
+        .check1 i {
+            font-size: 50px;
+        }
+
 
 
         .confirm-button {
@@ -61,7 +69,6 @@
 </head>
 
 <body>
- 
     <div class="container mt-4 mb-4">
         <div class="row d-flex cart align-items-center justify-content-center">
             <div class="col-md-10">
@@ -69,7 +76,7 @@
                     <div class="d-flex justify-content-center border-bottom">
                         <div class="p-3">
                             <div class="title">
-                                <h4>الرجاء تاكيد العملية</h4>
+                                <h4>تمت العملية بنجاح</h4>
                             </div>
                         </div>
                     </div>
@@ -79,17 +86,10 @@
                                 <div class="d-flex justify-content-center mb-5 flex-column align-items-center"> 
                                     <span class="check1"><i class="dripicons-checkmark"></i></span> 
                                     
-                                    <span class="font-weight-bold">يرجاء شحن محفضتك</span> 
-                                        <small class="mt-2">عليك شحن محفظتك لدينا بمبلغ<strong> ${{$auction->stare_price*0.2}}</strong>لضمان مصداقية الموقع وملكية المركبة</small> 
-                                         <strong>وسيتم ارجعاها لك عند انتهاء المزاد بلإضافة لمبلغ بيع السيارة </strong>
+                                        <h4 class="mt-2">تمت عملية الدفع بنجاح</h4> 
                                     </div> 
-                                    <a href="/" ><button class="btn btn-danger btn-block confirm-button">رفض العملية</button></a>
-
-                                        <form class="d-inline" action="{{route('doPaymetn')}}" method="post">
-                                            @csrf
-                                            <input type="hidden" name="auctionId" value="{{$auction->id}}">
-                                            <button type="submit" class="btn btn-success btn-block confirm-button confirm-button-bg">تأكيد العملية</button>
-                                        </form>
+                                        
+                                        
                             </div>
                         </div>
                         

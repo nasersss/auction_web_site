@@ -51,8 +51,11 @@ class BiddingController extends Controller
         }
         if (($auction->curren_price + $request->amount) * 10 / 100 > Auth::user()->balance) {
             $payment = new PymentContoller();
-            $percentageFromStrartPrice = $auction->stare_price*0.2;
-           return  $payment->makePyment($auction,$percentageFromStrartPrice);
+            $percentageFromStrartPrice = $auction->stare_price*0.1;
+            if (Auth::user()->balance < $percentageFromStrartPrice) {
+                return view('makePyment')->with('auction', $auction);
+            }
+          // return  $payment->makePyment($auction,$percentageFromStrartPrice);
         }
         $auction->curren_price += $request->amount;
         $auction->number_of_participate += 1;

@@ -190,11 +190,11 @@ class AuctionController extends Controller
                     $notification->sendNotification($admin->id, 'تم اضافة مزاد جديد', 'auction_review');
                 } //end admin foeach
 
-                $payment = new PymentContoller();
-                $percentageFromStrartPrice = $auctionInfo->stare_price * 0.2;
-                if (Auth::user()->balance < $percentageFromStrartPrice) {
-                    return view('makePyment')->with('auctionInfo', $auctionInfo);
-                }
+                // $payment = new PymentContoller();
+                // $percentageFromStrartPrice = $auctionInfo->stare_price * 0.2;
+                // if (Auth::user()->balance < $percentageFromStrartPrice) {
+                //     return view('makePyment')->with('auctionInfo', $auctionInfo);
+                // }    
 
                 return redirect()->back()->with(["success" => "تمت اضافة المزاد بنجاح "]);
             }
@@ -610,7 +610,7 @@ class AuctionController extends Controller
                     $auction->is_active = -1;
                     $auction->date_of_end_auction  = date("Y-m-d H:i:s");
                     $auction->update();
-        
+                return view('success');
     }
 
 

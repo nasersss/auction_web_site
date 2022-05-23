@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\auction;
+use App\Models\Bidding;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -29,8 +30,34 @@ class PymentContoller extends Controller
        $card_holder=str_replace('+',' ',$card_holder[0]);
        $order_reference = $data['order_reference'];
 
+       session_start();
+        $auction = auction::find($order_reference);
+        $admin = User::where('role',0)->first();
+        $paidAmout = $auction->stare_price*0.2;
+        Auth::user()->deposit($paidAmout,['order_reference_id'=>$auction->id,'creaated_at'=>$created_at,'userName'=>Auth::user()->name,'auctionName'=>$auction->name,'auctionModle'=>$auction->model]);
+        
+        if(isset($_SESSION['amountOfBidding']))
+            {
+                $auction->curren_price += $_SESSION['amountOfBidding'];
+                $auction->number_of_participate += 1;
+                $auction->update();
+                $newBidding = new Bidding();
+                $newBidding->user_id = Auth::user()->id;
+                $newBidding->auction_id = $auction->id;
+                $newBidding->bidding_amount = $_SESSION['amountOfBidding'];//must be modfy to gevin by requst or save the amout in session then claa here
+                $newBidding->payed_amount = (($auction->curren_price + $_SESSION['amountOfBidding']) * 10 / 100);
+                $newBidding->save();
+                session_destroy();
+                return redirect('detail_car/'.$auction->id.'')->with(['success' => '  تمت عملية المزايدة بنجاح مع خصم نسبة المزايدة ']);        
+            }
+            else if(isset($_SESSION["delivery"] )){
+              
+            }
+            else{
+                return redirect('/auction_review')->with(['success' => 'تمت عملية تسديد نسبة ضمان إضافة مزاد جديد بنجاح ']);        
+            }   
        // add to 10% to superAdmin wellt 
- return view('receiptConfirmation',compact('paid_amount','status','card_holder','card_type','created_at','order_reference'));
+ return view('success');
  }
  
     
@@ -46,7 +73,7 @@ class PymentContoller extends Controller
     public function dopayment(Request $request){
       $auctionId = $request->auctionId;
       $auction = auction::find( $auctionId);
-      $percentageFromStrartPrice = $auction->curren_price*0.2;
+      $percentageFromStrartPrice = $auction->stare_price*0.2;
       $payment = new PymentContoller();
       return  $payment->makePyment($auction,$percentageFromStrartPrice);
     }
