@@ -97,7 +97,7 @@ class OrderController extends Controller
                                                                لكي نرسل لكم بقية وثائق السيارة ', 'comfirmDelevery/' . $delever->id);
 
                                                           
-        return view('admin.invoice')->with(['delever' => $delever, 'pymentInfo' => $pymentInfo]);
+        return view('admin.invoice')->with(['delever' => $delever, 'paidAmout' =>$paidAmout]);
 
         // } catch (\Throwable $th) {
         //     return view('error.error');

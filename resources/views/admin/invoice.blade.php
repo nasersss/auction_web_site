@@ -146,11 +146,9 @@
                                                                 اللون :{{$delever->auction->color}} -   الجير :{{$delever->auction->ger_type}},
                                                             </td>
                                                             <td>200 $</td>
-                                                            <td>{{$pymentInfo->paid_amount-200}} $</td>
-                                                            <td class="text-end">{{$pymentInfo->paid_amount}} $</td>
+                                                            <td>{{$paidAmout-200}} $</td>
+                                                            <td class="text-end">{{ $paidAmout}} $</td>
                                                         </tr>
-
-
                                                         </tbody>
                                                     </table>
                                                 </div> <!-- end table-responsive-->
@@ -172,7 +170,7 @@
                                             <div class="col-sm-6">
                                                 <div class="float-start mt-3 mt-sm-0">
                                                     <h5> الاجمالي النهائي</h5>
-                                                    <h3>{{$pymentInfo->paid_amount}}  $</h3>
+                                                    <h3>{{$paidAmout}}  $</h3>
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div> <!-- end col -->
