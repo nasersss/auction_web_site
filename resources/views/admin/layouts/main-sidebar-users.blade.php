@@ -1,7 +1,7 @@
 <div class="leftside-menu">
 
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-light">
+    <a href="{{route('index')}}" class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="{{asset('assets/images/logo-dash.png')}}" alt="" height="40">
                     </span>
@@ -11,7 +11,7 @@
     </a>
 
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-dark">
+    <a href="{{route('index')}}" class="logo text-center logo-dark">
                     <span class="logo-lg">
                         <img src="{{asset('assets/images/logo-dark.png')}}" alt="" height="16">
                     </span>
@@ -27,7 +27,7 @@
 
             <li class="side-nav-title side-nav-item">لوحة التحكم</li>
             <li class="side-nav-item">
-                <a href="{{route('index')}}" class="side-nav-link">
+                <a href="{{route('dash-user')}}" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span>الصفحة الرئيسية</span>
                 </a>

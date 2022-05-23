@@ -68,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail,Wallet
 
     public function bidding()
     {
-        return $this->hasMany(BiddingController::class, 'user_id');
+        return $this->hasMany(Bidding::class, 'user_id');
     }
 
     public function auction()
