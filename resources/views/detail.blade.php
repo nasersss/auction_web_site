@@ -325,15 +325,16 @@
                     @csrf
                     <input type="text" required id="input-amount" name="amount" placeholder="ادخل مبلغ للاشتراك في المزاد">
                     <input type="hidden" name="auction_id" value="{{$auctions->id}}">
+                    {{-- <button type="submit" class="btn btn-primary" >مزايدة</button> --}}
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">مزايدة</button>
                 </form>
                 @else
 
-                <form method="get" action="{{route('delivery')}}">
+                {{-- <form method="get" action="{{route('delivery')}}">
                     @csrf
                     <input type="hidden" name="auction_id" value="{{$auctions->id}}">
                     <button type="submit" class="btn btn-primary col-12" data-bs-target="#exampleModal">إكمال عملية الدفع </button>
-                </form>
+                </form> --}}
 
                 @endif
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -344,16 +345,18 @@
                                 <i class="fas fa-times" style="font-size: 25px" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></i>
                             </div>
                             <div class="modal-body">
+                                @isset(Auth::user()->balance)
                                 @if(Auth::user()->balance < $auctions->stare_price*.2)
                                     <div>
                                         <div class="alert alert-danger alert-dismissible fade show">
-                                            <p>لتتمكن من المشاركة في المزاد يجب عليك شحن محفظتك بملغ <strong>{{$auctions->stare_price * .2}}$</strong></p>
+                                            <p>عفوا ليس لديك رصيد كافي للمشاركة في المزاد يجب عليك شحن محفظتك بملغ <strong>{{$auctions->stare_price * .2}}$</strong></p>
                                             <hr>
                                             <p class="mb-0"> سياسات الموقع <a href="{{ route('view_policies') }}"> انقر هنا لمعرفة المزيد</a></p>
 
                                         </div>
                                     </div>
                                     @endif
+                                    @endisset
                                     هل انت متاكد انك تريد المزايدة بمبلغ <strong id="amount"></strong>$
 
                             </div>
@@ -370,7 +373,9 @@
                         const amount = document.getElementById('amount');
                         const inputAmount = document.getElementById('input-amount');
                         inputAmount.addEventListener('input', function() {
+                            console.log(inputAmount.vaule);
                             amount.innerText = inputAmount.value;
+
                         })
 
                         // btn.addEventListener('click',function() {

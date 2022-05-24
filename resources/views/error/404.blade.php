@@ -20,7 +20,7 @@
             <a href="{{ route('index') }}" class="btn btn-primary text-white"> الصفخة الرئيسية</a>
         </div>
         <div class='error-img'>
-            <img src="/assets/images/projects/404.png" alt="">
+            <img src="/assets/images/error/404.png" alt="">
         </div>
     </div>
 </body>

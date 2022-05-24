@@ -158,6 +158,7 @@ class UserProfileController extends Controller
             return view('admin.profile.edit_profile')
                 ->with('userInfo', $userInfo);
         } catch (\Throwable $error) {
+
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
     }
@@ -171,26 +172,27 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, $userProfile)
     {
+        // return 15;
         try {
 
             Validator::validate($request->all(), [
-                'name' => ['required', 'min:1', 'max:100'],
-                'address' => ['required', 'min:1', 'max:200'],
-                'phone' => ['required', 'min:5', 'max:15'],
+                'name' => ['required', 'min:1', 'max:100']
+                // 'address' => ['required', 'min:1', 'max:200'],
+                // 'phone' => ['required', 'min:5', 'max:15'],
 
             ], [
                 'name.required' => 'يجب تعبئت هذا الحقل',
                 'name.max' => 'لايمكنك ادخال اقل من 100 حرف',
                 'name.min' => 'يجب ان يكون الحقل المدخل اكثر من  واحد',
 
-                'address.required' => ' يجب تعبة الحقل الخاص بالعنوان   ',
-                'address.max' => 'لايمكنك ادخال اقل من 200 حرف',
-                'address.min' => 'يجب ان يكون الحقل المدخل اكثر من حرف واحد',
+                // 'address.required' => ' يجب تعبة الحقل الخاص بالعنوان   ',
+                // 'address.max' => 'لايمكنك ادخال اقل من 200 حرف',
+                // 'address.min' => 'يجب ان يكون الحقل المدخل اكثر من حرف واحد',
 
 
-                'phone.required' => ' يجب تعبة الحقل الخاص بارقم الهاتف   ',
-                'phone.max' => 'لايمكنك ادخال اكثر من 15 رقم',
-                'phone.min' => 'يجب ان يكون الحقل المدخل اكثر من 5 ارقام',
+                // 'phone.required' => ' يجب تعبة الحقل الخاص بارقم الهاتف   ',
+                // 'phone.max' => 'لايمكنك ادخال اكثر من 15 رقم',
+                // 'phone.min' => 'يجب ان يكون الحقل المدخل اكثر من 5 ارقام',
 
 
 

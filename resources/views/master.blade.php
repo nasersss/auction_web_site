@@ -65,7 +65,11 @@
                     </div>
                     <div class="name-auth">{{ Auth::user()->name }}</div>
                     <a href="{{route('profile')}}"><i class="fas fa-user"></i> الملف الشخصي</a>
-                    <a href="{{ route('add-auction') }}"><i class="fas fa-cog"></i>اضافة مزاد</a>
+                    @if(Auth::user()->role < 2)
+                    <a href="{{ route('admin') }}"><i class="fas fa-cog"></i> لوحة التحكم</a>
+                    @else
+                    <a href="{{ route('dash-user') }}"><i class="fas fa-cog"></i> لوحة التحكم</a>
+                    @endif
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out"></i>تسجيل الخروج</a>
                     <form id="logout-form" action="{{route('logout')  }}" method="post" class="d-none">
                         @csrf

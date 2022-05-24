@@ -18,22 +18,10 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        // $destinations = [
-        //     0 => 'superAdmin',
-        //     2 => 'index',
-        // ];
-        // if (!Auth::check()) {
-        //     return redirect()->route('login');
-        // }
-
-        // if (Auth::user()->role != 1) {
-        //     return redirect()->route($destinations[Auth::user()->role]);
-        // }
         if (Auth::check()) {
             return $next($request);
         }else{
             return redirect()->route('login')->with(['error' => 'عذرا لا تملك الصلاحية لدخول هذه الصفخة يرجا تسجيل الدخول او انشاء حساب']);
         }
-        // return $next($request);
     }
 }

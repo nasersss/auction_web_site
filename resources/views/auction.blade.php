@@ -4,6 +4,39 @@
 <head>
     <title>المزادات المتوفؤة</title>
     @include('header.head')
+    <style>
+        @import url(../fonts/DIN.css);
+        .btn-search{
+            font-family: DIN-light, sans-serif, Arial;
+        }
+        .fd-select {
+            display: block;
+            width: 100%;
+            padding: 0.45rem 2.5rem 0.45rem 0.9rem;
+            -moz-padding-start: calc(0.9rem - 3px);
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e);
+            background-repeat: no-repeat;
+            background-position: right 0.9rem center;
+            background-size: 16px 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+            -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+            transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            font-family: DIN-light, sans-serif, Arial;
+            
+        }
+
+    </style>
 </head>
 
 <body>
@@ -33,12 +66,13 @@
                                         <div class="input-field">
                                             <label for="inputAddress" class="form-label"
                                                 style="text-align: right;">ماركة المركبة</label>
-                                            <div class="input-select">
-                                                <select name="category_id" class="form-select mb-3">
-                                                    <option selected disabled value="">.أختر احدى الماركات</option>
+                                            <div>
+                                                <select name="category_id" class="fd-select">
+                                                    <option selected disabled value="">أختر احدى الماركات</option>
                                                     @isset($categories)
                                                         @foreach ($categories as $category)
-                                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                            <option value="{{ $category->id }}">{{ $category->name }}
+                                                            </option>
                                                         @endforeach
                                                     @endisset
                                                 </select>
@@ -47,9 +81,9 @@
                                         <div class="input-field">
                                             <label for="inputAddress" class="form-label" style="text-align: right;">لون
                                                 المركبة</label>
-                                            <div class="input-select">
-                                                <select data-trigger="" name="color" class="form-select mb-3">
-                                                    <option selected disabled value="">.أختر احد الاللوان </option>
+                                            <div>
+                                                <select data-trigger="" name="color" class="fd-select">
+                                                    <option selected disabled value="">أختر احد الاللوان</option>
                                                     <option value="أزرق">أزرق</option>
                                                     <option value="أحمر">أحمر</option>
                                                     <option value="أخضر">أخضر</option>
@@ -63,9 +97,9 @@
                                         <div class="input-field">
                                             <label for="inputAddress" class="form-label" style="text-align: right;">نوع
                                                 المركبة</label>
-                                            <div class="input-select">
-                                                <select name="vehicle_type" class="form-select mb-3">
-                                                    <option value="" selected disabled>.أختر نوع المركبة</option>
+                                            <div>
+                                                <select name="vehicle_type" class="fd-select">
+                                                    <option value="" selected disabled>أختر نوع المركبة</option>
                                                     @isset($vehicleTypes)
                                                         @foreach ($vehicleTypes as $vehicleType)
                                                             <option value="{{ $vehicleType->id }}">{{ $vehicleType->name }}
@@ -81,9 +115,9 @@
                                         <div class="input-field">
                                             <label for="inputAddress" class="form-label"
                                                 style="text-align: right;">المحافظة</label>
-                                            <div class="input-select">
-                                                <select id='state' name="states" class="form-select mb-3">
-                                                    <option selected disabled>.أختر محافظة</option>
+                                            <div>
+                                                <select id='state' name="states" class="fd-select mb-3">
+                                                    <option selected disabled>أختر محافظة</option>
                                                     @isset($states)
                                                         @foreach ($states as $state)
                                                             <option value="{{ $state->id }}">{{ $state->name }}</option>
@@ -95,9 +129,9 @@
                                         <div class="input-field">
                                             <label for="inputAddress" class="form-label"
                                                 style="text-align: right;">المدينة</label>
-                                            <div class="input-select">
-                                                <select data-trigger="" name="address" id='city' class="form-select mb-3">
-                                                    <option value="" selected disabled>.أختر مدينة</option>
+                                            <div>
+                                                <select data-trigger="" name="address" id='city' class="fd-select mb-3">
+                                                    <option value="" selected disabled>أختر مدينة</option>
                                                     @isset($states)
                                                         @foreach ($states as $state)
                                                             @foreach ($state->city as $city)
@@ -128,15 +162,15 @@
                                         <div class="input-field">
                                             <label for="inputAddress" class="form-label" style="text-align: right;">تارخ
                                                 ووقت انتهاء المزاد</label>
-                                            <div class="input-select">
+                                            <div class="input-select mb-3">
                                                 <input name="date_of_end_auction" type="datetime-local"
-                                                    class="form-select" style="margin: 0;padding: 0;height: 38px;"
+                                                    class="fd-select" style="margin: 0;padding: 0;height: 38px;"
                                                     id="inputAddress" placeholder="مثال باص ...">
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row third">
+                                    <div class="row" style="justify-content: end;">
                                         <div class="input-field">
                                             <button class="btn-search">بحث</button>
                                         </div>
@@ -219,4 +253,4 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 
 </body>
 
-</html>  
+</html>

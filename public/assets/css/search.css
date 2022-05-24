@@ -876,13 +876,13 @@ legend {
 }
 
 .s007 form .inner-form .input-field .btn-search {
-  min-width: 100px;
+  min-width: 205px;
   height: 40px;
   padding: 0 15px;
   background: #57b846;
   white-space: nowrap;
-  border-radius: 3px;
-  font-size: 14px;
+  border-radius: 0.25rem;
+  font-size: 18px;
   color: #fff;
   transition: all .2s ease-out, color .2s ease-out;
   border: 0;

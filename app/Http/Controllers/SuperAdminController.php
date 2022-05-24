@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class SuperAdminController extends Controller
 {
     //
@@ -24,10 +22,18 @@ class SuperAdminController extends Controller
      */
     public function index()
     {
+        $auctions = auction::get();
+        $users = User::get();
+        $bayders = Bidding::get();
+        $orders = Order::get();
         try {
-
-            return view('superAdmin');
-        } catch (\Throwable $error) {
+            return view('admin/home')->with([
+                'auctions' => $auctions,
+                'users' => $users,
+                'bayders' => $bayders,
+                'orders' => $orders,
+            ]);
+        } catch (\Exception$e) {
             return view('error');
         }
     }

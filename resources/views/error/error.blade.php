@@ -14,13 +14,13 @@
 <body>
     <div class="container">
         <div class="error-msg">
-            <h3>😖 انتهت جلستك في الموقع </h3>
+            <h3>😖 @isset($error){{$error}} @else حصل خطاء غير متوقع @endisset</h3>
             <h4>للعودة الى صفحتك السابقة قم بتسجيل الدخول</h4>
 
-            <a href="{{ route('login') }}" class="btn btn-primary text-white"> تسجيل الدخول</a>
+            <a href="/" class="btn btn-primary text-white"> الرئيسية </a>
         </div>
         <div class='error-img'>
-            <img src="/assets/images/projects/page-misc-error-light.png" alt="">
+            <img src="/assets/images/error/error.png" alt="">
         </div>
     </div>
 </body>

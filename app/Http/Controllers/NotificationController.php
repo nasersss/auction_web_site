@@ -53,7 +53,7 @@ class NotificationController extends Controller
                 return redirect()->route("$route", "$parameter");
             }
         } catch (\Throwable $error) {
-            throw $error->getMessage();
+            return view('error.error')->with('error',"هناك خطاء ما عفوا ");
         }
     }
 
@@ -80,28 +80,37 @@ class NotificationController extends Controller
             $notification->route = $route;
             $notification->save();
         } catch (\Throwable $error) {
-            throw $error->getMessage();
+            // throw $error->getMessage();
+            return view('error.error')->with('error',"هناك خطاء ما عفوا ");
+
         }
     }
     /**
-     * [Description for sendNotificationFromAdmin]
+     * [This function used to send notfication from admin to user]
      *
      * @param mixed $toUserId
      * @param mixed $content
      * @param mixed $route
      * 
-     * @return [type]
+     * @return [boolean]
      * 
      */
     public function sendNotificationFromAdmin($toUserId, $content, $route)
     {
-        $notification = new Notification();
-        $admin = User::where('role', 0)->first();
-        $notification->from_user_id = $admin->id;
-        $notification->to_user_id = $toUserId;
-        $notification->content = $content;
-        $notification->route = $route;
-        $notification->save();
+        try {
+            $notification = new Notification();
+            $admin = User::where('role', 0)->first();
+            $notification->from_user_id = $admin->id;
+            $notification->to_user_id = $toUserId;
+            $notification->content = $content;
+            $notification->route = $route;
+            $notification->save();     
+           } catch (\Throwable $th) {
+            // throw $error->getMessage();
+            return view('error.error')->with('error',"عفوا هناك خطاء ما لم يتم إرسال الاشعارات ");
+
+        }
+        
     }
 
     /**
