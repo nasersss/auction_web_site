@@ -70,7 +70,8 @@
                         <div class="notify-icon">
                             <img src="@isset($notification->fromUser->profile->image) {{$notification->fromUser->profile->image}} @else /images/users/defaultImage.png @endisset" class="img-fluid rounded-circle" alt="">
                         </div>
-                        <p class="notify-details">{{ Auth::user()->name }}</p>
+                        <p class="notify-details">{{ $notification->fromUser->name }}</p> 
+                        {{-- <p class="notify-details">{{ Auth::user()->name }}</p> --}}
                         <p style="padding-right: 46px;" class="text-muted mb-0 user-msg">
                             <small>{{$notification->content}}</small>
                         </p>

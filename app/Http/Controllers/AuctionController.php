@@ -481,7 +481,7 @@ class AuctionController extends Controller
             // This for each will send notfication and email to all user
             $users = User::get();
             if ($auction->is_active == 1) {
-                $notification->sendNotificationFromAdmin($auction->seller_id, 'عزيزي العميل لقد تم تفعيل مزادك الخاص بالسيارة ' . $auction->name . ' بنجاح  شكرا لك ', '/auctions_review');
+                $notification->sendNotificationFromAdmin($auction->seller_id, 'عزيزي العميل لقد تم تفعيل مزادك الخاص بالسيارة ' . $auction->name . ' بنجاح  شكرا لك ', 'auction_review');
                 foreach ($users as $user) {
                     $notification->sendNotificationFromAdmin($user->id, 'تمت اضافة مزاد جديد ', 'action_detail/' . $auctionId);
                     $notify = Notification::where('to_user_id', $user->id)->orderBy('id', 'desc')->first();
@@ -493,7 +493,7 @@ class AuctionController extends Controller
                     }
                 }
             } else {
-                $notification->sendNotificationFromAdmin($auction->seller_id, 'عزيزي العميل لقد تم الغاء تفعيل  مزادك الخاص بالسيارة ' . $auction->name . ' من قبل المدير  شكرا لك ', 'auctions-review/' . $auctionId);
+                $notification->sendNotificationFromAdmin($auction->seller_id, 'عزيزي العميل لقد تم الغاء تفعيل  مزادك الخاص بالسيارة ' . $auction->name . ' من قبل المدير  شكرا لك ', 'auction_review');
             }
             $admin = User::where('role', 0)->first();
             return back()->with(['success' => 'تم تحديث البيانات بنجاح']);

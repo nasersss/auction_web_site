@@ -37,7 +37,8 @@ Route::group(['middleware' => 'is.admin'], function () {
     Route::get('edit_users/{userId}', [UserProfileController::class, 'editUser'])->name('edit_user');
     Route::post('update_user/{PoliceId}', [UserProfileController::class, 'updateUser'])->name('update_users');
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-######### category routes
+
+    ######### category routes
     Route::get('list_categories', [CategoryController::class, 'index'])->name('view_cat');
     Route::get('add_categories', [CategoryController::class, 'create'])->name('add-cat');
     Route::get('edit_categories/{categoryId}', [CategoryController::class, 'edit'])->name('edit_categories');
@@ -73,5 +74,8 @@ Route::group(['middleware' => 'is.admin'], function () {
     Route::post('update_vehicle/{Id}', [VehicleTypeController::class, 'update'])->name('update_vehicle');
     Route::get('toggle_vehicle/{Id}', [VehicleTypeController::class, 'toggle'])->name('toggle_vehicle');
     Route::get('list_vehicle', [VehicleTypeController::class, 'listVehicle'])->name('list_vehicle');
+
+
+############User
 
 });

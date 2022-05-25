@@ -80,7 +80,7 @@ class PymentContoller extends Controller
         return  $payment->makePyment($auction,$percentageFromStrartPrice);
       } catch (\Throwable $th) {
        
-        $error = 'هناك مشكلة في الانترنت ';
+        $error = 'الرجاء تأكيد العملية ';
         return view('error.error')->with($error);
       }
       
@@ -134,7 +134,7 @@ class PymentContoller extends Controller
           curl_close($curl);
       
           if ($err) {
-            $error = 'هناك مشكلة في الانترنت ';
+            $error = 'لم تتم عملية الاتصال ببوابة الدفع الاكتروني  ';
         return view('error.error')->with('error',$error);
           } else {
            $url = json_decode($response)->invoice->next_url;

@@ -6,7 +6,6 @@ use App\Models\auction;
 use App\Models\Bidding;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
-
 use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +37,7 @@ class UserProfileController extends Controller
             return view('user.profile')
                 ->with('users', $user);
         } catch (\Throwable $error) {
-            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+            return redirect()->back()->with(['error' => 'حصل خطاء غير متوقع ']);
         }
     }
 
@@ -54,7 +53,7 @@ class UserProfileController extends Controller
             return view('admin.users.view_users')
                 ->with('users', $user);
         } catch (\Throwable $error) {
-            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+            return redirect()->back()->with(['error' => 'حصل خطاء غير متوقع ']);
         }
     }
 
@@ -70,7 +69,7 @@ class UserProfileController extends Controller
             return view('admin.profile.add_profile')
                 ->with('userInfo', $userInfo);
         } catch (\Throwable $error) {
-            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+            return redirect()->back()->with(['error' => 'عذرا هناك    خطاء غير متوقع  ']);
         }
     }
 
@@ -87,8 +86,8 @@ class UserProfileController extends Controller
 
             Validator::validate($request->all(), [
                 'name' => ['required', 'min:1', 'max:100'],
-                'address' => ['required', 'min:1', 'max:200'],
-                'phone' => ['required', 'min:5', 'max:15'],
+                // 'address' => ['required', 'min:1', 'max:200'],
+                // 'phone' => ['required', 'min:5', 'max:15'],
 
             ], [
                 'name.required' => 'يجب تعبئت هذا الحقل',
@@ -96,14 +95,14 @@ class UserProfileController extends Controller
                 'name.min' => 'يجب ان يكون الحقل المدخل اكثر من  واحد',
                 'name.unique' => 'الاسم الدي ادخلتة غير متاحة',
 
-                'address.required' => 'يجب تعبئت هذا الحقل',
-                'address.max' => 'لايمكنك ادخال اقل من 200 حرف',
-                'address.min' => 'يجب ان يكون الحقل المدخل اكثر من حرف واحد',
+                // 'address.required' => 'يجب تعبئت هذا الحقل',
+                // 'address.max' => 'لايمكنك ادخال اقل من 200 حرف',
+                // 'address.min' => 'يجب ان يكون الحقل المدخل اكثر من حرف واحد',
 
 
-                'phone.required' => 'يجب تعبئت هذا الحقل',
-                'phone.max' => 'لايمكنك ادخال اقل من 16 رقم',
-                'phone.min' => 'يجب ان يكون الحقل المدخل اكثر من 5 ارقام',
+                // 'phone.required' => 'يجب تعبئت هذا الحقل',
+                // 'phone.max' => 'لايمكنك ادخال اقل من 16 رقم',
+                // 'phone.min' => 'يجب ان يكون الحقل المدخل اكثر من 5 ارقام',
 
 
 
@@ -111,6 +110,7 @@ class UserProfileController extends Controller
             $user = User::find($userProfile);
             $user->name = $request->name;
             $user->save();
+            
             $userInfo  = new UserProfile();
             $userInfo->id = $userProfile;
             $userInfo->user_id = $userProfile;
@@ -119,10 +119,11 @@ class UserProfileController extends Controller
             $userInfo->facebook = $request->facebook;
             $userInfo->twitter = $request->twitter;
             $userInfo->instagram = $request->instagram;
+            
             $userInfo->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultImage.png";
             if ($userInfo->save())
                 return redirect()->route('profile')->with(['success' => 'تم تحديث البيانات بنجاح']);
-            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+            return redirect()->back()->with(['error' => ' الرجاء التأكد من صحة بيانات الاسم ']);
         } catch (\Throwable $error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
@@ -158,7 +159,6 @@ class UserProfileController extends Controller
             return view('admin.profile.edit_profile')
                 ->with('userInfo', $userInfo);
         } catch (\Throwable $error) {
-
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
     }
@@ -172,16 +172,14 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, $userProfile)
     {
-        // return 15;
         try {
-
             Validator::validate($request->all(), [
-                'name' => ['required', 'min:1', 'max:100']
+                'name' => ['required', 'min:1', 'max:100'],
                 // 'address' => ['required', 'min:1', 'max:200'],
                 // 'phone' => ['required', 'min:5', 'max:15'],
 
             ], [
-                'name.required' => 'يجب تعبئت هذا الحقل',
+                'name.required' => 'يجب تعبئت هذا حقل الاسم ',
                 'name.max' => 'لايمكنك ادخال اقل من 100 حرف',
                 'name.min' => 'يجب ان يكون الحقل المدخل اكثر من  واحد',
 
@@ -200,7 +198,9 @@ class UserProfileController extends Controller
             $user = User::find($userProfile);
             $user->name = $request->name;
             $user->save();
+
             $userInfo = UserProfile::find($userProfile);
+          
             $userInfo->phone = $request->phone;
             $userInfo->address = $request->address;
             $userInfo->facebook = $request->facebook;

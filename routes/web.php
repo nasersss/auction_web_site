@@ -26,6 +26,8 @@ Route::get('/view_policies', [PoliciesController::class, 'viewPolicies'])->name(
 Route::get('/auction', [AuctionController::class, 'index'])->name('auction');
 Route::post('/auction', [AuctionController::class, 'index'])->name('auction');
 Route::get('/', [AuctionController::class, "viewAuction"])->name("index");
+Route::post('/bidding', [BiddingController::class, 'store'])->name('bidding');
+
 ####auth
 Auth::routes(['verify' => true]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -65,6 +67,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/comfirmSell/{id}', [OrderController::class, 'comfirmSell'])->name('comfirmSell');
     Route::post('/makeDeleverDone', [OrderController::class, 'makeDeleverDone'])->name('makeDeleverDone');
     Route::get('/wallet', [OrderController::class, 'showWallet'])->name('wallet');
+
+    ##Profilo
+
 
 });
 

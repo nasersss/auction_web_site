@@ -44,11 +44,11 @@
                         <div class="row">
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">الاسم الكامل</label>
-                                <input name='name' value="{{$userInfo->name}}" type="text" class="form-control" id="inputAddress" placeholder="مثال محمد سالم ...">
+                                <input name='name' value="{{$userInfo->name}}" type="text" class="form-control"  placeholder="مثال محمد سالم ...">
                             </div>
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">الصورة الشخصية</label>
-                                <input class="form-control" name='image' type="file" accept="image/*" id="formFileMultiple">
+                                <input class="form-control" name='image' type="file" accept="image/*" >
                             </div>
                             <!-- <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">البريد الالكتروني</label>
@@ -56,22 +56,22 @@
                             </div> -->
                             <div class="mb-1 col-md-6">
                                 <label for="inputAddress" class="form-label">الجوال</label>
-                                <input name='phone' id="phone" type="text" class="form-control" id="inputAddress" placeholder="مثال 7396...">
+                                <input name='phone' type="text" class="form-control"  placeholder="مثال 7396...">
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="inputAddress" class="form-label">العنوان</label>
-                                <input name='address' type="text" class="form-control" id="inputAddress" placeholder="مثال حضرموت-المكلا-...">
+                                <input name='address' type="text" class="form-control"  placeholder="مثال حضرموت-المكلا-...">
                             </div>
 
                             <h5 class="header-title">مواقع التواصل</h5>
                             <div class="mb-2 col-md-4">
-                                <input name='facebook' type="text" class="form-control" id="inputAddress" placeholder="الفيس بوك مثلا fb/ahmed">
+                                <input name='facebook' type="text" class="form-control"  placeholder="الفيس بوك مثلا fb/ahmed">
                             </div>
                             <div class="mb-2 col-md-4">
-                                <input name='twitter' type="text" class="form-control" id="inputAddress" placeholder="تويتر">
+                                <input name='twitter' type="text" class="form-control"  placeholder="تويتر">
                             </div>
                             <div class="mb-2 col-md-4">
-                                <input name='instagram' type="text" class="form-control" id="inputAddress" placeholder="انستقرام">
+                                <input name='instagram' type="text" class="form-control"  placeholder="انستقرام">
                             </div>
 
 
@@ -89,7 +89,7 @@
 @endsection
 
 @section('script')
-<script src="/assets/js/validation.js"></script>
+{{-- <script src="/assets/js/validation.js"></script> --}}
 
 @endsection
 
