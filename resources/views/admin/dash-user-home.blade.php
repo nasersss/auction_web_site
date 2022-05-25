@@ -76,9 +76,9 @@
 <div class="col-12">
     <div class="card">
         <div class="card-body">
-            <h4 class="header-title mb-3">المزادات الحالية</h4>
+            <h4 class="header-title mb-3">مزاداتي </h4>
 
-            <p> عدد المزادات الحالية<b> @isset($auctions) {{count($auctions)}} @endisset</b></p>
+            <p> عدد المزادات التي اضفتها<b> @isset($auctions) {{count($auctions)}} @endisset</b></p>
 
             <div class="table-responsive">
                 <table class="table table-centered table-nowrap table-hover mb-0">

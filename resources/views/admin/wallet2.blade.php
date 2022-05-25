@@ -39,8 +39,8 @@ $wBalance += $transaction->amount;
 }
 }
 @endphp
-<div class="row ">
-    <div class="col-lg-4  ">
+<div class="row">
+    <div class="col-xxl-4 col-lg-6">
         <div class="card widget-flat">
             <div class="card-body">
                 <div class="float-end">
@@ -52,7 +52,7 @@ $wBalance += $transaction->amount;
         </div>
     </div> <!-- end col-->
 
-    <div class="col-lg-4  ">
+    <div class="col-xxl-4 col-lg-6">
         <div class="card widget-flat">
             <div class="card-body">
                 <div class="float-end">
@@ -64,7 +64,7 @@ $wBalance += $transaction->amount;
         </div>
     </div> <!-- end col-->
 
-    <div class="col-lg-4  ">
+    <div class="col-xxl-4 col-lg-6">
         <div class="card widget-flat">
             <div class="card-body">
                 <div class="float-end">
@@ -76,8 +76,9 @@ $wBalance += $transaction->amount;
         </div>
     </div>
 
-</div>
 
+
+</div>
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -102,24 +103,7 @@ $wBalance += $transaction->amount;
                                                 <i class="mdi mdi-arrow-collapse-down text-success font-18"></i>
                                             </div>
                                             <div class="col ps-0">
-                                                <a href="javascript:void(0);" class="text-body">
-                                                        @if(isset($transaction->meta['order_reference_id']))
-                                                         @isset($transaction->meta){{$transaction->meta['userName']}}@endisset
-
-                                                         تم شحن  محفظتك لدينا مبلغ {{$transaction->amount}}
-                                                         مقابل الاشتراك في المزاد الخاص بالسيارة
-                                                         @isset($transaction->meta){{$transaction->meta['auctionName']}}@endisset
-                                                         موديل @isset($transaction->meta){{$transaction->meta['auctionModle']}}
-                                                         @endisset
-                                                        @elseif(isset($transaction->meta['order-delever']))
-                                                            @isset($transaction->meta){{$transaction->meta['userName']}}@endisset
-                                                            تم التحويل الى محفظتك مبلغ {{$transaction->amount}}
-                                                            مقابل شراء وتوصيل  السيارة
-                                                            @isset($transaction->meta){{$transaction->meta['auctionName']}}@endisset
-                                                            موديل @isset($transaction->meta){{$transaction->meta['auctionModle']}}
-                                                            @endisset
-                                                        @endif
-                                                    </a>
+                                                <a href="javascript:void(0);" class="text-body">@isset($transaction->meta){{$transaction->meta['userName']}}@endisset تم التحويل الى محفظتك مبلغ {{$transaction->amount}} مقابل الاشتراك في المزاد الخاص بالسيارة @isset($transaction->meta){{$transaction->meta['auctionName']}}@endisset موديل @isset($transaction->meta){{$transaction->meta['auctionModle']}}@endisset</a>
                                                
                                                 <p class="mb-0 text-muted"><small>{{$transaction->created_at}}</small></p>
                                             </div>
@@ -133,8 +117,7 @@ $wBalance += $transaction->amount;
                                                 <i class="mdi mdi-arrow-collapse-up text-danger font-18"></i>
                                             </div>
                                             <div class="col ps-0">
-                                                <a href="javascript:void(0);" class="text-body">
-                                                    @isset($transaction->meta){{$transaction->meta['From']}}@endisset                                                </a>
+                                                <a href="javascript:void(0);" class="text-body">@isset($transaction->meta){{$transaction->meta['descripe']}}@endisset</a>
                                                 <p class="mb-0 text-muted"><small>{{$transaction->created_at}}</small></p>
                                             </div>
                                             <div class="col-auto">

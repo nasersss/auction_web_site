@@ -20,6 +20,13 @@
   <link rel="stylesheet" href="/assets/css/all.css">
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/home.css">
+  <style>
+    @media print {
+       .noprint {
+          visibility: hidden;
+       }
+    }
+    </style>
 
     </head>
     @extends('master')
@@ -47,20 +54,15 @@
                     <div class="container-fluid">
 
                         <!-- start page title -->
-                        <!-- <div class="row">
+                         <div class="row noprint">
                             <div class="col-12">
-                                <div class="page-title-box">
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-                                            <li class="breadcrumb-item active">Invoice</li>
-                                        </ol>
-                                    </div>
-                                    <h4 class="page-title">Invoice</h4>
+                                <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert" style="
+                                background-color: #0acf97!important;">
+                                    <button type="button"  class=" btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    <strong>عزيزي العميل </strong>سوف تصلك السيارة في أقرب وقت يرجى مراجعة أيميلك أو الاشعارات في لوحة التحكم
                                 </div>
                             </div>
-                        </div>      -->
+                        </div>
                         <!-- end page title -->
 
                         <div class="row">
@@ -69,10 +71,16 @@
                                     <div class="card-body">
 
                                         <!-- Invoice Logo-->
-                                        <div class="clearfix">
-                                            <div class="float-start mb-3">
-                                                <img src="assets/images/logoDark.png" alt="" height="30">
+                                        <div class="d-flex flex-row justify-content-center mb-5">
+                                            <div>
+                                                <img src="/assets/images/logoDark.png" alt="" height="70">
+                                                
                                             </div>
+                                        </div>
+                                        <div class="clearfix">
+                                            
+                                            
+                                            
                                             <div class="float-end">
                                                 <h4 class="m-0 d-print-none">فاتورة شراء</h4>
                                             </div>

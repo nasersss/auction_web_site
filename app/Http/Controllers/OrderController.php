@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Order;
 use App\Models\auction;
 use App\Models\Delivery;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -87,21 +87,23 @@ class OrderController extends Controller
     public function paymentOfDeleviry($paid_amount)
     {
         try {
-        $delever = Delivery::find($_SESSION['delivery']['id']);
-        $paidAmout= $paid_amount[0];
-        Auth::user()->deposit($paidAmout, ['paidAmout' => $paidAmout, 'order-delever' => $delever->id, 'creaated_at' => $delever->creaated_at, 'auction_id' => $delever->auction->id]);
-        $notfication = new NotificationController();
-        $notfication->sendNotificationFromAdmin(Auth::user()->id, ' شكرا عزيزي العميل
+            $delever = Delivery::find($_SESSION['delivery']['id']);
+            $paidAmout = $paid_amount[0];
+            Auth::user()->deposit($paidAmout, ['order-delever' => $delever->id,'userName' => Auth::user()->name, 'creaated_at' => $delever->creaated_at, 'auction_id' => $delever->auction->id,'auctionName'=>$delever->auction->id,'auctionModle' =>$delever->auction->model]);
+            $notfication = new NotificationController();
+            $notfication->sendNotificationFromAdmin(Auth::user()->id, ' شكرا عزيزي العميل
                                                                         لقد تمت عملية الدفع بنجاح يرجى تأكيد استلام السيارة
                                                                لكي نرسل لكم بقية وثائق السيارة ', 'comfirmDelevery/' . $delever->id);
 
-                                                          
-        return view('admin.invoice')->with(['delever' => $delever, 'paidAmout' =>$paidAmout]);
-
-        } catch (\Throwable $th) {
+            return view('admin.invoice')->with(['delever' => $delever, 'paidAmout' => $paidAmout]);
+            // remove all session variables
+            session_unset();
+            // destroy the session
+            session_destroy();
+        } catch (\Throwable$th) {
             return view('error.error');
         }
-        
+
     }
     /**
      * [This function used to store sucess
@@ -132,12 +134,13 @@ class OrderController extends Controller
      */
     public function makeDeleverDone(Request $request)
     {
-        try {
+        // return $request;
+        // try {
 
             $delever = Delivery::find($request->deleverId);
             $auction = auction::find($delever->auction->id);
             $auction->is_received *= -1;
-            $auction->is_active=-1;
+            $auction->is_active = -1;
             $auction->update();
             $payer = Auth::user();
             $paidAmout = $delever->paid_amout;
@@ -147,19 +150,22 @@ class OrderController extends Controller
             $auctionPrice = $delever->auction->curren_price;
             $startPrice = $delever->auction->stare_price;
             $amoutOfSystem = $order->discountAmountOfSystem($auctionPrice);
-            $payer->transfer($admin, $amoutOfSystem, ['amout' => 'تم خصم مبلغ ' . $amoutOfSystem, 'From' => $payer->name, 'to' => $admin->name, 'For' => $delever->auction->id]);
-            $seller->transfer($admin, $amoutOfSystem, ['amout' => 'تم خصم مبلغ ' . $amoutOfSystem, 'From' => $seller->name, 'to' => $admin->name, 'For' => $delever->auction->id]);
-            $payer->transfer($seller, $auctionPrice - $startPrice * 0.2, ['amout' => 'تم خصم مبلغ ' . $amoutOfSystem, 'From' => $payer->name, 'to' => $seller->name, 'For' => $delever->auction->id]);
-
+            $payer->transfer($admin, $amoutOfSystem, [ 'From' => $payer->name, 'to' => $admin->name, 'For' => $delever->auction->id]);
+            $payer->transfer($seller, $auctionPrice-($startPrice * 0.2), ['From' => $payer->name, 'to' => $seller->name, 'For' => $delever->auction->name]);
+            $seller->transfer($admin, $amoutOfSystem, ['From' => $seller->name, 'to' => $admin->name, 'For' => $delever->auction->id]);
             $order = new Order();
             $order->system_balance_from_seller = $amoutOfSystem;
             $order->system_balance_from_payer = $amoutOfSystem;
             $order->delivery_id = $delever->id;
             $order->save();
             return view('success');
-        } catch (\Throwable$th) {
-            return view('error.error');
-        }
+            // remove all session variables
+            session_unset();
+            // destroy the session
+            session_destroy();
+        // } catch (\Throwable$th) {
+        //     return view('error.error');
+        // }
 
     }
 /**
