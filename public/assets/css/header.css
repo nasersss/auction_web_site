@@ -533,6 +533,9 @@ margin: 6% 0 0 0;
     .show{
         display: none;
     }
+    .header-container div a img {
+        width: 100%;
+    }
 
 }
 

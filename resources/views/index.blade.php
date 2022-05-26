@@ -98,9 +98,9 @@
                     @endforeach
 
                   </div>
-                  <p class="mt-4 card-text auction-paragraph col-12">المزاد الحالي<span class="auction-price">{{ $auction->curren_price}}$</span></p>
+                  <p class="mt-4 card-text auction-paragraph col-12">المزاد الحالي<span class="auction-price"> 10000 $</span></p>
 
-                  <a href="{{ route('action_detail',$auction->id) }}" class="btn btn-color col-12"> الاشتراك في المزاد</a>
+                  <a href="{{ route('action_detail',$auction->id) }}" class="btn btn-color col-12">الاشتراك في المزاد</a>
 
                 </div>
 
@@ -201,7 +201,7 @@
           </span>
         </div>
         <!-- category container-->
-        <div class="category-container">
+        <div class="category-container" style="overflow: hidden">
 
 @foreach($categories as $category)
 
@@ -240,7 +240,7 @@
       <br>
 
       <!--Sarch input-->
-      <div class="col-md-12">
+      {{-- <div class="col-md-12">
                 <div class="s007 mt-3">
                     <form method="post" action="{{route('index')}}" enctype="multipart/form-data">
                         @csrf
@@ -364,7 +364,7 @@
                     </form>
                 </div>
 
-            </div>
+            </div> --}}
       <!--End Sarch input-->
 
       <div class="row" id="ads">
@@ -383,7 +383,7 @@
                 @if($auction->state == 1)
                 <div class="card-notify-year" style="background-color:#6c76e4">
 
-{{ "مستخدم" }}
+                {{ "مستخدم" }}
                 </div>
                 @else
                 <div class="card-notify-year" style="background-color:#ff4444">
@@ -410,9 +410,9 @@
             <div class="card-body text-center">
               <div class="ad-title m-auto">
                 <h5>{{ $auction->name }}</h5>
-                <h2>العطاء الحالي ${{ $auction->stare_price }}</h2>
+                <h2>العطاء الحالي <span class="card_auction_price"> {{ $auction->curren_price }} $</span></h2>
                 <h2>تاريخ انتهاء المزاد</h2>
-                <h2 id=""> {{ $auction->date_of_end_auction }}</h2>
+                <h2 class="date" > {{ $auction->date_of_end_auction }}</h2>
 
               </div>
               <a class="ad-btn" href="{{ route('action_detail',$auction->id)}}">مشاهدة التفاصيل</a>
@@ -428,15 +428,19 @@
 
 
       </div>
-  </section>
+     </section>
+
+<div class="container">
   <div class="row align-items-center">
-<div class="col-lg-6">
-  <h4 class="font-weight-bold" id="headrs"> <i class="fa fa-leaf fa-2x mb-3 text-primary"></i>التعريف بمنصة مزادي كار</h4>
+    <div class="col-lg-6">
+  <h4 class="font-weight-bold" id="headrs"> التعريف بمنصة مزادي كار</h4>
   <p class=" text-muted mb-4"> هي منصة إلكترونية تتيح للمزايدين المزايدة إلكترونياً على السيارات في المزاد بواسطة وسائل دفع إلكترونية و
 عملية المزايدة في الموقع الإلكتروني موثوقة، وتتفق مع قوانين إقامة المزادات والبيع والشراء في الجمهورية اليمنية وايضاُ
 يمكن الاطلاع على مجريات المزادات بدون تسجيل الدخول من خلال الضغط على 'عرض التفاصيل' في المزاد المطلوب  </p>
 </div>
-<div class="img-car"><img src="assets/images/العربية-للسيارات-حملة-نهاية-السنة-2016.png" alt="" class="img-fluid mb-4 mb-lg-0"></div>
+<div class="img-car col-lg-6"><img src="/assets/images/home/home_cars.png" alt="" class="img-fluid mb-4 mb-lg-0"></div>
+</div>
+</div>
   <div class="container">
     <h2 id="method_header">طريقة إستخدام النظام</h2>
     <div class="row">
@@ -472,11 +476,11 @@
         </div>
       </div>
       <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200" id="method">
-        <img class="img-fluid" src="assets/images/top-10-programmers-on-the-world.jpg" alt="">
+        <img class="img-fluid" src="/assets/images/home/top-10-programmers-on-the-world.jpg" alt="">
       </div>
     </div>
-  </div>
-  </div>
+    </div>
+    </div>
   </div>
 
   <section id="featured-services" class="featured-services">
@@ -525,7 +529,9 @@
         </div><!-- End Service Item -->
       </div>
     </div>
-  </section><!-- End Featured Services Section -->
+  </section>
+
+  <!-- End Featured Services Section -->
   <!-- start footer-->
 
 

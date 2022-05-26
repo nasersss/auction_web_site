@@ -150,9 +150,9 @@ class OrderController extends Controller
             $auctionPrice = $delever->auction->curren_price;
             $startPrice = $delever->auction->stare_price;
             $amoutOfSystem = $order->discountAmountOfSystem($auctionPrice);
-            $payer->transfer($admin, $amoutOfSystem, [ 'From' => $payer->name, 'to' => $admin->name, 'For' => $delever->auction->id]);
+            $payer->transfer($admin, $amoutOfSystem, [ 'From' => $payer->name, 'to' => $admin->name, 'For' => $delever->auction->name]);
             $payer->transfer($seller, $auctionPrice-($startPrice * 0.2), ['From' => $payer->name, 'to' => $seller->name, 'For' => $delever->auction->name]);
-            $seller->transfer($admin, $amoutOfSystem, ['From' => $seller->name, 'to' => $admin->name, 'For' => $delever->auction->id]);
+            $seller->transfer($admin, $amoutOfSystem, ['From' => $seller->name, 'to' => $admin->name, 'For' => $delever->auction->name]);
             $order = new Order();
             $order->system_balance_from_seller = $amoutOfSystem;
             $order->system_balance_from_payer = $amoutOfSystem;
@@ -183,6 +183,8 @@ class OrderController extends Controller
     }
     public function showWallet()
     {
-        return view('admin.wallet');
+       
+        $users = User::get();
+        return view('admin.wallet')->with('users',$users);
     }
 }

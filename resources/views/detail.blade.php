@@ -374,13 +374,7 @@
                         inputAmount.addEventListener('input', function() {
                             console.log(inputAmount.vaule);
                             amount.innerText = inputAmount.value;
-
                         })
-
-                        // btn.addEventListener('click',function() {
-                        //     amount.innerText = inputAmount.value;
-                            
-                        // })
                     </script>
                 </div>
             </div>

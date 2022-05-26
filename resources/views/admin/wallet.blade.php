@@ -134,7 +134,14 @@ $wBalance += $transaction->amount;
                                             </div>
                                             <div class="col ps-0">
                                                 <a href="javascript:void(0);" class="text-body">
-                                                    @isset($transaction->meta){{$transaction->meta['From']}}@endisset                                                </a>
+                                                    @isset($transaction->meta){{$transaction->meta['From']}}@endisset 
+                                                    تم الخصم من محفظتك مبلغ {{$transaction->amount}}
+                                                    الى محفظة الاخ 
+                                                    @isset($transaction->meta){{$transaction->meta['to']}}@endisset
+                                                    مقابل شراء السيارة 
+                                                    {{-- @isset($transaction->meta){{$transaction->meta['For']}}@endisset --}}
+
+                                                </a>
                                                 <p class="mb-0 text-muted"><small>{{$transaction->created_at}}</small></p>
                                             </div>
                                             <div class="col-auto">

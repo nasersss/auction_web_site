@@ -268,7 +268,7 @@
 
 .modal-title {
     font-weight: bold !important;
-    color: var(--primaryColor) !important;
+    color: var(--primaryColor) ;
 }
 
 .model-btn {
@@ -297,4 +297,11 @@
 #demo
 {
     font-size: 14px;
+}
+
+
+#confirm-msg
+{
+    text-align: center;
+    font-weight: bolder;
 }

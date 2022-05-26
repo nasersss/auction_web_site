@@ -1,15 +1,15 @@
-let search = document.getElementById('search')
-let closeSearch = document.getElementById('close')
-let showSearch = document.getElementById('header')
+// let search = document.getElementById('search')
+// let closeSearch = document.getElementById('close')
+// let showSearch = document.getElementById('header')
 let list_user = document.getElementById('list-user')
-search.addEventListener('click', (e) => {
-    e.preventDefault();
-    showSearch.style.display = 'block';
-})
-closeSearch.addEventListener('click', (e) => {
-    e.preventDefault();
-    showSearch.style.display = 'none';
-})
+// search.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     showSearch.style.display = 'block';
+// })
+// closeSearch.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     showSearch.style.display = 'none';
+// })
 
 var prev = document.getElementsByClassName("prev");
 var next = document.getElementsByClassName("next");
