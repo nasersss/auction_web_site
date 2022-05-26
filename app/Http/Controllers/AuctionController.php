@@ -366,7 +366,7 @@ class AuctionController extends Controller
 
                 }
 
-                return redirect()->back()->with(['success' => 'تم اضافة البيانات بنجاح']);
+                return redirect('/auctions_review')->with(['success' => 'تم تحديث البيانات بنجاح']);
             }
         } catch (\Throwable$error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطاء في  االبيانات']);

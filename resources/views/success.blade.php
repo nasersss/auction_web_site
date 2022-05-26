@@ -88,7 +88,7 @@
                                     
                                         <h4 class="mt-2">تمت العملية  بنجاح</h4> 
                                     </div> 
-                                    <a href="/" class="disabled">  <button class="btn btn-success">عودة للرئيسية </button></a>
+                                    <a href="/dash-user" class="disabled">  <button class="btn btn-success">عودة للرئيسية </button></a>
                                         
                             </div>
                         </div>
