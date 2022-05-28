@@ -59,6 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
 ####################    delivery rout
     Route::get('/delivery', [DeliveryController::class, 'create'])->name('delivery');
     Route::post('/store_delivery', [DeliveryController::class, 'store'])->name('store_delivery');
+    Route::post('/cencel_delivery', [DeliveryController::class, 'cencelDelevery'])->name('cencel_delivery');
 
 ##order
     Route::post('/paymentOfDelevry', [OrderController::class, 'paymentOfDeleviry'])->name('paymentOfDeleviry');
@@ -69,7 +70,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     ##bidding
     Route::post('/bidding', [BiddingController::class, 'store'])->name('bidding');
-
 
 });
 
