@@ -83,17 +83,18 @@ class PymentContoller extends Controller
      */
     public function dopayment(Request $request)
     {
-        try {
+     
+        // try {
             $auctionId = $request->auctionId;
             $auction = auction::find($auctionId);
             $percentageFromStrartPrice = $auction->stare_price * 0.2;
             $payment = new PymentContoller();
             return $payment->makePyment($auction, $percentageFromStrartPrice);
-        } catch (\Throwable$th) {
+        // } catch (\Throwable$th) {
 
-            $error = 'الرجاء تأكيد العملية ';
-            return view('error.error')->with($error);
-        }
+        //     $error = 'الرجاء تأكيد العملية ';
+        //     return view('error.error')->with($error);
+        // }
 
     }
 
@@ -132,13 +133,12 @@ class PymentContoller extends Controller
             CURLOPT_POSTFIELDS => json_encode($data),
 
             CURLOPT_HTTPHEADER => array(
-                "private-key: KEXCZA4cKGugBCAasrQ2veQa21qTOpa8b4m1AdeeBkcKwKN9JN",
-                "public-key: Jauq1WwuGLqf8ftiSxVWpfs2B",
+                "private-key: mDwOkIltPkb70yzLry1np531D9iZ4Pvge8ELatHN2YINdmjjt5",
+                "public-key: tGNFyisNv5UemXTOlgo7wDawp",
                 "Content-Type:  application/x-www-form-urlencoded",
 
             ),
         ));
-
         $response = curl_exec($curl);
         $err = curl_error($curl);
 
@@ -147,7 +147,9 @@ class PymentContoller extends Controller
         if ($err) {
             $error = 'لم تتم عملية الاتصال ببوابة الدفع الاكتروني  ';
             return view('error.error')->with('error', $error);
-        } else {
+        } 
+        else {
+           // return json_decode($response);
             $url = json_decode($response)->invoice->next_url;
             return redirect()->away($url);
         }

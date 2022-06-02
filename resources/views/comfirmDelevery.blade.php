@@ -125,7 +125,7 @@
                                   <span class="check1"><i class="dripicons-checkmark"></i></span> 
                                   <h4 class="modal-title w-100">مرحبا بك  : {{Auth::user()->name}}شكرا لثقتك بنا ونحن سعداء بك </h4>	
                                  
-                                    <p class="text-center">  الرجاء تأكيد عملية استلام السيارة عن طريق الضغط على الزر تأكيد </p>
+                                    <p class="text-center"> الرجاء تأكيد عملية استلام السيارة عن طريق الضغط على الزر <strong>تأكيد</strong> واذا كان هناك اي اشكالية أو عدم مطابقة السيارة للمطلو اضغط على زر <strong>رفض</strong>  </p>
                                 </div> 
                                   <form method="post" action="{{route('makeDeleverDone')}}">
                                     @csrf
@@ -133,7 +133,13 @@
                                     <input type="hidden" value="{{$deleviryId}}" name="deleverId">
                                     <button type="submit" class="btn btn-success btn-block confirm-button">تأكيد العملية</button>
                                   </form>
-                                  <a href="/" ><button class="btn btn-danger btn-block confirm-button">رفض العملية</button></a>
+                                  <form method="post" action="{{route('cencel_delivery')}}">
+                                    @csrf
+                                    <input type="hidden" value="{{Auth::user()->id}}" name="userid" >
+                                    <input type="hidden" value="{{$deleviryId}}" name="deleverId">
+                                    <button type="submit"  class="btn btn-danger btn-block confirm-button">رفض العملية</button>
+                                  </form>
+                                 
                           </div>
                       </div>
                       

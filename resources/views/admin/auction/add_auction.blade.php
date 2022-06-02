@@ -283,7 +283,7 @@
                             <textarea class="form-control" name="notes" id="project-overview" rows="5" placeholder="ملاحظات..."></textarea>
                         </div>
                       
-                        <button type="submit" class="btn btn-primary mb-3">إضافة</button>
+                        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">إضافة</button>
 
                     </div>
 
@@ -291,7 +291,24 @@
 
             </div>
 
-
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <img src="/assets/images/done.png" alt="" style="width:10%">
+                            <h5 class="modal-title" id="exampleModalLabel" class=""> </h5>
+                            <i class="fas fa-times" style="font-size: 25px" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></i>
+                        </div>
+                        <div class="modal-body">
+                            مزادك تحت المعالجة سيتم تفعيلة قريبا
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اللغاء</button>
+                            <button type="submit" class="btn model-btn  mx-2" style="background:#6c76e4;color:#fff " form="auction">موافق  </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div> <!-- end card-body-->
     </div>

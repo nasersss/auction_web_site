@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Delivery;
 use App\Models\auction;
 use App\Models\State;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -63,6 +64,22 @@ class DeliveryController extends Controller
             return back()->with(['error' => "error"]);
         } catch (\Throwable $error) {
             return back()->with(['error' => "حدث خطاء لم تتم العملية بنجاح"]);
+        }
+    }
+    public function cencelDelevery(Request $request){
+
+        try {
+         //return $request;
+         $user = User::find($request->userid);
+         $delevery = Delivery::find($request->deleverId);
+        // return $delevery->auction->user->name;
+         $admin = User::where('role', 0)->first();
+         $notification = new NotificationController();
+         $notification->sendNotificationFromAdmin($admin->id, ' لقد قام المستخدم ' . $user->name . ' بتمديد برفض عملية تسليم السيارة  '.$delevery->auction->name.' المملوكة للمستخدم '.$delevery->auction->user->name, 'auction_review');
+        return view('success2');
+        } catch (\Throwable $th) {
+            $error = 'لم يتم التأكد من طلبك الرجاء المحاولة لاحقا ';
+            return view('error.error')->with('error',$error);
         }
     }
 }

@@ -98,7 +98,7 @@
                     @endforeach
 
                   </div>
-                  <p class="mt-4 card-text auction-paragraph col-12">المزاد الحالي<span class="auction-price"> 10000 $</span></p>
+                  <p class="mt-4 card-text auction-paragraph col-12">المزاد الحالي<span class="auction-price"> {{$auction->curren_price}} $</span></p>
 
                   <a href="{{ route('action_detail',$auction->id) }}" class="btn btn-color col-12">الاشتراك في المزاد</a>
 
