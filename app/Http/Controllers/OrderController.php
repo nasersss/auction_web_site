@@ -11,69 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
 
     /**
      * [This function used to rout user topayment get way to pay
@@ -87,6 +24,7 @@ class OrderController extends Controller
     public function paymentOfDeleviry($paid_amount)
     {
         try {
+            session_start();
             $delever = Delivery::find($_SESSION['delivery']['id']);
             $paidAmout = $paid_amount[0];
             Auth::user()->deposit($paidAmout, ['order-delever' => $delever->id,'userName' => Auth::user()->name, 'creaated_at' => $delever->creaated_at, 'auction_id' => $delever->auction->id,'auctionName'=>$delever->auction->id,'auctionModle' =>$delever->auction->model]);
@@ -95,11 +33,11 @@ class OrderController extends Controller
                                                                         لقد تمت عملية الدفع بنجاح يرجى تأكيد استلام السيارة
                                                                لكي نرسل لكم بقية وثائق السيارة ', 'comfirmDelevery/' . $delever->id);
 
-            return view('admin.invoice')->with(['delever' => $delever, 'paidAmout' => $paidAmout]);
-            // remove all session variables
-            session_unset();
-            // destroy the session
-            session_destroy();
+             // remove all session variables
+             session_unset();
+             // destroy the session
+             session_destroy();
+          return view('admin.invoice')->with(['delever' => $delever, 'paidAmout' => $paidAmout]);
         } catch (\Throwable$th) {
             return view('error.error');
         }
@@ -150,19 +88,18 @@ class OrderController extends Controller
             $auctionPrice = $delever->auction->curren_price;
             $startPrice = $delever->auction->stare_price;
             $amoutOfSystem = $order->discountAmountOfSystem($auctionPrice);
-            $payer->transfer($admin, $amoutOfSystem, [ 'From' => $payer->name, 'to' => $admin->name, 'For' => $delever->auction->name]);
-            $payer->transfer($seller, $auctionPrice-($startPrice * 0.2), ['From' => $payer->name, 'to' => $seller->name, 'For' => $delever->auction->name]);
-            $seller->transfer($admin, $amoutOfSystem, ['From' => $seller->name, 'to' => $admin->name, 'For' => $delever->auction->name]);
+            $payer->transfer($admin, $amoutOfSystem, [ 'From' => $payer->name, 'to' => $admin->name, 'carName' => $delever->auction->name,'model' => $delever->auction->name]);
+            $payer->transfer($seller, $auctionPrice, ['From' => $payer->name, 'to' => $seller->name, 'carName' => $delever->auction->name,'model' => $delever->auction->name]);
+            $seller->transfer($admin, $amoutOfSystem, ['From' => $seller->name, 'to' => $admin->name, 'carName' => $delever->auction->name,'model' => $delever->auction->name]);
             $order = new Order();
             $order->system_balance_from_seller = $amoutOfSystem;
             $order->system_balance_from_payer = $amoutOfSystem;
             $order->delivery_id = $delever->id;
             $order->save();
+             // remove all session variables
+           
             return view('success');
-            // remove all session variables
-            session_unset();
-            // destroy the session
-            session_destroy();
+           
         // } catch (\Throwable$th) {
         //     return view('error.error');
         // }
@@ -178,7 +115,7 @@ class OrderController extends Controller
  */
     public function discountAmountOfSystem($amount)
     {
-        $net = $amount * 0.1;
+        $net = $amount * 0.05;
         return $net;
     }
     public function showWallet()

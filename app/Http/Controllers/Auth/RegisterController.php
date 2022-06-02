@@ -65,13 +65,12 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         try {
-
-
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
     } catch (\Throwable $th) {
         return redirect()->back()->with(['error'=>"هناك خطاء لم يتم حفظ البيانات بنجاح"]);
     }

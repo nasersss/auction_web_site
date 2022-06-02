@@ -55,7 +55,7 @@ class PymentContoller extends Controller
             $newBidding->bidding_amount = $_SESSION['amountOfBidding']; //must be modfy to gevin by requst or save the amout in session then claa here
             $newBidding->payed_amount = (($auction->curren_price + $_SESSION['amountOfBidding']) * 10 / 100);
             try {
-              $newBidding->save();
+            $newBidding->save();
             session_unset();
             session_destroy();
             return redirect('detail_car/' . $auction->id . '')->with(['success' => '  تمت عملية المزايدة بنجاح مع خصم نسبة المزايدة ']);
@@ -149,7 +149,6 @@ class PymentContoller extends Controller
             return view('error.error')->with('error', $error);
         } 
         else {
-           // return json_decode($response);
             $url = json_decode($response)->invoice->next_url;
             return redirect()->away($url);
         }

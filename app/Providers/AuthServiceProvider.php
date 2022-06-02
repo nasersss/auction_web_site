@@ -30,6 +30,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        try {
+        
         $this->registerPolicies();
 
         // Gate::define('add-category', function($user,$category){
@@ -42,5 +44,10 @@ class AuthServiceProvider extends ServiceProvider
                 ->line('اضغط على الرابط في الاسفل للتحقق من الايميل')
                 ->action('التحقق من الايميل', $url);
         });
+            //code...
+        } catch (\Throwable $th) {
+        return view('error.error');
+        }
     }
+
 }

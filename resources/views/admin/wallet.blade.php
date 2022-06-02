@@ -118,7 +118,16 @@ $wBalance += $transaction->amount;
                                                             @isset($transaction->meta){{$transaction->meta['auctionName']}}@endisset
                                                             موديل @isset($transaction->meta){{$transaction->meta['auctionModle']}}
                                                             @endisset
+                                                        @elseif(isset($transaction->meta['From']))
+                                                            @isset($transaction->meta){{$transaction->meta['From']}}@endisset
+                                                            تم التحويل الى محفظتك مبلغ {{$transaction->amount}}
+                                                            مقابل شراء وتوصيل  السيارة
+                                                            @isset($transaction->meta){{$transaction->meta['carName']}}@endisset
+                                                            موديل @isset($transaction->meta){{$transaction->meta['model']}}
+                                                            
+                                                            @endisset
                                                         @endif
+                                                        
                                                     </a>
                                                
                                                 <p class="mb-0 text-muted"><small>{{$transaction->created_at}}</small></p>

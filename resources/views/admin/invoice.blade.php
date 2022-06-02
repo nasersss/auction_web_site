@@ -154,8 +154,8 @@
                                                                 اللون :{{$delever->auction->color}} -   الجير :{{$delever->auction->ger_type}},
                                                             </td>
                                                             <td>200 $</td>
-                                                            <td>{{$paidAmout-200}} $</td>
-                                                            <td class="text-end">{{$paidAmout}} $</td>
+                                                            <td>{{$delever->auction->curren_price}} $</td>
+                                                            <td class="text-end">{{$delever->auction->curren_price+200}} $</td>
                                                         </tr>
 
 
@@ -180,7 +180,7 @@
                                             <div class="col-sm-6">
                                                 <div class="float-start mt-3 mt-sm-0">
                                                     <h5> الاجمالي النهائي</h5>
-                                                    <h3>{{$paidAmout}}  $</h3>
+                                                    <h3>{{$delever->auction->curren_price + 200}}  $</h3>
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div> <!-- end col -->
