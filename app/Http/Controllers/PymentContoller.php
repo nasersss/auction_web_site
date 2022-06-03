@@ -26,21 +26,20 @@ class PymentContoller extends Controller
             $created_at = array_column($arrayFormat, 'created_at');
             $updated_at = array_column($arrayFormat, 'updated_at');
         }
+
         $card_type = str_replace('+', ' ', $card_type[0]);
         $card_holder = str_replace('+', ' ', $card_holder[0]);
         $order_reference = $data['order_reference'];
         session_start();
-        if (isset($_SESSION["delivery"])) {
-          try {
-            
+       
+                if (isset($_SESSION["delivery"])) {
+        //   try {
             $deleviry = new OrderController();
             return $deleviry->paymentOfDeleviry($paid_amount);
-            session_unset();
-            session_destroy();
-          } catch (\Throwable $th) {
-            $error = 'عذرا انتهت جلسة الدفع الخاصة فيك';
-            return view('error.error')->with('error', $error);
-          }
+        //   } catch (\Throwable $th) {
+        //     $error = 'عذرا انتهت جلسة دفع التوصيل الخاصة فيك';
+        //     return view('error.error')->with('error', $error);
+        //   }
         } else if (isset($_SESSION['amountOfBidding'])) {
             $auction = auction::find($order_reference);
             $admin = User::where('role', 0)->first();

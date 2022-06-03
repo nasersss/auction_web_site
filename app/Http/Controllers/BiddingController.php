@@ -59,7 +59,7 @@ class BiddingController extends Controller
         }
         $auction->curren_price += $request->amount;
         $auction->number_of_participate += 1;
-        $auction->update();
+        $auction->save();
         $admin = User::where('role',0)->first();
         $adminWallet =$admin->balance;
         $newBidding = new Bidding();

@@ -123,7 +123,7 @@
                           <div class="text-center">
                               <div class="d-flex justify-content-center mb-5 flex-column align-items-center"> 
                                   <span class="check1"><i class="dripicons-checkmark"></i></span> 
-                                  <h4 class="modal-title w-100">مرحبا بك  : {{Auth::user()->name}}شكرا لثقتك بنا ونحن سعداء بك </h4>	
+                                  <h4 class="modal-title w-100"> مرحبا بك  : {{Auth::user()->name}} شكرا لثقتك بنا ونحن سعداء بكم </h4>	
                                  
                                     <p class="text-center"> الرجاء تأكيد عملية استلام السيارة عن طريق الضغط على الزر <strong>تأكيد</strong> واذا كان هناك اي اشكالية أو عدم مطابقة السيارة للمطلو اضغط على زر <strong>رفض</strong>  </p>
                                 </div> 

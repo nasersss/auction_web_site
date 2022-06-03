@@ -30,7 +30,7 @@ class DeliveryController extends Controller
         $auction = auction::find($request->autionId);
         $payment = new PymentContoller();
         $amountOfPayment = $auction->curren_price + 200 - $auction->stare_price * .2;
-
+        $amountOfPayment =  $amountOfPayment +($auction->curren_price*0.01);//'plus amoutn of system'
         $delivery = new Delivery();
         $delivery->receiver_name = $request->receiver_name;
         $delivery->receiver_identity_type = $request->receiver_identity_type;
@@ -46,6 +46,7 @@ class DeliveryController extends Controller
             $_SESSION["delivery"] = $delivery;
             return $payment->makePyment($auction, $amountOfPayment);
         }
+        
         return back()->with(['error' => "error"]);
     }
     /**

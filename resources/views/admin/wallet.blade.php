@@ -119,13 +119,14 @@ $wBalance += $transaction->amount;
                                                             موديل @isset($transaction->meta){{$transaction->meta['auctionModle']}}
                                                             @endisset
                                                         @elseif(isset($transaction->meta['From']))
+                                                            تم تحويل مبلغ {{$transaction->amount}}  الى محفظتك
+                                                            من محفظة الاخ
                                                             @isset($transaction->meta){{$transaction->meta['From']}}@endisset
-                                                            تم التحويل الى محفظتك مبلغ {{$transaction->amount}}
-                                                            مقابل شراء وتوصيل  السيارة
+                                                            @isset($transaction->meta){{$transaction->meta['description']}}@endisset
                                                             @isset($transaction->meta){{$transaction->meta['carName']}}@endisset
-                                                            موديل @isset($transaction->meta){{$transaction->meta['model']}}
+                                                            موديل @isset($transaction->meta){{$transaction->meta['model']}}@endisset
+
                                                             
-                                                            @endisset
                                                         @endif
                                                         
                                                     </a>
@@ -144,10 +145,15 @@ $wBalance += $transaction->amount;
                                             <div class="col ps-0">
                                                 <a href="javascript:void(0);" class="text-body">
                                                     @isset($transaction->meta){{$transaction->meta['From']}}@endisset 
-                                                    تم الخصم من محفظتك مبلغ {{$transaction->amount}}
+                                                    تم الخصم من محفظتك مبلغ {{$transaction->amount}} $
                                                     الى محفظة الاخ 
-                                                    @isset($transaction->meta){{$transaction->meta['to']}}@endisset
-                                                    مقابل شراء السيارة 
+                                                    @isset($transaction->meta){{$transaction->meta['to']}}@endisset 
+                                                    مقابل
+                                                    @isset($transaction->meta){{$transaction->meta['description']}}@endisset
+                                                    في عملية شراء السيارة
+                                                    @isset($transaction->meta){{$transaction->meta['carName']}}@endisset
+                                                    موديل @isset($transaction->meta){{$transaction->meta['model']}}@endisset
+
                                                     {{-- @isset($transaction->meta){{$transaction->meta['For']}}@endisset --}}
 
                                                 </a>

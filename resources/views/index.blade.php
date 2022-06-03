@@ -65,7 +65,7 @@
                         <th>
                           الحالة
                         </th>
-                        <td>@if($auction->state == 1) مستخدم @else جديد @endif </td>
+                        <td>{{$auction->state}}</td>
                       </tr>
                       <tr>
                         <th>
@@ -380,7 +380,7 @@
           <div class="card rounded">
             <div class="card-image">
 
-                @if($auction->state == 1)
+                @if($auction->state == 'مستخدم')
                 <div class="card-notify-year" style="background-color:#6c76e4">
 
                 {{ "مستخدم" }}
@@ -434,7 +434,7 @@
   <div class="row align-items-center">
     <div class="col-lg-6">
   <h4 class="font-weight-bold" id="headrs"> التعريف بمنصة مزادي كار</h4>
-  <p class=" text-muted mb-4"> هي منصة إلكترونية تتيح للمزايدين المزايدة إلكترونياً على السيارات في المزاد بواسطة وسائل دفع إلكترونية و
+  <p class=" text-muted mb-4"> هي منصة إلكترونية تتيح للمشتركين فيها المزايدة إلكترونياً على السيارات في المزاد وتوفير وسائل دفع إلكترونية و
 عملية المزايدة في الموقع الإلكتروني موثوقة، وتتفق مع قوانين إقامة المزادات والبيع والشراء في الجمهورية اليمنية وايضاُ
 يمكن الاطلاع على مجريات المزادات بدون تسجيل الدخول من خلال الضغط على 'عرض التفاصيل' في المزاد المطلوب  </p>
 </div>
@@ -485,7 +485,7 @@
 
   <section id="featured-services" class="featured-services">
     <div class="container">
-      <h3> لماذا المزاد الالكتروني؟</h3>
+      <h3>مزايا المزاد الإلكتروني</h3>
       <div class="row gy-4">
 
         <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">

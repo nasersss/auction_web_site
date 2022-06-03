@@ -23,8 +23,7 @@ class OrderController extends Controller
      */
     public function paymentOfDeleviry($paid_amount)
     {
-        try {
-            session_start();
+        // try {
             $delever = Delivery::find($_SESSION['delivery']['id']);
             $paidAmout = $paid_amount[0];
             Auth::user()->deposit($paidAmout, ['order-delever' => $delever->id,'userName' => Auth::user()->name, 'creaated_at' => $delever->creaated_at, 'auction_id' => $delever->auction->id,'auctionName'=>$delever->auction->id,'auctionModle' =>$delever->auction->model]);
@@ -38,9 +37,9 @@ class OrderController extends Controller
              // destroy the session
              session_destroy();
           return view('admin.invoice')->with(['delever' => $delever, 'paidAmout' => $paidAmout]);
-        } catch (\Throwable$th) {
-            return view('error.error');
-        }
+        // } catch (\Throwable$th) {
+        //     return view('error.error');
+        // }
 
     }
     /**
@@ -72,7 +71,7 @@ class OrderController extends Controller
      */
     public function makeDeleverDone(Request $request)
     {
-        // return $request;
+       
         // try {
 
             $delever = Delivery::find($request->deleverId);
@@ -88,16 +87,26 @@ class OrderController extends Controller
             $auctionPrice = $delever->auction->curren_price;
             $startPrice = $delever->auction->stare_price;
             $amoutOfSystem = $order->discountAmountOfSystem($auctionPrice);
-            $payer->transfer($admin, $amoutOfSystem, [ 'From' => $payer->name, 'to' => $admin->name, 'carName' => $delever->auction->name,'model' => $delever->auction->name]);
-            $payer->transfer($seller, $auctionPrice, ['From' => $payer->name, 'to' => $seller->name, 'carName' => $delever->auction->name,'model' => $delever->auction->name]);
-            $seller->transfer($admin, $amoutOfSystem, ['From' => $seller->name, 'to' => $admin->name, 'carName' => $delever->auction->name,'model' => $delever->auction->name]);
+            try {
+            $payer->transfer($admin, $amoutOfSystem, [ 'From' => $payer->name, 'to' => $admin->name, 'carName' => $delever->auction->name,'model' => $delever->auction->model,'description'=>'نسبة النظام ']);
+            $payer->transfer($admin, 200, [ 'From' => $payer->name, 'to' => $admin->name, 'carName' => $delever->auction->name,'model' => $delever->auction->model,'description'=>'مقابل التوصيل ']);
+            $payer->transfer($seller, $auctionPrice, ['From' => $payer->name, 'to' => $seller->name, 'carName' => $delever->auction->name,'model' => $delever->auction->model,'description'=>'مقابل شراء السيارة ']);
+            $seller->transfer($admin, $amoutOfSystem, ['From' => $seller->name, 'to' => $admin->name, 'carName' => $delever->auction->name,'model' => $delever->auction->model,'description'=>'نسبة النظام ']);
+           
+            } catch (\Throwable $th) {
+                $error = 'عذار لاتوجد في محفظتك نقود كافية يرجى تعبئة حسابك اولا';
+                return view('error.error');
+            }
             $order = new Order();
             $order->system_balance_from_seller = $amoutOfSystem;
             $order->system_balance_from_payer = $amoutOfSystem;
             $order->delivery_id = $delever->id;
             $order->save();
-             // remove all session variables
-           
+
+            // // remove all session variables
+            // session_unset();
+            // // destroy the session
+            // session_destroy();           
             return view('success');
            
         // } catch (\Throwable$th) {
@@ -115,7 +124,7 @@ class OrderController extends Controller
  */
     public function discountAmountOfSystem($amount)
     {
-        $net = $amount * 0.05;
+        $net = $amount * 0.01;
         return $net;
     }
     public function showWallet()

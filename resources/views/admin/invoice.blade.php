@@ -144,6 +144,7 @@
                                                             <th>المنتج</th>
                                                             <th>سعر التوصيل</th>
                                                             <th> سعر السيارة</th>
+                                                            <th>نسبة الموقع</th>
                                                             <th class="text-end">الاجمالي</th>
                                                         </tr></thead>
                                                         <tbody>
@@ -155,7 +156,8 @@
                                                             </td>
                                                             <td>200 $</td>
                                                             <td>{{$delever->auction->curren_price}} $</td>
-                                                            <td class="text-end">{{$delever->auction->curren_price+200}} $</td>
+                                                            <td>{{$delever->auction->curren_price*0.01}}$</td>
+                                                            <td class="text-end">{{$delever->auction->curren_price+200+($delever->auction->curren_price*0.01)}} $</td>
                                                         </tr>
 
 
@@ -180,7 +182,7 @@
                                             <div class="col-sm-6">
                                                 <div class="float-start mt-3 mt-sm-0">
                                                     <h5> الاجمالي النهائي</h5>
-                                                    <h3>{{$delever->auction->curren_price + 200}}  $</h3>
+                                                    <h3>{{$delever->auction->curren_price + 200+($delever->auction->curren_price*0.01)}}  $</h3>
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div> <!-- end col -->

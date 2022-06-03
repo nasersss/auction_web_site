@@ -332,7 +332,7 @@
                 <form method="get" action="{{route('delivery')}}">
                     @csrf
                     <input type="hidden" name="auction_id" value="{{$auctions->id}}">
-                    <button class="btn btn-primary col-12" data-bs-target="#exampleModal">إكمال عملية الدفع </button>
+                    <button class="btn btn-primary col-12" data-bs-target="#exampleModal"  style="width:100%">إكمال عملية الدفع </button>
                 </form>
 
                 @endif
@@ -345,7 +345,7 @@
                             </div>
                             <div class="modal-body">
                                 @isset(Auth::user()->balance)
-                              @if(Auth::user()->balance < $auctions->stare_price*.2)
+                                 @if(Auth::user()->balance < $auctions->stare_price*.2)
                                     <div>
                                         <div id="policies" class="alert alert-danger alert-dismissible fade show">
                                             <p>لتتمكن من المشاركة في المزاد يجب عليك شحن محفظتك بملغ <strong>{{$auctions->stare_price*0.2}}$</strong></p>
@@ -357,24 +357,26 @@
                                         </div>
                                     </div><i class="mdi mdi-currency-rial:"></i>
                                     @endif
-                                 <div id="confirm-msg">  هل انت متاكد انك تريد المزايدة بمبلغ <strong id="amount"></strong><strong>$ </strong></div>
-                                    @endisset
+                                 <div id="confirm-msg">  هل انت متاكد انك تريد المزايدة بمبلغ <strong id="amount"></strong><strong>$ </strong>
+                                </div>
+                                @endisset
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اللغاء</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
                                 <button type="submit" id="comfirm" class="btn model-btn  mx-2" form="bidding-form">تاكيد المزايدة </button>
                             </div>
                         </div>
 
                     </div>
                      <script>
-                        const model_title=document.getElementById('model-title')
-                        const btn = document.getElementById("sub");
-                          const amount_num = document.getElementById('amount');
-                        const inputAmount = document.getElementById('input-amount');
-                        const comfirmbtn = document.getElementById('comfirm');
-                        const policies=document.getElementById("policies");
+                        let model_title=document.getElementById('model-title')
+                        let btn = document.getElementById("sub");
+                        let amount_num = document.getElementById('amount');
+                        let inputAmount = document.getElementById('input-amount');
+                        let comfirmbtn = document.getElementById('comfirm');
+                        let policies=document.getElementById("policies");
+                        let number = document.getElementById("kk");
                         const confirm_msg=document.getElementById("confirm-msg")
                         btn.addEventListener('click',function(e){
                             let amount = inputAmount.value;
@@ -417,15 +419,16 @@
 
                                             }
                                            else{
-                                            document.getElementById("msg").style.display="none"
-                                            comfirmbtn.style.display = 'block';
-                                            confirm_msg.style.display='block';
-                                                policies.style.display='block';
+                                            
+                                               // document.getElementById("msg").style.display="none"
+                                                comfirmbtn.style.display = 'block';
+                                                confirm_msg.style.display='block';
+                                                //policies.style.display='block';
                                                 model_title.innerHTML="تاكيد الاشتراك"
                                                 model_title.style.color = "#6c76e4";
-                                                 amount_num.innerText = inputAmount.value;
-                                                 amount_num.style.color="#6c76e4"
-
+                                                amount_num.innerText = inputAmount.value;
+                                                amount_num.style.color="#6c76e4"
+                                                number.innerHTML = inputAmount.value;
 
 
 

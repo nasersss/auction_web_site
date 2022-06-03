@@ -303,7 +303,7 @@
                             مزادك تحت المعالجة سيتم تفعيلة قريبا
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اللغاء</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
                             <button type="submit" class="btn model-btn  mx-2" style="background:#6c76e4;color:#fff " form="auction">موافق  </button>
                         </div>
                     </div>

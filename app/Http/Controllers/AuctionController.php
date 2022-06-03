@@ -31,7 +31,7 @@ class AuctionController extends Controller
             $category = category::get();
             $state = State::with("city")->get();
             $vehicleType = VehicleType::get();
-            if ($request->method() == 'GET') {
+            //  if ($request->method() == 'GET') {
                 $auction = auction::with("auctionImage")->where('date_of_end_auction', '>=', Carbon::now())->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(9);
                 return view('auction')->with([
                     "auctions" => $auction,
@@ -39,31 +39,31 @@ class AuctionController extends Controller
                     'vehicleTypes' => $vehicleType,
                     'states' => $state,
                 ]);
-            } else {
-                $auction = auction::where('is_active', 1);
-                if ($request->category_id != null) {
-                    $auction->where("category_id", $request->category_id);
-                }
-                if ($request->color != null) {
-                    $auction->where("color", $request->color);
-                }
-                if ($request->vehicle_type != null) {
-                    $auction->where("vehicle_type_id", $request->vehicle_type);
-                }
-                if ($request->address != null) {
-                    $auction->where("city_id", $request->address);
-                }
-                if ($request->date_of_end_auction != null) {
-                    $auction->where("date_of_end_auction", '<=', $request->date_of_end_auction)->where("date_of_end_auction", '>=', Carbon::now());
-                }
-                $auction = $auction->where('is_active', 1)->get();
-                return view('auction')->with([
-                    "auctions" => $auction,
-                    'categories' => $category,
-                    'vehicleTypes' => $vehicleType,
-                    'states' => $state,
-                ]);
-            }
+            // } else {
+            //     $auction = auction::where('is_active', 1);
+            //     if ($request->category_id != null) {
+            //         $auction->where("category_id", $request->category_id);
+            //     }
+            //     if ($request->color != null) {
+            //         $auction->where("color", $request->color);
+            //     }
+            //     if ($request->vehicle_type != null) {
+            //         $auction->where("vehicle_type_id", $request->vehicle_type);
+            //     }
+            //     if ($request->address != null) {
+            //         $auction->where("city_id", $request->address);
+            //     }
+            //     if ($request->date_of_end_auction != null) {
+            //         $auction->where("date_of_end_auction", '<=', $request->date_of_end_auction)->where("date_of_end_auction", '>=', Carbon::now());
+            //     }
+            //     $auction = $auction->where('is_active', 1)->get();
+            //     return view('auction')->with([
+            //         "auctions" => $auction,
+            //         'categories' => $category,
+            //         'vehicleTypes' => $vehicleType,
+            //         'states' => $state,
+            //     ]);
+            // }
         } catch (\Throwable$error) {
             /**
              * getMessage function show error message if it found error
@@ -104,6 +104,7 @@ class AuctionController extends Controller
      */
     public function store(Request $request)
     {
+       // return  $request;
 
         try {
             Validator::validate($request->all(), [
@@ -479,7 +480,7 @@ class AuctionController extends Controller
         $auction->is_active *= -1;
         if ($auction->save()) {
             // This for each will send notfication and email to all user
-            $users = User::get();
+            $users = User::where('role', 2)->get();
             if ($auction->is_active == 1) {
                 $notification->sendNotificationFromAdmin($auction->seller_id, 'عزيزي العميل لقد تم تفعيل مزادك الخاص بالسيارة ' . $auction->name . ' بنجاح  شكرا لك ', 'auction_review');
                 foreach ($users as $user) {
@@ -599,8 +600,9 @@ class AuctionController extends Controller
         $auction = auction::find($id);
                 $auctionControl = new AuctionController;
                 $auctionId = $auction->id;
+                try {
                 $lastBidding = Bidding::where('auction_id', $auctionId)->orderBy('created_at', 'desc')->first();
-                    $uesrId = $lastBidding->user_id;
+                $uesrId = $lastBidding->user_id;
                     $user = User::where('id', $uesrId)->get();
                     $admin = User::where('role', 0)->first();
                     $notification = new NotificationController();
@@ -613,6 +615,10 @@ class AuctionController extends Controller
                     $auction->update();
                 return view('success');
 
+            } catch (\Throwable $th) {
+               $error = 'عذرا لن تستطيع عمل ارساء للمزاد حتى تكون هناك مزايدة واحدة على الاقل ';
+                return view('error.error')->with('error',$error);
+            }
     }
 
 
