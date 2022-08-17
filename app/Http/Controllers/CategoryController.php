@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,10 +20,9 @@ class CategoryController extends Controller
             $categories = Category::orderBy('id', 'desc')->get();
             return view('admin.categry.view_cat')
                 ->with('categories', $categories);
-                    }
-            catch (\Throwable $error) {
-                        return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
-                    }
+        } catch (\Throwable$error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
     /**
@@ -35,9 +33,8 @@ class CategoryController extends Controller
     public function create()
     {
         try {
-            return view('admin.categry.add_categry');  
-              }
-        catch (\Throwable $error) {
+            return view('admin.categry.add_categry');
+        } catch (\Throwable$error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
     }
@@ -64,9 +61,11 @@ class CategoryController extends Controller
             $newCategory->name = $request->name;
             $newCategory->is_active = $request->is_active;
             $newCategory->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultCategoryegory.png";
-            if ($newCategory->save())
-            return redirect()->back()->with(['success' => 'تمت إضافة البيانات بنجاح ']);
-        } catch (\Throwable $th) {
+            if ($newCategory->save()) {
+                return redirect()->back()->with(['success' => 'تمت إضافة البيانات بنجاح ']);
+            }
+
+        } catch (\Throwable$th) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
     }
@@ -95,7 +94,7 @@ class CategoryController extends Controller
             $category = Category::find($categoryId);
             return view('admin.categry.edit_categry')
                 ->with('category', $category);
-        } catch (\Throwable $error) {
+        } catch (\Throwable$error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
     }
@@ -131,12 +130,12 @@ class CategoryController extends Controller
                 $category->image = $this->uploadFile($request->file('image'));
             }
 
-
-            if ($category->save())
+            if ($category->save()) {
                 return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
+            }
 
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
-        } catch (\Throwable $error) {
+        } catch (\Throwable$error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
     }
@@ -152,7 +151,6 @@ class CategoryController extends Controller
         //
     }
 
-
     /**
      * @param mixed $categoryId
      *This function convert from is_active=1 to is_active=-1 and reverse
@@ -164,11 +162,12 @@ class CategoryController extends Controller
 
             $category = Category::find($categoryId);
             $category->is_active *= -1;
-            if ($category->save())
+            if ($category->save()) {
                 return back()->with(['success' => 'تم تحديث البيانات بنجاح']);
+            }
 
             return back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
-        } catch (\Throwable $error) {
+        } catch (\Throwable$error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
     }
@@ -182,12 +181,11 @@ class CategoryController extends Controller
     {
         try {
 
-
             $destination = public_path() . "/images/";
             $fileName = time() . "_" . $file->getClientOriginalName();
             $file->move($destination, $fileName);
             return $fileName;
-        } catch (\Throwable $error) {
+        } catch (\Throwable$error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
     }
@@ -202,7 +200,7 @@ class CategoryController extends Controller
 
             $categories = category::get();
             return view('index')->with('category', $categories);
-        } catch (\Throwable $error) {
+        } catch (\Throwable$error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
     }

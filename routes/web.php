@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-
 #####routs for all
 Route::get('detail_car/{carId}', [AuctionController::class, "detailAuction"])->name("action_detail");
 Route::get('/ContactUs', [ContactUs::class, 'ContactUs'])->name('ContactUs');
@@ -74,4 +73,3 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 //Auction
-

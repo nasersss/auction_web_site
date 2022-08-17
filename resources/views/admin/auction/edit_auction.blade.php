@@ -180,8 +180,6 @@
                                             <h4>قم بسحب و إسقاط الصور هنا أو انقر هنا للتحميل</h4>
                                         </div>
                                     </div>
-
-
                                 </div>
 
 
@@ -208,7 +206,6 @@
                             </div>
                             <!-- Preview -->
                             <div class="dropzone-previews mt-3" id="file-previews"></div>
-
                             <!-- file preview template -->
                             @isset($auction->auctionImage)
                             @foreach($auction->auctionImage as $image)

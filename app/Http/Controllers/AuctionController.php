@@ -276,6 +276,7 @@ class AuctionController extends Controller
             $state = State::with("city")->get();
             $vehicleType = VehicleType::get();
             $auction = auction::find($auction_id);
+
             return view('admin.auction.edit_auction')->with([
                 'auction' => $auction,
                 'categories' => $category,
@@ -318,7 +319,6 @@ class AuctionController extends Controller
     public function update(Request $request)
     {
         try {
-
             $auctionInfo = auction::find($request->id);
             $auctionInfo->category_id = $request->category_id;
             $auctionInfo->color = $request->color;
@@ -335,40 +335,8 @@ class AuctionController extends Controller
             $auctionInfo->city_id = $request->address;
 
             // if the auction is saved that will save and upload images of auction.
-            if ($auctionInfo->update()) {
-                try {
-                    $auctionMaineImage = AuctionImage::where('image', 'like', $request->id . '_' . 'main' . '_' . '%')->first();
-
-                    if ($request->hasFile('mainImage')) {
-                        if ($auctionMaineImage != null) {
-                            if (realpath($auctionMaineImage->image)) {
-                                unlink(realpath($auctionMaineImage->image));
-                            }
-                            $auctionMaineImage->image = $this->uploadMainFile($request->file('mainImage'), $request->id);
-                            $auctionMaineImage->update();
-                        } else {
-                            $auctionMaineImage = new AuctionImage();
-                            $auctionMaineImage->image = $this->uploadMainFile($request->file('mainImage'), $request->id);
-                            $auctionMaineImage->auction_id = $request->id;
-                            $auctionMaineImage->save();
-                        }
-                    }
-                    if ($request->hasFile('images')) {
-                        foreach ($request->file('images') as $image) {
-                            $auctionImage = new AuctionImage();
-                            $auctionImage->image = $this->uploadFile($image, $auctionInfo->id);
-                            $auctionImage->is_active = -1;
-                            $auctionImage->auction_id = $auctionInfo->id;
-                            $auctionImage->save();
-                        }
-                    }
-                } catch (\Throwable$error) {
-                    return redirect()->back()->with(['error' => 'عذرا هناك خطا في الصور  ']);
-
-                }
-
-                return redirect('/auctions_review')->with(['success' => 'تم تحديث البيانات بنجاح']);
-            }
+            
+            
         } catch (\Throwable$error) {
             return redirect()->back()->with(['error' => 'عذرا هناك خطاء في  االبيانات']);
         }
@@ -454,7 +422,7 @@ class AuctionController extends Controller
             $user = User::find(Auth::user()->id);
             if ($user->role < 2) {
                 $auctions = auction::with(["user", "category", "auctionImage"])->orderBy('created_at', 'desc')->get();
-                return view("admin.auction.auctions_review")->with("auctions", $auctions);
+               // return view("admin.auction.auctions_review")->with("auctions", $auctions);
             } else {
                 $auction = auction::where('seller_id', $user->id)->orderBy('created_at', 'desc')->get();
                 return view("admin.userAuction")->with("auctions", $auction);

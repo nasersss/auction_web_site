@@ -175,9 +175,6 @@
             @endphp
             @if($im[1]=='main')
             <img id="show-image" src="{{$image->image}}" alt="">
-
-
-
         </div>
         <div class="slider-container mb-3">
             <div id="btn-right" class="arrow-right"> <i class="fas fa-angle-right  "></i></div>

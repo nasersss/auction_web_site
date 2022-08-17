@@ -11,7 +11,6 @@ class AuctionImage extends Model
 
     public function getImageAttribute($value){
         return url("images/auction/")."/".$value;
-
     }
 
     public function auction()

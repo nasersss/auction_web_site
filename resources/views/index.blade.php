@@ -56,7 +56,8 @@
                     <table>
                       <tr>
                         <th>
-                          الموديل </th>
+                          الموديل 
+                        </th>
                         <td>
                           {{ $auction->model }}
                         </td>
@@ -433,7 +434,10 @@
 <div class="container">
   <div class="row align-items-center">
     <div class="col-lg-6">
-  <h4 class="font-weight-bold" id="headrs"> التعريف بمنصة مزادي كار</h4>
+  <h4 class="font-weight-bold" id="headrs"> التعريف بمنصة مزادي كار
+    <i class="fas fa-quote-left comment-left second-c" style=" padding: 0px 5px 5px 5px;font-size:25px;float: left; margin-top: -20px;"></i>
+
+  </h4>
   <p class=" text-muted mb-4"> هي منصة إلكترونية تتيح للمشتركين فيها المزايدة إلكترونياً على السيارات في المزاد وتوفير وسائل دفع إلكترونية و
 عملية المزايدة في الموقع الإلكتروني موثوقة، وتتفق مع قوانين إقامة المزادات والبيع والشراء في الجمهورية اليمنية وايضاُ
 يمكن الاطلاع على مجريات المزادات بدون تسجيل الدخول من خلال الضغط على 'عرض التفاصيل' في المزاد المطلوب  </p>
