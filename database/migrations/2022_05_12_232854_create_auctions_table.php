@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('auctions', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_active')->default(1);
+            $table->smallInteger('is_active')->default(1);
             $table->string('color');
             $table->unsignedBigInteger('seller_id');
             $table->unsignedBigInteger('category_id');
@@ -41,7 +41,7 @@ return new class extends Migration
             $table->foreign('vehicle_type_id')->references('id')->on('vehicle_types');
             $table->foreign('city_id')->references('id')->on('cities');
             $table->smallInteger('is_ready_to_sell')->default(1); 
-              $table->smallInteger('is_received')->default(-1);
+            $table->smallInteger('is_received')->default(-1);
             $table->timestamps();
         });
     }

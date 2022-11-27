@@ -417,20 +417,20 @@ class AuctionController extends Controller
      * @return [string]return all information about user auctions
      */
     public function auctionReview()
-    {
-        try {
+    { 
+        // try {
             $user = User::find(Auth::user()->id);
             if ($user->role < 2) {
                 $auctions = auction::with(["user", "category", "auctionImage"])->orderBy('created_at', 'desc')->get();
-               // return view("admin.auction.auctions_review")->with("auctions", $auctions);
+                return view("admin.auction.auctions_review")->with("auctions", $auctions);
             } else {
                 $auction = auction::where('seller_id', $user->id)->orderBy('created_at', 'desc')->get();
                 return view("admin.userAuction")->with("auctions", $auction);
             }
-        } catch (\Throwable$th) {
-            //throw $th;
-            return back()->with(['error' => " عذرا هناك خطأ"]);
-        }
+        // } catch (\Throwable$th) {
+        //     //throw $th;
+        //     return back()->with(['error' => " عذرا هناك خطأ"]);
+        // }
     }
 
     /**
