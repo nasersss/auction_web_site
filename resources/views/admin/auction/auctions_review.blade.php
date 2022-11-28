@@ -58,10 +58,10 @@
                                     <th>الموديل</th>
                                     <th>اسم صاحب المزاد</th>
                                     <th>السعر المدئي</th>
-{{--                                    <th>العطى الحالي</th>--}}
 {{--                                    <th>تاريخ الاضافة</th>--}}
 {{--                                    <th>تاريخ الانتهاء</th>--}}
                                     <th>الحالة</th>
+                                    <th>إرساء المزاد </th>
                                     <th style="width: 85px;">العمليات</th>
                                 </tr>
                                 </thead>
@@ -95,11 +95,12 @@
                                     <td>
                                         {{ $auction->stare_price }}
                                     </td>
+                                    
                                     <td>
                                         @isset($auction->is_active)
                                         @if($auction->is_active==1)
                                         <span class="badge badge-success-lighten">{{ "نشط" }}</span>
-@else
+                                        @else
                                         <span class="badge badge-danger-lighten">{{ "موقف" }}</span>
 
                                         @endif
@@ -107,6 +108,17 @@
                                         @endisset
                                     </td>
 
+                                    <td>
+                                        @if ($auction->is_active == 1)
+                                            <a class="btn btn-success" href="{{route('endOneauction',$auction->id)}}">
+                                            إرساء المزاد
+                                            </a>
+                                        @else
+                                            <span class="badge badge-dark-lighten">{{ "تم الارساء" }}</span>
+                                        @endif
+                                        
+                                    </td>
+                                    
                                     <td class="table-action">
                                         {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a> --}}
 
