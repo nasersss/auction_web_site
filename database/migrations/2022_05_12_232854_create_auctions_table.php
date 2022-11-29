@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('curren_price')->nullable();
             // $table->string('address');
             $table->unsignedBigInteger("city_id");
-            $table->timestamp('date_of_end_auction');
+            $table->date('date_of_end_auction');
             $table->integer('number_of_participate');
             $table->string('fuel');// نوع الوقود
             $table->foreign('seller_id')->references('id')->on('users');

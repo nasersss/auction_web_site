@@ -65,7 +65,7 @@
             <!-- END wrapper -->
 
             <!-- Right Sidebar -->
-            @include('admin.layouts.dash-settings')
+            {{-- @include('admin.layouts.dash-settings') --}}
 
             <div class="rightbar-overlay"></div>
             <!-- /End-bar -->
