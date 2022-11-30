@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\Notification;
 use App\Models\Bidding;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class ClosingBidding extends Command
 {
@@ -28,12 +30,8 @@ class ClosingBidding extends Command
      */
     public function handle()
     {
-        $badd = new Bidding();
-        $badd->user_id = 1;
-        $badd->auction_id = 1;
-        $badd->bidding_amount = 1250;
-        $badd->payed_amount = 1254;
-        $badd->save();
+        $auction = new AuctionControlle ();
+        $auciton->checkAucationDate();
         $this->info('Successfully.');
     }
 }

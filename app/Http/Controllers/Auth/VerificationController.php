@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
-use Illuminate\Support\Facades\Auth;
 
 class VerificationController extends Controller
 {
@@ -18,7 +16,7 @@ class VerificationController extends Controller
     | user that recently registered with the application. Emails may also
     | be re-sent if the user didn't receive the original email message.
     |
-    */
+     */
 
     use VerifiesEmails;
 
@@ -28,7 +26,6 @@ class VerificationController extends Controller
      * @var string
      */
     protected $redirectTo = 'create_profile';
-    
 
     /**
      * Create a new controller instance.
@@ -37,8 +34,13 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('signed')->only('verify');
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
+        try {
+            $this->middleware('auth');
+            $this->middleware('signed')->only('verify');
+            $this->middleware('throttle:6,1')->only('verify', 'resend');
+        } catch (\Throwable$th) {
+            return view('error.error');
+        }
+
     }
 }

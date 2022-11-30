@@ -1,15 +1,15 @@
-let search = document.getElementById('search')
-let closeSearch = document.getElementById('close')
-let showSearch = document.getElementById('header')
+// let search = document.getElementById('search')
+// let closeSearch = document.getElementById('close')
+// let showSearch = document.getElementById('header')
 let list_user = document.getElementById('list-user')
-search.addEventListener('click', (e) => {
-    e.preventDefault();
-    showSearch.style.display = 'block';
-})
-closeSearch.addEventListener('click', (e) => {
-    e.preventDefault();
-    showSearch.style.display = 'none';
-})
+// search.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     showSearch.style.display = 'block';
+// })
+// closeSearch.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     showSearch.style.display = 'none';
+// })
 
 var prev = document.getElementsByClassName("prev");
 var next = document.getElementsByClassName("next");
@@ -83,36 +83,19 @@ function removeActive() {
 // btn_right.addEventListener("click",function(){
 // document.getElementById("slider").scrollLeft+=180
 // })
-let img_slider = document.querySelectorAll('.image img')
-
-let activeImages = document.getElementsByClassName('img_active')
-
-for (var i = 0; i < img_slider.length; i++) {
-
-    img_slider[i].addEventListener("mouseover", function() {
-
-        if (activeImages.length > 0) {
-            activeImages[0].classList.remove('img_active')
-        }
 
 
-        this.classList.add('img_active')
-        document.getElementById('show-image').src = this.src
-    })
-}
+// let buttonRight = document.getElementById('btn-right');
+// let buttonLeft = document.getElementById('btn-left');
 
+// buttonLeft.addEventListener('click', function() {
+//     document.getElementById('slider').scrollLeft -= 180
+// })
 
-let buttonRight = document.getElementById('btn-right');
-let buttonLeft = document.getElementById('btn-left');
+// buttonRight.addEventListener('click', function() {
+//     document.getElementById('slider').scrollLeft += 180
 
-buttonLeft.addEventListener('click', function() {
-    document.getElementById('slider').scrollLeft -= 180
-})
-
-buttonRight.addEventListener('click', function() {
-    document.getElementById('slider').scrollLeft += 180
-
-})
+// })
 
 let ok_btn = document.getElementById("ok")
 let console_btn = document.getElementById("console")

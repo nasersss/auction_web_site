@@ -21,45 +21,96 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $notifications = Notification::where('to_user_id', Auth::user()->id)->where('is_seen', -1)->get();
-        return response($notifications);
-    }
+        try {
 
-    public function makeNotificationSeen($notificationId)
-    {
-        $notification = Notification::find($notificationId);
-        $notification->is_seen = 1;
-        $notification->update();
-        $route = explode('/', $notification->route);
-        $parameter = null;
-        if (count($route) == 1)
-            return redirect()->route("$notification->route");
-        else {
-            $parameter = $route[1];
-            $route = $route[0];
-            return redirect()->route("$route", "$parameter");
+            $notifications = Notification::where('to_user_id', Auth::user()->id)->where('is_seen', -1)->get();
+            return response($notifications);
+        } catch (\Throwable $error) {
+            throw $error->getMessage();
         }
     }
 
     /**
-     *  
+     * @param mixed $notificationId
+     *
+     * this function used for make notification seen
+     * @return [type]
+     */
+    public function makeNotificationSeen($notificationId)
+    {
+        try {
+
+            $notification = Notification::find($notificationId);
+            $notification->is_seen = 1;
+            $notification->update();
+            $route = explode('/', $notification->route);
+            $parameter = null;
+            if (count($route) == 1)
+                return redirect()->route("$notification->route");
+            else {
+                $parameter = $route[1];
+                $route = $route[0];
+                return redirect()->route("$route", "$parameter");
+            }
+        } catch (\Throwable $error) {
+            return view('error.error')->with('error',"هناك خطاء ما عفوا ");
+        }
+    }
+
+    /**
+     *
+     * this function used to sent notification to user
      *
      * @param mixed $fromUserId
      * @param mixed $toUserId
      * @param mixed $content
      * @param mixed $route
-     * 
+     *
      * @return boolean
-     * 
+     *
      */
     public function sendNotification($toUserId, $content, $route)
     {
-        $notification = new Notification();
-        $notification->from_user_id = Auth::user()->id;
-        $notification->to_user_id = $toUserId;
-        $notification->content = $content;
-        $notification->route = $route;
-        $notification->save();
+        try {
+
+            $notification = new Notification();
+            $notification->from_user_id = Auth::user()->id;
+            $notification->to_user_id = $toUserId;
+            $notification->content = $content;
+            $notification->route = $route;
+            $notification->save();
+        } catch (\Throwable $error) {
+            // throw $error->getMessage();
+            return view('error.error')->with('error',"هناك خطاء ما عفوا ");
+
+        }
+    }
+    /**
+     * [This function used to send notfication from admin to user]
+     *
+     * @param mixed $toUserId
+     * @param mixed $content
+     * @param mixed $route
+     * 
+     * @return [boolean]
+     * 
+     */
+    public function sendNotificationFromAdmin($toUserId, $content, $route)
+    {
+        try {
+            $notification = new Notification();
+            $admin = User::where('role', 0)->first();
+            $notification->from_user_id = $admin->id;
+            $notification->to_user_id = $toUserId;
+            $notification->content = $content;
+            $notification->route = $route;
+            $notification->save();     
+           } catch (\Throwable $th) {
+            // throw $error->getMessage();
+            return view('error.error')->with('error',"عفوا هناك خطاء ما لم يتم إرسال الاشعارات ");
+
+        }
+        
     }
 
     /**

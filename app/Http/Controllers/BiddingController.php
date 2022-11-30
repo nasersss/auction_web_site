@@ -42,21 +42,24 @@ class BiddingController extends Controller
             return redirect()->route('login')->with(['error' => 'عذرا لا تملك الصلاحية لدخول هذه الصفخة يرجا تسجيل الدخول او انشاء حساب']);
         }
          
-        //$user = User::with('wallet')->find(Auth::user()->id);
         $auction = auction::find($request->auction_id);
-
+        session_start();
+        $_SESSION["auction"] = $auction;
+        $_SESSION["amountOfBidding"] = $request->amount;
         if ($request->amount < $auction->min_bid) {
             return redirect()->back()->with(['error' => 'لايمكنك ادخال مبلغ اقل من ' . $auction->min_bid . '$ ' . ' لانها اقل قيمة للمزايدة']);
         }
         if (($auction->curren_price + $request->amount) * 10 / 100 > Auth::user()->balance) {
-            // return redirect()->back()->with(['error' => 'يرجا شحن حسابك لانك لا تمكلك نقود كافية للقيام بالمزايدة'])
             $payment = new PymentContoller();
-           
-           return  $payment->makePyment($auction);
+            $percentageFromStrartPrice = $auction->stare_price*0.1;
+            if (Auth::user()->balance < $percentageFromStrartPrice) {
+                return view('makePyment')->with('auction', $auction);
+            }
+          // return  $payment->makePyment($auction,$percentageFromStrartPrice);
         }
         $auction->curren_price += $request->amount;
         $auction->number_of_participate += 1;
-        $auction->update();
+        $auction->save();
         $admin = User::where('role',0)->first();
         $adminWallet =$admin->balance;
         $newBidding = new Bidding();
@@ -65,6 +68,10 @@ class BiddingController extends Controller
         $newBidding->bidding_amount = $request->amount;
         $newBidding->payed_amount = (($auction->curren_price + $request->amount) * 10 / 100);
         $newBidding->save();
+        // remove all session variables
+            session_unset();    
+            // destroy the session
+            session_destroy();
         return redirect()->back()->with(['success' => 'تمت عملية المزايدة بنجاح']);
     }
 
@@ -78,30 +85,32 @@ class BiddingController extends Controller
      * 
      */
     public function addAmountOfBidding(Request $request){
-       
+        session_start();
+        $auction = auction::find($request->order_reference);
         $admin = User::where('role',0)->first();
-
-        Auth::user()->deposit($request->paid_amount);
-        Auth::user()->withdraw($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$request->order_reference_id,'creaated_at'=>$request->creaated_at]);
-        $admin->deposit($request->paid_amount,['paid_amount'=>$request->paid_amount,'order_reference_id'=>$request->order_reference_id,'creaated_at'=>$request->creaated_at,'FromuserId'=>Auth::user()->id]);
-
-        $auction = auction::find($request->order_reference_id);
-        $auction->curren_price += $request->amount;
-        $auction->number_of_participate += 1;
-        $auction->update();
-
-        $newBidding = new Bidding();
-        $newBidding->user_id = Auth::user()->id;
-        $newBidding->auction_id = $request->order_reference_id;
-        $newBidding->bidding_amount =150;//must be modfy to gevin by requst or save the amout in session then claa here
-        $newBidding->payed_amount = (($auction->curren_price + $request->amount) * 10 / 100);
-        $newBidding->save();
-
-      
-        return redirect('detail_car/'.$auction->id.'')->with(['success' => 'تمت عملية المزايدة بنجاح']);
-    
+        $paidAmout = $request->paid_amount;
+        Auth::user()->deposit($paidAmout,['paid_amount'=>$paidAmout,'order_reference_id'=>$auction->id,'creaated_at'=>$request->creaated_at]);
+        
+        if(isset($_SESSION['amountOfBidding']))
+            {
+                $auction->curren_price += $_SESSION['amountOfBidding'];
+                $auction->number_of_participate += 1;
+                $auction->update();
+                $newBidding = new Bidding();
+                $newBidding->user_id = Auth::user()->id;
+                $newBidding->auction_id = $auction->id;
+                $newBidding->bidding_amount = $_SESSION['amountOfBidding'];//must be modfy to gevin by requst or save the amout in session then claa here
+                $newBidding->payed_amount = (($auction->curren_price + $request->amount) * 10 / 100);
+                $newBidding->save();
+                session_destroy();
+                return redirect('detail_car/'.$auction->id.'')->with(['success' => 'تمت عملية المزايدة بنجاح']);        
+            }
+            else{
+                return redirect('/auction_review')->with(['success' => 'تمت عملية تسديد نسبة ضمان إضافة مزاد جديد بنجاح ']);        
+            }   
              
     }
+   
     public function whenAuctionClosed()
     {
         $badd = new Bidding();
@@ -111,7 +120,7 @@ class BiddingController extends Controller
         $badd->payed_amount = 1254;
         $badd->save();
     }
-
+   
     /**
      * Display the specified resource.
      *

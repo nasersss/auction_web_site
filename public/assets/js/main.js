@@ -4,38 +4,44 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-var countDownDate = new Date("May 20, 2022 15:37:25").getTime();
+const dateTime=document.getElementById('timer').innerText;
+
+var countDownDate = new Date(dateTime).getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
 
   // Get today's date and time
   var now = new Date().getTime();
-    
+//   alert(dateTime)
+//   alert(new Date())
+//   alert(countDownDate)
+//   alert(now)
   // Find the distance between now and the count down date
   var distance = countDownDate - now;
-    
+
   // Time calculations for days, hours, minutes and seconds
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
+
   // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-    
-  // If the count down is over, write some text 
+  document.getElementById("demo").innerHTML = days + " يوم  و  " + hours + " ساعة  و  "
+  + minutes + " دقيقة  و" + seconds + " ثانية ";
+
+  // If the count down is over, write some text
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("demo").innerHTML = "EXPIRED";
   }
 }, 1000);
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 document.addEventListener('DOMContentLoaded', () => {
 	"use strict";
-  
+
 	/**
 	 * Preloader
 	 */
@@ -45,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		preloader.remove();
 	  });
 	}
-  
+
 	/**
 	 * Sticky header on scroll
 	 */
@@ -55,23 +61,23 @@ document.addEventListener('DOMContentLoaded', () => {
 		window.scrollY > 100 ? selectHeader.classList.add('sticked') : selectHeader.classList.remove('sticked');
 	  });
 	}
-  
+
 	/**
 	 * Navbar links active state on scroll
 	 */
 	let navbarlinks = document.querySelectorAll('#navbar .scrollto');
-  
+
 	function navbarlinksActive() {
 	  navbarlinks.forEach(navbarlink => {
-  
+
 		if (!navbarlink.hash) return;
-  
+
 		let section = document.querySelector(navbarlink.hash);
 		if (!section) return;
-  
+
 		let position = window.scrollY;
 		if (navbarlink.hash != '#header') position += 200;
-  
+
 		if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
 		  navbarlink.classList.add('active');
 		} else {
@@ -81,14 +87,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	window.addEventListener('load', navbarlinksActive);
 	document.addEventListener('scroll', navbarlinksActive);
-  
+
 	/**
 	 * Function to scroll to an element with top ofset
 	 */
 	function scrollto(el) {
 	  const selectHeader = document.querySelector('#header');
 	  let offset = 0;
-  
+
 	  if (selectHeader.classList.contains('sticked')) {
 		offset = document.querySelector('#header.sticked').offsetHeight;
 	  } else if (selectHeader.hasAttribute('data-scrollto-offset')) {
@@ -99,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		behavior: 'smooth'
 	  });
 	}
-  
+
 	/**
 	 * Fires the scrollto function on click to links .scrollto
 	 */
@@ -107,11 +113,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	selectScrollto.forEach(el => el.addEventListener('click', function(event) {
 	  if (document.querySelector(this.hash)) {
 		event.preventDefault();
-  
+
 		let mobileNavActive = document.querySelector('.mobile-nav-active');
 		if (mobileNavActive) {
 		  mobileNavActive.classList.remove('mobile-nav-active');
-  
+
 		  let navbarToggle = document.querySelector('.mobile-nav-toggle');
 		  navbarToggle.classList.toggle('bi-list');
 		  navbarToggle.classList.toggle('bi-x');
@@ -119,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		scrollto(this.hash);
 	  }
 	}));
-  
+
 	/**
 	 * Scroll with ofset on page load with hash links in the url
 	 */
@@ -130,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	  }
 	});
-  
+
 	/**
 	 * Mobile nav toggle
 	 */
@@ -138,40 +144,40 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (mobileNavToogle) {
 	  mobileNavToogle.addEventListener('click', function(event) {
 		event.preventDefault();
-  
+
 		document.querySelector('body').classList.toggle('mobile-nav-active');
-  
+
 		this.classList.toggle('bi-list');
 		this.classList.toggle('bi-x');
 	  });
 	}
-  
+
 	/**
 	 * Toggle mobile nav dropdowns
 	 */
 	const navDropdowns = document.querySelectorAll('.navbar .dropdown > a');
-  
+
 	navDropdowns.forEach(el => {
 	  el.addEventListener('click', function(event) {
 		if (document.querySelector('.mobile-nav-active')) {
 		  event.preventDefault();
 		  this.classList.toggle('active');
 		  this.nextElementSibling.classList.toggle('dropdown-active');
-  
+
 		  let dropDownIndicator = this.querySelector('.dropdown-indicator');
 		  dropDownIndicator.classList.toggle('bi-chevron-up');
 		  dropDownIndicator.classList.toggle('bi-chevron-down');
 		}
 	  })
 	});
-  
+
 	/**
 	 * Auto generate the hero carousel indicators
 	 */
 	let heroCarouselIndicators = document.querySelector('#hero .carousel-indicators');
 	if (heroCarouselIndicators) {
 	  let heroCarouselItems = document.querySelectorAll('#hero .carousel-item')
-  
+
 	  heroCarouselItems.forEach((item, index) => {
 		if (index === 0) {
 		  heroCarouselIndicators.innerHTML += `<li data-bs-target="#hero" data-bs-slide-to="${index}" class="active"></li>`;
@@ -180,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	  });
 	}
-  
+
 	/**
 	 * Scroll top button
 	 */
@@ -196,25 +202,25 @@ document.addEventListener('DOMContentLoaded', () => {
 		behavior: 'smooth'
 	  }));
 	}
-  
+
 	/**
 	 * Initiate glightbox
 	 */
 	const glightbox = GLightbox({
 	  selector: '.glightbox'
 	});
-  
+
 	/**
 	 * Porfolio isotope and filter
 	 */
 	let portfolionIsotope = document.querySelector('.portfolio-isotope');
-  
+
 	if (portfolionIsotope) {
-  
+
 	  let portfolioFilter = portfolionIsotope.getAttribute('data-portfolio-filter') ? portfolionIsotope.getAttribute('data-portfolio-filter') : '*';
 	  let portfolioLayout = portfolionIsotope.getAttribute('data-portfolio-layout') ? portfolionIsotope.getAttribute('data-portfolio-layout') : 'masonry';
 	  let portfolioSort = portfolionIsotope.getAttribute('data-portfolio-sort') ? portfolionIsotope.getAttribute('data-portfolio-sort') : 'original-order';
-  
+
 	  window.addEventListener('load', () => {
 		let portfolioIsotope = new Isotope(document.querySelector('.portfolio-container'), {
 		  itemSelector: '.portfolio-item',
@@ -222,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		  filter: portfolioFilter,
 		  sortBy: portfolioSort
 		});
-  
+
 		let menuFilters = document.querySelectorAll('.portfolio-isotope .portfolio-flters li');
 		menuFilters.forEach(function(el) {
 		  el.addEventListener('click', function() {
@@ -236,11 +242,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		  }, false);
 		});
-  
+
 	  });
-  
+
 	}
-  
+
 	/**
 	 * Clients Slider
 	 */
@@ -271,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	  }
 	});
-  
+
 	/**
 	 * Testimonials Slider
 	 */
@@ -289,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		clickable: true
 	  }
 	});
-  
+
 	/**
 	 * Testimonials Slider
 	 */
@@ -307,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		clickable: true
 	  }
 	});
-  
+
 	/**
 	 * Animation on scroll function and init
 	 */
@@ -322,5 +328,5 @@ document.addEventListener('DOMContentLoaded', () => {
 	window.addEventListener('load', () => {
 	  aos_init();
 	});
-  
+
   });

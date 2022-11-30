@@ -1,4 +1,4 @@
-<p align="center"><img src="logo.jpg" width="400"></a></p>
+<p align="center"><img src="logo.png" width="400"></a></p>
 
 # Mazady Car
 

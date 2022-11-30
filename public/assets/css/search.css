@@ -876,13 +876,13 @@ legend {
 }
 
 .s007 form .inner-form .input-field .btn-search {
-  min-width: 100px;
+  min-width: 205px;
   height: 40px;
   padding: 0 15px;
   background: #57b846;
   white-space: nowrap;
-  border-radius: 3px;
-  font-size: 14px;
+  border-radius: 0.25rem;
+  font-size: 18px;
   color: #fff;
   transition: all .2s ease-out, color .2s ease-out;
   border: 0;
@@ -916,6 +916,7 @@ legend {
 .s007 form .inner-form .basic-search {
   margin-bottom: 1px;
   box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+ 
 }
 
 .s007 form .inner-form .basic-search .input-field {
@@ -954,7 +955,7 @@ legend {
       justify-content: flex-start;
   -ms-flex-align: center;
       align-items: center;
-  width: 110px;
+  width: 180px;
   top: 0;
   left: 0;
   position: absolute;
@@ -965,13 +966,20 @@ legend {
     cursor: pointer;
     padding-right: 10px;
     border-right: 2px solid #cdc4c4;
+    
 }
-
+.s007 form .inner-form .basic-search .input-field .result-count img{
+  margin: 20px;
+  
+}
 .s007 form .inner-form .basic-search .input-field .result-count span {
   color: #57b846;
   padding-right: 5px;
 }
-
+.s007 form .inner-form .basic-search .input-field .result-count p{
+  position: relative;
+  top:10px;
+}
 #panel, .s007 form .inner-form .advance-search {
   background: #fff;
   padding: 5px 40px 10px 40px;

@@ -46,7 +46,7 @@ class auction extends Model
 
     public function bidding()
     {
-        return $this->hasMany(BiddingController::class,'user_id');
+        return $this->hasMany(Bidding::class,'auction_id');
     }
 
     public function category()
@@ -57,10 +57,5 @@ class auction extends Model
     public function auctionImage()
     {
         return $this->hasMany(AuctionImage::class);
-    }
-
-    public function delivery()
-    {
-        return $this->hasMany(Delivery::class, 'auction_id');
     }
 }

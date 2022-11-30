@@ -62,28 +62,32 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
-                                                        <label for="billing-first-name" class="form-label">الاسم</label><span class="text-danger">*</span>
-                                                        <input class="form-control" type="text" placeholder="ادخل الاسم" id="billing-first-name">
+                                                        <label for="billing-first-name" class="form-label">اسم المستلم</label><span class="text-danger">*</span>
+                                                        <input class="form-control" type="text" name="res_name" placeholder="ادخل الاسم" id="billing-first-name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="billing-phone" class="form-label">رقم الهاتف <span class="text-danger">*</span></label>
-                                                        <input class="form-control" type="text" placeholder="(xx) xxx xxxx xxx" id="billing-phone">
+                                                        <input class="form-control" type="text" name="phone" placeholder=" 777 xxxx xxx" id="billing-phone">
                                                     </div>
                                                 </div>
                                             </div> <!-- end row -->
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
-                                                        <label for="billing-email-address" class="form-label">البريد الالكتروني<span class="text-danger">*</span></label>
-                                                        <input class="form-control" type="email" placeholder="ادخل الايميل" id="billing-email-address">
+                                                        <label for="billing-email-address" class="form-label">نوع بطاقة الهوية <span class="text-danger">*</span></label>
+                                                        <select required name="receiver_identity_type" class="form-control" >
+                                                            <option selected disabled>أختر  نوع بطاقة الهوية</option>
+                                                            <option value="بطاقة شخصية"> بطاقة شخصية </option>
+                                                            <option value="جواز سفر">  جواز سفر </option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
-                                                        <label for="billing-phone" class="form-label">رقم الهاتف <span class="text-danger">*</span></label>
-                                                        <input class="form-control" type="text" placeholder="(xx) xxx xxxx xxx" id="billing-phone">
+                                                        <label for="billing-phone" class="form-label">رقم بطاقة الهوية <span class="text-danger">*</span></label>
+                                                        <input class="form-control" name="receiver_identity_number" type="text" placeholder="(xx) xxx xxxx xxx" id="billing-phone">
                                                     </div>
                                                 </div>
                                             </div> <!-- end row -->
@@ -96,7 +100,7 @@
 
                                                 </div> <!-- end col -->
                                             </div> <!-- end row -->
-                                        </form>
+
                                     </div>
 
                                 </div> <!-- end row-->
@@ -108,16 +112,22 @@
                                 <div class="row">
                                     <div class="col-lg-8">
                                         <h4 class="mt-2">معلومات الموقع</h4>
-                                        <form>
+
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="mb-3">
-                                                        <label for="new-adr-address" class="form-label">العنوان</label>
+                                                        <label for="new-adr-address" class="form-label">المحافظة</label>
                                                         <input class="form-control" type="text" placeholder="ادخل عنوانك" id="new-adr-address">
                                                     </div>
                                                 </div>
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label for="new-adr-address" class="form-label">المدينة</label>
+                                                        <input class="form-control" name="city" type="text" placeholder="ادخل عنوانك" id="new-adr-address">
+                                                    </div>
+                                                </div>
                                             </div> <!-- end row -->
-                                            <div class="row">
+                                            {{-- <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="mb-3">
                                                         <label for="new-adr-town-city" class="form-label">المحافظة</label>
@@ -136,7 +146,7 @@
                                                         <input class="form-control" type="text" placeholder="مثلا الشرج" id="new-adr-zip-postal">
                                                     </div>
                                                 </div>
-                                            </div> <!-- end row -->
+                                            </div> <!-- end row --> --}}
                                             <div class="row mt-4">
                                                 <div class="col-sm-6">
                                                     <a href="#" class="btn text-muted d-none d-sm-inline-block btn-link fw-semibold">
@@ -163,7 +173,7 @@
                                                             <h6 class="m-0">سعر السيارة:</h6>
                                                         </td>
                                                         <td class="text-end">
-                                                            $5000
+                                                            {{$auction->curren_price}}
                                                         </td>
                                                     </tr>
                                                     <tr class="text-end">
@@ -171,7 +181,7 @@
                                                             <h6 class="m-0">سعر التوصيل:</h6>
                                                         </td>
                                                         <td class="text-end">
-                                                            مجاني
+                                                            {{200}}
                                                         </td>
                                                     </tr>
                                                     <tr class="text-end">
@@ -179,7 +189,7 @@
                                                             <h5 class="m-0">الإجمالي:</h5>
                                                         </td>
                                                         <td class="text-end fw-semibold">
-                                                            $5000
+                                                            {{$auction->curren_price+200}}
                                                         </td>
                                                     </tr>
                                                     </tbody>
@@ -211,7 +221,7 @@
 
     @endsection
 
-    <script src="assets/js/pages/demo.form-wizard.js"></script>
+    <script src="/assets/js/pages/demo.form-wizard.js"></script>
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.js"></script>
     <script src="/assets/js/vendor.min.js"></script>

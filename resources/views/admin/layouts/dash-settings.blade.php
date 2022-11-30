@@ -13,7 +13,7 @@
             <div class="alert alert-warning" role="alert">
                 <strong>Customize </strong> the overall color scheme, sidebar menu, etc.
             </div>
-
+{{-- 
             <!-- Settings -->
             <h5 class="mt-3">Color Scheme</h5>
             <hr class="mt-1">
@@ -26,11 +26,11 @@
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="color-scheme-mode" value="dark" id="dark-mode-check">
                 <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
-            </div>
+            </div> --}}
 
 
             <!-- Width -->
-            <h5 class="mt-4">Width</h5>
+            <h5 class="mt-4">العرض</h5>
             <hr class="mt-1">
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="width" value="fluid" id="fluid-check" checked="">

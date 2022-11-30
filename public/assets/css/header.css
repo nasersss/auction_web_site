@@ -162,8 +162,8 @@ header {
 #header {
     display: none;
     background-color: var(--primaryColor);
+    /* height: 80px; */
 }
-
 .header-logo {
     float: left;
 }
@@ -214,12 +214,11 @@ header {
 
 .header-search {
     padding: 15px 0px;
-}
 
+}
 .header-search form {
     position: relative;
 }
-
 .header-search form .input-select {
     margin-right: -4px;
     border-radius: 0px 40px 40px 0px;
@@ -357,11 +356,11 @@ header {
 .list-user {
     background-color: #fff;
     position: absolute;
-    width: 450%;
+    width: 700%;
     z-index: 2;
     top: 35px;
-    right: -56px;
-    padding: 10px;
+    right: -94px;
+    padding: 15px;
     border-radius: 5px;
     font-size: 14px;
     display: none;
@@ -394,7 +393,7 @@ header {
         width: 50%;
         text-align: center;
         margin: 25px 0;
-       
+
     }
     .search-icon {
         background: var(--secondary) !important;
@@ -403,10 +402,7 @@ header {
         display: flex;
         justify-content: space-between;
         justify-items: center;
-        direction: ltr;
-    }
-    .header-container div a img {
-        width: 124%;
+
     }
     .main-nav {
         display: block !important;
@@ -465,7 +461,26 @@ header {
     justify-content: center;
     justify-items: center;
     position: relative;
-    right: 70px;
+    right: 20px;
+    margin: 10px;
+}
+
+.register {
+    background: #ffc107;
+    width: 30%;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    position: relative;
+    right: 30px;
+    margin: 10px;
+
+}
+.register a{
+    color: #fff !important;
+    font-size: 15px;
 }
 
 .login a {
@@ -474,17 +489,21 @@ header {
 }
 
 .name-auth {
-    position: absolute;
-    right: 100%;
-    width: 28%;
-    font-size: 12px;
+    color: #ffc107;
+    font-size: 13px;
     font-weight: 600;
-}
+text-align: center;
+margin: 6% 0 0 0;
 
+}
+.profileuser{
+    position: relative;
+    right: 40px;
+
+}
 .logo {
     left: 0 !important;
 }
-
 
 /*=========================================================
       13 -> RESPONSIVE
@@ -495,7 +514,7 @@ header {
 @media only screen and (max-width: 991px) {
     #top-header .header-links.pull-left {
         float: none !important;
-       
+
     }
     #top-header .header-links.pull-right {
         float: none !important;
@@ -511,10 +530,17 @@ header {
     .show-menu {
         display: block;
     }
+    .show{
+        display: none;
+    }
+    .header-container div a img {
+        width: 100%;
+    }
+
 }
 
 @media only screen and (max-width: 767px) {
-   
+
     .section-title .section-nav {
         float: none;
         margin-top: 10px;
@@ -522,8 +548,12 @@ header {
     .section-tab-nav li {
         margin-top: 10px;
     }
-    .name-auth {
-        display: none;
+
+    .show{
+display: none;
+    }
+    .header-container div a img {
+        width: 100%;
     }
 }
 
@@ -531,7 +561,7 @@ header {
     [class*='col-xs'] {
         width: 100%;
     }
-   
+
     .store-grid {
         float: none;
         margin-top: 10px;
@@ -540,6 +570,12 @@ header {
         float: none;
         margin-top: 10px;
     }
+
+}
+@media only screen and (max-width: 390px) {
+  .md-stepper-horizontal{
+      display: none;
+  }
 
 }
 
@@ -558,4 +594,15 @@ header {
 .alert a{
 text-decoration: underline;
 color: #6c76e4;
+}
+.profile-img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+.profile-img{
+    width: 100px !important;
+    height: 100px;
+    border-radius: 50%;
 }

@@ -1,24 +1,13 @@
+
 <!doctype html>
 <html lang="en">
 
 <head>
-  <title>مزادي كار | الرئيسية</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/ionicons.min.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link href="assets/css/search.css" rel="stylesheet" />
-  <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/all.css">
-  <link rel="stylesheet" href="assets/css/header.css">
-  <link rel="stylesheet" href="assets/css/home.css">
-
+ <title>مزادي كار | الرئيسية</title>
+ @include('header.head')
 </head>
-
 <body>
+
   @extends('master')
   @section( 'content')
   <!--slider-->
@@ -67,7 +56,8 @@
                     <table>
                       <tr>
                         <th>
-                          الموديل </th>
+                          الموديل 
+                        </th>
                         <td>
                           {{ $auction->model }}
                         </td>
@@ -76,8 +66,7 @@
                         <th>
                           الحالة
                         </th>
-                        <td>
-                            @if($auction->state == 1) مستخدم @else جديد @endif </td>
+                        <td>{{$auction->state}}</td>
                       </tr>
                       <tr>
                         <th>
@@ -110,7 +99,7 @@
                     @endforeach
 
                   </div>
-                  <p class="mt-4 card-text auction-paragraph col-12">المزاد الحالي<span class="auction-price"> 10000 $</span></p>
+                  <p class="mt-4 card-text auction-paragraph col-12">المزاد الحالي<span class="auction-price"> {{$auction->curren_price}} $</span></p>
 
                   <a href="{{ route('action_detail',$auction->id) }}" class="btn btn-color col-12">الاشتراك في المزاد</a>
 
@@ -213,7 +202,7 @@
           </span>
         </div>
         <!-- category container-->
-        <div class="category-container">
+        <div class="category-container" style="overflow: hidden">
 
 @foreach($categories as $category)
 
@@ -252,7 +241,7 @@
       <br>
 
       <!--Sarch input-->
-      <div class="col-md-12">
+      {{-- <div class="col-md-12">
                 <div class="s007 mt-3">
                     <form method="post" action="{{route('index')}}" enctype="multipart/form-data">
                         @csrf
@@ -264,8 +253,10 @@
                                     </div>
                                     <input id="search" type="text" placeholder="بحث..." />
                                     <div class="result-count" onclick="myFunction()">
-                                        <img src="/assets/images/Advanced_Search.png" width="30">بحث متقدم
+                                        <img src="/assets/images/Advanced_Search.png" width="30">
+                                        <p> بحث متقدم</p>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="advance-search" id="myDIV">
@@ -374,7 +365,7 @@
                     </form>
                 </div>
 
-            </div>
+            </div> --}}
       <!--End Sarch input-->
 
       <div class="row" id="ads">
@@ -389,8 +380,19 @@
         <div class=" col-12  col-md-6  col-lg-4 my-3">
           <div class="card rounded">
             <div class="card-image">
-              <span class="card-notify-year">@if($auction->state == 1) مستخدم @else جديد @endif
-              </span>
+
+                @if($auction->state == 'مستخدم')
+                <div class="card-notify-year" style="background-color:#6c76e4">
+
+                {{ "مستخدم" }}
+                </div>
+                @else
+                <div class="card-notify-year" style="background-color:#ff4444">
+                    {{ "جديد" }}
+               </div>
+                @endif
+
+
               @foreach($auction->auctionImage as $image)
               @php
               $im = explode('_',$image->image);
@@ -409,9 +411,9 @@
             <div class="card-body text-center">
               <div class="ad-title m-auto">
                 <h5>{{ $auction->name }}</h5>
-                <h2>العطاء الحالي ${{ $auction->stare_price }}</h2>
+                <h2>العطاء الحالي <span class="card_auction_price"> {{ $auction->curren_price }} $</span></h2>
                 <h2>تاريخ انتهاء المزاد</h2>
-                <h2 id=""> {{ $auction->date_of_end_auction }}</h2>
+                <h2 class="date" > {{ $auction->date_of_end_auction }}</h2>
 
               </div>
               <a class="ad-btn" href="{{ route('action_detail',$auction->id)}}">مشاهدة التفاصيل</a>
@@ -427,24 +429,28 @@
 
 
       </div>
-  </section>
-  <section id="about" class="about mt-5">
-    <div class="container" data-aos="fade-up">
+     </section>
 
-      <div class="section-header">
-        <h2>التعريف بمنصة مزادي كار</h2>
-        <p>هي منصة إلكترونية تتيح للمزايدين المزايدة إلكترونياً على السيارات في المزاد بواسطة وسائل دفع إلكترونية و
-          عملية المزايدة في الموقع الإلكتروني موثوقة، وتتفق مع قوانين إقامة المزادات والبيع والشراء في الجمهورية اليمنية وايضاُ
-          يمكن الاطلاع على مجريات المزادات بدون تسجيل الدخول من خلال الضغط على 'عرض التفاصيل' في المزاد المطلوب </p>
-      </div>
-    </div>
-  </section>
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-lg-6">
+  <h4 class="font-weight-bold" id="headrs"> التعريف بمنصة مزادي كار
+    <i class="fas fa-quote-left comment-left second-c" style=" padding: 0px 5px 5px 5px;font-size:25px;float: left; margin-top: -20px;"></i>
+
+  </h4>
+  <p class=" text-muted mb-4"> هي منصة إلكترونية تتيح للمشتركين فيها المزايدة إلكترونياً على السيارات في المزاد وتوفير وسائل دفع إلكترونية و
+عملية المزايدة في الموقع الإلكتروني موثوقة، وتتفق مع قوانين إقامة المزادات والبيع والشراء في الجمهورية اليمنية وايضاُ
+يمكن الاطلاع على مجريات المزادات بدون تسجيل الدخول من خلال الضغط على 'عرض التفاصيل' في المزاد المطلوب  </p>
+</div>
+<div class="img-car col-lg-6"><img src="/assets/images/home/home_cars.png" alt="" class="img-fluid mb-4 mb-lg-0"></div>
+</div>
+</div>
   <div class="container">
     <h2 id="method_header">طريقة إستخدام النظام</h2>
     <div class="row">
-      <div class="tab-content col-6">
+      <div class="tab-content col-12 col-md-6">
 
-        <div class="tab-pane active d-none show" id="tab-1">
+        <div class="tab-pane active " id="tab-1">
           <div class="md-stepper-horizontal orange">
             <div class="md-step active done">
               <div class="md-step-circle"><span>4</span></div>
@@ -474,22 +480,22 @@
         </div>
       </div>
       <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200" id="method">
-        <img class="img-fluid" src="assets/images/top-10-programmers-on-the-world.jpg" alt="">
+        <img class="img-fluid" src="/assets/images/home/top-10-programmers-on-the-world.jpg" alt="">
       </div>
     </div>
-  </div>
-  </div>
+    </div>
+    </div>
   </div>
 
   <section id="featured-services" class="featured-services">
     <div class="container">
-      <h3> لماذا المزاد الالكتروني؟</h3>
+      <h3>مزايا المزاد الإلكتروني</h3>
       <div class="row gy-4">
 
         <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
           <div class="service-item position-relative">
             <div class="icon">
-              <img src="assets/images/card-id-identity-svgrepo-com.svg">
+              <img src="assets/images/icons8-credit-card-48.png">
             </div>
             <h4>وسائل دفع الكترونية</h4>
             <p>يمكن دفع مبالغ مالية واسترجاعها من خلال وسائل دفع الكترونية</p>
@@ -509,7 +515,7 @@
         <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
           <div class="service-item position-relative">
             <div class="icon">
-              <img src="assets/images/checklist-document-file-svgrepo-com.svg">
+              <img src="assets/images/icons8-protect-40.png">
             </div>
             <h4>أمان الموقع</h4>
             <p>عمليات المزايدة بداخل الموقع تكون بأعلى وسائل الحماية والامن داخل وخارج الجمهورية اليمنية </p>
@@ -527,21 +533,13 @@
         </div><!-- End Service Item -->
       </div>
     </div>
-  </section><!-- End Featured Services Section -->
+  </section>
+
+  <!-- End Featured Services Section -->
   <!-- start footer-->
 
 
   @endsection
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/popper.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
-  <script src="assets/js/main.js"></script>
-
-
-</body>
-
+  </body>
+  @include('footer.footer')
 </html>

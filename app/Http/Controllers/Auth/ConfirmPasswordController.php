@@ -33,9 +33,13 @@ class ConfirmPasswordController extends Controller
      *
      * @return void
      */
-    
+
     public function __construct()
     {
-        $this->middleware('auth');
+        try {
+            $this->middleware('auth');
+        } catch (\Throwable $error) {
+            return view('error');
+        }
     }
 }

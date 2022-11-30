@@ -34,7 +34,7 @@
             <div id="msg" class="alert alert-danger">
                 <strong id="err-msg"></strong>
                 </div>
-            @if(session()->has('success'))
+            {{-- @if(session()->has('success'))
                             <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 <strong>{{ session()->get('success') }} </strong>
@@ -44,7 +44,9 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 <strong>{{ session()->get('success') }} </strong>
                             </div>
-                            @endif
+                            @endif --}}
+                            @include('message')
+
             <div class="card">
                 <div class="card-body">
                     <form method="post" id="vehicle_types" class="validation" action="{{ route('update_vehicle',$vehicle->id) }}" enctype="multipart/form-data">

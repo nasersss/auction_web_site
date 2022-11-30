@@ -1,15 +1,16 @@
                 /* slider */
-                
+
                 @import url(../fonts/DIN.css);
+
                 body {
                     font-family: DIN-light, sans-serif, Arial;
                 }
-                
+
                 .carousel-item {
                     height: 32rem;
                     background-color: #000;
                 }
-                
+
                 .slider-img {
                     position: absolute;
                     top: 0;
@@ -20,18 +21,18 @@
                     background-size: cover;
                     opacity: .5;
                 }
-                
+
                 .slider-card {
                     right: 100%;
                     top: 80px;
                     text-align: right;
                 }
-                
+
                 .btn-color {
                     color: #fff;
                     background: var(--primaryColor);
                 }
-                
+
                 .new-offer {
                     height: 60px;
                     width: 59px;
@@ -43,20 +44,20 @@
                     display: flex;
                     margin: auto;
                 }
-                
+
                 .icon {
                     display: flex;
                     justify-content: center;
                 }
-                
+
                 .icon img {
                     width: 20%;
                 }
-                
+
                 .card-text {
                     text-align: right !important;
                 }
-                
+
                 .slider-offer-image {
                     display: flex;
                     width: 26%;
@@ -64,28 +65,28 @@
                     justify-items: flex-end;
                     padding-top: 3%;
                 }
-                
+
                 .slider_head {
                     display: flex;
                     justify-items: center;
                 }
-                
+
                 .slider-offer-image img {
                     width: 80%;
                 }
-                
+
                 .cart-text {
                     text-align: right !important;
                 }
-                
+
                 .new-offer b {
                     margin: auto;
                 }
-                
+
                 table th {
                     padding: 5px 0px 0 15px;
                 }
-                
+
                 .parent-false-icon {
                     display: flex;
                     align-items: center;
@@ -93,29 +94,29 @@
                     color: #fff;
                     font-size: 48px;
                 }
-                
+
                 .container-parent-category {
                     display: flex;
                     justify-content: space-evenly;
                     align-items: center;
                     width: 100%;
                 }
-                
+
                 .category-container {
                     width: 90%;
                     overflow: auto;
                     display: flex;
                 }
-                
+
                 .category {
                     width: 100%;
                 }
-                
+
                 .head-catagory-container {
                     display: flex;
                     justify-content: center;
                 }
-                
+
                 .head-category {
                     width: 70px;
                     height: 70px;
@@ -126,36 +127,36 @@
                     align-items: center;
                     justify-content: center;
                 }
-                
+
                 .auction-paragraph {
                     text-align: center !important;
                     font-weight: bold;
                     font-size: 20px;
                 }
-                
+
                 .auction-price {
                     font-size: 30px;
                     color: var(--primaryColor);
                     font-weight: bolder;
                 }
-                
+
                 .head-category img {
                     width: 80%;
                     /* margin:  14px auto 0; */
                 }
-                
+
                 .category-title {
                     display: flex;
                     justify-content: center;
                 }
-                
+
                 .arrow-category {
                     width: 5%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                 }
-                
+
                 .arrow-category span {
                     width: 27px;
                     height: 27px;
@@ -166,7 +167,7 @@
                     justify-content: center;
                     align-items: center;
                 }
-                
+
                 .slide-bar-icon {
                     height: 35px;
                     width: 35px;
@@ -176,7 +177,7 @@
                     justify-content: center;
                     align-items: center;
                 }
-                
+
                 @media only screen and (max-width: 991px) {
                     .arrow-category span {
                         width: 24px !important;
@@ -184,6 +185,7 @@
                         border-radius: 50%;
                         font-size: 14px !important;
                     }
+
                     /* .slider-offer-image {
         width: 100px;
         height: 100px;
@@ -195,7 +197,56 @@
                         right: 0% !important;
                         top: 4px !important;
                     }
+
                     .category {
                         margin: 0 4%;
                     }
+                }
+
+                @media print {
+                    header {
+                        display: none !important;
+                    }
+
+                    footer {
+                        display: none !important;
+                    }
+                }
+
+                .error-img {
+                    display: flex;
+                    align-items: center;
+                    align-content: center;
+                    justify-items: center;
+                    justify-content: center;
+                }
+
+                .error-img img {
+                    width: 40%;
+                }
+
+                .error-msg {
+                    padding: 10% 0 2%;
+                    text-align: center;
+                }
+
+                .error-msg h4 {
+                    text-align: center;
+                    color: var(--secondary);
+                }
+
+                .error-msg h3 {
+                    text-align: center;
+                    color: var(--red);
+                }
+
+                .date {
+                    color: #ff4444;
+
+                }
+
+                .card_auction_price {
+                    font-weight: bolder;
+                    font-size: 20px;
+                    color: var(--primaryColor);
                 }

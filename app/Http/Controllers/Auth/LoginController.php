@@ -32,6 +32,8 @@ class LoginController extends Controller
     protected $redirectTo = '/';
     public function redirectTo()
     {
+        try {
+
         switch (Auth::user()->role) {
             case 0:
                 return $this->redirectTo = '/admin';
@@ -49,6 +51,9 @@ class LoginController extends Controller
                 return $this->redirectTo = '/login';
                 break;
         }
+    } catch (\Throwable $error) {
+        return view('error');
+    }
     }
 
     /**

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,10 +15,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        try {
 
-        $categories = Category::orderBy('id', 'desc')->get();
-        return view('admin.view_cat')
-            ->with('categories', $categories);
+            $categories = Category::orderBy('id', 'desc')->get();
+            return view('admin.categry.view_cat')
+                ->with('categories', $categories);
+        } catch (\Throwable$error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
     /**
@@ -29,8 +32,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.add_categry');
+        try {
+            return view('admin.categry.add_categry');
+        } catch (\Throwable$error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
     /**
@@ -41,23 +47,27 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        Validator::validate($request->all(), [
-            'name' => ['required', 'min:2', 'max:20'],
-        ], [
-            'name.required' => 'يجب تعبئت هذا الحقل',
-            'name.min' => 'لايمكنك ادخال اقل من 2 احرف',
-            'name.max' => 'لايمكنك ادخال اقل من 20 حرف',
+        try {
+            //
+            Validator::validate($request->all(), [
+                'name' => ['required', 'min:2', 'max:20'],
+            ], [
+                'name.required' => 'يجب تعبئت هذا الحقل',
+                'name.min' => 'لايمكنك ادخال اقل من 2 احرف',
+                'name.max' => 'لايمكنك ادخال اقل من 20 حرف',
 
-        ]);
-        $newCategory = new Category();
-        $newCategory->name = $request->name;
-        $newCategory->is_active = $request->is_active;
-        $newCategory->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultCategoryegory.png";
-        if ($newCategory->save())
-            return redirect()->route('list_categories')->with(['success' => 'تم اضافة البيانات بنجاح']);
+            ]);
+            $newCategory = new Category();
+            $newCategory->name = $request->name;
+            $newCategory->is_active = $request->is_active;
+            $newCategory->image = $request->hasFile('image') ? $this->uploadFile($request->file('image')) : "defaultCategoryegory.png";
+            if ($newCategory->save()) {
+                return redirect()->back()->with(['success' => 'تمت إضافة البيانات بنجاح ']);
+            }
 
-        return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        } catch (\Throwable$th) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
     /**
@@ -79,10 +89,14 @@ class CategoryController extends Controller
      */
     public function edit($categoryId)
     {
-        //
-        $category = Category::find($categoryId);
-        return view('admin.edit_categry')
-            ->with('category', $category);
+        try {
+            //
+            $category = Category::find($categoryId);
+            return view('admin.categry.edit_categry')
+                ->with('category', $category);
+        } catch (\Throwable$error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
     /**
@@ -94,31 +108,36 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $categoryId)
     {
-        Validator::validate($request->all(), [
-            'name' => ['required', 'min:2', 'max:20'],
-        ], [
-            'name.required' => 'يجب تعبئت هذا الحقل',
-            'name.min' => 'لايمكنك ادخال اقل من 2 احرف',
-            'name.max' => 'لايمكنك ادخال اقل من 20 حرف',
+        try {
 
-        ]);
-        //
-        $category = Category::find($categoryId);
-        $category->name = $request->name;
-        $category->is_active = $request->is_active;
+            Validator::validate($request->all(), [
+                'name' => ['required', 'min:2', 'max:20'],
+            ], [
+                'name.required' => 'يجب تعبئت هذا الحقل',
+                'name.min' => 'لايمكنك ادخال اقل من 2 احرف',
+                'name.max' => 'لايمكنك ادخال اقل من 20 حرف',
 
-        if ($request->hasFile('image')) {
-            if (realpath($category->image)) {
-                unlink(realpath($category->image));
+            ]);
+            //
+            $category = Category::find($categoryId);
+            $category->name = $request->name;
+            $category->is_active = $request->is_active;
+
+            if ($request->hasFile('image')) {
+                if (realpath($category->image)) {
+                    unlink(realpath($category->image));
+                }
+                $category->image = $this->uploadFile($request->file('image'));
             }
-            $category->image = $this->uploadFile($request->file('image'));
+
+            if ($category->save()) {
+                return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
+            }
+
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        } catch (\Throwable$error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
         }
-
-
-        if ($category->save())
-            return redirect()->route('list_categories')->with(['success' => 'تم تحديث البيانات بنجاح']);
-
-        return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
     }
 
     /**
@@ -132,28 +151,57 @@ class CategoryController extends Controller
         //
     }
 
-
+    /**
+     * @param mixed $categoryId
+     *This function convert from is_active=1 to is_active=-1 and reverse
+     * @return [boolean]
+     */
     public function toggle($categoryId)
     {
+        try {
 
-        $category = Category::find($categoryId);
-        $category->is_active *= -1;
-        if ($category->save())
-            return back()->with(['success' => 'تم تحديث البيانات بنجاح']);
+            $category = Category::find($categoryId);
+            $category->is_active *= -1;
+            if ($category->save()) {
+                return back()->with(['success' => 'تم تحديث البيانات بنجاح']);
+            }
 
-        return back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+            return back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        } catch (\Throwable$error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
+    /**
+     * @param mixed $file
+     *this function used to upload category image
+     * @return [string]
+     */
     public function uploadFile($file)
     {
-        $destination = public_path() . "/images/";
-        $fileName = time() . "_" . $file->getClientOriginalName();
-        $file->move($destination, $fileName);
-        return $fileName;
+        try {
+
+            $destination = public_path() . "/images/";
+            $fileName = time() . "_" . $file->getClientOriginalName();
+            $file->move($destination, $fileName);
+            return $fileName;
+        } catch (\Throwable$error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 
-    public function viewCategory(){
-        $categories=category::get();
-        return view('index')->with('category',$categories);
+    /**
+     * This function used to view all category in index page
+     * @return [string]
+     */
+    public function viewCategory()
+    {
+        try {
+
+            $categories = category::get();
+            return view('index')->with('category', $categories);
+        } catch (\Throwable$error) {
+            return redirect()->back()->with(['error' => 'عذرا هناك خطا لم تتم اضافة البيانات']);
+        }
     }
 }

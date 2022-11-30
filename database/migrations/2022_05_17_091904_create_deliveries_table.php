@@ -24,7 +24,10 @@ return new class extends Migration
             $table->unsignedBigInteger("auction_id");
             $table->foreign('auction_id')->references('id')->on('auctions');
             $table->unsignedBigInteger("payer_id");
+            $table->double('paid_amout');
+            $table->double('amout_delever');
             $table->foreign('payer_id')->references('id')->on('users');
+            $table->smallInteger("is_active")->default(1);
             $table->timestamps();
         });
     }

@@ -30,11 +30,12 @@
         @endforeach
     @endif
     <div class="row">
+
         <div class="col-12">
             <div id="msg" class="alert alert-danger">
                 <strong id="err-msg"></strong>
                 </div>
-            @if(session()->has('success'))
+            {{-- @if(session()->has('success'))
                             <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 <strong>{{ session()->get('success') }} </strong>
@@ -42,30 +43,31 @@
                             @elseif(session()->has('error'))
                             <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                <strong>{{ session()->get('success') }} </strong>
+                                <strong>{{ session()->get('error') }} </strong>
                             </div>
-                            @endif
+                            @endif --}}
+                            @include('message')
+
             <div class="card">
                 <div class="card-body">
                     <form method="post" class="validation"  action="{{ route("store_city") }}" enctype="multipart/form-data">
                         @csrf
                     <div class="row">
                         <div class="mb-3 col-md-6">
+                            <label for="inputAddress" class="form-label">المحافظة  </label>
+                            <select required name="state_id" class="form-select mb-3">
+                                <option selected disabled>أختر  محافظة</option>
+                                @foreach($state as $state)
+                                <option value="{{$state->id}}">{{$state->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
                             <label for="inputAddress" class="form-label">المدينة  </label>
                             <input type="text" name="name" class="form-control" id="inputAddress" placeholder="مثال المكلا..">
                         </div>
 
-                            <div class="mb-3 col-md-6">
-                                <label for="inputAddress" class="form-label">المحافظة  </label>
-                                <select required name="state_id" class="form-select mb-3">
-                                    <option selected disabled>أختر  محافظة</option>
-                                    @foreach($state as $state)
-                                    <option value="{{$state->id}}">{{$state->name}}</option>
-                                    <!-- <option value="2">بي أم دبليو</option>
-                                    <option value="3">فيراري</option> -->
-                                    @endforeach
-                                </select>
-                            </div>
+                            
                         <div class="mb-1 col-md-3">
                             <label for="inputAddress" class="form-label">الحالة</label>
                             <select name="is_active" class="form-select mb-3">

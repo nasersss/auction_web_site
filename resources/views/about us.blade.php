@@ -21,7 +21,8 @@
       <div class="col-lg-6">
         <h4 class="display-4" id="headrs">انتظروا تجربة ولا اروع مع تطبيق مزادي كار </h4>
         <p class="lead text-muted mb-0">انتظروا قريباً تجربة متميزة مع موقع مزادي كار ،، فنحن نسعى لتقديم افضل تجربة لمستخدمينا</p>
-       
+                                   <i class="fas fa-quote-left comment-left second-c" style=" padding: 0px 5px 5px 5px;font-size:25px;float: left; margin-top: -20px;"></i>
+
         </p>
       </div>
       <div class="col-lg-6 d-none d-lg-block"><img src="https://bootstrapious.com/i/snippets/sn-about/illus.png" alt="" class="img-fluid"></div>
